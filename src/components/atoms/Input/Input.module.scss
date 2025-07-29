@@ -1,0 +1,365 @@
+@import "../../../styles/_tokens.scss";
+
+.inputWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.input {
+  width: 100%;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  border: 1px solid var(--color-gray-3);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  color: var(--color-gray-9);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  &::placeholder {
+    color: var(--color-gray-6);
+    font-weight: var(--font-weight-normal);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: var(--opacity-50);
+  }
+
+  // Size variants
+  &.size-sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    min-height: 32px;
+  }
+
+  &.size-md {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    min-height: 40px;
+  }
+
+  &.size-lg {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-lg);
+    min-height: 48px;
+  }
+
+  // Variant styles
+  &.variant-default {
+    background-color: var(--color-white);
+    border-color: var(--color-gray-3);
+    color: var(--color-gray-9);
+
+    &::placeholder {
+      color: var(--color-gray-6);
+    }
+
+    &.state-enabled {
+      border-color: var(--color-gray-3);
+    }
+
+    &.state-focus {
+      border-color: var(--color-blue-6);
+      box-shadow: 0 0 0 1px var(--color-blue-6);
+    }
+
+    &.state-typing {
+      border-color: var(--color-blue-6);
+      box-shadow: 0 0 0 1px var(--color-blue-6);
+    }
+
+    &.state-filled {
+      border-color: var(--color-gray-3);
+      background-color: var(--color-gray-0);
+    }
+
+    &.state-disabled {
+      border-color: var(--color-gray-3);
+      background-color: var(--color-gray-1);
+      color: var(--color-gray-6);
+    }
+
+    &.error {
+      border-color: var(--color-red-6);
+
+      &.state-enabled {
+        border-color: var(--color-red-6);
+      }
+
+      &.state-focus {
+        border-color: var(--color-red-6);
+        box-shadow: 0 0 0 1px var(--color-red-6);
+      }
+
+      &.state-typing {
+        border-color: var(--color-red-6);
+        box-shadow: 0 0 0 1px var(--color-red-6);
+      }
+
+      &.state-filled {
+        border-color: var(--color-red-6);
+        background-color: var(--color-red-0);
+      }
+
+      &.state-disabled {
+        border-color: var(--color-red-3);
+        background-color: var(--color-red-1);
+        color: var(--color-red-6);
+      }
+    }
+  }
+
+  &.variant-filled {
+    background-color: var(--color-gray-1);
+    border-color: var(--color-gray-3);
+    color: var(--color-gray-9);
+
+    &::placeholder {
+      color: var(--color-gray-6);
+    }
+
+    &.state-enabled {
+      border-color: var(--color-gray-3);
+      background-color: var(--color-gray-1);
+    }
+
+    &.state-focus {
+      border-color: var(--color-blue-6);
+      background-color: var(--color-gray-1);
+      box-shadow: 0 0 0 1px var(--color-blue-6);
+    }
+
+    &.state-typing {
+      border-color: var(--color-blue-6);
+      background-color: var(--color-gray-1);
+      box-shadow: 0 0 0 1px var(--color-blue-6);
+    }
+
+    &.state-filled {
+      border-color: var(--color-gray-3);
+      background-color: var(--color-gray-2);
+    }
+
+    &.state-disabled {
+      border-color: var(--color-gray-3);
+      background-color: var(--color-gray-2);
+      color: var(--color-gray-6);
+    }
+
+    &.error {
+      border-color: var(--color-red-6);
+      background-color: var(--color-red-1);
+
+      &.state-enabled {
+        border-color: var(--color-red-6);
+        background-color: var(--color-red-1);
+      }
+
+      &.state-focus {
+        border-color: var(--color-red-6);
+        background-color: var(--color-red-1);
+        box-shadow: 0 0 0 1px var(--color-red-6);
+      }
+
+      &.state-typing {
+        border-color: var(--color-red-6);
+        background-color: var(--color-red-1);
+        box-shadow: 0 0 0 1px var(--color-red-6);
+      }
+
+      &.state-filled {
+        border-color: var(--color-red-6);
+        background-color: var(--color-red-2);
+      }
+
+      &.state-disabled {
+        border-color: var(--color-red-3);
+        background-color: var(--color-red-2);
+        color: var(--color-red-6);
+      }
+    }
+  }
+
+  &.variant-unstyled {
+    background-color: transparent;
+    border: none;
+    color: var(--color-gray-9);
+    padding-left: 0;
+    padding-right: 0;
+
+    &::placeholder {
+      color: var(--color-gray-6);
+    }
+
+    &.state-enabled {
+      color: var(--color-gray-6);
+    }
+
+    &.state-focus {
+      color: var(--color-gray-9);
+    }
+
+    &.state-typing {
+      color: var(--color-gray-9);
+    }
+
+    &.state-filled {
+      color: var(--color-gray-9);
+    }
+
+    &.state-disabled {
+      color: var(--color-gray-6);
+    }
+
+    &.error {
+      color: var(--color-red-6);
+
+      &.state-enabled {
+        color: var(--color-red-6);
+      }
+
+      &.state-focus {
+        color: var(--color-red-6);
+      }
+
+      &.state-typing {
+        color: var(--color-red-6);
+      }
+
+      &.state-filled {
+        color: var(--color-red-6);
+      }
+
+      &.state-disabled {
+        color: var(--color-red-6);
+      }
+    }
+  }
+}
+
+.icons {
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  pointer-events: none;
+}
+
+.infoIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-gray-6);
+
+  .input.state-enabled & {
+    color: var(--color-gray-6);
+  }
+
+  .input.state-focus & {
+    color: var(--color-blue-6);
+  }
+
+  .input.state-typing & {
+    color: var(--color-blue-6);
+  }
+
+  .input.state-filled & {
+    color: var(--color-gray-6);
+  }
+
+  .input.state-disabled & {
+    color: var(--color-gray-6);
+    opacity: var(--opacity-50);
+  }
+
+  .input.error & {
+    color: var(--color-red-6);
+
+    .input.state-enabled & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-focus & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-typing & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-filled & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-disabled & {
+      color: var(--color-red-6);
+      opacity: var(--opacity-50);
+    }
+  }
+}
+
+.dropdownArrow {
+  width: 16px;
+  height: 16px;
+  color: var(--color-gray-6);
+
+  .input.state-enabled & {
+    color: var(--color-gray-6);
+  }
+
+  .input.state-focus & {
+    color: var(--color-blue-6);
+  }
+
+  .input.state-typing & {
+    color: var(--color-blue-6);
+  }
+
+  .input.state-filled & {
+    color: var(--color-gray-6);
+  }
+
+  .input.state-disabled & {
+    color: var(--color-gray-6);
+    opacity: var(--opacity-50);
+  }
+
+  .input.error & {
+    color: var(--color-red-6);
+
+    .input.state-enabled & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-focus & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-typing & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-filled & {
+      color: var(--color-red-6);
+    }
+
+    .input.state-disabled & {
+      color: var(--color-red-6);
+      opacity: var(--opacity-50);
+    }
+  }
+}

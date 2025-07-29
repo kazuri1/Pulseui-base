@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pulse UI Design System - CSS Variables for Theme Switching */
+:root {
+  /* Default Theme (Light) */
+  --color-primary-50: #e7f5ffff;
+  --color-primary-100: #d0ebffff;
+  --color-primary-200: #a5d8ffff;
+  --color-primary-300: #74c0fcff;
+  --color-primary-400: #4dabf7ff;
+  --color-primary-500: #339af0ff;
+  --color-primary-600: #228be6ff;
+  --color-primary-700: #1c7ed6ff;
+  --color-primary-800: #1971c2ff;
+  --color-primary-900: #1864abff;
+
+  --color-surface-50: #f8f9faff;
+  --color-surface-100: #f1f3f5ff;
+  --color-surface-200: #e9ecefff;
+  --color-surface-300: #dee2e6ff;
+  --color-surface-400: #ced4daff;
+  --color-surface-500: #adb5bdff;
+  --color-surface-600: #868e96ff;
+  --color-surface-700: #495057ff;
+  --color-surface-800: #343a40ff;
+  --color-surface-900: #212529ff;
+
+  --color-text-primary: #212529ff;
+  --color-text-secondary: #495057ff;
+  --color-text-muted: #868e96ff;
+  --color-text-disabled: #adb5bdff;
+
+  --color-border-primary: #dee2e6ff;
+  --color-border-secondary: #ced4daff;
+  --color-border-focus: #339af0ff;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --color-primary-50: #e7f5ffff;
+  --color-primary-100: #d0ebffff;
+  --color-primary-200: #a5d8ffff;
+  --color-primary-300: #74c0fcff;
+  --color-primary-400: #4dabf7ff;
+  --color-primary-500: #339af0ff;
+  --color-primary-600: #228be6ff;
+  --color-primary-700: #1c7ed6ff;
+  --color-primary-800: #1971c2ff;
+  --color-primary-900: #1864abff;
+
+  --color-surface-50: #141414ff;
+  --color-surface-100: #1f1f1fff;
+  --color-surface-200: #242424ff;
+  --color-surface-300: #2e2e2eff;
+  --color-surface-400: #424242ff;
+  --color-surface-500: #696969ff;
+  --color-surface-600: #828282ff;
+  --color-surface-700: #b8b8b8ff;
+  --color-surface-800: #c9c9c9ff;
+  --color-surface-900: #ffffffff;
+
+  --color-text-primary: #ffffffff;
+  --color-text-secondary: #c9c9c9ff;
+  --color-text-muted: #828282ff;
+  --color-text-disabled: #696969ff;
+
+  --color-border-primary: #424242ff;
+  --color-border-secondary: #2e2e2eff;
+  --color-border-focus: #74c0fcff;
+}
+
+/* Medash Theme */
+[data-theme="medash"] {
+  --color-primary-500: #1971c2ff;
+  --color-primary-600: #1864abff;
+  --color-primary-700: #155a9aff;
+}
+
+/* FitCore Theme */
+[data-theme="fitcore"] {
+  --color-primary-500: #fd7e14ff;
+  --color-primary-600: #f76707ff;
+  --color-primary-700: #e8590cff;
+}
+
+/* LabSync Theme */
+[data-theme="labsync"] {
+  --color-primary-500: #7950f2ff;
+  --color-primary-600: #7048e8ff;
+  --color-primary-700: #6741d9ff;
+}
+
+/* Pulse UI Design System - Base Styles */
+@layer base {
+  :root {
+    font-family: "Roboto", system-ui, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface-50);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  /* Typography */
+  h1 {
+    @apply text-4xl font-bold;
+  }
+  h2 {
+    @apply text-3xl font-bold;
+  }
+  h3 {
+    @apply text-2xl font-bold;
+  }
+  h4 {
+    @apply text-xl font-bold;
+  }
+  h5 {
+    @apply text-base font-bold;
+  }
+  h6 {
+    @apply text-xs font-bold;
+  }
+}
+
+@layer components {
+  /* Pulse UI Component Styles */
+  .pulse-button {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .pulse-button-primary {
+    @apply pulse-button bg-blue-600 text-white hover:bg-blue-700;
+  }
+
+  .pulse-button-secondary {
+    @apply pulse-button bg-gray-600 text-white hover:bg-gray-700;
+  }
+
+  .pulse-button-outline {
+    @apply pulse-button border border-blue-300 text-blue-600 hover:bg-blue-50;
+  }
+
+  .pulse-button-ghost {
+    @apply pulse-button text-blue-600 hover:bg-blue-50;
+  }
+
+  .pulse-button-danger {
+    @apply pulse-button bg-red-600 text-white hover:bg-red-700;
+  }
+
+  .pulse-input {
+    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .pulse-card {
+    @apply rounded-lg border border-gray-200 bg-white text-gray-900 shadow-sm;
+  }
+}
+
+@layer utilities {
+  /* Pulse UI Utility Classes */
+  .text-title {
+    @apply text-gray-900;
+  }
+  .text-body {
+    @apply text-gray-900;
+  }
+  .text-muted {
+    @apply text-gray-500;
+  }
+  .text-disabled {
+    @apply text-gray-400;
+  }
+
+  .bg-surface {
+    @apply bg-white;
+  }
+  .bg-surface-hover {
+    @apply bg-gray-50;
+  }
+  .bg-body {
+    @apply bg-gray-50;
+  }
+}

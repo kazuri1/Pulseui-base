@@ -1,0 +1,172 @@
+{
+  "description": "Brand-specific design tokens for Pulse UI",
+  "version": "1.0.0",
+  "themes": {
+    "default": {
+      "description": "Default theme tokens",
+      "mode": {
+        "light": {
+          "primary": {
+            "50": { "type": "color", "value": "#e7f5ffff" },
+            "100": { "type": "color", "value": "#d0ebffff" },
+            "200": { "type": "color", "value": "#a5d8ffff" },
+            "300": { "type": "color", "value": "#74c0fcff" },
+            "400": { "type": "color", "value": "#4dabf7ff" },
+            "500": { "type": "color", "value": "#339af0ff" },
+            "600": { "type": "color", "value": "#228be6ff" },
+            "700": { "type": "color", "value": "#1c7ed6ff" },
+            "800": { "type": "color", "value": "#1971c2ff" },
+            "900": { "type": "color", "value": "#1864abff" }
+          },
+          "surface": {
+            "50": { "type": "color", "value": "#f8f9faff" },
+            "100": { "type": "color", "value": "#f1f3f5ff" },
+            "200": { "type": "color", "value": "#e9ecefff" },
+            "300": { "type": "color", "value": "#dee2e6ff" },
+            "400": { "type": "color", "value": "#ced4daff" },
+            "500": { "type": "color", "value": "#adb5bdff" },
+            "600": { "type": "color", "value": "#868e96ff" },
+            "700": { "type": "color", "value": "#495057ff" },
+            "800": { "type": "color", "value": "#343a40ff" },
+            "900": { "type": "color", "value": "#212529ff" }
+          },
+          "text": {
+            "primary": { "type": "color", "value": "#212529ff" },
+            "secondary": { "type": "color", "value": "#495057ff" },
+            "muted": { "type": "color", "value": "#868e96ff" },
+            "disabled": { "type": "color", "value": "#adb5bdff" }
+          },
+          "border": {
+            "primary": { "type": "color", "value": "#dee2e6ff" },
+            "secondary": { "type": "color", "value": "#ced4daff" },
+            "focus": { "type": "color", "value": "#339af0ff" }
+          }
+        },
+        "dark": {
+          "primary": {
+            "50": { "type": "color", "value": "#e7f5ffff" },
+            "100": { "type": "color", "value": "#d0ebffff" },
+            "200": { "type": "color", "value": "#a5d8ffff" },
+            "300": { "type": "color", "value": "#74c0fcff" },
+            "400": { "type": "color", "value": "#4dabf7ff" },
+            "500": { "type": "color", "value": "#339af0ff" },
+            "600": { "type": "color", "value": "#228be6ff" },
+            "700": { "type": "color", "value": "#1c7ed6ff" },
+            "800": { "type": "color", "value": "#1971c2ff" },
+            "900": { "type": "color", "value": "#1864abff" }
+          },
+          "surface": {
+            "50": { "type": "color", "value": "#141414ff" },
+            "100": { "type": "color", "value": "#1f1f1fff" },
+            "200": { "type": "color", "value": "#242424ff" },
+            "300": { "type": "color", "value": "#2e2e2eff" },
+            "400": { "type": "color", "value": "#424242ff" },
+            "500": { "type": "color", "value": "#696969ff" },
+            "600": { "type": "color", "value": "#828282ff" },
+            "700": { "type": "color", "value": "#b8b8b8ff" },
+            "800": { "type": "color", "value": "#c9c9c9ff" },
+            "900": { "type": "color", "value": "#ffffffff" }
+          },
+          "text": {
+            "primary": { "type": "color", "value": "#ffffffff" },
+            "secondary": { "type": "color", "value": "#c9c9c9ff" },
+            "muted": { "type": "color", "value": "#828282ff" },
+            "disabled": { "type": "color", "value": "#696969ff" }
+          },
+          "border": {
+            "primary": { "type": "color", "value": "#424242ff" },
+            "secondary": { "type": "color", "value": "#2e2e2eff" },
+            "focus": { "type": "color", "value": "#74c0fcff" }
+          }
+        }
+      }
+    },
+    "medash": {
+      "description": "MedTech brand tokens",
+      "mode": {
+        "light": {
+          "primary": {
+            "500": { "type": "color", "value": "#1971c2ff" },
+            "600": { "type": "color", "value": "#1864abff" },
+            "700": { "type": "color", "value": "#155a9aff" }
+          },
+          "accent": {
+            "500": { "type": "color", "value": "#12b886ff" },
+            "600": { "type": "color", "value": "#0ca678ff" },
+            "700": { "type": "color", "value": "#099268ff" }
+          }
+        },
+        "dark": {
+          "primary": {
+            "500": { "type": "color", "value": "#1971c2ff" },
+            "600": { "type": "color", "value": "#1864abff" },
+            "700": { "type": "color", "value": "#155a9aff" }
+          },
+          "accent": {
+            "500": { "type": "color", "value": "#12b886ff" },
+            "600": { "type": "color", "value": "#0ca678ff" },
+            "700": { "type": "color", "value": "#099268ff" }
+          }
+        }
+      }
+    },
+    "fitcore": {
+      "description": "FitnessTech brand tokens",
+      "mode": {
+        "light": {
+          "primary": {
+            "500": { "type": "color", "value": "#fd7e14ff" },
+            "600": { "type": "color", "value": "#f76707ff" },
+            "700": { "type": "color", "value": "#e8590cff" }
+          },
+          "accent": {
+            "500": { "type": "color", "value": "#40c057ff" },
+            "600": { "type": "color", "value": "#37b24dff" },
+            "700": { "type": "color", "value": "#2f9e44ff" }
+          }
+        },
+        "dark": {
+          "primary": {
+            "500": { "type": "color", "value": "#fd7e14ff" },
+            "600": { "type": "color", "value": "#f76707ff" },
+            "700": { "type": "color", "value": "#e8590cff" }
+          },
+          "accent": {
+            "500": { "type": "color", "value": "#40c057ff" },
+            "600": { "type": "color", "value": "#37b24dff" },
+            "700": { "type": "color", "value": "#2f9e44ff" }
+          }
+        }
+      }
+    },
+    "labsync": {
+      "description": "LabSync brand tokens",
+      "mode": {
+        "light": {
+          "primary": {
+            "500": { "type": "color", "value": "#7950f2ff" },
+            "600": { "type": "color", "value": "#7048e8ff" },
+            "700": { "type": "color", "value": "#6741d9ff" }
+          },
+          "accent": {
+            "500": { "type": "color", "value": "#15aabfff" },
+            "600": { "type": "color", "value": "#1098adff" },
+            "700": { "type": "color", "value": "#0c8599ff" }
+          }
+        },
+        "dark": {
+          "primary": {
+            "500": { "type": "color", "value": "#7950f2ff" },
+            "600": { "type": "color", "value": "#7048e8ff" },
+            "700": { "type": "color", "value": "#6741d9ff" }
+          },
+          "accent": {
+            "500": { "type": "color", "value": "#15aabfff" },
+            "600": { "type": "color", "value": "#1098adff" },
+            "700": { "type": "color", "value": "#0c8599ff" }
+          }
+        }
+      }
+    }
+  }
+}

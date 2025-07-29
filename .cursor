@@ -1,0 +1,120 @@
+{
+  "projectName": "Pulse UI",
+  "description": "Pulse UI is a mobile-first, open-source, multi-brand design system and component library built with token-first architecture. It supports JSON tokens, CSS variables, Tailwind, and Storybook, targeting healthtech and fitnesstech startups.",
+  "techStack": {
+    "designTokens": "JSON (Figma Variables → Style Dictionary → Tailwind)",
+    "styling": "Tailwind CSS with token overrides and CSS variables",
+    "components": "React + Tailwind + Storybook",
+    "documentation": "Storybook Docs",
+    "theming": "Multi-brand static theming via token sets + Tailwind config",
+    "packaging": "NPM Packages"
+  },
+  "tokenArchitecture": {
+    "levels": {
+      "global": "Brand-agnostic primitives (colors, spacing, typography)",
+      "semantic": "Component tokens mapping to global tokens",
+      "component": "Overrides or scoped tokens for specific components"
+    },
+    "structure": {
+      "colors": {
+        "primary": "{brand}.{mode}.primary",
+        "surface": "{brand}.{mode}.surface",
+        "text": "{brand}.{mode}.text",
+        "border": "{brand}.{mode}.border"
+      },
+      "spacing": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "typography": {
+        "font": [
+          "heading",
+          "body",
+          "mono"
+        ],
+        "sizes": [
+          "xs",
+          "sm",
+          "base",
+          "lg",
+          "xl"
+        ],
+        "weight": [
+          "regular",
+          "medium",
+          "semibold",
+          "bold"
+        ]
+      }
+    },
+    "themes": [
+      "default",
+      "medplum",
+      "fitcore",
+      "labsync"
+    ]
+  },
+  "componentStrategy": {
+    "platforms": [
+      "Web",
+      "Mobile (React Native)"
+    ],
+    "statesToInclude": [
+      "Default",
+      "Hover",
+      "Active",
+      "Disabled",
+      "Loading",
+      "Focused",
+      "With icon",
+      "With label",
+      "With counter",
+      "Validation states"
+    ],
+    "interactionModels": [
+      "Keyboard accessible",
+      "ARIA compliant"
+    ],
+    "responsiveness": "All components must scale and respond across viewports (mobile-first)",
+    "brands": [
+      "medplum",
+      "fitcore",
+      "labsync"
+    ]
+  },
+  "figma": {
+    "coreSetup": "Figma variables defined for core tokens",
+    "componentSets": "Web + Mobile variants using auto layout",
+    "namingConvention": "prefix.component.platform.state",
+    "variableLibrary": "Used to swap themes/brands via mode tokens"
+  },
+  "tailwindConfig": {
+    "extend": {
+      "colors": "Linked via CSS variables resolved from tokens",
+      "spacing": "Tokenized",
+      "fontSize": "Tokenized",
+      "borderRadius": "Tokenized",
+      "boxShadow": "Tokenized"
+    },
+    "themes": "Multiple theme layers via Tailwind plugin for CSS variables"
+  },
+  "storybook": {
+    "structure": "Each component must include a doc page with prop table, usage examples, and all states as stories",
+    "addonSupport": [
+      "Controls",
+      "Docs",
+      "Accessibility",
+      "Themes"
+    ],
+    "folderStructure": "src/components/{component-name}/index.tsx + {component-name}.stories.tsx + {component-name}.test.tsx"
+  },
+  "goals": [
+    "Design tokens must drive all styling",
+    "Each component is accessible, responsive, and multi-brand ready",
+    "Storybook must act as single source of truth for devs and designers",
+    "Maintain open-source discipline (naming, structure, docs)"
+  ]
+}
