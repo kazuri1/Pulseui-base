@@ -33,7 +33,7 @@ export interface InputProps {
   /** Right icon */
   rightIcon?: SvgIconComponent | string;
   /** Input type */
-  type?: "text" | "email" | "password" | "number" | "tel" | "url";
+  type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search";
   /** Disabled state */
   disabled?: boolean;
   /** Readonly state */

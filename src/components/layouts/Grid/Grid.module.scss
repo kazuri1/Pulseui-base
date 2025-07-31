@@ -1,0 +1,148 @@
+@import "../../../styles/_tokens.scss";
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns, 12), 1fr);
+  gap: var(--grid-gutter, var(--spacing-md));
+  width: 100%;
+
+  // Align items
+  &.align-stretch {
+    align-items: stretch;
+  }
+
+  &.align-flex-start {
+    align-items: flex-start;
+  }
+
+  &.align-flex-end {
+    align-items: flex-end;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-baseline {
+    align-items: baseline;
+  }
+
+  // Justify content
+  &.justify-flex-start {
+    justify-content: flex-start;
+  }
+
+  &.justify-flex-end {
+    justify-content: flex-end;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+
+  &.justify-space-around {
+    justify-content: space-around;
+  }
+
+  &.justify-space-evenly {
+    justify-content: space-evenly;
+  }
+
+  // Overflow
+  &.overflow-visible {
+    overflow: visible;
+  }
+
+  &.overflow-hidden {
+    overflow: hidden;
+  }
+
+  &.overflow-scroll {
+    overflow: scroll;
+  }
+
+  &.overflow-auto {
+    overflow: auto;
+  }
+
+  // Gutter sizes
+  &.gutter-xs {
+    gap: var(--spacing-xs);
+  }
+
+  &.gutter-sm {
+    gap: var(--spacing-sm);
+  }
+
+  &.gutter-md {
+    gap: var(--spacing-md);
+  }
+
+  &.gutter-lg {
+    gap: var(--spacing-lg);
+  }
+
+  &.gutter-xl {
+    gap: var(--spacing-xl);
+  }
+
+  // Column configurations
+  &.columns-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &.columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.columns-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.columns-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &.columns-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &.columns-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &.columns-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &.columns-8 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  &.columns-9 {
+    grid-template-columns: repeat(9, 1fr);
+  }
+
+  &.columns-10 {
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  &.columns-11 {
+    grid-template-columns: repeat(11, 1fr);
+  }
+
+  &.columns-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  // Grow behavior
+  &.grow {
+    > * {
+      min-height: 0;
+    }
+  }
+} 

@@ -1,0 +1,77 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+// Alignment classes
+.root.align-stretch {
+  align-items: stretch;
+}
+
+.root.align-flex-start {
+  align-items: flex-start;
+}
+
+.root.align-flex-end {
+  align-items: flex-end;
+}
+
+.root.align-center {
+  align-items: center;
+}
+
+.root.align-baseline {
+  align-items: baseline;
+}
+
+// Justify classes
+.root.justify-flex-start {
+  justify-content: flex-start;
+}
+
+.root.justify-flex-end {
+  justify-content: flex-end;
+}
+
+.root.justify-center {
+  justify-content: center;
+}
+
+.root.justify-space-between {
+  justify-content: space-between;
+}
+
+.root.justify-space-around {
+  justify-content: space-around;
+}
+
+.root.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+// Gap classes using design tokens
+.root.gap-xs {
+  gap: var(--spacing-xs);
+}
+
+.root.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.root.gap-md {
+  gap: var(--spacing-md);
+}
+
+.root.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+.root.gap-xl {
+  gap: var(--spacing-xl);
+}
+
+// Custom gap using CSS variable
+.root[style*="--stack-gap"] {
+  gap: var(--stack-gap);
+}

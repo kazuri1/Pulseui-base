@@ -1,0 +1,74 @@
+@import "../../../styles/_tokens.scss";
+
+.root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  box-sizing: border-box;
+  --container-size: 62rem; // Default size
+
+  // Centering strategies
+  &.strategy-block {
+    display: block;
+  }
+
+  &.strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, var(--container-size)) 1fr;
+    gap: 0;
+
+    // Grid column content
+    > * {
+      grid-column: 2;
+    }
+
+    // Breakout elements
+    > [data-breakout] {
+      grid-column: 1 / -1;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+
+      // Container inside breakout
+      > [data-container] {
+        max-width: var(--container-size);
+        margin: 0 auto;
+        padding: 0 var(--spacing-md);
+      }
+    }
+  }
+
+  // Size variants
+  &.size-xs {
+    --container-size: 36rem; // 576px
+    max-width: var(--container-size);
+  }
+
+  &.size-sm {
+    --container-size: 48rem; // 768px
+    max-width: var(--container-size);
+  }
+
+  &.size-md {
+    --container-size: 62rem; // 992px
+    max-width: var(--container-size);
+  }
+
+  &.size-lg {
+    --container-size: 75rem; // 1200px
+    max-width: var(--container-size);
+  }
+
+  &.size-xl {
+    --container-size: 87.5rem; // 1400px
+    max-width: var(--container-size);
+  }
+
+  // Fluid container
+  &.fluid {
+    --container-size: none;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}

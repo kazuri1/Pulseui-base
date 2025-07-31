@@ -71,7 +71,8 @@ const meta: Meta<typeof Input> = {
     },
     showPasswordToggle: {
       control: "boolean",
-      description: "Show password toggle for password type (defaults to true when type='password')",
+      description:
+        "Show password toggle for password type (defaults to true when type='password')",
     },
     passwordVisible: {
       control: "boolean",
@@ -482,10 +483,7 @@ export const PasswordInput: Story = {
           <h3 className="text-lg font-semibold mb-4">
             Automatic Password Toggle (Default Behavior)
           </h3>
-          <Input
-            type="password"
-            placeholder="Enter password..."
-          />
+          <Input type="password" placeholder="Enter password..." />
           <p className="text-sm text-gray-600 mt-2">
             Password toggle automatically appears when type="password"
           </p>

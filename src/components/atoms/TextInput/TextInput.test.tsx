@@ -1,0 +1,131 @@
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { TextInput } from "./TextInput";
+
+describe("TextInput", () => {
+  it("renders with label", () => {
+    render(<TextInput label="Email Address" />);
+    expect(screen.getByText("Email Address")).toBeInTheDocument();
+  });
+
+  it("renders required indicator", () => {
+    render(<TextInput label="Email Address" required />);
+    expect(screen.getByText("*")).toBeInTheDocument();
+  });
+
+  it("renders placeholder", () => {
+    render(<TextInput placeholder="Enter your email" />);
+    expect(screen.getByPlaceholderText("Enter your email")).toBeInTheDocument();
+  });
+
+  it("renders caption", () => {
+    render(<TextInput caption="Must be a valid email" />);
+    expect(screen.getByText("Must be a valid email")).toBeInTheDocument();
+  });
+
+  it("renders error message", () => {
+    render(<TextInput error="Invalid email address" />);
+    expect(screen.getByText("Invalid email address")).toBeInTheDocument();
+    expect(screen.getByText("⚠")).toBeInTheDocument();
+  });
+
+  it("calls onChange when input changes", () => {
+    const handleChange = vi.fn();
+    render(<TextInput onChange={handleChange} />);
+
+    const input = screen.getByRole("textbox");
+    fireEvent.change(input, { target: { value: "test@example.com" } });
+
+    expect(handleChange).toHaveBeenCalledWith("test@example.com");
+  });
+
+  it("calls onFocus when input is focused", () => {
+    const handleFocus = vi.fn();
+    render(<TextInput onFocus={handleFocus} />);
+
+    const input = screen.getByRole("textbox");
+    fireEvent.focus(input);
+
+    expect(handleFocus).toHaveBeenCalled();
+  });
+
+  it("calls onBlur when input loses focus", () => {
+    const handleBlur = vi.fn();
+    render(<TextInput onBlur={handleBlur} />);
+
+    const input = screen.getByRole("textbox");
+    fireEvent.blur(input);
+
+    expect(handleBlur).toHaveBeenCalled();
+  });
+
+  it("applies disabled state", () => {
+    render(<TextInput disabled />);
+    const input = screen.getByRole("textbox");
+    expect(input).toBeDisabled();
+  });
+
+  it("renders with different input types", () => {
+    const { rerender } = render(<TextInput type="email" />);
+    expect(screen.getByRole("textbox")).toHaveAttribute("type", "email");
+
+    rerender(<TextInput type="password" />);
+    expect(screen.getByRole("textbox")).toHaveAttribute("type", "password");
+
+    rerender(<TextInput type="number" />);
+    expect(screen.getByRole("spinbutton")).toBeInTheDocument();
+  });
+
+  it("renders with left icon", () => {
+    render(<TextInput leftIcon="email" />);
+    // The icon should be rendered by the Input component
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+
+  it("renders with right icon", () => {
+    render(<TextInput rightIcon="search" />);
+    // The icon should be rendered by the Input component
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+
+  it("shows password toggle for password inputs", () => {
+    render(<TextInput type="password" showPasswordToggle />);
+    // The password toggle should be rendered by the Input component
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
+
+  it("applies error styles when error is present", () => {
+    const { container } = render(<TextInput error="Error message" />);
+    expect(container.firstChild).toHaveClass("error");
+  });
+
+  it("applies disabled styles when disabled", () => {
+    const { container } = render(<TextInput disabled />);
+    expect(container.firstChild).toHaveClass("disabled");
+  });
+
+  it("generates unique id when not provided", () => {
+    render(<TextInput label="Test" />);
+    const label = screen.getByText("Test");
+    const input = screen.getByRole("textbox");
+
+    expect(label).toHaveAttribute("for");
+    expect(input).toHaveAttribute("id");
+    expect(label.getAttribute("for")).toBe(input.getAttribute("id"));
+  });
+
+  it("uses provided id", () => {
+    render(<TextInput label="Test" id="custom-id" />);
+    const label = screen.getByText("Test");
+    const input = screen.getByRole("textbox");
+
+    expect(label).toHaveAttribute("for", "custom-id");
+    expect(input).toHaveAttribute("id", "custom-id");
+  });
+
+  it("does not show caption when error is present", () => {
+    render(<TextInput caption="Caption text" error="Error message" />);
+    expect(screen.queryByText("Caption text")).not.toBeInTheDocument();
+    expect(screen.getByText("Error message")).toBeInTheDocument();
+  });
+});

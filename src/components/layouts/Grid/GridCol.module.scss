@@ -1,0 +1,248 @@
+@import "../../../styles/_tokens.scss";
+
+.root {
+  // Base span classes (1-12)
+  &.span-1 {
+    grid-column: span 1;
+  }
+
+  &.span-2 {
+    grid-column: span 2;
+  }
+
+  &.span-3 {
+    grid-column: span 3;
+  }
+
+  &.span-4 {
+    grid-column: span 4;
+  }
+
+  &.span-5 {
+    grid-column: span 5;
+  }
+
+  &.span-6 {
+    grid-column: span 6;
+  }
+
+  &.span-7 {
+    grid-column: span 7;
+  }
+
+  &.span-8 {
+    grid-column: span 8;
+  }
+
+  &.span-9 {
+    grid-column: span 9;
+  }
+
+  &.span-10 {
+    grid-column: span 10;
+  }
+
+  &.span-11 {
+    grid-column: span 11;
+  }
+
+  &.span-12 {
+    grid-column: span 12;
+  }
+
+  // Responsive breakpoints
+  @media (min-width: 576px) {
+    &.span-xs-1 {
+      grid-column: span 1;
+    }
+    &.span-xs-2 {
+      grid-column: span 2;
+    }
+    &.span-xs-3 {
+      grid-column: span 3;
+    }
+    &.span-xs-4 {
+      grid-column: span 4;
+    }
+    &.span-xs-5 {
+      grid-column: span 5;
+    }
+    &.span-xs-6 {
+      grid-column: span 6;
+    }
+    &.span-xs-7 {
+      grid-column: span 7;
+    }
+    &.span-xs-8 {
+      grid-column: span 8;
+    }
+    &.span-xs-9 {
+      grid-column: span 9;
+    }
+    &.span-xs-10 {
+      grid-column: span 10;
+    }
+    &.span-xs-11 {
+      grid-column: span 11;
+    }
+    &.span-xs-12 {
+      grid-column: span 12;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &.span-sm-1 {
+      grid-column: span 1;
+    }
+    &.span-sm-2 {
+      grid-column: span 2;
+    }
+    &.span-sm-3 {
+      grid-column: span 3;
+    }
+    &.span-sm-4 {
+      grid-column: span 4;
+    }
+    &.span-sm-5 {
+      grid-column: span 5;
+    }
+    &.span-sm-6 {
+      grid-column: span 6;
+    }
+    &.span-sm-7 {
+      grid-column: span 7;
+    }
+    &.span-sm-8 {
+      grid-column: span 8;
+    }
+    &.span-sm-9 {
+      grid-column: span 9;
+    }
+    &.span-sm-10 {
+      grid-column: span 10;
+    }
+    &.span-sm-11 {
+      grid-column: span 11;
+    }
+    &.span-sm-12 {
+      grid-column: span 12;
+    }
+  }
+
+  @media (min-width: 992px) {
+    &.span-md-1 {
+      grid-column: span 1;
+    }
+    &.span-md-2 {
+      grid-column: span 2;
+    }
+    &.span-md-3 {
+      grid-column: span 3;
+    }
+    &.span-md-4 {
+      grid-column: span 4;
+    }
+    &.span-md-5 {
+      grid-column: span 5;
+    }
+    &.span-md-6 {
+      grid-column: span 6;
+    }
+    &.span-md-7 {
+      grid-column: span 7;
+    }
+    &.span-md-8 {
+      grid-column: span 8;
+    }
+    &.span-md-9 {
+      grid-column: span 9;
+    }
+    &.span-md-10 {
+      grid-column: span 10;
+    }
+    &.span-md-11 {
+      grid-column: span 11;
+    }
+    &.span-md-12 {
+      grid-column: span 12;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    &.span-lg-1 {
+      grid-column: span 1;
+    }
+    &.span-lg-2 {
+      grid-column: span 2;
+    }
+    &.span-lg-3 {
+      grid-column: span 3;
+    }
+    &.span-lg-4 {
+      grid-column: span 4;
+    }
+    &.span-lg-5 {
+      grid-column: span 5;
+    }
+    &.span-lg-6 {
+      grid-column: span 6;
+    }
+    &.span-lg-7 {
+      grid-column: span 7;
+    }
+    &.span-lg-8 {
+      grid-column: span 8;
+    }
+    &.span-lg-9 {
+      grid-column: span 9;
+    }
+    &.span-lg-10 {
+      grid-column: span 10;
+    }
+    &.span-lg-11 {
+      grid-column: span 11;
+    }
+    &.span-lg-12 {
+      grid-column: span 12;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    &.span-xl-1 {
+      grid-column: span 1;
+    }
+    &.span-xl-2 {
+      grid-column: span 2;
+    }
+    &.span-xl-3 {
+      grid-column: span 3;
+    }
+    &.span-xl-4 {
+      grid-column: span 4;
+    }
+    &.span-xl-5 {
+      grid-column: span 5;
+    }
+    &.span-xl-6 {
+      grid-column: span 6;
+    }
+    &.span-xl-7 {
+      grid-column: span 7;
+    }
+    &.span-xl-8 {
+      grid-column: span 8;
+    }
+    &.span-xl-9 {
+      grid-column: span 9;
+    }
+    &.span-xl-10 {
+      grid-column: span 10;
+    }
+    &.span-xl-11 {
+      grid-column: span 11;
+    }
+    &.span-xl-12 {
+      grid-column: span 12;
+    }
+  }
+}
