@@ -71,7 +71,7 @@ const meta: Meta<typeof Input> = {
     },
     showPasswordToggle: {
       control: "boolean",
-      description: "Show password toggle for password type",
+      description: "Show password toggle for password type (defaults to true when type='password')",
     },
     passwordVisible: {
       control: "boolean",
@@ -90,7 +90,6 @@ const meta: Meta<typeof Input> = {
     disabled: false,
     readonly: false,
     required: false,
-    showPasswordToggle: false,
     passwordVisible: false,
   },
 };
@@ -476,9 +475,22 @@ export const CompleteShowcase: Story = {
 export const PasswordInput: Story = {
   render: () => {
     const [passwordVisible, setPasswordVisible] = React.useState(false);
-    
+
     return (
       <div className="space-y-4">
+        <div>
+          <h3 className="text-lg font-semibold mb-4">
+            Automatic Password Toggle (Default Behavior)
+          </h3>
+          <Input
+            type="password"
+            placeholder="Enter password..."
+          />
+          <p className="text-sm text-gray-600 mt-2">
+            Password toggle automatically appears when type="password"
+          </p>
+        </div>
+
         <div>
           <h3 className="text-lg font-semibold mb-4">
             Controlled Password Input (External State)
@@ -486,7 +498,6 @@ export const PasswordInput: Story = {
           <Input
             type="password"
             placeholder="Enter password..."
-            showPasswordToggle={true}
             passwordVisible={passwordVisible}
             onPasswordVisibilityChange={setPasswordVisible}
           />
@@ -494,21 +505,21 @@ export const PasswordInput: Story = {
             State: {passwordVisible ? "Visible" : "Hidden"}
           </p>
         </div>
-        
+
         <div>
           <h3 className="text-lg font-semibold mb-4">
-            Uncontrolled Password Input (Internal State)
+            Password Input (Toggle Disabled)
           </h3>
           <Input
             type="password"
             placeholder="Enter password..."
-            showPasswordToggle={true}
+            showPasswordToggle={false}
           />
           <p className="text-sm text-gray-600 mt-2">
-            Click the eye icon to toggle visibility
+            Password toggle disabled with showPasswordToggle={false}
           </p>
         </div>
-        
+
         <div>
           <h3 className="text-lg font-semibold mb-4">
             Password Input (Always Hidden)
@@ -516,11 +527,10 @@ export const PasswordInput: Story = {
           <Input
             type="password"
             placeholder="Enter password..."
-            showPasswordToggle={true}
             passwordVisible={false}
           />
         </div>
-        
+
         <div>
           <h3 className="text-lg font-semibold mb-4">
             Password Input (Always Visible)
@@ -528,7 +538,6 @@ export const PasswordInput: Story = {
           <Input
             type="password"
             placeholder="Enter password..."
-            showPasswordToggle={true}
             passwordVisible={true}
           />
         </div>
@@ -538,7 +547,8 @@ export const PasswordInput: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Password input with visibility toggle functionality. Supports both controlled (external state) and uncontrolled (internal state) modes.",
+        story:
+          "Password input with automatic visibility toggle. The toggle appears automatically when type='password' unless explicitly disabled with showPasswordToggle={false}.",
       },
     },
   },

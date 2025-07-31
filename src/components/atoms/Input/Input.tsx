@@ -81,10 +81,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     // Internal state for password visibility
-    const [internalPasswordVisible, setInternalPasswordVisible] = useState(false);
-    
+    const [internalPasswordVisible, setInternalPasswordVisible] =
+      useState(false);
+
     // Use external state if provided, otherwise use internal state
-    const passwordVisible = onPasswordVisibilityChange ? externalPasswordVisible : internalPasswordVisible;
+    const passwordVisible = onPasswordVisibilityChange
+      ? externalPasswordVisible
+      : internalPasswordVisible;
     // Determine the actual state based on props
     const actualState = disabled ? "disabled" : state;
 
@@ -156,7 +159,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     // Determine if we should show password toggle
-    const shouldShowPasswordToggle = type === "password" && showPasswordToggle;
+    const shouldShowPasswordToggle =
+      type === "password" && showPasswordToggle !== false;
     const effectiveType =
       type === "password" && passwordVisible ? "text" : type;
 

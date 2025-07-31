@@ -145,12 +145,10 @@ describe("Input Component", () => {
     expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
   });
 
-  it("renders password input with toggle", () => {
+  it("renders password input with automatic toggle", () => {
     render(
       <Input
         type="password"
-        showPasswordToggle={true}
-        passwordVisible={false}
         placeholder="Test"
       />
     );
@@ -162,7 +160,6 @@ describe("Input Component", () => {
     render(
       <Input
         type="password"
-        showPasswordToggle={true}
         passwordVisible={true}
         placeholder="Test"
       />
@@ -174,7 +171,6 @@ describe("Input Component", () => {
     render(
       <Input
         type="password"
-        showPasswordToggle={true}
         passwordVisible={false}
         placeholder="Test"
       />
@@ -186,7 +182,6 @@ describe("Input Component", () => {
     render(
       <Input
         type="password"
-        showPasswordToggle={true}
         placeholder="Test"
       />
     );
@@ -215,7 +210,6 @@ describe("Input Component", () => {
     render(
       <Input
         type="password"
-        showPasswordToggle={true}
         passwordVisible={false}
         onPasswordVisibilityChange={handleVisibilityChange}
         placeholder="Test"
@@ -229,5 +223,18 @@ describe("Input Component", () => {
     
     // Should call the handler with true
     expect(handleVisibilityChange).toHaveBeenCalledWith(true);
+  });
+
+  it("does not show toggle when explicitly disabled", () => {
+    render(
+      <Input
+        type="password"
+        showPasswordToggle={false}
+        placeholder="Test"
+      />
+    );
+    
+    expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 });
