@@ -305,86 +305,86 @@
 // Adjust padding when icons are present
 .inputWrapper {
   &:has(.leftIcon) .input {
-    padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
   }
 
   &:has(.rightIcon) .input {
-    padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
   }
 
   &:has(.leftIcon):has(.rightIcon) .input {
-    padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
-    padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
+    padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
   }
 }
 
 // Fallback for browsers that don't support :has()
 .inputWrapper .input {
   &.has-left-icon {
-    padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
   }
 
   &.has-right-icon {
-    padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
   }
 
   &.has-left-icon.has-right-icon {
-    padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
-    padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
+    padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
   }
 }
 
 // Size-specific icon padding adjustments
 .inputWrapper:has(.leftIcon) .input.size-sm {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-sm));
 }
 
 .inputWrapper:has(.rightIcon) .input.size-sm {
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-sm));
 }
 
 .inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-sm {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-sm));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-sm));
 }
 
 .inputWrapper:has(.leftIcon) .input.size-md {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
 }
 
 .inputWrapper:has(.rightIcon) .input.size-md {
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
 }
 
 .inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-md {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-md));
 }
 
 .inputWrapper:has(.leftIcon) .input.size-lg {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-lg));
 }
 
 .inputWrapper:has(.rightIcon) .input.size-lg {
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-lg));
 }
 
 .inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-lg {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-lg));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-lg));
 }
 
 .inputWrapper:has(.leftIcon) .input.size-xl {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-xl));
 }
 
 .inputWrapper:has(.rightIcon) .input.size-xl {
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-xl));
 }
 
 .inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-xl {
-  padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
-  padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
+  padding-left: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-xl));
+  padding-right: calc(var(--spacing-icon) + var(--icon-size-md) + var(--spacing-xl));
 }
 
 // Error state for icons

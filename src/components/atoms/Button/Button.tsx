@@ -3,7 +3,6 @@ import styles from "./Button.module.scss";
 import classNames from "classnames";
 import { Icon } from "../Icon";
 import {
-  ArrowUpward,
   Download,
   Upload,
   Add,

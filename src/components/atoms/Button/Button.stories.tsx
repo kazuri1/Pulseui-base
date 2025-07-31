@@ -1,20 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
-import {
-  Download,
-  Upload,
-  Add,
-  Remove,
-  Edit,
-  Delete,
-  Search,
-  FilterList,
-  Refresh,
-  Settings,
-} from "../Icon/IconSet";
 
-// Import ArgsTable for documentation
-import { PureArgsTable as ArgsTable } from "@storybook/blocks";
 
 const meta: Meta<typeof Button> = {
   title: "Components/atoms/Button",

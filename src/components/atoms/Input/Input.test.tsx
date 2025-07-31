@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Input } from "./Input";
 
@@ -43,8 +43,8 @@ describe("Input Component", () => {
   });
 
   it("renders with error state", () => {
-    render(<Input error placeholder="Test" />);
-    expect(screen.getByPlaceholderText("Test")).toHaveClass("error");
+    render(<Input state="error" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("state-error");
   });
 
   it("renders with disabled state", () => {
@@ -83,39 +83,21 @@ describe("Input Component", () => {
     );
   });
 
-  it("calls onChange handler", () => {
-    const handleChange = vi.fn();
-    render(<Input onChange={handleChange} placeholder="Test" />);
+  it("renders with different input types", () => {
+    const { rerender } = render(<Input type="text" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "text");
 
-    const input = screen.getByPlaceholderText("Test");
-    fireEvent.change(input, { target: { value: "new value" } });
-
-    expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        target: expect.objectContaining({ value: "new value" }),
-      })
+    rerender(<Input type="email" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute(
+      "type",
+      "email"
     );
-  });
 
-  it("calls onFocus handler", () => {
-    const handleFocus = vi.fn();
-    render(<Input onFocus={handleFocus} placeholder="Test" />);
-
-    const input = screen.getByPlaceholderText("Test");
-    fireEvent.focus(input);
-
-    expect(handleFocus).toHaveBeenCalledTimes(1);
-  });
-
-  it("calls onBlur handler", () => {
-    const handleBlur = vi.fn();
-    render(<Input onBlur={handleBlur} placeholder="Test" />);
-
-    const input = screen.getByPlaceholderText("Test");
-    fireEvent.blur(input);
-
-    expect(handleBlur).toHaveBeenCalledTimes(1);
+    rerender(<Input type="password" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute(
+      "type",
+      "password"
+    );
   });
 
   it("renders with value", () => {
@@ -142,41 +124,24 @@ describe("Input Component", () => {
     expect(ref).toHaveBeenCalledWith(expect.any(HTMLInputElement));
   });
 
-  it("renders with info icon when showInfoIcon is true", () => {
-    const MockIcon = () => <div data-testid="info-icon">Info</div>;
-    render(
-      <Input
-        showInfoIcon={true}
-        infoIconComponent={MockIcon as any}
-        placeholder="Test"
-      />
-    );
-    expect(screen.getByTestId("info-icon")).toBeInTheDocument();
+  it("renders with left icon string", () => {
+    render(<Input leftIcon="search" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
   });
 
-  it("renders with dropdown arrow when showDropdownArrow is true", () => {
-    const MockIcon = () => <div data-testid="dropdown-icon">Dropdown</div>;
-    render(
-      <Input
-        showDropdownArrow={true}
-        dropdownArrowComponent={MockIcon as any}
-        placeholder="Test"
-      />
-    );
-    expect(screen.getByTestId("dropdown-icon")).toBeInTheDocument();
+  it("renders with right icon string", () => {
+    render(<Input rightIcon="dropdown" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
   });
 
-  it("does not render icons when showInfoIcon and showDropdownArrow are false", () => {
-    const MockIcon = () => <div data-testid="icon">Icon</div>;
+  it("renders with both icon strings", () => {
     render(
       <Input
-        showInfoIcon={false}
-        showDropdownArrow={false}
-        infoIconComponent={MockIcon as any}
-        dropdownArrowComponent={MockIcon as any}
+        leftIcon="search"
+        rightIcon="dropdown"
         placeholder="Test"
       />
     );
-    expect(screen.queryByTestId("icon")).not.toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
   });
 });

@@ -165,4 +165,14 @@
 
   // Font family
   --font-family: "Roboto", sans-serif;
+
+  // Icon sizes
+  --icon-size-sm: 16px;
+  --icon-size-md: 24px;
+  --icon-size-lg: 28px;
+  --icon-size-xl: 36px;
+
+  // Effects
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --transform-hover: translateY(-1px);
 }

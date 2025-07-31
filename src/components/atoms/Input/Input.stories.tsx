@@ -5,11 +5,6 @@ import {
   ArrowDropDown,
   Search,
   FilterList,
-  Person,
-  Settings,
-  Email,
-  LocationOn,
-  Home,
 } from "../Icon/IconSet";
 import { Icon } from "../Icon/index";
 
