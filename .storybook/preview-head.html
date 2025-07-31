@@ -1,0 +1,151 @@
+<style>
+  :root {
+    /* Light theme variables (default) */
+    --color-background: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-secondary: #f8f9fa;
+    --color-surface-tertiary: #f1f3f5;
+    --color-text-primary: #212529;
+    --color-text-secondary: #495057;
+    --color-text-muted: #868e96;
+    --color-text-disabled: #adb5bd;
+    --color-border-primary: #dee2e6;
+    --color-border-secondary: #e9ecef;
+    --color-border-focus: #228be6;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Component-specific colors */
+    --color-button-primary: #228be6;
+    --color-button-primary-hover: #1c7ed6;
+    --color-button-secondary: #f8f9fa;
+    --color-button-secondary-hover: #e9ecef;
+    --color-button-outline: #228be6;
+    --color-button-outline-hover: #1c7ed6;
+    --color-button-text: #495057;
+    --color-button-text-hover: #212529;
+
+    /* Input colors */
+    --color-input-background: #ffffff;
+    --color-input-border: #dee2e6;
+    --color-input-border-focus: #228be6;
+    --color-input-text: #212529;
+    --color-input-placeholder: #adb5bd;
+
+    /* Icon colors */
+    --color-icon-primary: #495057;
+    --color-icon-secondary: #868e96;
+    --color-icon-muted: #adb5bd;
+    --color-icon-inherit: currentColor;
+
+    /* Status colors */
+    --color-success: #40c057;
+    --color-warning: #fab005;
+    --color-error: #fa5252;
+    --color-info: #228be6;
+  }
+
+  /* Dark theme variables */
+  .dark {
+    --color-background: #141414;
+    --color-surface: #1f1f1f;
+    --color-surface-secondary: #242424;
+    --color-surface-tertiary: #2e2e2e;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #c9c9c9;
+    --color-text-muted: #828282;
+    --color-text-disabled: #696969;
+    --color-border-primary: #424242;
+    --color-border-secondary: #3b3b3b;
+    --color-border-focus: #4dabf7;
+    --color-shadow: rgba(0, 0, 0, 0.3);
+
+    /* Component-specific colors */
+    --color-button-primary: #4dabf7;
+    --color-button-primary-hover: #74c0fc;
+    --color-button-secondary: #2e2e2e;
+    --color-button-secondary-hover: #3b3b3b;
+    --color-button-outline: #4dabf7;
+    --color-button-outline-hover: #74c0fc;
+    --color-button-text: #c9c9c9;
+    --color-button-text-hover: #ffffff;
+
+    /* Input colors */
+    --color-input-background: #1f1f1f;
+    --color-input-border: #424242;
+    --color-input-border-focus: #4dabf7;
+    --color-input-text: #ffffff;
+    --color-input-placeholder: #696969;
+
+    /* Icon colors */
+    --color-icon-primary: #c9c9c9;
+    --color-icon-secondary: #828282;
+    --color-icon-muted: #696969;
+    --color-icon-inherit: currentColor;
+
+    /* Status colors */
+    --color-success: #69db7c;
+    --color-warning: #ffd43b;
+    --color-error: #ff8787;
+    --color-info: #4dabf7;
+  }
+
+  /* Apply theme to body and all elements */
+  body.light {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  body.dark {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  /* Ensure theme classes are applied to all elements */
+  .light {
+    --color-text-primary: #212529;
+    --color-text-secondary: #495057;
+    --color-text-muted: #868e96;
+    --color-text-disabled: #adb5bd;
+  }
+
+  .dark {
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #c9c9c9;
+    --color-text-muted: #828282;
+    --color-text-disabled: #696969;
+  }
+
+  /* Force theme colors on all elements */
+  .dark * {
+    color: var(--color-text-primary);
+  }
+
+  .light * {
+    color: var(--color-text-primary);
+  }
+
+  /* Override any conflicting styles */
+  .dark label,
+  .dark .label {
+    color: var(--color-text-primary) !important;
+  }
+
+  .light label,
+  .light .label {
+    color: var(--color-text-primary) !important;
+  }
+
+  /* Fix Storybook canvas sizing */
+  .sb-show-main {
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .sb-main-padded {
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .sb-main-fullscreen {
+    height: auto !important;
+    min-height: auto !important;
+  }
+</style>

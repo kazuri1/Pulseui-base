@@ -6,6 +6,11 @@ const meta: Meta<typeof Switch> = {
   component: Switch,
   parameters: {
     layout: "padded",
+    docs: {
+      source: {
+        code: `<Switch label="Label" size="md" />`,
+      },
+    },
   },
   argTypes: {
     label: {

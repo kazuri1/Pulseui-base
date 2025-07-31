@@ -1,3 +1,5 @@
+@import "../../../styles/_tokens.scss";
+
 .root {
   display: flex;
   flex-direction: column;
@@ -9,15 +11,31 @@
 .label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
-  color: var(--color-gray-8);
+  color: var(--color-text-primary) !important;
   line-height: var(--line-height-sm);
   margin: 0;
   cursor: pointer;
 }
 
+/* Force theme-aware colors with higher specificity */
+.dark .label,
+.light .label,
+body.dark .label,
+body.light .label {
+  color: var(--color-text-primary) !important;
+}
+
 .required {
-  color: var(--color-red-6);
+  color: var(--color-error) !important;
   margin-left: var(--spacing-xs);
+}
+
+/* Force theme-aware colors for required indicator */
+.dark .required,
+.light .required,
+body.dark .required,
+body.light .required {
+  color: var(--color-error) !important;
 }
 
 .input {
@@ -32,9 +50,17 @@
 
 .caption {
   font-size: var(--font-size-xs);
-  color: var(--color-gray-6);
+  color: var(--color-text-muted) !important;
   line-height: var(--line-height-xs);
   margin: 0;
+}
+
+/* Force theme-aware colors for caption */
+.dark .caption,
+.light .caption,
+body.dark .caption,
+body.light .caption {
+  color: var(--color-text-muted) !important;
 }
 
 .errorMessage {
@@ -43,9 +69,17 @@
 
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
-  color: var(--color-red-6);
+  color: var(--color-error) !important;
 
   margin: 0;
+}
+
+/* Force theme-aware colors for error message */
+.dark .errorMessage,
+.light .errorMessage,
+body.dark .errorMessage,
+body.light .errorMessage {
+  color: var(--color-error) !important;
 }
 
 .errorIcon {
@@ -55,11 +89,11 @@
 // Error state
 .root.error {
   .input {
-    border-color: var(--color-red-6);
+    border-color: var(--color-error);
 
     &:focus {
-      border-color: var(--color-red-6);
-      box-shadow: 0 0 0 2px var(--color-red-1);
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 2px var(--color-error);
     }
   }
 }

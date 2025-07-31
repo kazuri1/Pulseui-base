@@ -6,89 +6,114 @@ import { ThemeProvider, useTheme } from "./components/ThemeProvider";
 
 function AppContent() {
   const [count, setCount] = useState(0);
-  const { brand, mode, setBrand, toggleMode } = useTheme();
-
-  const themes = [
-    { id: "default", name: "Pulse", color: "#339af0" },
-    { id: "medash", name: "Medash", color: "#1971c2" },
-    { id: "fitcore", name: "FitCore", color: "#fd7e14" },
-    { id: "labsync", name: "LabSync", color: "#7950f2" },
-  ];
-
-  const toggleTheme = (newTheme: string) => {
-    setBrand(newTheme as any);
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen bg-body text-body p-4">
-      <div className="max-w-6xl mx-auto">
+    <div
+      style={{
+        backgroundColor: "var(--color-background)",
+        color: "var(--color-text-primary)",
+        padding: "16px",
+        transition: "background-color 0.3s ease, color 0.3s ease",
+      }}
+    >
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "24px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <a
               href="https://vite.dev"
               target="_blank"
-              className="hover:opacity-75 transition-opacity"
+              style={{ opacity: 1, transition: "opacity 0.2s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              <img src={viteLogo} className="h-12 w-12" alt="Vite logo" />
+              <img
+                src={viteLogo}
+                style={{ height: "48px", width: "48px" }}
+                alt="Vite logo"
+              />
             </a>
             <a
               href="https://react.dev"
               target="_blank"
-              className="hover:opacity-75 transition-opacity"
+              style={{ opacity: 1, transition: "opacity 0.2s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               <img
                 src={reactLogo}
-                className="h-12 w-12 animate-spin"
+                style={{
+                  height: "48px",
+                  width: "48px",
+                  animation: "spin 2s linear infinite",
+                }}
                 alt="React logo"
               />
             </a>
           </div>
 
-          {/* Theme Switcher */}
-          <div className="flex gap-2">
-            {themes.map((t) => (
-              <button
-                key={t.id}
-                onClick={() => toggleTheme(t.id)}
-                className={`px-sm py-xs rounded-md text-xs font-medium transition-colors ${
-                  brand === t.id
-                    ? "bg-primary-600 text-white"
-                    : "bg-surface-200 text-text-secondary hover:bg-surface-300"
-                }`}
-                style={{ "--tw-ring-color": t.color } as React.CSSProperties}
-              >
-                {t.name}
-              </button>
-            ))}
-
-            {/* Mode Toggle */}
-            <button
-              onClick={toggleMode}
-              className="px-sm py-xs rounded-md text-xs font-medium transition-colors bg-surface-200 text-text-secondary hover:bg-surface-300"
-            >
-              {mode === "light" ? "🌙" : "☀️"}
-            </button>
-          </div>
+          {/* Theme Toggle */}
+          <Button onClick={toggleTheme} variant="outline">
+            {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+          </Button>
         </div>
 
-        <h1 className="text-4xl text-center mb-6">Pulse UI Design System</h1>
-        <p className="text-center text-muted mb-6">
-          Native Pulse design system with multi-brand support
+        <h1
+          style={{
+            fontSize: "2.5rem",
+            textAlign: "center",
+            marginBottom: "24px",
+          }}
+        >
+          Pulse UI Design System
+        </h1>
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--color-text-muted)",
+            marginBottom: "24px",
+          }}
+        >
+          Native Pulse design system with dark mode support
         </p>
 
         {/* Demo Section */}
-        <div className="pulse-card p-6 mb-6">
-          <h2 className="text-3xl mb-4">Interactive Demo</h2>
+        <div
+          style={{
+            padding: "24px",
+            backgroundColor: "var(--color-surface)",
+            border: "1px solid var(--color-border-primary)",
+            borderRadius: "8px",
+            marginBottom: "24px",
+          }}
+        >
+          <h2 style={{ fontSize: "1.875rem", marginBottom: "16px" }}>
+            Interactive Demo
+          </h2>
           <Button
             onClick={() => setCount((count) => count + 1)}
             variant="filled"
           >
             Count is {count}
           </Button>
-          <p className="mt-4 text-muted">
+          <p style={{ marginTop: "16px", color: "var(--color-text-muted)" }}>
             Edit{" "}
-            <code className="bg-surface-200 px-2 py-1 rounded text-sm">
+            <code
+              style={{
+                backgroundColor: "var(--color-surface-secondary)",
+                padding: "4px 8px",
+                borderRadius: "4px",
+                fontSize: "0.875rem",
+              }}
+            >
               src/App.tsx
             </code>{" "}
             and save to test HMR
@@ -96,71 +121,78 @@ function AppContent() {
         </div>
 
         {/* Component Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "24px",
+          }}
+        >
           {/* Buttons */}
-          <div className="pulse-card p-6">
-            <h3 className="text-2xl mb-4">Button Variants</h3>
-            <div className="flex flex-wrap gap-2">
-              <button className="pulse-button-primary px-4 py-2">
-                Primary
-              </button>
-              <button className="pulse-button-secondary px-4 py-2">
-                Secondary
-              </button>
-              <button className="pulse-button-outline px-4 py-2">
-                Outline
-              </button>
-              <button className="pulse-button-ghost px-4 py-2">Ghost</button>
-              <button className="pulse-button-danger px-4 py-2">Danger</button>
+          <div
+            style={{
+              padding: "24px",
+              backgroundColor: "var(--color-surface)",
+              border: "1px solid var(--color-border-primary)",
+              borderRadius: "8px",
+            }}
+          >
+            <h3 style={{ fontSize: "1.5rem", marginBottom: "16px" }}>
+              Button Variants
+            </h3>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              <Button variant="filled">Primary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="subtle">Subtle</Button>
+              <Button variant="light">Light</Button>
+              <Button variant="white">White</Button>
+              <Button variant="default">Default</Button>
             </div>
           </div>
 
           {/* Input */}
-          <div className="pulse-card p-6">
-            <h3 className="text-2xl mb-4">Input Field</h3>
+          <div
+            style={{
+              padding: "24px",
+              backgroundColor: "var(--color-surface)",
+              border: "1px solid var(--color-border-primary)",
+              borderRadius: "8px",
+            }}
+          >
+            <h3 style={{ fontSize: "1.5rem", marginBottom: "16px" }}>
+              Input Field
+            </h3>
             <input
               type="text"
               placeholder="Enter your text here..."
-              className="pulse-input w-full"
+              style={{
+                width: "100%",
+                padding: "8px 12px",
+                border: "1px solid var(--color-input-border)",
+                borderRadius: "4px",
+                backgroundColor: "var(--color-input-background)",
+                color: "var(--color-input-text)",
+                fontSize: "14px",
+                outline: "none",
+                transition: "border-color 0.2s",
+              }}
+              onFocus={(e) =>
+                (e.target.style.borderColor = "var(--color-input-border-focus)")
+              }
+              onBlur={(e) =>
+                (e.target.style.borderColor = "var(--color-input-border)")
+              }
             />
           </div>
         </div>
 
-        {/* Brand Showcase */}
-        <div className="mt-6">
-          <h2 className="text-3xl mb-4">Brand Themes</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {themes.map((t) => (
-              <div key={t.id} className="pulse-card p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div
-                    className="w-4 h-4 rounded-full"
-                    style={{ backgroundColor: t.color }}
-                  />
-                  <h4 className="text-xl">{t.name}</h4>
-                </div>
-                <p className="text-sm text-muted mb-2">
-                  {t.id === "default" &&
-                    "Pulse native theme with blue primary colors"}
-                  {t.id === "medash" &&
-                    "MedTech brand with medical blue colors"}
-                  {t.id === "fitcore" &&
-                    "FitnessTech brand with energetic orange colors"}
-                  {t.id === "labsync" &&
-                    "LabSync brand with scientific purple colors"}
-                </p>
-                <button
-                  onClick={() => toggleTheme(t.id)}
-                  className="pulse-button-primary px-2 py-1 text-xs"
-                >
-                  Apply Theme
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <p className="text-center text-muted mt-lg">
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--color-text-muted)",
+            marginTop: "32px",
+          }}
+        >
           Click on the Vite and React logos to learn more
         </p>
       </div>
@@ -170,7 +202,7 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider defaultBrand="default" defaultMode="light">
+    <ThemeProvider initialTheme="light">
       <AppContent />
     </ThemeProvider>
   );

@@ -10,10 +10,10 @@
 
   // Size variants
   &.size-xs {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
-    font-size: var(--icon-size-sm);
-    padding: var(--spacing-icon);
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+    font-size: var(--icon-size-xs);
+    padding: 0;
   }
 
   &.size-sm {

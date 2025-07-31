@@ -8,12 +8,15 @@ const meta: Meta<typeof Input> = {
   title: "Components/atoms/Input",
   component: Input,
   parameters: {
-    layout: "centered",
+    layout: "padded",
     docs: {
       description: {
         component: `
 
         `,
+      },
+      source: {
+        code: `<Input placeholder="Placeholder" variant="default" size="md" />`,
       },
     },
   },

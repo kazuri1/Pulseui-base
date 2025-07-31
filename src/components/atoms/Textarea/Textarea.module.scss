@@ -1,3 +1,5 @@
+@import "../../../styles/_tokens.scss";
+
 .root {
   display: flex;
   flex-direction: column;
@@ -10,23 +12,23 @@
 .label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
-  color: var(--color-gray-8);
+  color: var(--color-text-primary) !important;
   line-height: var(--line-height-sm);
   margin: 0;
   cursor: pointer;
 }
 
 .required {
-  color: var(--color-red-6);
+  color: var(--color-error) !important;
   margin-left: var(--spacing-xs);
 }
 
 .textarea {
   width: 100%;
-  border: 1px solid var(--color-gray-3);
+  border: 1px solid var(--color-input-border);
   border-radius: var(--radius-md);
-  background-color: var(--color-white);
-  color: var(--color-gray-9);
+  background-color: var(--color-input-background);
+  color: var(--color-input-text);
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
@@ -43,43 +45,43 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--color-gray-1);
+    background: var(--color-surface-secondary);
     border-radius: var(--radius-sm);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--color-gray-4);
+    background: var(--color-border-secondary);
     border-radius: var(--radius-sm);
 
     &:hover {
-      background: var(--color-gray-5);
+      background: var(--color-border-primary);
     }
   }
 
   // Placeholder styles
   &::placeholder {
-    color: var(--color-gray-5);
+    color: var(--color-input-placeholder);
     opacity: 1;
   }
 
   // Focus styles
   &:focus {
-    border-color: var(--color-blue-6);
-    box-shadow: 0 0 0 var(--border-width-thin) var(--color-blue-1);
+    border-color: var(--color-input-border-focus);
+    box-shadow: 0 0 0 var(--border-width-thin) var(--color-input-border-focus);
   }
 
   // Hover styles
   &:hover:not(:disabled) {
-    border-color: var(--color-gray-4);
+    border-color: var(--color-border-primary);
   }
 
   // Disabled styles
   &:disabled {
     opacity: var(--opacity-50);
     cursor: not-allowed;
-    background-color: var(--color-gray-1);
-    border-color: var(--color-gray-2);
-    color: var(--color-gray-5);
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-secondary);
+    color: var(--color-text-disabled);
   }
 }
 
@@ -95,7 +97,7 @@
 
 .caption {
   font-size: var(--font-size-xs);
-  color: var(--color-gray-6);
+  color: var(--color-text-muted) !important;
   line-height: var(--line-height-xs);
   margin: 0;
 }

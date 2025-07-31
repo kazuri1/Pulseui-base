@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 
@@ -5,7 +6,7 @@ const meta: Meta<typeof Button> = {
   title: "Components/atoms/Button",
   component: Button,
   parameters: {
-    layout: "centered",
+    layout: "padded",
     docs: {
       description: {
         component: `
@@ -13,6 +14,9 @@ const meta: Meta<typeof Button> = {
 
 \`\`\`
         `,
+      },
+      source: {
+        code: `<Button variant="filled" size="md">Button</Button>`,
       },
     },
   },

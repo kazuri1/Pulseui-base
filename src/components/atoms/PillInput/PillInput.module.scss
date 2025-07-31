@@ -1,0 +1,130 @@
+@import "../../../styles/_tokens.scss";
+
+.pillInput {
+  width: 100%;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  min-height: 40px;
+  padding: var(--spacing-sm);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  color: var(--color-gray-9);
+  transition: none;
+
+  &:focus-within {
+    border-color: var(--color-blue-6);
+    box-shadow: 0 0 0 1px var(--color-blue-6);
+    transition: none;
+  }
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.pillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pill {
+  flex-shrink: 0;
+}
+
+.inputWrapper {
+  flex: 1;
+  min-width: 120px;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+
+  &::placeholder {
+    color: var(--color-gray-5);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Size variants
+.size-sm {
+  .inputContainer {
+    min-height: 32px;
+    padding: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+  }
+}
+
+.size-md {
+  .inputContainer {
+    min-height: 40px;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+  }
+}
+
+.size-lg {
+  .inputContainer {
+    min-height: 48px;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-lg);
+  }
+}
+
+.size-xl {
+  .inputContainer {
+    min-height: 56px;
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+  }
+}
+
+// State variants
+.state-error {
+  .inputContainer {
+    border-color: var(--color-red-6);
+
+    &:focus-within {
+      border-color: var(--color-red-6);
+      box-shadow: 0 0 0 1px var(--color-red-6);
+    }
+  }
+}
+
+.state-disabled {
+  .inputContainer {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

@@ -1,3 +1,5 @@
+@import "../../../styles/_tokens.scss";
+
 .root {
   display: flex;
   align-items: flex-start;
@@ -32,7 +34,7 @@
 
 .switchTrack {
   display: inline-block;
-  background-color: var(--color-gray-3);
+  background-color: var(--color-border-secondary);
   position: relative;
   transition: background-color 0.2s ease-in-out;
   box-sizing: border-box;
@@ -40,7 +42,7 @@
 
 .switchThumb {
   position: absolute;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   border-radius: 50%;
   transition: transform 0.2s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -106,7 +108,7 @@
 
 // Checked state
 .switchInput:checked + .switchTrack {
-  background-color: var(--color-blue-6);
+  background-color: var(--color-button-primary);
 }
 
 .switchInput:checked + .switchTrack .switchThumb {
@@ -115,30 +117,30 @@
 
 // Focus state
 .switchInput:focus + .switchTrack {
-  box-shadow: 0 0 0 var(--border-width-thin) var(--color-blue-1);
+  box-shadow: 0 0 0 var(--border-width-thin) var(--color-border-focus);
 }
 
 // Hover state
 .switchLabel:hover .switchTrack {
-  background-color: var(--color-gray-4);
+  background-color: var(--color-border-primary);
 }
 
 .switchInput:checked + .switchTrack:hover {
-  background-color: var(--color-blue-7);
+  background-color: var(--color-button-primary-hover);
 }
 
 // Disabled state
 .switchInput:disabled + .switchTrack {
-  background-color: var(--color-gray-2);
+  background-color: var(--color-border-secondary);
   opacity: var(--opacity-50);
 }
 
 .switchInput:disabled + .switchTrack .switchThumb {
-  background-color: var(--color-gray-4);
+  background-color: var(--color-border-primary);
 }
 
 .switchInput:disabled:checked + .switchTrack {
-  background-color: var(--color-gray-3);
+  background-color: var(--color-border-secondary);
 }
 
 .content {
@@ -152,14 +154,14 @@
 .label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
-  color: var(--color-gray-8);
+  color: var(--color-text-primary);
   line-height: var(--line-height-sm);
   margin: 0;
   cursor: pointer;
 }
 
 .required {
-  color: var(--color-red-6);
+  color: var(--color-error);
   margin-left: var(--spacing-xs);
 }
 
@@ -171,7 +173,7 @@
 
 .caption {
   font-size: var(--font-size-xs);
-  color: var(--color-gray-6);
+  color: var(--color-text-muted);
   line-height: var(--line-height-xs);
   margin: 0;
 }
@@ -183,7 +185,7 @@
   gap: 2px;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
-  color: var(--color-red-6);
+  color: var(--color-error);
   line-height: var(--line-height-xs);
   margin: 0;
   margin-left: 0;
@@ -199,11 +201,11 @@
 // Error state
 .root.error {
   .switchTrack {
-    background-color: var(--color-red-6);
+    background-color: var(--color-error);
   }
 
   .switchInput:checked + .switchTrack {
-    background-color: var(--color-red-6);
+    background-color: var(--color-error);
   }
 }
 
