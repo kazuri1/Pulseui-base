@@ -7,6 +7,7 @@ const meta: Meta<typeof Textarea> = {
   parameters: {
     layout: "padded",
   },
+  tags: ["autodocs"],
   argTypes: {
     label: {
       control: "text",
@@ -67,6 +68,27 @@ const meta: Meta<typeof Textarea> = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Playground: Story = {
+  args: {
+    label: "Interactive Textarea",
+    placeholder: "Type your message here...",
+    value: "",
+    required: false,
+    caption: "",
+    rows: 4,
+    resizable: true,
+    disabled: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Interactive playground with all controls available. Use the Controls panel to change properties and see the textarea update in real-time.",
+      },
+    },
+  },
+};
 
 export const Default: Story = {
   args: {},

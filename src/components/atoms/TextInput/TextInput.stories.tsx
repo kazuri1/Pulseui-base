@@ -7,6 +7,7 @@ const meta: Meta<typeof TextInput> = {
   parameters: {
     layout: "padded",
   },
+  tags: ["autodocs"],
   argTypes: {
     label: {
       control: "text",
@@ -95,6 +96,31 @@ const meta: Meta<typeof TextInput> = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Playground: Story = {
+  args: {
+    label: "Interactive Text Input",
+    placeholder: "Type something...",
+    value: "",
+    required: false,
+    caption: "",
+    error: "",
+    type: "text",
+    disabled: false,
+    leftIcon: "none",
+    rightIcon: "none",
+    showPasswordToggle: false,
+    passwordVisible: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Interactive playground with all controls available. Use the Controls panel to change properties and see the input update in real-time.",
+      },
+    },
+  },
+};
 
 export const Default: Story = {
   args: {},

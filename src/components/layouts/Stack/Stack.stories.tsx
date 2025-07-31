@@ -57,10 +57,10 @@ export const Default: Story = {
       <div
         key="1"
         style={{
-          padding: "20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-secondary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Item 1
@@ -68,10 +68,10 @@ export const Default: Story = {
       <div
         key="2"
         style={{
-          padding: "20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-tertiary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Item 2
@@ -79,10 +79,10 @@ export const Default: Story = {
       <div
         key="3"
         style={{
-          padding: "20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Item 3
@@ -99,11 +99,11 @@ export const Centered: Story = {
       <div
         key="1"
         style={{
-          padding: "20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
-          width: "200px",
+          padding: "16px",
+          backgroundColor: "var(--color-primary-6)",
+          color: "var(--color-white)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Centered Item 1
@@ -111,11 +111,10 @@ export const Centered: Story = {
       <div
         key="2"
         style={{
-          padding: "20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
-          width: "200px",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-secondary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Centered Item 2
@@ -123,11 +122,10 @@ export const Centered: Story = {
       <div
         key="3"
         style={{
-          padding: "20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
-          width: "200px",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-tertiary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Centered Item 3
@@ -143,10 +141,10 @@ export const LargeGap: Story = {
       <div
         key="1"
         style={{
-          padding: "20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-secondary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Large Gap Item 1
@@ -154,10 +152,10 @@ export const LargeGap: Story = {
       <div
         key="2"
         style={{
-          padding: "20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-tertiary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Large Gap Item 2
@@ -165,10 +163,10 @@ export const LargeGap: Story = {
       <div
         key="3"
         style={{
-          padding: "20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Large Gap Item 3
@@ -184,10 +182,10 @@ export const SpaceBetween: Story = {
       <div
         key="1"
         style={{
-          padding: "20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-secondary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Top Item
@@ -195,10 +193,10 @@ export const SpaceBetween: Story = {
       <div
         key="2"
         style={{
-          padding: "20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-tertiary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Middle Item
@@ -206,10 +204,10 @@ export const SpaceBetween: Story = {
       <div
         key="3"
         style={{
-          padding: "20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         Bottom Item
@@ -225,11 +223,11 @@ export const DashboardLayout: Story = {
       <div
         key="header"
         style={{
-          padding: "20px",
-          backgroundColor: "#4a90e2",
-          color: "white",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-primary-6)",
+          color: "var(--color-white)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         <h2 style={{ margin: 0 }}>Dashboard Header</h2>
@@ -238,10 +236,10 @@ export const DashboardLayout: Story = {
       <div
         key="stats"
         style={{
-          padding: "20px",
-          backgroundColor: "#f8f9fa",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-surface-secondary)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         <h3 style={{ margin: "0 0 10px 0" }}>Statistics</h3>
@@ -250,10 +248,11 @@ export const DashboardLayout: Story = {
       <div
         key="actions"
         style={{
-          padding: "20px",
-          backgroundColor: "#e8f5e8",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
+          padding: "16px",
+          backgroundColor: "var(--color-success)",
+          color: "var(--color-white)",
+          border: "1px solid var(--color-border-primary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         <h3 style={{ margin: "0 0 10px 0" }}>Quick Actions</h3>

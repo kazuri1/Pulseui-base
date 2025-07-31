@@ -1,0 +1,543 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Design System/Styles API" />
+
+# Pulse UI Styles API
+
+The Pulse UI Styles API provides a powerful, MUI-inspired styling system that integrates seamlessly with our design tokens. It offers a flexible `sx` prop, styled components, and comprehensive theming capabilities.
+
+## Overview
+
+The Styles API consists of three main parts:
+
+1. **SX Prop** - Inline styling with design token support
+2. **Styled Components** - Pre-built components with consistent styling
+3. **Theme System** - Centralized design token management
+
+## SX Prop
+
+The `sx` prop allows you to apply styles directly to components using design tokens and CSS properties.
+
+### Basic Usage
+
+```tsx
+import { Box } from '../styles/stylesApi';
+
+// Basic styling
+<Box sx={{ p: 'md', backgroundColor: 'primary', color: 'white' }}>
+  Styled content
+</Box>
+
+// Responsive design
+<Box sx={{
+  p: { xs: 'sm', md: 'lg' },
+  fontSize: { xs: 'text-sm', md: 'text-lg' }
+}}>
+  Responsive content
+</Box>
+```
+
+### Spacing
+
+Use design token spacing values or numbers (multiplied by 4px):
+
+```tsx
+// Design token spacing
+<Box sx={{ m: 'md', p: 'lg' }}>Content</Box>
+
+// Numeric spacing (4px * 2 = 8px)
+<Box sx={{ m: 2, p: 3 }}>Content</Box>
+
+// Directional spacing
+<Box sx={{
+  mt: 'lg',    // margin-top
+  mb: 'sm',    // margin-bottom
+  ml: 'md',    // margin-left
+  mr: 'xl',    // margin-right
+  mx: 'md',    // margin-left and margin-right
+  my: 'lg',    // margin-top and margin-bottom
+}}>
+  Content
+</Box>
+```
+
+### Colors
+
+Use semantic colors or specific color tokens:
+
+```tsx
+// Semantic colors
+<Box sx={{
+  color: 'primary',
+  backgroundColor: 'surface',
+  borderColor: 'border'
+}}>
+  Content
+</Box>
+
+// Specific color tokens
+<Box sx={{
+  color: 'blue-6',
+  backgroundColor: 'gray-1',
+  borderColor: 'red-5'
+}}>
+  Content
+</Box>
+```
+
+### Typography
+
+Apply typography variants or individual properties:
+
+```tsx
+// Typography variants
+<Box sx={{ typography: 'h1' }}>Heading 1</Box>
+<Box sx={{ typography: 'text-lg' }}>Large text</Box>
+
+// Individual typography properties
+<Box sx={{
+  fontSize: 'text-md',
+  fontWeight: 'semibold',
+  lineHeight: 1.5,
+  textAlign: 'center'
+}}>
+  Custom typography
+</Box>
+```
+
+### Layout
+
+Control layout properties:
+
+```tsx
+<Box
+  sx={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "md",
+  }}
+>
+  Layout content
+</Box>
+```
+
+### Sizing
+
+Set dimensions with various units:
+
+```tsx
+<Box
+  sx={{
+    width: "full", // 100%
+    height: "auto", // auto
+    minWidth: "200px", // custom
+    maxWidth: "500px", // custom
+    width: 300, // 300px
+    height: "50vh", // viewport units
+  }}
+>
+  Sized content
+</Box>
+```
+
+### Borders and Effects
+
+Apply borders, border radius, and shadows:
+
+```tsx
+<Box
+  sx={{
+    border: "1px solid",
+    borderColor: "border",
+    borderRadius: "md",
+    boxShadow: "sm",
+  }}
+>
+  Bordered content
+</Box>
+```
+
+## Styled Components
+
+Pre-built components with consistent styling and design token integration.
+
+### Box Component
+
+The most flexible component, similar to MUI's Box:
+
+```tsx
+import { Box } from "../styles/stylesApi";
+
+<Box sx={{ p: "lg", backgroundColor: "surface" }}>Flexible container</Box>;
+```
+
+### Typography Component
+
+For text content with typography variants:
+
+```tsx
+import { Typography } from '../styles/stylesApi';
+
+<Typography sx={{ typography: 'h1' }}>
+  Main heading
+</Typography>
+
+<Typography sx={{ typography: 'text-md', color: 'secondary' }}>
+  Body text
+</Typography>
+```
+
+### Layout Components
+
+```tsx
+import { Container, Stack, Grid } from '../styles/stylesApi';
+
+// Container with max-width and centering
+<Container sx={{ backgroundColor: 'surface' }}>
+  Centered content
+</Container>
+
+// Vertical stack
+<Stack sx={{ gap: 'md' }}>
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Stack>
+
+// Grid layout
+<Grid sx={{
+  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+  gap: 'lg'
+}}>
+  <Box>Grid item 1</Box>
+  <Box>Grid item 2</Box>
+</Grid>
+```
+
+### Form Components
+
+```tsx
+import { TextField, Input, Label, HelperText } from "../styles/stylesApi";
+
+<TextField sx={{ width: "full" }}>
+  <Label>Email address</Label>
+  <Input type="email" placeholder="Enter your email" sx={{ mt: "xs" }} />
+  <HelperText sx={{ mt: "xs" }}>We'll never share your email</HelperText>
+</TextField>;
+```
+
+### Button Components
+
+```tsx
+import { Button } from '../styles/stylesApi';
+
+// Primary button
+<Button sx={{
+  backgroundColor: 'primary',
+  color: 'white',
+  '&:hover': { backgroundColor: 'blue-7' }
+}}>
+  Primary Action
+</Button>
+
+// Secondary button
+<Button sx={{
+  backgroundColor: 'surface',
+  color: 'text',
+  border: '1px solid',
+  borderColor: 'border'
+}}>
+  Secondary Action
+</Button>
+```
+
+### Card Components
+
+```tsx
+import { Card, Paper } from '../styles/stylesApi';
+
+<Card sx={{ maxWidth: '400px' }}>
+  <Typography sx={{ typography: 'h3', mb: 'md' }}>
+    Card Title
+  </Typography>
+  <Typography sx={{ typography: 'text-md', color: 'secondary' }}>
+    Card content goes here
+  </Typography>
+</Card>
+
+<Paper sx={{ p: 'xl' }}>
+  Paper content
+</Paper>
+```
+
+### Alert Components
+
+```tsx
+import { Alert, AlertSuccess, AlertError, AlertWarning, AlertInfo } from '../styles/stylesApi';
+
+<AlertSuccess>
+  Success message
+</AlertSuccess>
+
+<AlertError>
+  Error message
+</AlertError>
+
+<AlertWarning>
+  Warning message
+</AlertWarning>
+
+<AlertInfo>
+  Information message
+</AlertInfo>
+```
+
+## Theme System
+
+The theme system provides centralized design token management.
+
+### Theme Structure
+
+```tsx
+import { Theme, defaultTheme } from "../styles/stylesApi";
+
+const customTheme: Theme = {
+  colors: {
+    primary: "var(--color-blue-6)",
+    secondary: "var(--color-gray-6)",
+    // ... more colors
+  },
+  spacing: {
+    xs: "var(--spacing-xs)",
+    sm: "var(--spacing-sm)",
+    // ... more spacing
+  },
+  typography: {
+    h1: {
+      fontSize: "var(--font-size-xxl)",
+      lineHeight: "var(--line-height-xxl)",
+      fontWeight: "bold",
+    },
+    // ... more typography variants
+  },
+  borderRadius: {
+    xs: "var(--radius-xs)",
+    sm: "var(--radius-sm)",
+    // ... more border radius
+  },
+  shadows: {
+    xs: "var(--shadow-xs)",
+    sm: "var(--shadow-sm)",
+    // ... more shadows
+  },
+  breakpoints: {
+    xs: "0px",
+    sm: "600px",
+    md: "900px",
+    lg: "1200px",
+    xl: "1536px",
+  },
+};
+```
+
+### Using Custom Themes
+
+```tsx
+import { processSxProps, defaultTheme } from "../styles/stylesApi";
+
+const customTheme = {
+  ...defaultTheme,
+  colors: {
+    ...defaultTheme.colors,
+    primary: "var(--color-green-6)", // Override primary color
+  },
+};
+
+// Use custom theme
+const styles = processSxProps({ color: "primary" }, customTheme);
+```
+
+## Best Practices
+
+### ✅ Do
+
+| Practice                             | Description                                      |
+| ------------------------------------ | ------------------------------------------------ |
+| **Use design tokens**                | Always use semantic color and spacing tokens     |
+| **Leverage typography variants**     | Use predefined typography styles for consistency |
+| **Apply responsive design**          | Use breakpoint objects for responsive layouts    |
+| **Keep styles semantic**             | Use semantic color names over specific values    |
+| **Combine with existing components** | Use sx prop to enhance existing components       |
+
+### ❌ Don't
+
+| Practice                     | Description                                      |
+| ---------------------------- | ------------------------------------------------ |
+| **Hardcode values**          | Avoid hardcoded colors, spacing, or typography   |
+| **Override unnecessarily**   | Don't override design tokens without good reason |
+| **Ignore responsive design** | Always consider mobile and tablet layouts        |
+| **Mix styling approaches**   | Stick to one styling approach per component      |
+| **Forget accessibility**     | Ensure proper contrast and focus states          |
+
+## Advanced Features
+
+### Responsive Design
+
+```tsx
+<Box
+  sx={{
+    p: { xs: "sm", sm: "md", md: "lg" },
+    fontSize: { xs: "text-sm", md: "text-lg" },
+    flexDirection: { xs: "column", md: "row" },
+  }}
+>
+  Responsive content
+</Box>
+```
+
+### Pseudo-selectors
+
+```tsx
+<Button
+  sx={{
+    backgroundColor: "primary",
+    "&:hover": { backgroundColor: "blue-7" },
+    "&:active": { backgroundColor: "blue-8" },
+    "&:focus": { outline: "2px solid", outlineColor: "primary" },
+  }}
+>
+  Interactive button
+</Button>
+```
+
+### Custom Styled Components
+
+```tsx
+import { styled } from "../styles/stylesApi";
+
+const CustomCard = styled("div", {
+  backgroundColor: "surface",
+  borderRadius: "lg",
+  padding: "xl",
+  boxShadow: "md",
+  "&:hover": {
+    boxShadow: "lg",
+    transform: "translateY(-2px)",
+  },
+});
+
+// Usage
+<CustomCard sx={{ maxWidth: "400px" }}>Custom card content</CustomCard>;
+```
+
+### Theme Integration
+
+```tsx
+import { useTheme } from "../components/ThemeProvider";
+import { processSxProps } from "../styles/stylesApi";
+
+const MyComponent = () => {
+  const { theme } = useTheme();
+
+  const styles = processSxProps(
+    {
+      backgroundColor: "surface",
+      color: "text",
+      padding: "md",
+    },
+    theme
+  );
+
+  return <div style={styles}>Themed content</div>;
+};
+```
+
+## Migration Guide
+
+### From CSS Modules
+
+```tsx
+// Before (CSS Modules)
+import styles from './Component.module.scss';
+
+<div className={styles.container}>
+  Content
+</div>
+
+// After (Styles API)
+<Box sx={{
+  padding: 'lg',
+  backgroundColor: 'surface',
+  borderRadius: 'md'
+}}>
+  Content
+</Box>
+```
+
+### From Inline Styles
+
+```tsx
+// Before (Inline styles)
+<div style={{
+  padding: '16px',
+  backgroundColor: '#f5f5f5',
+  borderRadius: '8px'
+}}>
+  Content
+</div>
+
+// After (Styles API)
+<Box sx={{
+  p: 'md',
+  backgroundColor: 'surface',
+  borderRadius: 'md'
+}}>
+  Content
+</Box>
+```
+
+### From Tailwind
+
+```tsx
+// Before (Tailwind)
+<div className="p-4 bg-gray-100 rounded-md">
+  Content
+</div>
+
+// After (Styles API)
+<Box sx={{
+  p: 'md',
+  backgroundColor: 'gray-1',
+  borderRadius: 'md'
+}}>
+  Content
+</Box>
+```
+
+## Performance Considerations
+
+- The `sx` prop is processed at runtime, so keep it simple for performance-critical components
+- Use styled components for frequently reused styles
+- Consider using CSS-in-JS libraries for complex animations or dynamic styles
+- Cache processed styles when possible to avoid repeated processing
+
+## TypeScript Support
+
+The Styles API provides full TypeScript support with proper type inference:
+
+```tsx
+import { SxProps, Box } from "../styles/stylesApi";
+
+interface MyComponentProps {
+  sx?: SxProps;
+  children: React.ReactNode;
+}
+
+const MyComponent: React.FC<MyComponentProps> = ({ sx, children }) => (
+  <Box sx={sx}>{children}</Box>
+);
+```
+
+This comprehensive Styles API provides a powerful, flexible, and type-safe styling solution that integrates seamlessly with your design tokens and maintains consistency across your application.

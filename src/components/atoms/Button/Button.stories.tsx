@@ -7,33 +7,12 @@ const meta: Meta<typeof Button> = {
   component: Button,
   parameters: {
     layout: "padded",
-    docs: {
-      description: {
-        component: `
-
-
-\`\`\`
-        `,
-      },
-      source: {
-        code: `<Button variant="filled" size="md">Button</Button>`,
-      },
-    },
   },
+  tags: ["autodocs"],
   argTypes: {
     children: {
       control: "text",
       description: "Button text content",
-    },
-    leftIcon: {
-      control: { type: "select" },
-      options: ["none", "download", "upload", "add", "remove", "edit"],
-      description: "Left icon",
-    },
-    rightIcon: {
-      control: { type: "select" },
-      options: ["none", "delete", "search", "filter", "refresh", "settings"],
-      description: "Right icon",
     },
     variant: {
       control: { type: "select" },
@@ -50,14 +29,28 @@ const meta: Meta<typeof Button> = {
       options: ["default", "hover", "disabled"],
       description: "Button state",
     },
+    leftIcon: {
+      control: { type: "select" },
+      options: ["none", "download", "upload", "add", "remove", "edit"],
+      description: "Left icon (string or SvgIconComponent)",
+    },
+    rightIcon: {
+      control: { type: "select" },
+      options: ["none", "delete", "search", "filter", "refresh", "settings"],
+      description: "Right icon (string or SvgIconComponent)",
+    },
+    compact: {
+      control: "boolean",
+      description: "Compact mode with reduced padding",
+    },
     justify: {
       control: { type: "select" },
       options: ["center", "space-between"],
       description: "Content justification",
     },
-    compact: {
-      control: "boolean",
-      description: "Compact mode",
+    onClick: {
+      action: "clicked",
+      description: "Click handler",
     },
     disabled: {
       control: "boolean",
@@ -68,9 +61,9 @@ const meta: Meta<typeof Button> = {
       options: ["button", "submit", "reset"],
       description: "Button type",
     },
-    onClick: {
-      action: "clicked",
-      description: "Click handler",
+    className: {
+      control: "text",
+      description: "Additional CSS classes",
     },
   },
   args: {
@@ -118,7 +111,6 @@ const Section = ({
 
 // Playground story with full controls
 export const Playground: Story = {
-  name: "Playground",
   args: {
     children: "Interactive Button",
     variant: "filled",
@@ -129,7 +121,7 @@ export const Playground: Story = {
     docs: {
       description: {
         story:
-          "Use the controls panel to experiment with all button properties in real-time.",
+          "Interactive playground with all controls available. Use the Controls panel to change properties and see the button update in real-time.",
       },
     },
   },

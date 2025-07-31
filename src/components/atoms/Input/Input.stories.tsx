@@ -9,17 +9,8 @@ const meta: Meta<typeof Input> = {
   component: Input,
   parameters: {
     layout: "padded",
-    docs: {
-      description: {
-        component: `
-
-        `,
-      },
-      source: {
-        code: `<Input placeholder="Placeholder" variant="default" size="md" />`,
-      },
-    },
   },
+  tags: ["autodocs"],
   argTypes: {
     placeholder: {
       control: "text",
@@ -81,6 +72,10 @@ const meta: Meta<typeof Input> = {
       control: "boolean",
       description: "Password visibility state",
     },
+    onPasswordVisibilityChange: {
+      action: "password visibility changed",
+      description: "Callback when password visibility changes",
+    },
   },
   args: {
     placeholder: "Placeholder",
@@ -101,18 +96,54 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Playground story with controls
 export const Playground: Story = {
   args: {
-    placeholder: "Type something...",
+    placeholder: "Interactive Input - Type here...",
+    value: "",
     variant: "default",
     size: "md",
+    state: "enabled",
+    leftIcon: "none",
+    rightIcon: "none",
+    type: "text",
+    disabled: false,
+    readonly: false,
+    required: false,
+    showPasswordToggle: false,
+    passwordVisible: false,
   },
   parameters: {
     docs: {
       description: {
         story:
-          "Interactive playground with all controls available in the Controls panel",
+          "Interactive playground with all controls available. Use the Controls panel to change properties and see the input update in real-time.",
+      },
+    },
+  },
+};
+
+// Playground story with controls
+export const PlaygroundOld: Story = {
+  args: {
+    placeholder: "Type something...",
+    value: "",
+    variant: "default",
+    size: "md",
+    state: "enabled",
+    leftIcon: "none",
+    rightIcon: "none",
+    type: "text",
+    disabled: false,
+    readonly: false,
+    required: false,
+    showPasswordToggle: false,
+    passwordVisible: false,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Interactive playground with all controls available in the Controls panel. Try changing the variant, size, state, icons, and other properties to see the input update in real-time.",
       },
     },
   },

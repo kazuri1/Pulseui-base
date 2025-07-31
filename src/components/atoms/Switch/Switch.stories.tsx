@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Switch } from "./Switch";
+import React from "react";
 
 const meta: Meta<typeof Switch> = {
   title: "Components/atoms/Switch",
@@ -12,6 +13,7 @@ const meta: Meta<typeof Switch> = {
       },
     },
   },
+  tags: ["autodocs"],
   argTypes: {
     label: {
       control: "text",
@@ -63,6 +65,40 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const Playground: Story = {
+  render: (args) => {
+    const [isChecked, setIsChecked] = React.useState(args.checked || false);
+
+    return (
+      <Switch
+        {...args}
+        checked={isChecked}
+        onChange={(checked) => {
+          setIsChecked(checked);
+          args.onChange?.(checked);
+        }}
+      />
+    );
+  },
+  args: {
+    label: "Interactive Switch",
+    checked: false,
+    disabled: false,
+    size: "md",
+    required: false,
+    caption: "",
+    error: "",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Interactive playground with all controls available. Try clicking the switch to see it toggle, or use the Controls panel to change properties.",
+      },
+    },
+  },
 };
 
 export const Checked: Story = {
