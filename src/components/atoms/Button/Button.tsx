@@ -73,6 +73,9 @@ export const Button: React.FC<ButtonProps> = ({
   // Map string values to icon components
   const getLeftIcon = () => {
     if (typeof leftIcon === "string") {
+      if (leftIcon === "none") {
+        return null;
+      }
       const iconMap: Record<string, SvgIconComponent> = {
         download: Download,
         upload: Upload,
@@ -80,13 +83,16 @@ export const Button: React.FC<ButtonProps> = ({
         remove: Remove,
         edit: Edit,
       };
-      return iconMap[leftIcon];
+      return iconMap[leftIcon] || null;
     }
     return leftIcon;
   };
 
   const getRightIcon = () => {
     if (typeof rightIcon === "string") {
+      if (rightIcon === "none") {
+        return null;
+      }
       const iconMap: Record<string, SvgIconComponent> = {
         delete: Delete,
         search: Search,
@@ -94,7 +100,7 @@ export const Button: React.FC<ButtonProps> = ({
         refresh: Refresh,
         settings: Settings,
       };
-      return iconMap[rightIcon];
+      return iconMap[rightIcon] || null;
     }
     return rightIcon;
   };

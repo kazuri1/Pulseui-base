@@ -13,6 +13,9 @@ import {
   Settings,
 } from "../Icon/IconSet";
 
+// Import ArgsTable for documentation
+import { PureArgsTable as ArgsTable } from "@storybook/blocks";
+
 const meta: Meta<typeof Button> = {
   title: "Components/atoms/Button",
   component: Button,
@@ -22,6 +25,8 @@ const meta: Meta<typeof Button> = {
       description: {
         component: `
 
+
+\`\`\`
         `,
       },
     },
@@ -129,8 +134,7 @@ export const Playground: Story = {
     children: "Interactive Button",
     variant: "filled",
     size: "md",
-    leftIcon: true,
-    leftIconComponent: Add,
+    leftIcon: "add",
   },
   parameters: {
     docs: {

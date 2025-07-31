@@ -93,6 +93,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     // Map string values to icon components
     const getLeftIcon = () => {
       if (typeof leftIcon === "string") {
+        if (leftIcon === "none") {
+          return null;
+        }
         const iconMap: Record<string, SvgIconComponent> = {
           search: Search,
           info: Info,
@@ -100,13 +103,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           person: Person,
           settings: Settings,
         };
-        return iconMap[leftIcon];
+        return iconMap[leftIcon] || null;
       }
       return leftIcon;
     };
 
     const getRightIcon = () => {
       if (typeof rightIcon === "string") {
+        if (rightIcon === "none") {
+          return null;
+        }
         const iconMap: Record<string, SvgIconComponent> = {
           dropdown: ArrowDropDown,
           email: Email,
@@ -114,7 +120,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           home: Home,
           settings: Settings,
         };
-        return iconMap[rightIcon];
+        return iconMap[rightIcon] || null;
       }
       return rightIcon;
     };

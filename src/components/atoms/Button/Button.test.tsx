@@ -49,20 +49,20 @@ describe("Button", () => {
   });
 
   it("renders with left icon", () => {
-    render(<Button leftIcon>Button</Button>);
+    render(<Button leftIcon="add">Button</Button>);
     const button = screen.getByRole("button", { name: "Button" });
     expect(button).toBeInTheDocument();
   });
 
   it("renders with right icon", () => {
-    render(<Button rightIcon>Button</Button>);
+    render(<Button rightIcon="delete">Button</Button>);
     const button = screen.getByRole("button", { name: "Button" });
     expect(button).toBeInTheDocument();
   });
 
   it("renders with both icons", () => {
     render(
-      <Button leftIcon rightIcon>
+      <Button leftIcon="add" rightIcon="delete">
         Button
       </Button>
     );
@@ -104,11 +104,49 @@ describe("Button", () => {
 
   it("renders with different justification", () => {
     render(
-      <Button justify="space-between" leftIcon rightIcon>
+      <Button justify="space-between" leftIcon="add" rightIcon="delete">
         Button
       </Button>
     );
     const button = screen.getByRole("button", { name: "Button" });
     expect(button).toBeInTheDocument();
+  });
+
+  it("renders without crashing", () => {
+    render(<Button>Test Button</Button>);
+    expect(screen.getByText("Test Button")).toBeInTheDocument();
+  });
+
+  it("handles leftIcon with 'none' value", () => {
+    render(<Button leftIcon="none">Test Button</Button>);
+    expect(screen.getByText("Test Button")).toBeInTheDocument();
+    // Should not throw any errors when leftIcon is "none"
+  });
+
+  it("handles rightIcon with 'none' value", () => {
+    render(<Button rightIcon="none">Test Button</Button>);
+    expect(screen.getByText("Test Button")).toBeInTheDocument();
+    // Should not throw any errors when rightIcon is "none"
+  });
+
+  it("handles both leftIcon and rightIcon with 'none' values", () => {
+    render(
+      <Button leftIcon="none" rightIcon="none">
+        Test Button
+      </Button>
+    );
+    expect(screen.getByText("Test Button")).toBeInTheDocument();
+    // Should not throw any errors when both icons are "none"
+  });
+
+  it("handles valid icon strings", () => {
+    render(<Button leftIcon="add">Add Item</Button>);
+    expect(screen.getByText("Add Item")).toBeInTheDocument();
+  });
+
+  it("handles invalid icon strings gracefully", () => {
+    render(<Button leftIcon="invalid-icon">Test Button</Button>);
+    expect(screen.getByText("Test Button")).toBeInTheDocument();
+    // Should not throw any errors when icon string is invalid
   });
 });

@@ -5,18 +5,6 @@ import { Button } from "./Button";
 
 The Button component is the foundation for all interactive actions in your application. It provides a consistent, accessible, and flexible interface for user interactions.
 
-## Usage
-
-```tsx
-import { Button } from './Button';
-
-// Basic usage
-<Button>Click me</Button>
-
-// With variant and size
-<Button variant="filled" size="lg">Primary Action</Button>
-```
-
 ## Props
 
 The Button component accepts the following props:
@@ -62,38 +50,6 @@ The Button component supports 5 different sizes, each with appropriate padding, 
 | md   | `var(--spacing-md) var(--spacing-lg)`  | `var(--font-size-md)` | 40px       | md (24px) | Standard buttons, forms       |
 | lg   | `var(--spacing-lg) var(--spacing-xl)`  | `var(--font-size-lg)` | 48px       | lg (28px) | Prominent actions, CTAs       |
 | xl   | `var(--spacing-xl) var(--spacing-xxl)` | `var(--font-size-xl)` | 56px       | lg (28px) | Hero sections, large displays |
-
-## Examples
-
-### Basic Button
-
-```tsx
-<Button>Click me</Button>
-```
-
-### Primary Action
-
-```tsx
-<Button variant="filled" size="lg">
-  Primary Action
-</Button>
-```
-
-### Secondary Action
-
-```tsx
-<Button variant="outline" size="md">
-  Secondary Action
-</Button>
-```
-
-### With Icons
-
-```tsx
-<Button leftIcon leftIconComponent={Add}>
-  Add Item
-</Button>
-```
 
 ## Best Practices
 
