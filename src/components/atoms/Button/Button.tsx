@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
-import { ArrowUpward } from "@mui/icons-material";
+import { Icon } from "../Icon";
+import { ArrowUpward } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
 
 export interface ButtonProps {
@@ -67,6 +68,26 @@ export const Button: React.FC<ButtonProps> = ({
   const LeftIcon = leftIconComponent || ArrowUpward;
   const RightIcon = rightIconComponent || ArrowUpward;
 
+  // Map button size to icon size
+  const getIconSize = (buttonSize: string) => {
+    switch (buttonSize) {
+      case "xs":
+        return "xs";
+      case "sm":
+        return "sm";
+      case "md":
+        return "md";
+      case "lg":
+        return "lg";
+      case "xl":
+        return "lg";
+      default:
+        return "md";
+    }
+  };
+
+  const iconSize = getIconSize(size);
+
   return (
     <button
       type={type}
@@ -74,9 +95,23 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled || state === "disabled"}
     >
-      {leftIcon && <LeftIcon className={`${styles.icon} ${styles.left}`} />}
+      {leftIcon && (
+        <Icon
+          icon={LeftIcon}
+          size={iconSize}
+          color="inherit"
+          className={styles.left}
+        />
+      )}
       {children}
-      {rightIcon && <RightIcon className={`${styles.icon} ${styles.right}`} />}
+      {rightIcon && (
+        <Icon
+          icon={RightIcon}
+          size={iconSize}
+          color="inherit"
+          className={styles.right}
+        />
+      )}
     </button>
   );
 };

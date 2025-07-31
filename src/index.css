@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 /* Pulse UI Design System - CSS Variables for Theme Switching */
+
+/* Default Theme (Light) */
 :root {
-  /* Default Theme (Light) */
+  /* Default Brand Colors */
   --color-primary-50: #e7f5ffff;
   --color-primary-100: #d0ebffff;
   --color-primary-200: #a5d8ffff;
@@ -37,8 +39,50 @@
   --color-border-focus: #339af0ff;
 }
 
-/* Dark Theme */
-[data-theme="dark"] {
+/* MedDash Brand (Light) */
+[data-brand="medash"][data-mode="light"] {
+  --color-primary-50: #e7f5ffff;
+  --color-primary-100: #d0ebffff;
+  --color-primary-200: #a5d8ffff;
+  --color-primary-300: #74c0fcff;
+  --color-primary-400: #4dabf7ff;
+  --color-primary-500: #339af0ff;
+  --color-primary-600: #228be6ff;
+  --color-primary-700: #1c7ed6ff;
+  --color-primary-800: #1971c2ff;
+  --color-primary-900: #1864abff;
+}
+
+/* FitCore Brand (Light) */
+[data-brand="fitcore"][data-mode="light"] {
+  --color-primary-50: #fff4e6ff;
+  --color-primary-100: #ffe8ccff;
+  --color-primary-200: #ffd8a8ff;
+  --color-primary-300: #ffc078ff;
+  --color-primary-400: #ffa94dff;
+  --color-primary-500: #fd7e14ff;
+  --color-primary-600: #f76707ff;
+  --color-primary-700: #e8590cff;
+  --color-primary-800: #d63384ff;
+  --color-primary-900: #c2255cff;
+}
+
+/* LabSync Brand (Light) */
+[data-brand="labsync"][data-mode="light"] {
+  --color-primary-50: #f3f0ffff;
+  --color-primary-100: #e5dbffff;
+  --color-primary-200: #d0bfffff;
+  --color-primary-300: #b197fcff;
+  --color-primary-400: #9775faff;
+  --color-primary-500: #7950f2ff;
+  --color-primary-600: #7048e8ff;
+  --color-primary-700: #6741d9ff;
+  --color-primary-800: #5f3dc4ff;
+  --color-primary-900: #4c6ef5ff;
+}
+
+/* Dark Theme - Default Brand */
+[data-brand="default"][data-mode="dark"] {
   --color-primary-50: #e7f5ffff;
   --color-primary-100: #d0ebffff;
   --color-primary-200: #a5d8ffff;
@@ -71,25 +115,69 @@
   --color-border-focus: #74c0fcff;
 }
 
-/* Medash Theme */
-[data-theme="medash"] {
-  --color-primary-500: #1971c2ff;
-  --color-primary-600: #1864abff;
-  --color-primary-700: #155a9aff;
+/* Dark Theme - MedDash Brand */
+[data-brand="medash"][data-mode="dark"] {
+  --color-primary-50: #e7f5ffff;
+  --color-primary-100: #d0ebffff;
+  --color-primary-200: #a5d8ffff;
+  --color-primary-300: #74c0fcff;
+  --color-primary-400: #4dabf7ff;
+  --color-primary-500: #339af0ff;
+  --color-primary-600: #228be6ff;
+  --color-primary-700: #1c7ed6ff;
+  --color-primary-800: #1971c2ff;
+  --color-primary-900: #1864abff;
 }
 
-/* FitCore Theme */
-[data-theme="fitcore"] {
+/* Dark Theme - FitCore Brand */
+[data-brand="fitcore"][data-mode="dark"] {
+  --color-primary-50: #fff4e6ff;
+  --color-primary-100: #ffe8ccff;
+  --color-primary-200: #ffd8a8ff;
+  --color-primary-300: #ffc078ff;
+  --color-primary-400: #ffa94dff;
   --color-primary-500: #fd7e14ff;
   --color-primary-600: #f76707ff;
   --color-primary-700: #e8590cff;
+  --color-primary-800: #d63384ff;
+  --color-primary-900: #c2255cff;
 }
 
-/* LabSync Theme */
-[data-theme="labsync"] {
+/* Dark Theme - LabSync Brand */
+[data-brand="labsync"][data-mode="dark"] {
+  --color-primary-50: #f3f0ffff;
+  --color-primary-100: #e5dbffff;
+  --color-primary-200: #d0bfffff;
+  --color-primary-300: #b197fcff;
+  --color-primary-400: #9775faff;
   --color-primary-500: #7950f2ff;
   --color-primary-600: #7048e8ff;
   --color-primary-700: #6741d9ff;
+  --color-primary-800: #5f3dc4ff;
+  --color-primary-900: #4c6ef5ff;
+}
+
+/* Legacy support for data-theme attribute */
+[data-theme="dark"] {
+  --color-surface-50: #141414ff;
+  --color-surface-100: #1f1f1fff;
+  --color-surface-200: #242424ff;
+  --color-surface-300: #2e2e2eff;
+  --color-surface-400: #424242ff;
+  --color-surface-500: #696969ff;
+  --color-surface-600: #828282ff;
+  --color-surface-700: #b8b8b8ff;
+  --color-surface-800: #c9c9c9ff;
+  --color-surface-900: #ffffffff;
+
+  --color-text-primary: #ffffffff;
+  --color-text-secondary: #c9c9c9ff;
+  --color-text-muted: #828282ff;
+  --color-text-disabled: #696969ff;
+
+  --color-border-primary: #424242ff;
+  --color-border-secondary: #2e2e2eff;
+  --color-border-focus: #74c0fcff;
 }
 
 /* Pulse UI Design System - Base Styles */

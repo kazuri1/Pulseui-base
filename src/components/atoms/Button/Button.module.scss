@@ -172,23 +172,22 @@
   }
 
   // Icon styles
-  .icon {
+  .left,
+  .right {
+    flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 16px;
-    margin: 0 var(--spacing-xs);
+  }
 
-    &.left {
-      margin-right: var(--spacing-xs);
-      margin-left: 0;
-    }
+  .left {
+    margin-right: var(--spacing-icon);
+    margin-left: 0;
+  }
 
-    &.right {
-      margin-left: var(--spacing-xs);
-      margin-right: 0;
-    }
+  .right {
+    margin-left: var(--spacing-icon);
+    margin-right: 0;
   }
 
   // Compact mode

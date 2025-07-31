@@ -1,108 +1,23 @@
-import { Meta, Story } from "@storybook/addon-docs";
+import { Meta } from "@storybook/blocks";
 import { Button } from "./Button";
-import {
-  ArrowUpward,
-  ArrowDownward,
-  Download,
-  Upload,
-  Add,
-  Remove,
-  Edit,
-  Delete,
-  Search,
-  FilterList,
-  Refresh,
-  Settings,
-} from "@mui/icons-material";
 
-<Meta
-  title="Design System/Atoms/Button"
-  component={Button}
-  parameters={{
-    docs: {
-      description: {
-        component: `
-# Button Component
+<Meta title="Components/atoms/Button" component={Button} />
 
-A versatile, accessible button component built with design tokens for consistent styling across the Pulse UI design system. Supports multiple variants, sizes, states, and Material-UI icons.
+The Button component is the foundation for all interactive actions in your application. It provides a consistent, accessible, and flexible interface for user interactions.
 
-## Overview
+## Usage
 
-The Button component is a foundational element in the Pulse UI design system, designed to provide consistent, accessible, and flexible button interactions across all platforms and brands.
+```tsx
+import { Button } from './Button';
 
-### Key Features
+// Basic usage
+<Button>Click me</Button>
 
-- **6 Variants**: filled, subtle, light, outline, white, default
-- **5 Sizes**: xs, sm, md, lg, xl
-- **3 States**: default, hover, disabled
-- **Material-UI Icons**: Full support for custom icon components
-- **Design Tokens**: Built with CSS variables from primitive tokens
-- **Accessibility**: ARIA compliant with keyboard navigation
-- **Multi-brand Ready**: Token-driven theming for different brands
+// With variant and size
+<Button variant="filled" size="lg">Primary Action</Button>
+```
 
-### Design Philosophy
-
-The Button component follows the token-first architecture defined in the Pulse UI design system:
-
-- **Global Tokens**: Uses primitive colors, spacing, typography, and effects
-- **Semantic Tokens**: Maps to component-specific design decisions
-- **Component Tokens**: Scoped overrides for specific button behaviors
-
-## Usage Guidelines
-
-### When to Use
-
-- **Primary Actions**: Use filled variant for main actions
-- **Secondary Actions**: Use outline or subtle variants
-- **Destructive Actions**: Use filled variant with red color tokens
-- **Icon-only Actions**: Use compact mode with appropriate icons
-- **Form Submissions**: Use appropriate type="submit" for forms
-
-### Accessibility Considerations
-
-- All buttons are keyboard accessible
-- Proper focus states with visible outlines
-- ARIA attributes for screen readers
-- Disabled states clearly indicated
-- Loading states for async actions
-
-## Token Architecture Integration
-
-The Button component leverages the Pulse UI token architecture:
-
-\`\`\`scss
-// Global tokens from primitive.json
---color-blue-8: #1971c2ff;
---spacing-sm: 8px;
---font-weight-semibold: 600;
---radius-md: 8px;
-
-// Component-specific usage
-.button {
-background-color: var(--color-blue-8);
-padding: var(--spacing-sm) var(--spacing-md);
-font-weight: var(--font-weight-semibold);
-border-radius: var(--radius-md);
-}
-\`\`\`
-
-## Multi-brand Support
-
-The Button component is designed to work across multiple brands:
-
-- **Default Theme**: Standard blue-based design
-- **Medplum**: Healthcare-focused theming
-- **FitCore**: Fitness and wellness theming
-- **LabSync**: Laboratory and research theming
-
-Each brand can override token values while maintaining component structure.
-`
-}
-}
-}}
-/>
-
-## Component API
+## Props
 
 The Button component accepts the following props:
 
@@ -123,494 +38,84 @@ The Button component accepts the following props:
 | `type`               | `'button' \| 'submit' \| 'reset'`                                      | `'button'`    | Button type                       |
 | `className`          | `string`                                                               | `''`          | Additional CSS classes            |
 
-## Design Tokens
-
-The Button component uses the following design tokens from the primitive.json:
-
-### Colors
-
-- Primary: `--color-blue-8` (filled variant)
-- Secondary: `--color-gray-3` (outline variant)
-- Text: `--color-white`, `--color-gray-9`
-- Error: `--color-red-6` (for destructive actions)
-
-### Spacing
-
-- Padding: `--spacing-xs`, `--spacing-sm`, `--spacing-md`, `--spacing-lg`
-- Margins: `--spacing-xs` (icon spacing)
-
-### Typography
-
-- Font Family: `--font-family` (Roboto)
-- Font Weight: `--font-weight-semibold` (600)
-- Font Sizes: `--font-size-xs`, `--font-size-sm`, `--font-size-md`, `--font-size-lg`, `--font-size-xl`
-
-### Effects
-
-- Border Radius: `--radius-md`
-- Shadows: `--effect-shadow-*` tokens
-- Opacity: `--opacity-50` (disabled state)
-
 ## Variants
 
-### Filled
+The Button component supports 6 different visual variants to match different use cases and design contexts.
 
-Primary action button with solid background.
-
-<Story name="Filled Variant">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button variant="filled" size="sm">
-      Small
-    </Button>
-    <Button variant="filled" size="md">
-      Medium
-    </Button>
-    <Button variant="filled" size="lg">
-      Large
-    </Button>
-  </div>
-</Story>
-
-### Subtle
-
-Secondary action with subtle background.
-
-<Story name="Subtle Variant">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button variant="subtle" size="sm">
-      Small
-    </Button>
-    <Button variant="subtle" size="md">
-      Medium
-    </Button>
-    <Button variant="subtle" size="lg">
-      Large
-    </Button>
-  </div>
-</Story>
-
-### Light
-
-Light background with colored text.
-
-<Story name="Light Variant">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button variant="light" size="sm">
-      Small
-    </Button>
-    <Button variant="light" size="md">
-      Medium
-    </Button>
-    <Button variant="light" size="lg">
-      Large
-    </Button>
-  </div>
-</Story>
-
-### Outline
-
-Bordered button with transparent background.
-
-<Story name="Outline Variant">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button variant="outline" size="sm">
-      Small
-    </Button>
-    <Button variant="outline" size="md">
-      Medium
-    </Button>
-    <Button variant="outline" size="lg">
-      Large
-    </Button>
-  </div>
-</Story>
-
-### White
-
-White background with dark text.
-
-<Story name="White Variant">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button variant="white" size="sm">
-      Small
-    </Button>
-    <Button variant="white" size="md">
-      Medium
-    </Button>
-    <Button variant="white" size="lg">
-      Large
-    </Button>
-  </div>
-</Story>
-
-### Default
-
-Fallback variant with minimal styling.
-
-<Story name="Default Variant">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button variant="default" size="sm">
-      Small
-    </Button>
-    <Button variant="default" size="md">
-      Medium
-    </Button>
-    <Button variant="default" size="lg">
-      Large
-    </Button>
-  </div>
-</Story>
+| Variant     | Use Case                                       | Example                                                 |
+| ----------- | ---------------------------------------------- | ------------------------------------------------------- |
+| **Filled**  | Primary actions, main CTAs                     | `<Button variant="filled">Primary Action</Button>`      |
+| **Subtle**  | Secondary actions, less prominent              | `<Button variant="subtle">Secondary Action</Button>`    |
+| **Light**   | Tertiary actions, minimal impact               | `<Button variant="light">Tertiary Action</Button>`      |
+| **Outline** | Alternative to filled, secondary but important | `<Button variant="outline">Alternative Action</Button>` |
+| **White**   | Colored backgrounds, cards                     | `<Button variant="white">Card Action</Button>`          |
+| **Default** | Fallback, neutral actions                      | `<Button variant="default">Neutral Action</Button>`     |
 
 ## Sizes
 
-The Button component supports 5 different sizes, each with appropriate spacing and typography tokens:
+The Button component supports 5 different sizes, each with appropriate padding, font size, and icon scaling.
 
-### Extra Small (xs)
+| Size | Padding                                | Font Size             | Min Height | Icon Size | Use Case                      |
+| ---- | -------------------------------------- | --------------------- | ---------- | --------- | ----------------------------- |
+| xs   | `var(--spacing-xs) var(--spacing-sm)`  | `var(--font-size-xs)` | 24px       | xs (16px) | Dense layouts, toolbars       |
+| sm   | `var(--spacing-sm) var(--spacing-md)`  | `var(--font-size-sm)` | 32px       | sm (20px) | Inline elements, compact UI   |
+| md   | `var(--spacing-md) var(--spacing-lg)`  | `var(--font-size-md)` | 40px       | md (24px) | Standard buttons, forms       |
+| lg   | `var(--spacing-lg) var(--spacing-xl)`  | `var(--font-size-lg)` | 48px       | lg (28px) | Prominent actions, CTAs       |
+| xl   | `var(--spacing-xl) var(--spacing-xxl)` | `var(--font-size-xl)` | 56px       | lg (28px) | Hero sections, large displays |
 
-<Story name="Extra Small Size">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button size="xs">Extra Small</Button>
-    <Button size="xs" leftIcon>
-      With Icon
-    </Button>
-    <Button size="xs" compact>
-      Compact
-    </Button>
-  </div>
-</Story>
+## Examples
 
-### Small (sm)
+### Basic Button
 
-<Story name="Small Size">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button size="sm">Small</Button>
-    <Button size="sm" leftIcon>
-      With Icon
-    </Button>
-    <Button size="sm" compact>
-      Compact
-    </Button>
-  </div>
-</Story>
+```tsx
+<Button>Click me</Button>
+```
 
-### Medium (md)
+### Primary Action
 
-<Story name="Medium Size">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button size="md">Medium</Button>
-    <Button size="md" leftIcon>
-      With Icon
-    </Button>
-    <Button size="md" compact>
-      Compact
-    </Button>
-  </div>
-</Story>
+```tsx
+<Button variant="filled" size="lg">
+  Primary Action
+</Button>
+```
 
-### Large (lg)
+### Secondary Action
 
-<Story name="Large Size">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button size="lg">Large</Button>
-    <Button size="lg" leftIcon>
-      With Icon
-    </Button>
-    <Button size="lg" compact>
-      Compact
-    </Button>
-  </div>
-</Story>
+```tsx
+<Button variant="outline" size="md">
+  Secondary Action
+</Button>
+```
 
-### Extra Large (xl)
+### With Icons
 
-<Story name="Extra Large Size">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button size="xl">Extra Large</Button>
-    <Button size="xl" leftIcon>
-      With Icon
-    </Button>
-    <Button size="xl" compact>
-      Compact
-    </Button>
-  </div>
-</Story>
-
-## States
-
-### Default State
-
-Normal interactive state.
-
-<Story name="Default State">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button state="default">Default</Button>
-    <Button state="default" leftIcon>
-      With Icon
-    </Button>
-  </div>
-</Story>
-
-### Hover State
-
-Enhanced visual feedback on hover.
-
-<Story name="Hover State">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button state="hover">Hover</Button>
-    <Button state="hover" leftIcon>
-      With Icon
-    </Button>
-  </div>
-</Story>
-
-### Disabled State
-
-Non-interactive state with reduced opacity.
-
-<Story name="Disabled State">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button state="disabled">Disabled</Button>
-    <Button state="disabled" leftIcon>
-      With Icon
-    </Button>
-  </div>
-</Story>
-
-## Icon Integration
-
-The Button component fully supports Material-UI icons with flexible positioning and customization.
-
-### Left Icons
-
-<Story name="Left Icons">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button leftIcon leftIconComponent={Add}>
-      Add Item
-    </Button>
-    <Button leftIcon leftIconComponent={Download}>
-      Download
-    </Button>
-    <Button leftIcon leftIconComponent={Search}>
-      Search
-    </Button>
-    <Button leftIcon leftIconComponent={Refresh}>
-      Refresh
-    </Button>
-  </div>
-</Story>
-
-### Right Icons
-
-<Story name="Right Icons">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button rightIcon rightIconComponent={ArrowUpward}>
-      Submit
-    </Button>
-    <Button rightIcon rightIconComponent={ArrowDownward}>
-      Expand
-    </Button>
-    <Button rightIcon rightIconComponent={Upload}>
-      Upload
-    </Button>
-    <Button rightIcon rightIconComponent={Settings}>
-      Settings
-    </Button>
-  </div>
-</Story>
-
-### Both Icons
-
-<Story name="Both Icons">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button
-      leftIcon
-      rightIcon
-      leftIconComponent={Add}
-      rightIconComponent={ArrowUpward}
-    >
-      Add and Submit
-    </Button>
-    <Button
-      leftIcon
-      rightIcon
-      leftIconComponent={Edit}
-      rightIconComponent={ArrowDownward}
-    >
-      Edit and Expand
-    </Button>
-  </div>
-</Story>
-
-### Icon-only Buttons
-
-<Story name="Icon Only">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button leftIcon leftIconComponent={Add} compact />
-    <Button leftIcon leftIconComponent={Edit} compact />
-    <Button leftIcon leftIconComponent={Delete} compact />
-    <Button leftIcon leftIconComponent={Settings} compact />
-  </div>
-</Story>
-
-## Justification
-
-The Button component supports different text alignment options.
-
-### Center (Default)
-
-<Story name="Center Justification">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button justify="center">Center Text</Button>
-    <Button justify="center" leftIcon>
-      Center with Icon
-    </Button>
-  </div>
-</Story>
-
-### Space Between
-
-<Story name="Space Between Justification">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button
-      justify="space-between"
-      leftIcon
-      rightIcon
-      leftIconComponent={Add}
-      rightIconComponent={ArrowUpward}
-    >
-      Space Between
-    </Button>
-  </div>
-</Story>
-
-## Compact Mode
-
-Compact mode reduces padding for more dense layouts.
-
-<Story name="Compact Mode">
-  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-    <Button compact>Compact</Button>
-    <Button compact leftIcon>
-      Compact with Icon
-    </Button>
-    <Button compact leftIcon leftIconComponent={Add} />
-  </div>
-</Story>
-
-## Accessibility Features
-
-### Keyboard Navigation
-
-- All buttons are keyboard accessible
-- Tab order follows logical flow
-- Enter and Space keys trigger button actions
-
-### Screen Reader Support
-
-- Proper ARIA labels and descriptions
-- State announcements (disabled, loading)
-- Icon descriptions for screen readers
-
-### Focus Management
-
-- Visible focus indicators
-- High contrast focus states
-- Proper focus order
-
-## Responsive Design
-
-The Button component is mobile-first and responsive:
-
-- **Mobile**: Touch-friendly sizing with appropriate touch targets
-- **Tablet**: Optimized spacing and typography
-- **Desktop**: Full feature set with hover states
-
-## Multi-brand Theming
-
-The Button component supports multiple brands through token overrides:
-
-### Default Brand
-
-Standard blue-based design system.
-
-### Medplum Brand
-
-Healthcare-focused theming with medical color palette.
-
-### FitCore Brand
-
-Fitness and wellness theming with energetic colors.
-
-### LabSync Brand
-
-Laboratory and research theming with scientific color palette.
-
-## Performance Considerations
-
-- CSS-in-JS with SCSS modules for optimal performance
-- Minimal JavaScript overhead
-- Efficient re-rendering with React.memo pattern
-- Optimized bundle size with tree-shaking
+```tsx
+<Button leftIcon leftIconComponent={Add}>
+  Add Item
+</Button>
+```
 
 ## Best Practices
 
-### Do's
+### ✅ Do
 
-- Use filled variant for primary actions
-- Use outline or subtle for secondary actions
-- Include appropriate icons for better UX
-- Provide clear, actionable button text
-- Use appropriate sizes for context
+| Practice                                            | Description                                      |
+| --------------------------------------------------- | ------------------------------------------------ |
+| **Use `filled` for primary actions**                | Main action on a page or in a section            |
+| **Use `outline` or `subtle` for secondary actions** | Less prominent but still important actions       |
+| **Use `light` for tertiary actions**                | Minimal visual impact actions                    |
+| **Include descriptive text with icons**             | Always provide text labels with icons            |
+| **Use appropriate sizes for context**               | Match button size to its importance and context  |
+| **Provide clear click handlers**                    | Ensure onClick handlers are properly defined     |
+| **Test keyboard navigation**                        | Verify all buttons work with keyboard navigation |
 
-### Don'ts
+### ❌ Don't
 
-- Don't use too many buttons in one area
-- Don't use disabled buttons without explanation
-- Don't use icon-only buttons without labels
-- Don't use buttons for navigation (use links instead)
-- Don't override tokens directly in components
-
-## Migration Guide
-
-### From Custom Buttons
-
-1. Replace custom styling with Button component
-2. Map existing variants to Button variants
-3. Update icon usage to Material-UI icons
-4. Test accessibility and keyboard navigation
-
-### From Other Libraries
-
-1. Replace library-specific props with Button props
-2. Update event handlers to match Button API
-3. Migrate custom styling to design tokens
-4. Verify responsive behavior
-
-## Troubleshooting
-
-### Common Issues
-
-**Button not responding to clicks**
-
-- Check if disabled prop is set
-- Verify onClick handler is provided
-- Ensure button is not covered by other elements
-
-**Icons not displaying**
-
-- Verify Material-UI icons are imported
-- Check icon component prop names
-- Ensure icon components are valid
-
-**Styling not applying**
-
-- Check if SCSS modules are working
-- Verify design tokens are loaded
-- Ensure className is not overriding styles
-
-### Debug Tips
-
-- Use browser dev tools to inspect CSS classes
-- Check Storybook controls for prop values
-- Verify token values in CSS variables
-- Test keyboard navigation for accessibility
+| Practice                                         | Description                                    |
+| ------------------------------------------------ | ---------------------------------------------- |
+| **Use too many button variants on one page**     | Stick to 2-3 variants maximum per page         |
+| **Make buttons too small for touch interaction** | Ensure minimum 44px touch target               |
+| **Use icons without descriptive text**           | Always provide text labels for accessibility   |
+| **Override design tokens unnecessarily**         | Use the provided design tokens for consistency |
+| **Use buttons for navigation**                   | Use links instead for navigation               |
+| **Forget to handle loading states**              | Provide loading states for async actions       |

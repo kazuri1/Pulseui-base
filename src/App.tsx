@@ -2,10 +2,11 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { Button } from "./components/atoms/Button";
+import { ThemeProvider, useTheme } from "./components/ThemeProvider";
 
-function App() {
+function AppContent() {
   const [count, setCount] = useState(0);
-  const [theme, setTheme] = useState("default");
+  const { brand, mode, setBrand, toggleMode } = useTheme();
 
   const themes = [
     { id: "default", name: "Pulse", color: "#339af0" },
@@ -15,8 +16,7 @@ function App() {
   ];
 
   const toggleTheme = (newTheme: string) => {
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
+    setBrand(newTheme as any);
   };
 
   return (
@@ -52,7 +52,7 @@ function App() {
                 key={t.id}
                 onClick={() => toggleTheme(t.id)}
                 className={`px-sm py-xs rounded-md text-xs font-medium transition-colors ${
-                  theme === t.id
+                  brand === t.id
                     ? "bg-primary-600 text-white"
                     : "bg-surface-200 text-text-secondary hover:bg-surface-300"
                 }`}
@@ -61,6 +61,14 @@ function App() {
                 {t.name}
               </button>
             ))}
+
+            {/* Mode Toggle */}
+            <button
+              onClick={toggleMode}
+              className="px-sm py-xs rounded-md text-xs font-medium transition-colors bg-surface-200 text-text-secondary hover:bg-surface-300"
+            >
+              {mode === "light" ? "🌙" : "☀️"}
+            </button>
           </div>
         </div>
 
@@ -157,6 +165,14 @@ function App() {
         </p>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider defaultBrand="default" defaultMode="light">
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

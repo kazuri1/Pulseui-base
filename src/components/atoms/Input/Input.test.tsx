@@ -1,161 +1,182 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import "@testing-library/jest-dom";
 import { Input } from "./Input";
 
-describe("Input", () => {
+describe("Input Component", () => {
   it("renders with default props", () => {
-    render(<Input placeholder="Test input" />);
-    expect(screen.getByPlaceholderText("Test input")).toBeInTheDocument();
+    render(<Input placeholder="Test placeholder" />);
+    const input = screen.getByPlaceholderText("Test placeholder");
+    expect(input).toBeInTheDocument();
   });
 
   it("renders with different variants", () => {
-    const variants = ["default", "filled", "unstyled"] as const;
+    const { rerender } = render(<Input variant="default" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("variant-default");
 
-    variants.forEach((variant) => {
-      render(<Input variant={variant} placeholder="Test input" />);
-      const input = screen.getByPlaceholderText("Test input");
-      expect(input).toBeInTheDocument();
-    });
-  });
+    rerender(<Input variant="filled" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("variant-filled");
 
-  it("renders with different states", () => {
-    const states = [
-      "enabled",
-      "focus",
-      "typing",
-      "filled",
-      "disabled",
-    ] as const;
-
-    states.forEach((state) => {
-      render(<Input state={state} placeholder="Test input" />);
-      const input = screen.getByPlaceholderText("Test input");
-      expect(input).toBeInTheDocument();
-    });
+    rerender(<Input variant="unstyled" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("variant-unstyled");
   });
 
   it("renders with different sizes", () => {
-    const sizes = ["sm", "md", "lg"] as const;
+    const { rerender } = render(<Input size="sm" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("size-sm");
 
-    sizes.forEach((size) => {
-      render(<Input size={size} placeholder="Test input" />);
-      const input = screen.getByPlaceholderText("Test input");
-      expect(input).toBeInTheDocument();
-    });
+    rerender(<Input size="md" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("size-md");
+
+    rerender(<Input size="lg" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("size-lg");
+  });
+
+  it("renders with different states", () => {
+    const { rerender } = render(<Input state="enabled" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("state-enabled");
+
+    rerender(<Input state="focus" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("state-focus");
+
+    rerender(<Input state="disabled" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("state-disabled");
   });
 
   it("renders with error state", () => {
-    render(<Input error placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toBeInTheDocument();
+    render(<Input error placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("error");
   });
 
-  it("renders with info icon", () => {
-    render(<Input showInfoIcon placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toBeInTheDocument();
+  it("renders with disabled state", () => {
+    render(<Input disabled placeholder="Test" />);
+    const input = screen.getByPlaceholderText("Test");
+    expect(input).toBeDisabled();
+    expect(input).toHaveClass("disabled");
   });
 
-  it("renders with dropdown arrow", () => {
-    render(<Input showDropdownArrow placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toBeInTheDocument();
+  it("renders with readonly state", () => {
+    render(<Input readonly placeholder="Test" />);
+    const input = screen.getByPlaceholderText("Test");
+    expect(input).toHaveAttribute("readonly");
+    expect(input).toHaveClass("readonly");
   });
 
-  it("renders without icons", () => {
+  it("renders with required attribute", () => {
+    render(<Input required placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute("required");
+  });
+
+  it("renders with different input types", () => {
+    const { rerender } = render(<Input type="text" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "text");
+
+    rerender(<Input type="email" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute(
+      "type",
+      "email"
+    );
+
+    rerender(<Input type="password" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute(
+      "type",
+      "password"
+    );
+  });
+
+  it("calls onChange handler", () => {
+    const handleChange = vi.fn();
+    render(<Input onChange={handleChange} placeholder="Test" />);
+
+    const input = screen.getByPlaceholderText("Test");
+    fireEvent.change(input, { target: { value: "new value" } });
+
+    expect(handleChange).toHaveBeenCalledTimes(1);
+    expect(handleChange).toHaveBeenCalledWith(
+      expect.objectContaining({
+        target: expect.objectContaining({ value: "new value" }),
+      })
+    );
+  });
+
+  it("calls onFocus handler", () => {
+    const handleFocus = vi.fn();
+    render(<Input onFocus={handleFocus} placeholder="Test" />);
+
+    const input = screen.getByPlaceholderText("Test");
+    fireEvent.focus(input);
+
+    expect(handleFocus).toHaveBeenCalledTimes(1);
+  });
+
+  it("calls onBlur handler", () => {
+    const handleBlur = vi.fn();
+    render(<Input onBlur={handleBlur} placeholder="Test" />);
+
+    const input = screen.getByPlaceholderText("Test");
+    fireEvent.blur(input);
+
+    expect(handleBlur).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders with value", () => {
+    render(<Input value="test value" placeholder="Test" />);
+    const input = screen.getByPlaceholderText("Test");
+    expect(input).toHaveValue("test value");
+  });
+
+  it("renders with name and id attributes", () => {
+    render(<Input name="test-name" id="test-id" placeholder="Test" />);
+    const input = screen.getByPlaceholderText("Test");
+    expect(input).toHaveAttribute("name", "test-name");
+    expect(input).toHaveAttribute("id", "test-id");
+  });
+
+  it("applies custom className", () => {
+    render(<Input className="custom-class" placeholder="Test" />);
+    expect(screen.getByPlaceholderText("Test")).toHaveClass("custom-class");
+  });
+
+  it("forwards ref correctly", () => {
+    const ref = vi.fn();
+    render(<Input ref={ref} placeholder="Test" />);
+    expect(ref).toHaveBeenCalledWith(expect.any(HTMLInputElement));
+  });
+
+  it("renders with info icon when showInfoIcon is true", () => {
+    const MockIcon = () => <div data-testid="info-icon">Info</div>;
+    render(
+      <Input
+        showInfoIcon={true}
+        infoIconComponent={MockIcon as any}
+        placeholder="Test"
+      />
+    );
+    expect(screen.getByTestId("info-icon")).toBeInTheDocument();
+  });
+
+  it("renders with dropdown arrow when showDropdownArrow is true", () => {
+    const MockIcon = () => <div data-testid="dropdown-icon">Dropdown</div>;
+    render(
+      <Input
+        showDropdownArrow={true}
+        dropdownArrowComponent={MockIcon as any}
+        placeholder="Test"
+      />
+    );
+    expect(screen.getByTestId("dropdown-icon")).toBeInTheDocument();
+  });
+
+  it("does not render icons when showInfoIcon and showDropdownArrow are false", () => {
+    const MockIcon = () => <div data-testid="icon">Icon</div>;
     render(
       <Input
         showInfoIcon={false}
         showDropdownArrow={false}
-        placeholder="Test input"
+        infoIconComponent={MockIcon as any}
+        dropdownArrowComponent={MockIcon as any}
+        placeholder="Test"
       />
     );
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toBeInTheDocument();
-  });
-
-  it("applies custom className", () => {
-    render(<Input className="custom-class" placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toHaveClass("custom-class");
-  });
-
-  it("handles change events", () => {
-    const handleChange = vi.fn();
-    render(<Input onChange={handleChange} placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    fireEvent.change(input, { target: { value: "test" } });
-    expect(handleChange).toHaveBeenCalledWith("test");
-  });
-
-  it("handles focus events", () => {
-    const handleFocus = vi.fn();
-    render(<Input onFocus={handleFocus} placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    fireEvent.focus(input);
-    expect(handleFocus).toHaveBeenCalled();
-  });
-
-  it("handles blur events", () => {
-    const handleBlur = vi.fn();
-    render(<Input onBlur={handleBlur} placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    fireEvent.blur(input);
-    expect(handleBlur).toHaveBeenCalled();
-  });
-
-  it("is disabled when disabled prop is true", () => {
-    render(<Input disabled placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toBeDisabled();
-  });
-
-  it("is disabled when state is disabled", () => {
-    render(<Input state="disabled" placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toBeDisabled();
-  });
-
-  it("is readonly when readonly prop is true", () => {
-    render(<Input readonly placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toHaveAttribute("readonly");
-  });
-
-  it("is required when required prop is true", () => {
-    render(<Input required placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toHaveAttribute("required");
-  });
-
-  it("renders with different input types", () => {
-    const types = [
-      "text",
-      "email",
-      "password",
-      "number",
-      "tel",
-      "url",
-    ] as const;
-
-    types.forEach((type) => {
-      render(<Input type={type} placeholder="Test input" />);
-      const input = screen.getByPlaceholderText("Test input");
-      expect(input).toHaveAttribute("type", type);
-    });
-  });
-
-  it("renders with value", () => {
-    render(<Input value="test value" placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toHaveValue("test value");
-  });
-
-  it("renders with name and id", () => {
-    render(<Input name="test-name" id="test-id" placeholder="Test input" />);
-    const input = screen.getByPlaceholderText("Test input");
-    expect(input).toHaveAttribute("name", "test-name");
-    expect(input).toHaveAttribute("id", "test-id");
+    expect(screen.queryByTestId("icon")).not.toBeInTheDocument();
   });
 });

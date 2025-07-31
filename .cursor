@@ -1,66 +1,98 @@
 {
   "projectName": "Pulse UI",
-  "description": "Pulse UI is a mobile-first, open-source, multi-brand design system and component library built with token-first architecture. It supports JSON tokens, CSS variables, Tailwind, and Storybook, targeting healthtech and fitnesstech startups.",
+  "description": "Pulse UI is a mobile-first, open-source, multi-brand design system and component library built with token-first architecture. It uses SCSS modules with CSS variables, design tokens, and supports multiple brands (MedDash, FitCore, LabSync) with light/dark themes.",
   "techStack": {
-    "designTokens": "JSON (Figma Variables → Style Dictionary → Tailwind)",
-    "styling": "Tailwind CSS with token overrides and CSS variables",
-    "components": "React + Tailwind + Storybook",
-    "documentation": "Storybook Docs",
-    "theming": "Multi-brand static theming via token sets + Tailwind config",
+    "designTokens": "JSON tokens (primitive.json, component.json, brand.json) → CSS variables",
+    "styling": "SCSS modules with CSS custom properties and design tokens",
+    "components": "React + TypeScript + SCSS modules + Storybook",
+    "documentation": "Storybook Docs with MDX",
+    "theming": "Multi-brand dynamic theming via CSS variables and design tokens",
     "packaging": "NPM Packages"
   },
   "tokenArchitecture": {
     "levels": {
-      "global": "Brand-agnostic primitives (colors, spacing, typography)",
-      "semantic": "Component tokens mapping to global tokens",
-      "component": "Overrides or scoped tokens for specific components"
+      "primitive": "Base design tokens (colors, spacing, typography, effects)",
+      "component": "Component-specific tokens mapping to primitive tokens",
+      "brand": "Brand-specific overrides and theme variations"
     },
     "structure": {
+      "tokens": {
+        "primitive.json": "Base design tokens (colors, spacing, typography, effects)",
+        "component.json": "Component-specific design tokens",
+        "brand.json": "Multi-brand theme definitions"
+      },
+      "cssVariables": {
+        "_tokens.scss": "CSS custom properties generated from design tokens",
+        "usage": "Components reference CSS variables (var(--color-blue-8))"
+      },
       "colors": {
-        "primary": "{brand}.{mode}.primary",
-        "surface": "{brand}.{mode}.surface",
-        "text": "{brand}.{mode}.text",
-        "border": "{brand}.{mode}.border"
+        "primitive": "Blue, red, gray, dark, green, yellow, teal, violet, indigo scales",
+        "semantic": "Primary, surface, text, border, success, warning, error",
+        "brands": {
+          "default": "Blue-based primary colors",
+          "medash": "MedTech brand with blue primary + green accent",
+          "fitcore": "FitnessTech brand with orange primary + green accent",
+          "labsync": "LabSync brand with purple primary + cyan accent"
+        }
       },
       "spacing": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
+        "xs (4px)",
+        "sm (8px)",
+        "md (16px)",
+        "lg (24px)",
+        "xl (32px)",
+        "xxl (48px)"
       ],
       "typography": {
-        "font": [
-          "heading",
-          "body",
-          "mono"
+        "fontFamily": "Roboto (sans-serif), Roboto Mono (monospace)",
+        "fontSizes": [
+          "xxs (10px)",
+          "xs (12px)",
+          "sm (14px)",
+          "md (16px)",
+          "lg (18px)",
+          "xl (20px)"
         ],
-        "sizes": [
-          "xs",
-          "sm",
-          "base",
-          "lg",
-          "xl"
+        "fontWeights": [
+          "normal (400)",
+          "medium (500)",
+          "semibold (600)",
+          "bold (700)"
         ],
-        "weight": [
-          "regular",
-          "medium",
-          "semibold",
-          "bold"
-        ]
+        "lineHeights": "Tokenized line heights for each font size"
+      },
+      "effects": {
+        "borderRadius": "xs (2px), sm (4px), md (8px), lg (12px), xl (16px), full (9999px)",
+        "boxShadow": "xs, sm, md, lg, xl shadow tokens",
+        "zIndex": "dropdown, sticky, fixed, modal-backdrop, modal, popover, tooltip"
       }
     },
     "themes": [
       "default",
-      "medplum",
+      "medash",
       "fitcore",
       "labsync"
+    ],
+    "modes": [
+      "light",
+      "dark"
     ]
   },
   "componentStrategy": {
+    "styling": {
+      "approach": "SCSS modules with CSS custom properties",
+      "pattern": "Components use semantic CSS variables (var(--color-blue-8))",
+      "benefits": [
+        "Design token consistency",
+        "Multi-brand support",
+        "Theme switching",
+        "Type safety with TypeScript",
+        "Scoped styling with CSS modules"
+      ]
+    },
     "platforms": [
-      "Web",
-      "Mobile (React Native)"
+      "Web (React + TypeScript)",
+      "Mobile (React Native planned)"
     ],
     "statesToInclude": [
       "Default",
@@ -69,21 +101,46 @@
       "Disabled",
       "Loading",
       "Focused",
-      "With icon",
+      "With icon (left/right)",
       "With label",
-      "With counter",
-      "Validation states"
+      "Compact mode",
+      "Justification (center/space-between)"
     ],
     "interactionModels": [
       "Keyboard accessible",
-      "ARIA compliant"
+      "ARIA compliant",
+      "Focus management"
     ],
     "responsiveness": "All components must scale and respond across viewports (mobile-first)",
     "brands": [
-      "medplum",
+      "default",
+      "medash",
       "fitcore",
       "labsync"
     ]
+  },
+  "designSystemArchitecture": {
+    "tokenFlow": {
+      "1": "Design tokens defined in JSON files",
+      "2": "CSS variables generated from tokens",
+      "3": "Components consume CSS variables",
+      "4": "Brand themes override CSS variables"
+    },
+    "multiBrandSupport": {
+      "approach": "CSS variables with data attributes",
+      "implementation": ":root[data-brand='medash'] { --color-blue-8: #1971c2ff; }",
+      "benefits": [
+        "Zero component changes for new brands",
+        "Dynamic theme switching",
+        "Consistent component behavior",
+        "Easy brand onboarding"
+      ]
+    },
+    "componentPattern": {
+      "fileStructure": "ComponentName/ComponentName.tsx + ComponentName.module.scss + ComponentName.stories.tsx + ComponentName.test.tsx",
+      "styling": "CSS modules with design token references",
+      "props": "Semantic props (variant, size, state) instead of utility classes"
+    }
   },
   "figma": {
     "coreSetup": "Figma variables defined for core tokens",
@@ -92,14 +149,9 @@
     "variableLibrary": "Used to swap themes/brands via mode tokens"
   },
   "tailwindConfig": {
-    "extend": {
-      "colors": "Linked via CSS variables resolved from tokens",
-      "spacing": "Tokenized",
-      "fontSize": "Tokenized",
-      "borderRadius": "Tokenized",
-      "boxShadow": "Tokenized"
-    },
-    "themes": "Multiple theme layers via Tailwind plugin for CSS variables"
+    "purpose": "Available for rapid prototyping and utility-first styling",
+    "integration": "Tailwind config references same design tokens via CSS variables",
+    "usage": "Not used for core design system components (uses SCSS modules instead)"
   },
   "storybook": {
     "structure": "Each component must include a doc page with prop table, usage examples, and all states as stories",
@@ -107,14 +159,25 @@
       "Controls",
       "Docs",
       "Accessibility",
-      "Themes"
+      "Themes",
+      "Viewport"
     ],
-    "folderStructure": "src/components/{component-name}/index.tsx + {component-name}.stories.tsx + {component-name}.test.tsx"
+    "folderStructure": "src/components/{component-name}/index.tsx + {component-name}.stories.tsx + {component-name}.test.tsx + {component-name}.docs.mdx"
   },
   "goals": [
-    "Design tokens must drive all styling",
+    "Design tokens must drive all styling (no hardcoded values)",
     "Each component is accessible, responsive, and multi-brand ready",
+    "SCSS modules provide scoped styling and design token integration",
     "Storybook must act as single source of truth for devs and designers",
-    "Maintain open-source discipline (naming, structure, docs)"
+    "Maintain open-source discipline (naming, structure, docs)",
+    "Support multiple brands with consistent component behavior"
+  ],
+  "keyPrinciples": [
+    "Token-first architecture - all values come from design tokens",
+    "SCSS modules for component styling with CSS variables",
+    "Multi-brand support through CSS variable overrides",
+    "Semantic component APIs instead of utility classes",
+    "Type safety with TypeScript",
+    "Design system governance through centralized tokens"
   ]
 }

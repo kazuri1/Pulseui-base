@@ -481,7 +481,8 @@
     "md": { "type": "dimension", "value": 16 },
     "lg": { "type": "dimension", "value": 24 },
     "xl": { "type": "dimension", "value": 32 },
-    "xxl": { "type": "dimension", "value": 48 }
+    "xxl": { "type": "dimension", "value": 48 },
+    "icon": { "type": "dimension", "value": 10 }
   },
   "radius": {
     "xs": { "type": "dimension", "value": 2 },

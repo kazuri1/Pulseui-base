@@ -1,249 +1,375 @@
 # Input Component
 
-A versatile input component with 3 variants, 5 states, and comprehensive error handling. Built with design tokens for consistent styling across the application. Supports Material-UI icons for enhanced visual feedback.
+A versatile input component with three variants (default, filled, unstyled), multiple sizes, states, and comprehensive error handling. Built with design tokens for consistent styling across the application.
 
 ## Features
 
-- **3 Variants**: default, filled, unstyled
-- **5 States**: enabled, focus, typing, filled, disabled
+- **3 Variants**: Default, Filled, Unstyled
+- **3 Sizes**: Small (sm), Medium (md), Large (lg)
+- **5 States**: Enabled, Focus, Typing, Filled, Disabled
 - **Error Handling**: Comprehensive error states for all variants
-- **Material-UI Icons**: Support for info and dropdown icons
-- **Multiple Sizes**: sm, md, lg
-- **Accessibility**: Proper focus states and ARIA attributes
-- **Design Tokens**: Built with CSS variables from primitive tokens
+- **Icon Support**: Info icons and dropdown arrows
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Design Tokens**: Consistent styling using CSS variables
+- **TypeScript**: Fully typed with comprehensive props interface
 
 ## Usage
 
 ```tsx
 import { Input } from './Input';
-import { Search, FilterList } from '@mui/icons-material';
+import { Search, KeyboardArrowDown } from '@mui/icons-material';
 
 // Basic usage
 <Input placeholder="Enter text..." />
 
-// With variant
-<Input variant="filled" placeholder="Filled input" />
-
-// With state
-<Input state="focus" placeholder="Focused input" />
-
-// With error state
-<Input error placeholder="Error input" />
+// With variant and size
+<Input variant="filled" size="lg" placeholder="Large filled input" />
 
 // With icons
 <Input
-  infoIconComponent={Search}
-  showDropdownArrow={false}
   placeholder="Search..."
+  infoIconComponent={Search}
+  showInfoIcon={true}
 />
 
-// With custom icons
-<Input
-  infoIconComponent={FilterList}
-  dropdownArrowComponent={KeyboardArrowDown}
-  placeholder="Filter options..."
-/>
+// With error state
+<Input error placeholder="Error input" />
 ```
 
 ## Props
 
-| Prop                     | Type                                                            | Default             | Description                     |
-| ------------------------ | --------------------------------------------------------------- | ------------------- | ------------------------------- |
-| `placeholder`            | `string`                                                        | `"Placeholder"`     | Input placeholder text          |
-| `value`                  | `string`                                                        | `""`                | Input value                     |
-| `variant`                | `'default' \| 'filled' \| 'unstyled'`                           | `'default'`         | Input variant style             |
-| `state`                  | `'enabled' \| 'focus' \| 'typing' \| 'filled' \| 'disabled'`    | `'enabled'`         | Input state                     |
-| `error`                  | `boolean`                                                       | `false`             | Error state                     |
-| `showInfoIcon`           | `boolean`                                                       | `true`              | Show info icon                  |
-| `showDropdownArrow`      | `boolean`                                                       | `true`              | Show dropdown arrow             |
-| `infoIconComponent`      | `SvgIconComponent`                                              | `Info`              | Custom info icon component      |
-| `dropdownArrowComponent` | `SvgIconComponent`                                              | `KeyboardArrowDown` | Custom dropdown arrow component |
-| `type`                   | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url'` | `'text'`            | Input type                      |
-| `size`                   | `'sm' \| 'md' \| 'lg'`                                          | `'md'`              | Input size                      |
-| `disabled`               | `boolean`                                                       | `false`             | Disabled state                  |
-| `readonly`               | `boolean`                                                       | `false`             | Readonly state                  |
-| `required`               | `boolean`                                                       | `false`             | Required field                  |
-| `name`                   | `string`                                                        | -                   | Input name                      |
-| `id`                     | `string`                                                        | -                   | Input id                        |
-| `onChange`               | `(value: string) => void`                                       | -                   | Change handler                  |
-| `onFocus`                | `() => void`                                                    | -                   | Focus handler                   |
-| `onBlur`                 | `() => void`                                                    | -                   | Blur handler                    |
-| `className`              | `string`                                                        | `''`                | Additional CSS classes          |
+| Prop                     | Type                                                            | Default     | Description                     |
+| ------------------------ | --------------------------------------------------------------- | ----------- | ------------------------------- |
+| `value`                  | `string`                                                        | `""`        | Input value                     |
+| `placeholder`            | `string`                                                        | `""`        | Input placeholder text          |
+| `variant`                | `"default" \| "filled" \| "unstyled"`                           | `"default"` | Input variant style             |
+| `size`                   | `"sm" \| "md" \| "lg"`                                          | `"md"`      | Input size                      |
+| `state`                  | `"enabled" \| "focus" \| "typing" \| "filled" \| "disabled"`    | `"enabled"` | Input state                     |
+| `error`                  | `boolean`                                                       | `false`     | Error state                     |
+| `showInfoIcon`           | `boolean`                                                       | `false`     | Show info icon                  |
+| `showDropdownArrow`      | `boolean`                                                       | `false`     | Show dropdown arrow             |
+| `infoIconComponent`      | `SvgIconComponent`                                              | -           | Custom info icon component      |
+| `dropdownArrowComponent` | `SvgIconComponent`                                              | -           | Custom dropdown arrow component |
+| `type`                   | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url"` | `"text"`    | Input type                      |
+| `disabled`               | `boolean`                                                       | `false`     | Disabled state                  |
+| `readonly`               | `boolean`                                                       | `false`     | Readonly state                  |
+| `required`               | `boolean`                                                       | `false`     | Required field                  |
+| `onChange`               | `(event: ChangeEvent<HTMLInputElement>) => void`                | -           | Change handler                  |
+| `onFocus`                | `(event: FocusEvent<HTMLInputElement>) => void`                 | -           | Focus handler                   |
+| `onBlur`                 | `(event: FocusEvent<HTMLInputElement>) => void`                 | -           | Blur handler                    |
+| `className`              | `string`                                                        | `""`        | Additional CSS classes          |
+| `name`                   | `string`                                                        | -           | Input name                      |
+| `id`                     | `string`                                                        | -           | Input id                        |
 
 ## Variants
 
 ### Default
 
-Standard input with white background and gray border. Best for most use cases.
+Standard input with border and white background.
+
+```tsx
+<Input variant="default" placeholder="Default input" />
+```
 
 ### Filled
 
-Input with light gray background. Good for secondary or less prominent inputs.
+Input with filled background and subtle styling.
+
+```tsx
+<Input variant="filled" placeholder="Filled input" />
+```
 
 ### Unstyled
 
-Input without border or background. Minimal visual impact, good for inline inputs.
+Minimal input with no border or background.
 
-## States
-
-- **enabled**: Normal interactive state
-- **focus**: Focused state with blue border and icons
-- **typing**: Active typing state with blue border and icons
-- **filled**: Input with content, subtle background change
-- **disabled**: Disabled state with reduced opacity
-
-## Error States
-
-Each variant and state has a corresponding error state that uses red colors instead of blue/gray:
-
-- **Error Enabled**: Red border and icons
-- **Error Focus**: Red border with focus ring
-- **Error Typing**: Red border and icons while typing
-- **Error Filled**: Red border with subtle red background
-- **Error Disabled**: Red elements with reduced opacity
+```tsx
+<Input variant="unstyled" placeholder="Unstyled input" />
+```
 
 ## Sizes
 
-- **sm**: Small (32px height)
-- **md**: Medium (40px height) - Default
-- **lg**: Large (48px height)
+### Small (sm)
+
+Compact input for dense layouts.
+
+```tsx
+<Input size="sm" placeholder="Small input" />
+```
+
+### Medium (md)
+
+Standard input size for most use cases.
+
+```tsx
+<Input size="md" placeholder="Medium input" />
+```
+
+### Large (lg)
+
+Prominent input for important forms.
+
+```tsx
+<Input size="lg" placeholder="Large input" />
+```
+
+## States
+
+### Enabled
+
+Default state when input is ready for interaction.
+
+```tsx
+<Input state="enabled" placeholder="Enabled input" />
+```
+
+### Focus
+
+State when input has focus (handled automatically).
+
+```tsx
+<Input state="focus" placeholder="Focused input" />
+```
+
+### Typing
+
+State when user is actively typing.
+
+```tsx
+<Input state="typing" value="Typing text" placeholder="Typing input" />
+```
+
+### Filled
+
+State when input has content.
+
+```tsx
+<Input state="filled" value="Filled text" placeholder="Filled input" />
+```
+
+### Disabled
+
+State when input cannot be interacted with.
+
+```tsx
+<Input state="disabled" placeholder="Disabled input" />
+```
+
+## Error States
+
+All variants support error states with appropriate visual feedback.
+
+```tsx
+<Input error placeholder="Error input" />
+<Input variant="filled" error placeholder="Filled error input" />
+<Input variant="unstyled" error placeholder="Unstyled error input" />
+```
 
 ## Icons
 
-The Input component supports Material-UI icons through the `infoIconComponent` and `dropdownArrowComponent` props.
+### Info Icons
 
-### Available Icons
-
-You can use any Material-UI icon component:
+Add informational icons to inputs.
 
 ```tsx
-import {
-  Info,
-  KeyboardArrowDown,
-  Search,
-  FilterList,
-  Help,
-  Warning,
-} from "@mui/icons-material";
-```
+import { Search, Info } from '@mui/icons-material';
 
-### Icon Examples
-
-```tsx
-// Search input
 <Input
-  infoIconComponent={Search}
-  showDropdownArrow={false}
   placeholder="Search..."
+  infoIconComponent={Search}
+  showInfoIcon={true}
 />
 
-// Filter input
 <Input
-  infoIconComponent={FilterList}
-  placeholder="Filter options..."
-/>
-
-// Help input
-<Input
-  infoIconComponent={Help}
-  placeholder="Get help..."
-/>
-
-// Warning input
-<Input
-  infoIconComponent={Warning}
-  error
-  placeholder="Warning input..."
+  placeholder="With info..."
+  infoIconComponent={Info}
+  showInfoIcon={true}
 />
 ```
 
-## Design Tokens
+### Dropdown Arrows
 
-The component uses CSS variables from the design system:
+Add dropdown arrows for select-like inputs.
 
-- Colors: `--color-blue-*`, `--color-gray-*`, `--color-red-*`, etc.
-- Spacing: `--spacing-*`
-- Border radius: `--radius-*`
-- Font sizes: `--font-size-*`
-- Font weights: `--font-weight-*`
+```tsx
+import { KeyboardArrowDown } from "@mui/icons-material";
+
+<Input
+  placeholder="Select option..."
+  dropdownArrowComponent={KeyboardArrowDown}
+  showDropdownArrow={true}
+/>;
+```
+
+### Both Icons
+
+Combine info icons and dropdown arrows.
+
+```tsx
+<Input
+  placeholder="Search and select..."
+  infoIconComponent={Search}
+  dropdownArrowComponent={KeyboardArrowDown}
+  showInfoIcon={true}
+  showDropdownArrow={true}
+/>
+```
+
+## Input Types
+
+The component supports all standard HTML input types.
+
+```tsx
+<Input type="text" placeholder="Text input" />
+<Input type="email" placeholder="Email input" />
+<Input type="password" placeholder="Password input" />
+<Input type="number" placeholder="Number input" />
+<Input type="tel" placeholder="Phone input" />
+<Input type="url" placeholder="URL input" />
+```
+
+## Event Handlers
+
+### onChange
+
+Handle input value changes.
+
+```tsx
+<Input
+  onChange={(e) => console.log("Value changed:", e.target.value)}
+  placeholder="Type here..."
+/>
+```
+
+### onFocus
+
+Handle focus events.
+
+```tsx
+<Input onFocus={() => console.log("Input focused")} placeholder="Focus me..." />
+```
+
+### onBlur
+
+Handle blur events.
+
+```tsx
+<Input onBlur={() => console.log("Input blurred")} placeholder="Blur me..." />
+```
 
 ## Accessibility
 
-- Proper focus states with outline
-- Disabled state handling
-- ARIA attributes support
-- Keyboard navigation support
-- Screen reader friendly
+The Input component includes comprehensive accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support with Tab navigation
+- **Focus Indicators**: Clear visual feedback for focus states
+- **Screen Reader Support**: Proper ARIA attributes and semantic HTML
+- **Error Announcements**: Error states are announced to screen readers
+- **Required Field Indication**: Required fields are properly marked
+
+## Design Tokens
+
+The component uses design tokens for consistent styling:
+
+### Colors
+
+- `--color-gray-1` to `--color-gray-9`: Neutral colors
+- `--color-blue-1` to `--color-blue-9`: Primary colors
+- `--color-red-1` to `--color-red-9`: Error colors
+- `--color-white`: Background colors
+
+### Spacing
+
+- `--spacing-xs`: Extra small spacing (4px)
+- `--spacing-sm`: Small spacing (8px)
+- `--spacing-md`: Medium spacing (12px)
+- `--spacing-lg`: Large spacing (16px)
+
+### Typography
+
+- `--font-family`: Font family
+- `--font-size-sm` to `--font-size-lg`: Font sizes
+- `--line-height-sm` to `--line-height-lg`: Line heights
+
+### Other
+
+- `--radius-md`: Border radius
+- `--opacity-50`: Disabled state opacity
+
+## Best Practices
+
+### ✅ Do
+
+- Use appropriate variants for your use case
+- Provide clear placeholder text
+- Handle error states properly
+- Use icons to enhance usability
+- Test with keyboard navigation
+
+### ❌ Don't
+
+- Use too many variants on one page
+- Override design tokens unnecessarily
+- Forget to handle error states
+- Use inputs for navigation (use links instead)
+- Make inputs too small for touch interaction
 
 ## Examples
 
-### All Variants
+### Search Input
 
 ```tsx
-<div>
-  <Input variant="default" placeholder="Default input" />
-  <Input variant="filled" placeholder="Filled input" />
-  <Input variant="unstyled" placeholder="Unstyled input" />
-</div>
+<Input
+  placeholder="Search..."
+  infoIconComponent={Search}
+  showInfoIcon={true}
+  size="lg"
+/>
 ```
 
-### All States
+### Form Input
 
 ```tsx
-<div>
-  <Input state="enabled" placeholder="Enabled" />
-  <Input state="focus" placeholder="Focus" />
-  <Input state="typing" value="Typing" placeholder="Typing" />
-  <Input state="filled" value="Filled" placeholder="Filled" />
-  <Input state="disabled" placeholder="Disabled" />
-</div>
+<Input placeholder="Enter your email" type="email" required variant="filled" />
 ```
 
-### All Sizes
+### Error Input
 
 ```tsx
-<div>
-  <Input size="sm" placeholder="Small input" />
-  <Input size="md" placeholder="Medium input" />
-  <Input size="lg" placeholder="Large input" />
-</div>
+<Input placeholder="Enter password" type="password" error variant="default" />
 ```
 
-### Error States
+### Select-like Input
 
 ```tsx
-<div>
-  <Input error placeholder="Error input" />
-  <Input variant="filled" error placeholder="Filled error input" />
-  <Input variant="unstyled" error placeholder="Unstyled error input" />
-</div>
+<Input
+  placeholder="Choose an option"
+  dropdownArrowComponent={KeyboardArrowDown}
+  showDropdownArrow={true}
+  variant="filled"
+/>
 ```
 
-### With Material-UI Icons
+## Testing
 
-```tsx
-import { Search, FilterList, Info } from "@mui/icons-material";
+The component includes comprehensive tests covering:
 
-<div>
-  <Input
-    infoIconComponent={Search}
-    showDropdownArrow={false}
-    placeholder="Search..."
-  />
-  <Input infoIconComponent={FilterList} placeholder="Filter..." />
-  <Input infoIconComponent={Info} placeholder="Info input..." />
-</div>;
+- All variants and sizes
+- State changes and interactions
+- Error and disabled states
+- Icon rendering
+- Event handlers
+- Accessibility features
+
+Run tests with:
+
+```bash
+npm test Input.test.tsx
 ```
 
-### Different Input Types
+## Related Components
 
-```tsx
-<div>
-  <Input type="text" placeholder="Text input" />
-  <Input type="email" placeholder="Email input" />
-  <Input type="password" placeholder="Password input" />
-  <Input type="number" placeholder="Number input" />
-  <Input type="tel" placeholder="Phone input" />
-  <Input type="url" placeholder="URL input" />
-</div>
-```
+- **Button**: Often used alongside inputs in forms
+- **Icon**: Used for input icons
+- **Form**: Inputs are essential for form building
+- **Label**: Should be used with inputs for accessibility

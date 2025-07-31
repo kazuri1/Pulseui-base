@@ -1,0 +1,89 @@
+@import "../../../styles/_tokens.scss";
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+
+  // Size variants
+  &.size-xs {
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+  }
+
+  &.size-sm {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+  }
+
+  &.size-md {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+
+  &.size-lg {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  &.size-xl {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+
+  // Color variants
+  &.color-primary {
+    color: var(--color-blue-8);
+  }
+
+  &.color-secondary {
+    color: var(--color-indigo-6);
+  }
+
+  &.color-success {
+    color: var(--color-green-6);
+  }
+
+  &.color-warning {
+    color: var(--color-yellow-6);
+  }
+
+  &.color-error {
+    color: var(--color-red-6);
+  }
+
+  &.color-muted {
+    color: var(--color-gray-6);
+  }
+
+  &.color-inherit {
+    color: inherit;
+  }
+
+  // Interactive states
+  &.clickable {
+    cursor: pointer;
+
+    &:hover:not(.disabled) {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+
+    &:active:not(.disabled) {
+      transform: scale(0.95);
+    }
+  }
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+} 
