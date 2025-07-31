@@ -2,20 +2,28 @@ import React from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 import { Icon } from "../Icon";
-import { ArrowUpward } from "../Icon/IconSet";
+import {
+  ArrowUpward,
+  Download,
+  Upload,
+  Add,
+  Remove,
+  Edit,
+  Delete,
+  Search,
+  FilterList,
+  Refresh,
+  Settings,
+} from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
 
 export interface ButtonProps {
   /** Button text content */
   children: React.ReactNode;
-  /** Show icon on the left side */
-  leftIcon?: boolean;
-  /** Show icon on the right side */
-  rightIcon?: boolean;
-  /** Custom left icon component */
-  leftIconComponent?: SvgIconComponent;
-  /** Custom right icon component */
-  rightIconComponent?: SvgIconComponent;
+  /** Left icon */
+  leftIcon?: SvgIconComponent | string;
+  /** Right icon */
+  rightIcon?: SvgIconComponent | string;
   /** Button variant style */
   variant?: "filled" | "subtle" | "light" | "outline" | "white" | "default";
   /** Button size */
@@ -38,10 +46,8 @@ export interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  leftIcon = false,
-  rightIcon = false,
-  leftIconComponent,
-  rightIconComponent,
+  leftIcon,
+  rightIcon,
   variant = "default",
   size = "md",
   state = "default",
@@ -64,9 +70,37 @@ export const Button: React.FC<ButtonProps> = ({
     className
   );
 
-  // Use custom icons if provided, otherwise use default ArrowUpward
-  const LeftIcon = leftIconComponent || ArrowUpward;
-  const RightIcon = rightIconComponent || ArrowUpward;
+  // Map string values to icon components
+  const getLeftIcon = () => {
+    if (typeof leftIcon === "string") {
+      const iconMap: Record<string, SvgIconComponent> = {
+        download: Download,
+        upload: Upload,
+        add: Add,
+        remove: Remove,
+        edit: Edit,
+      };
+      return iconMap[leftIcon];
+    }
+    return leftIcon;
+  };
+
+  const getRightIcon = () => {
+    if (typeof rightIcon === "string") {
+      const iconMap: Record<string, SvgIconComponent> = {
+        delete: Delete,
+        search: Search,
+        filter: FilterList,
+        refresh: Refresh,
+        settings: Settings,
+      };
+      return iconMap[rightIcon];
+    }
+    return rightIcon;
+  };
+
+  const leftIconComponent = getLeftIcon();
+  const rightIconComponent = getRightIcon();
 
   // Map button size to icon size
   const getIconSize = (buttonSize: string) => {
@@ -95,18 +129,18 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled || state === "disabled"}
     >
-      {leftIcon && (
+      {leftIconComponent && (
         <Icon
-          icon={LeftIcon}
+          icon={leftIconComponent}
           size={iconSize}
           color="inherit"
           className={styles.left}
         />
       )}
       {children}
-      {rightIcon && (
+      {rightIconComponent && (
         <Icon
-          icon={RightIcon}
+          icon={rightIconComponent}
           size={iconSize}
           color="inherit"
           className={styles.right}

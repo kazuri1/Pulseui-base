@@ -32,20 +32,14 @@ const meta: Meta<typeof Button> = {
       description: "Button text content",
     },
     leftIcon: {
-      control: "boolean",
-      description: "Show icon on the left side",
+      control: { type: "select" },
+      options: ["none", "download", "upload", "add", "remove", "edit"],
+      description: "Left icon",
     },
     rightIcon: {
-      control: "boolean",
-      description: "Show icon on the right side",
-    },
-    leftIconComponent: {
-      control: false,
-      description: "Custom left icon component",
-    },
-    rightIconComponent: {
-      control: false,
-      description: "Custom right icon component",
+      control: { type: "select" },
+      options: ["none", "delete", "search", "filter", "refresh", "settings"],
+      description: "Right icon",
     },
     variant: {
       control: { type: "select" },
@@ -87,8 +81,8 @@ const meta: Meta<typeof Button> = {
   },
   args: {
     children: "Button",
-    leftIcon: false,
-    rightIcon: false,
+    leftIcon: "none",
+    rightIcon: "none",
     variant: "filled",
     size: "md",
     state: "default",
@@ -248,18 +242,10 @@ export const WithIcons: Story = {
         description="Icons positioned on the left side of the button"
       >
         <ButtonGrid>
-          <Button leftIcon leftIconComponent={Upload}>
-            Upload
-          </Button>
-          <Button leftIcon leftIconComponent={Add}>
-            Add Item
-          </Button>
-          <Button leftIcon leftIconComponent={Edit}>
-            Edit
-          </Button>
-          <Button leftIcon leftIconComponent={Search}>
-            Search
-          </Button>
+          <Button leftIcon="upload">Upload</Button>
+          <Button leftIcon="add">Add Item</Button>
+          <Button leftIcon="edit">Edit</Button>
+          <Button leftIcon="search">Search</Button>
         </ButtonGrid>
       </Section>
 
@@ -268,18 +254,10 @@ export const WithIcons: Story = {
         description="Icons positioned on the right side of the button"
       >
         <ButtonGrid>
-          <Button rightIcon rightIconComponent={Download}>
-            Download
-          </Button>
-          <Button rightIcon rightIconComponent={Remove}>
-            Remove
-          </Button>
-          <Button rightIcon rightIconComponent={Delete}>
-            Delete
-          </Button>
-          <Button rightIcon rightIconComponent={Settings}>
-            Settings
-          </Button>
+          <Button rightIcon="download">Download</Button>
+          <Button rightIcon="delete">Remove</Button>
+          <Button rightIcon="delete">Delete</Button>
+          <Button rightIcon="settings">Settings</Button>
         </ButtonGrid>
       </Section>
 
@@ -288,28 +266,13 @@ export const WithIcons: Story = {
         description="Icons on both sides for complex actions"
       >
         <ButtonGrid>
-          <Button
-            leftIcon
-            rightIcon
-            leftIconComponent={Upload}
-            rightIconComponent={Download}
-          >
+          <Button leftIcon="upload" rightIcon="download">
             Upload & Download
           </Button>
-          <Button
-            leftIcon
-            rightIcon
-            leftIconComponent={Add}
-            rightIconComponent={Remove}
-          >
+          <Button leftIcon="add" rightIcon="delete">
             Add & Remove
           </Button>
-          <Button
-            leftIcon
-            rightIcon
-            leftIconComponent={Search}
-            rightIconComponent={FilterList}
-          >
+          <Button leftIcon="search" rightIcon="filter">
             Search & Filter
           </Button>
         </ButtonGrid>
@@ -317,13 +280,13 @@ export const WithIcons: Story = {
 
       <Section title="Icon Only" description="Buttons with only icons, no text">
         <ButtonGrid>
-          <Button leftIcon leftIconComponent={Add} size="sm">
+          <Button leftIcon="add" size="sm">
             +
           </Button>
-          <Button leftIcon leftIconComponent={Settings} size="md">
+          <Button leftIcon="settings" size="md">
             ⚙
           </Button>
-          <Button leftIcon leftIconComponent={Refresh} size="lg">
+          <Button leftIcon="refresh" size="lg">
             ↻
           </Button>
         </ButtonGrid>
@@ -364,24 +327,12 @@ export const Layout: Story = {
       >
         <div className="space-y-4">
           <div className="w-64">
-            <Button
-              justify="center"
-              leftIcon
-              rightIcon
-              leftIconComponent={Add}
-              rightIconComponent={Remove}
-            >
+            <Button justify="center" leftIcon="add" rightIcon="delete">
               Centered
             </Button>
           </div>
           <div className="w-64">
-            <Button
-              justify="space-between"
-              leftIcon
-              rightIcon
-              leftIconComponent={Add}
-              rightIconComponent={Remove}
-            >
+            <Button justify="space-between" leftIcon="add" rightIcon="delete">
               Space Between
             </Button>
           </div>
@@ -393,12 +344,10 @@ export const Layout: Story = {
         description="Reduced padding for space-constrained layouts"
       >
         <ButtonGrid>
-          <Button compact leftIcon leftIconComponent={Add}>
+          <Button compact leftIcon="add">
             Compact
           </Button>
-          <Button leftIcon leftIconComponent={Add}>
-            Normal
-          </Button>
+          <Button leftIcon="add">Normal</Button>
         </ButtonGrid>
       </Section>
     </div>
@@ -535,21 +484,12 @@ export const CompleteShowcase: Story = {
         description="Various icon placement options"
       >
         <ButtonGrid>
-          <Button leftIcon leftIconComponent={Upload}>
-            Upload
-          </Button>
-          <Button rightIcon rightIconComponent={Download}>
-            Download
-          </Button>
-          <Button
-            leftIcon
-            rightIcon
-            leftIconComponent={Add}
-            rightIconComponent={Remove}
-          >
+          <Button leftIcon="upload">Upload</Button>
+          <Button rightIcon="download">Download</Button>
+          <Button leftIcon="add" rightIcon="delete">
             Add & Remove
           </Button>
-          <Button leftIcon leftIconComponent={Settings} size="sm">
+          <Button leftIcon="settings" size="sm">
             ⚙
           </Button>
         </ButtonGrid>
