@@ -1,6 +1,17 @@
 import React, { forwardRef } from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { Icon } from "../Icon/index";
+import {
+  Search,
+  Info,
+  FilterList,
+  Person,
+  Settings,
+  ArrowDropDown,
+  Email,
+  LocationOn,
+  Home,
+} from "../Icon/IconSet";
 import styles from "./Input.module.scss";
 
 export interface InputProps {
@@ -13,17 +24,12 @@ export interface InputProps {
   /** Input size */
   size?: "sm" | "md" | "lg" | "xl";
   /** Input state */
-  state?: "enabled" | "focus" | "typing" | "filled" | "disabled";
-  /** Error state */
-  error?: boolean;
-  /** Show info icon */
-  showInfoIcon?: boolean;
-  /** Show dropdown arrow */
-  showDropdownArrow?: boolean;
-  /** Info icon component */
-  infoIconComponent?: SvgIconComponent;
-  /** Dropdown arrow component */
-  dropdownArrowComponent?: SvgIconComponent;
+  state?: "enabled" | "focus" | "typing" | "filled" | "disabled" | "error";
+
+  /** Left icon */
+  leftIcon?: SvgIconComponent | string;
+  /** Right icon */
+  rightIcon?: SvgIconComponent | string;
   /** Input type */
   type?: "text" | "email" | "password" | "number" | "tel" | "url";
   /** Disabled state */
@@ -49,11 +55,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       variant = "default",
       size = "md",
       state = "enabled",
-      error = false,
-      showInfoIcon = false,
-      showDropdownArrow = false,
-      infoIconComponent: InfoIcon,
-      dropdownArrowComponent: DropdownIcon,
+
+      leftIcon,
+      rightIcon,
       type = "text",
       disabled = false,
       readonly = false,
@@ -67,20 +71,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     // Determine the actual state based on props
     const actualState = disabled ? "disabled" : state;
-
-    // Build CSS classes
-    const inputClasses = [
-      styles.input,
-      styles[`variant-${variant}`],
-      styles[`size-${size}`],
-      styles[`state-${actualState}`],
-      {
-        [styles.error]: error,
-        [styles.disabled]: disabled,
-        [styles.readonly]: readonly,
-      },
-      className,
-    ].filter(Boolean);
 
     // Map input size to icon size
     const getIconSize = (inputSize: string) => {
@@ -100,6 +90,53 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const iconSize = getIconSize(size);
 
+    // Map string values to icon components
+    const getLeftIcon = () => {
+      if (typeof leftIcon === "string") {
+        const iconMap: Record<string, SvgIconComponent> = {
+          search: Search,
+          info: Info,
+          filter: FilterList,
+          person: Person,
+          settings: Settings,
+        };
+        return iconMap[leftIcon];
+      }
+      return leftIcon;
+    };
+
+    const getRightIcon = () => {
+      if (typeof rightIcon === "string") {
+        const iconMap: Record<string, SvgIconComponent> = {
+          dropdown: ArrowDropDown,
+          email: Email,
+          location: LocationOn,
+          home: Home,
+          settings: Settings,
+        };
+        return iconMap[rightIcon];
+      }
+      return rightIcon;
+    };
+
+    const leftIconComponent = getLeftIcon();
+    const rightIconComponent = getRightIcon();
+
+    // Build CSS classes
+    const inputClasses = [
+      styles.input,
+      styles[`variant-${variant}`],
+      styles[`size-${size}`],
+      styles[`state-${actualState}`],
+      {
+        [styles.disabled]: disabled,
+        [styles.readonly]: readonly,
+        [styles["has-left-icon"]]: !!leftIconComponent,
+        [styles["has-right-icon"]]: !!rightIconComponent,
+      },
+      className,
+    ].filter(Boolean);
+
     return (
       <div className={styles.inputWrapper}>
         <input
@@ -115,17 +152,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={inputClasses.join(" ")}
         />
 
-        {/* Info Icon */}
-        {showInfoIcon && InfoIcon && (
-          <div className={styles.infoIcon}>
-            <Icon icon={InfoIcon} size={iconSize} color="muted" />
+        {/* Left Icon */}
+        {leftIconComponent && (
+          <div className={styles.leftIcon}>
+            <Icon icon={leftIconComponent} size={iconSize} color="muted" />
           </div>
         )}
 
-        {/* Dropdown Arrow */}
-        {showDropdownArrow && DropdownIcon && (
-          <div className={styles.dropdownIcon}>
-            <Icon icon={DropdownIcon} size={iconSize} color="muted" />
+        {/* Right Icon */}
+        {rightIconComponent && (
+          <div className={styles.rightIcon}>
+            <Icon icon={rightIconComponent} size={iconSize} color="muted" />
           </div>
         )}
       </div>

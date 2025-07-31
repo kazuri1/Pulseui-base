@@ -156,7 +156,21 @@
 }
 
 .state-focus {
-  // Focus state is handled by :focus pseudo-class
+  // Apply focus styles when state is set to "focus"
+  &.variant-default {
+    border-color: var(--color-blue-6);
+    box-shadow: 0 0 0 2px var(--color-blue-1);
+  }
+
+  &.variant-filled {
+    background-color: var(--color-white);
+    border-color: var(--color-blue-6);
+    box-shadow: 0 0 0 2px var(--color-blue-1);
+  }
+
+  &.variant-unstyled {
+    background-color: var(--color-gray-1);
+  }
 }
 
 .state-typing {
@@ -165,6 +179,36 @@
 
 .state-filled {
   // Filled state - no additional styles needed
+}
+
+.state-error {
+  // Error state styling
+  &.variant-default {
+    border-color: var(--color-red-6);
+    color: var(--color-red-6);
+
+    &::placeholder {
+      color: var(--color-red-6);
+    }
+  }
+
+  &.variant-filled {
+    background-color: var(--color-red-1);
+    border-color: var(--color-red-6);
+    color: var(--color-red-6);
+
+    &::placeholder {
+      color: var(--color-red-6);
+    }
+  }
+
+  &.variant-unstyled {
+    color: var(--color-red-6);
+
+    &::placeholder {
+      color: var(--color-red-6);
+    }
+  }
 }
 
 .state-disabled {
@@ -191,8 +235,8 @@
 // Error state
 .error {
   &.variant-default {
-    border-color: var(--color-red-5);
-    color: var(--color-red-8);
+    border-color: var(--color-red-6);
+    color: var(--color-red-6);
 
     &::placeholder {
       color: var(--color-red-6);
@@ -201,8 +245,8 @@
 
   &.variant-filled {
     background-color: var(--color-red-1);
-    border-color: var(--color-red-5);
-    color: var(--color-red-8);
+    border-color: var(--color-red-6);
+    color: var(--color-red-6);
 
     &::placeholder {
       color: var(--color-red-6);
@@ -210,7 +254,7 @@
   }
 
   &.variant-unstyled {
-    color: var(--color-red-8);
+    color: var(--color-red-6);
 
     &::placeholder {
       color: var(--color-red-6);
@@ -239,8 +283,8 @@
 }
 
 // Icon styles
-.infoIcon,
-.dropdownIcon {
+.leftIcon,
+.rightIcon {
   position: absolute;
   display: flex;
   align-items: center;
@@ -250,95 +294,111 @@
   transition: color 0.2s ease-in-out;
 }
 
-.infoIcon {
+.leftIcon {
   left: var(--spacing-icon);
 }
 
-.dropdownIcon {
+.rightIcon {
   right: var(--spacing-icon);
 }
 
 // Adjust padding when icons are present
 .inputWrapper {
-  &:has(.infoIcon) .input {
+  &:has(.leftIcon) .input {
     padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
   }
 
-  &:has(.dropdownIcon) .input {
+  &:has(.rightIcon) .input {
     padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
   }
 
-  &:has(.infoIcon):has(.dropdownIcon) .input {
+  &:has(.leftIcon):has(.rightIcon) .input {
+    padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+    padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+  }
+}
+
+// Fallback for browsers that don't support :has()
+.inputWrapper .input {
+  &.has-left-icon {
+    padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+  }
+
+  &.has-right-icon {
+    padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
+  }
+
+  &.has-left-icon.has-right-icon {
     padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
     padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
   }
 }
 
 // Size-specific icon padding adjustments
-.inputWrapper:has(.infoIcon) .input.size-sm {
+.inputWrapper:has(.leftIcon) .input.size-sm {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
 }
 
-.inputWrapper:has(.dropdownIcon) .input.size-sm {
+.inputWrapper:has(.rightIcon) .input.size-sm {
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
 }
 
-.inputWrapper:has(.infoIcon):has(.dropdownIcon) .input.size-sm {
+.inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-sm {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-sm));
 }
 
-.inputWrapper:has(.infoIcon) .input.size-md {
+.inputWrapper:has(.leftIcon) .input.size-md {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
 }
 
-.inputWrapper:has(.dropdownIcon) .input.size-md {
+.inputWrapper:has(.rightIcon) .input.size-md {
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
 }
 
-.inputWrapper:has(.infoIcon):has(.dropdownIcon) .input.size-md {
+.inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-md {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-md));
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-md));
 }
 
-.inputWrapper:has(.infoIcon) .input.size-lg {
+.inputWrapper:has(.leftIcon) .input.size-lg {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
 }
 
-.inputWrapper:has(.dropdownIcon) .input.size-lg {
+.inputWrapper:has(.rightIcon) .input.size-lg {
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
 }
 
-.inputWrapper:has(.infoIcon):has(.dropdownIcon) .input.size-lg {
+.inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-lg {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-lg));
 }
 
-.inputWrapper:has(.infoIcon) .input.size-xl {
+.inputWrapper:has(.leftIcon) .input.size-xl {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
 }
 
-.inputWrapper:has(.dropdownIcon) .input.size-xl {
+.inputWrapper:has(.rightIcon) .input.size-xl {
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
 }
 
-.inputWrapper:has(.infoIcon):has(.dropdownIcon) .input.size-xl {
+.inputWrapper:has(.leftIcon):has(.rightIcon) .input.size-xl {
   padding-left: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
   padding-right: calc(var(--spacing-icon) + 24px + var(--spacing-xl));
 }
 
 // Error state for icons
 .error {
-  .infoIcon,
-  .dropdownIcon {
+  .leftIcon,
+  .rightIcon {
     color: var(--color-red-6);
   }
 }
 
 // Focus state for icons
 .input:focus {
-  & ~ .infoIcon,
-  & ~ .dropdownIcon {
+  & ~ .leftIcon,
+  & ~ .rightIcon {
     color: var(--color-blue-6);
   }
 }

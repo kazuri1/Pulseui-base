@@ -1,6 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
-import { Info, ArrowDropDown, Search, FilterList } from "../Icon/IconSet";
+import {
+  Info,
+  ArrowDropDown,
+  Search,
+  FilterList,
+  Person,
+  Settings,
+  Email,
+  LocationOn,
+  Home,
+} from "../Icon/IconSet";
+import { Icon } from "../Icon/index";
 
 const meta: Meta<typeof Input> = {
   title: "Components/atoms/Input",
@@ -31,28 +42,19 @@ const meta: Meta<typeof Input> = {
     },
     state: {
       control: { type: "select" },
-      options: ["enabled", "focus", "typing", "filled", "disabled"],
+      options: ["enabled", "focus", "typing", "filled", "disabled", "error"],
       description: "Input state",
     },
-    error: {
-      control: "boolean",
-      description: "Error state",
+
+    leftIcon: {
+      control: { type: "select" },
+      options: ["none", "search", "info", "filter", "person", "settings"],
+      description: "Left icon",
     },
-    showInfoIcon: {
-      control: "boolean",
-      description: "Show info icon",
-    },
-    showDropdownArrow: {
-      control: "boolean",
-      description: "Show dropdown arrow",
-    },
-    infoIconComponent: {
-      control: false,
-      description: "Custom info icon component",
-    },
-    dropdownArrowComponent: {
-      control: false,
-      description: "Custom dropdown arrow component",
+    rightIcon: {
+      control: { type: "select" },
+      options: ["none", "dropdown", "email", "location", "home", "settings"],
+      description: "Right icon",
     },
     type: {
       control: { type: "select" },
@@ -82,9 +84,8 @@ const meta: Meta<typeof Input> = {
     value: "",
     variant: "default",
     state: "enabled",
-    error: false,
-    showInfoIcon: false,
-    showDropdownArrow: false,
+    leftIcon: "none",
+    rightIcon: "none",
     type: "text",
     size: "md",
     disabled: false,
@@ -102,8 +103,6 @@ export const Playground: Story = {
     placeholder: "Type something...",
     variant: "default",
     size: "md",
-    showInfoIcon: false,
-    showDropdownArrow: false,
   },
   parameters: {
     docs: {
@@ -217,17 +216,17 @@ export const States: Story = {
 
       <div>
         <h3 className="text-lg font-semibold mb-4">Error State</h3>
-        <Input error placeholder="Error input" />
+        <Input state="error" placeholder="Error input" />
       </div>
 
       <div>
         <h3 className="text-lg font-semibold mb-4">Error with Value</h3>
-        <Input error value="Invalid input" placeholder="Error input" />
+        <Input state="error" value="Invalid input" placeholder="Error input" />
       </div>
 
       <div>
         <h3 className="text-lg font-semibold mb-4">Disabled Error State</h3>
-        <Input error disabled placeholder="Disabled error input" />
+        <Input state="error" disabled placeholder="Disabled error input" />
       </div>
     </div>
   ),
@@ -247,22 +246,15 @@ export const WithIcons: Story = {
     <div className="space-y-8">
       <div>
         <h3 className="text-lg font-semibold mb-4">Search Input</h3>
-        <Input
-          placeholder="Search..."
-          infoIconComponent={Search}
-          showInfoIcon={true}
-          showDropdownArrow={false}
-        />
+        <Input placeholder="Search..." leftIcon={Search} />
       </div>
 
       <div>
         <h3 className="text-lg font-semibold mb-4">Filter Input</h3>
         <Input
           placeholder="Filter options..."
-          infoIconComponent={FilterList}
-          dropdownArrowComponent={ArrowDropDown}
-          showInfoIcon={true}
-          showDropdownArrow={true}
+          leftIcon={FilterList}
+          rightIcon={ArrowDropDown}
         />
       </div>
 
@@ -270,20 +262,14 @@ export const WithIcons: Story = {
         <h3 className="text-lg font-semibold mb-4">Custom Icons</h3>
         <Input
           placeholder="Custom icons..."
-          infoIconComponent={Info}
-          dropdownArrowComponent={ArrowDropDown}
-          showInfoIcon={true}
-          showDropdownArrow={true}
+          leftIcon={Info}
+          rightIcon={ArrowDropDown}
         />
       </div>
 
       <div>
         <h3 className="text-lg font-semibold mb-4">No Icons</h3>
-        <Input
-          placeholder="No icons..."
-          showInfoIcon={false}
-          showDropdownArrow={false}
-        />
+        <Input placeholder="No icons..." />
       </div>
     </div>
   ),
@@ -296,21 +282,65 @@ export const WithIcons: Story = {
   },
 };
 
+// Focus States story
+export const FocusStates: Story = {
+  render: () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Default Variant - Focus</h3>
+        <Input variant="default" state="focus" placeholder="Default focused" />
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Filled Variant - Focus</h3>
+        <Input variant="filled" state="focus" placeholder="Filled focused" />
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Unstyled Variant - Focus</h3>
+        <Input
+          variant="unstyled"
+          state="focus"
+          placeholder="Unstyled focused"
+        />
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Focus with Icons</h3>
+        <Input
+          variant="default"
+          state="focus"
+          placeholder="Focused with icons"
+          leftIcon={Search}
+        />
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Focus states across all input variants showing the visual feedback when state is set to 'focus'",
+      },
+    },
+  },
+};
+
 // Error States story
 export const ErrorStates: Story = {
   render: () => (
     <div className="space-y-6">
       <div>
         <h3 className="text-lg font-semibold mb-4">Default Variant - Error</h3>
-        <Input variant="default" error placeholder="Error input" />
+        <Input variant="default" state="error" placeholder="Error input" />
       </div>
       <div>
         <h3 className="text-lg font-semibold mb-4">Filled Variant - Error</h3>
-        <Input variant="filled" error placeholder="Error input" />
+        <Input variant="filled" state="error" placeholder="Error input" />
       </div>
       <div>
         <h3 className="text-lg font-semibold mb-4">Unstyled Variant - Error</h3>
-        <Input variant="unstyled" error placeholder="Error input" />
+        <Input variant="unstyled" state="error" placeholder="Error input" />
       </div>
     </div>
   ),
@@ -368,8 +398,6 @@ export const Interactive: Story = {
     placeholder: "Type something...",
     variant: "default",
     size: "md",
-    showInfoIcon: false,
-    showDropdownArrow: false,
   },
   parameters: {
     docs: {
@@ -410,32 +438,26 @@ export const CompleteShowcase: Story = {
       <div>
         <h3 className="text-lg font-semibold mb-4">With Icons</h3>
         <div className="space-y-4">
-          <Input
-            infoIconComponent={Search}
-            showInfoIcon={true}
-            showDropdownArrow={false}
-            placeholder="Search..."
-          />
-          <Input
-            infoIconComponent={FilterList}
-            showInfoIcon={true}
-            showDropdownArrow={false}
-            placeholder="Filter..."
-          />
-          <Input
-            showInfoIcon={false}
-            showDropdownArrow={false}
-            placeholder="No icons..."
-          />
+          <Input leftIcon={Search} placeholder="Search..." />
+          <Input leftIcon={FilterList} placeholder="Filter..." />
+          <Input placeholder="No icons..." />
         </div>
       </div>
 
       <div>
         <h3 className="text-lg font-semibold mb-4">Error States</h3>
         <div className="space-y-4">
-          <Input error placeholder="Error input" />
-          <Input variant="filled" error placeholder="Filled error input" />
-          <Input variant="unstyled" error placeholder="Unstyled error input" />
+          <Input state="error" placeholder="Error input" />
+          <Input
+            variant="filled"
+            state="error"
+            placeholder="Filled error input"
+          />
+          <Input
+            variant="unstyled"
+            state="error"
+            placeholder="Unstyled error input"
+          />
         </div>
       </div>
     </div>
@@ -447,4 +469,32 @@ export const CompleteShowcase: Story = {
       },
     },
   },
+};
+
+// Test story for debugging icons
+export const IconTest: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <div>
+        <h3>Direct Icon Test</h3>
+        <Icon icon={Search} size="md" color="muted" />
+      </div>
+      <div>
+        <h3>Left Icon Only</h3>
+        <Input placeholder="Test left icon" leftIcon={Search} />
+      </div>
+      <div>
+        <h3>Right Icon Only</h3>
+        <Input placeholder="Test right icon" rightIcon={ArrowDropDown} />
+      </div>
+      <div>
+        <h3>Both Icons</h3>
+        <Input
+          placeholder="Test both icons"
+          leftIcon={Search}
+          rightIcon={ArrowDropDown}
+        />
+      </div>
+    </div>
+  ),
 };
