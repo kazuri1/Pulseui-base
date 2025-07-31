@@ -1,11 +1,7 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "./Input";
-import {
-  Info,
-  ArrowDropDown,
-  Search,
-  FilterList,
-} from "../Icon/IconSet";
+import { Info, ArrowDropDown, Search, FilterList } from "../Icon/IconSet";
 import { Icon } from "../Icon/index";
 
 const meta: Meta<typeof Input> = {
@@ -73,6 +69,14 @@ const meta: Meta<typeof Input> = {
       control: "boolean",
       description: "Required field",
     },
+    showPasswordToggle: {
+      control: "boolean",
+      description: "Show password toggle for password type",
+    },
+    passwordVisible: {
+      control: "boolean",
+      description: "Password visibility state",
+    },
   },
   args: {
     placeholder: "Placeholder",
@@ -86,6 +90,8 @@ const meta: Meta<typeof Input> = {
     disabled: false,
     readonly: false,
     required: false,
+    showPasswordToggle: false,
+    passwordVisible: false,
   },
 };
 
@@ -461,6 +467,55 @@ export const CompleteShowcase: Story = {
     docs: {
       description: {
         story: "Complete showcase of all input variations and features",
+      },
+    },
+  },
+};
+
+// Password Input with Toggle
+export const PasswordInput: Story = {
+  render: () => {
+    const [passwordVisible, setPasswordVisible] = React.useState(false);
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Password Input with Toggle</h3>
+          <Input
+            type="password"
+            placeholder="Enter password..."
+            showPasswordToggle={true}
+            passwordVisible={passwordVisible}
+            onPasswordVisibilityChange={setPasswordVisible}
+          />
+        </div>
+        
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Password Input (Hidden)</h3>
+          <Input
+            type="password"
+            placeholder="Enter password..."
+            showPasswordToggle={true}
+            passwordVisible={false}
+          />
+        </div>
+        
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Password Input (Visible)</h3>
+          <Input
+            type="password"
+            placeholder="Enter password..."
+            showPasswordToggle={true}
+            passwordVisible={true}
+          />
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Password input with visibility toggle functionality",
       },
     },
   },

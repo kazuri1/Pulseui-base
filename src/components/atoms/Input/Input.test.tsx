@@ -144,4 +144,41 @@ describe("Input Component", () => {
     );
     expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
   });
+
+  it("renders password input with toggle", () => {
+    render(
+      <Input
+        type="password"
+        showPasswordToggle={true}
+        passwordVisible={false}
+        placeholder="Test"
+      />
+    );
+    expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeInTheDocument();
+  });
+
+  it("renders password input with visible password", () => {
+    render(
+      <Input
+        type="password"
+        showPasswordToggle={true}
+        passwordVisible={true}
+        placeholder="Test"
+      />
+    );
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "text");
+  });
+
+  it("renders password input with hidden password", () => {
+    render(
+      <Input
+        type="password"
+        showPasswordToggle={true}
+        passwordVisible={false}
+        placeholder="Test"
+      />
+    );
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "password");
+  });
 });

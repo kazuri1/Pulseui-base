@@ -11,6 +11,8 @@ import {
   Email,
   LocationOn,
   Home,
+  Visibility,
+  VisibilityOff,
 } from "../Icon/IconSet";
 import styles from "./Input.module.scss";
 
@@ -38,6 +40,12 @@ export interface InputProps {
   readonly?: boolean;
   /** Required field */
   required?: boolean;
+  /** Show password toggle for password type */
+  showPasswordToggle?: boolean;
+  /** Password visibility state */
+  passwordVisible?: boolean;
+  /** Password visibility change handler */
+  onPasswordVisibilityChange?: (visible: boolean) => void;
 
   /** Additional CSS classes */
   className?: string;
@@ -62,6 +70,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       disabled = false,
       readonly = false,
       required = false,
+      showPasswordToggle = false,
+      passwordVisible = false,
+      onPasswordVisibilityChange,
 
       className = "",
       name,
@@ -128,6 +139,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const leftIconComponent = getLeftIcon();
     const rightIconComponent = getRightIcon();
 
+    // Handle password visibility toggle
+    const handlePasswordToggle = () => {
+      if (onPasswordVisibilityChange) {
+        onPasswordVisibilityChange(!passwordVisible);
+      }
+    };
+
+    // Determine if we should show password toggle
+    const shouldShowPasswordToggle = type === "password" && showPasswordToggle;
+    const effectiveType = type === "password" && passwordVisible ? "text" : type;
+
     // Build CSS classes
     const inputClasses = [
       styles.input,
@@ -138,7 +160,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         [styles.disabled]: disabled,
         [styles.readonly]: readonly,
         [styles["has-left-icon"]]: !!leftIconComponent,
-        [styles["has-right-icon"]]: !!rightIconComponent,
+        [styles["has-right-icon"]]: !!rightIconComponent || shouldShowPasswordToggle,
       },
       className,
     ].filter(Boolean);
@@ -147,7 +169,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div className={styles.inputWrapper}>
         <input
           ref={ref}
-          type={type}
+          type={effectiveType}
           value={value}
           placeholder={placeholder}
           disabled={disabled}
@@ -169,6 +191,25 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {rightIconComponent && (
           <div className={styles.rightIcon}>
             <Icon icon={rightIconComponent} size={iconSize} color="muted" />
+          </div>
+        )}
+
+        {/* Password Toggle Icon */}
+        {shouldShowPasswordToggle && (
+          <div className={styles.rightIcon}>
+            <button
+              type="button"
+              onClick={handlePasswordToggle}
+              className={styles.passwordToggle}
+              disabled={disabled}
+              aria-label={passwordVisible ? "Hide password" : "Show password"}
+            >
+              <Icon 
+                icon={passwordVisible ? VisibilityOff : Visibility} 
+                size={iconSize} 
+                color="muted" 
+              />
+            </button>
           </div>
         )}
       </div>
