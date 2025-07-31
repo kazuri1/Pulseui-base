@@ -480,7 +480,9 @@ export const PasswordInput: Story = {
     return (
       <div className="space-y-4">
         <div>
-          <h3 className="text-lg font-semibold mb-4">Password Input with Toggle</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            Controlled Password Input (External State)
+          </h3>
           <Input
             type="password"
             placeholder="Enter password..."
@@ -488,10 +490,29 @@ export const PasswordInput: Story = {
             passwordVisible={passwordVisible}
             onPasswordVisibilityChange={setPasswordVisible}
           />
+          <p className="text-sm text-gray-600 mt-2">
+            State: {passwordVisible ? "Visible" : "Hidden"}
+          </p>
         </div>
         
         <div>
-          <h3 className="text-lg font-semibold mb-4">Password Input (Hidden)</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            Uncontrolled Password Input (Internal State)
+          </h3>
+          <Input
+            type="password"
+            placeholder="Enter password..."
+            showPasswordToggle={true}
+          />
+          <p className="text-sm text-gray-600 mt-2">
+            Click the eye icon to toggle visibility
+          </p>
+        </div>
+        
+        <div>
+          <h3 className="text-lg font-semibold mb-4">
+            Password Input (Always Hidden)
+          </h3>
           <Input
             type="password"
             placeholder="Enter password..."
@@ -501,7 +522,9 @@ export const PasswordInput: Story = {
         </div>
         
         <div>
-          <h3 className="text-lg font-semibold mb-4">Password Input (Visible)</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            Password Input (Always Visible)
+          </h3>
           <Input
             type="password"
             placeholder="Enter password..."
@@ -515,7 +538,7 @@ export const PasswordInput: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Password input with visibility toggle functionality",
+        story: "Password input with visibility toggle functionality. Supports both controlled (external state) and uncontrolled (internal state) modes.",
       },
     },
   },

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { Icon } from "../Icon/index";
 import {
@@ -71,7 +71,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       readonly = false,
       required = false,
       showPasswordToggle = false,
-      passwordVisible = false,
+      passwordVisible: externalPasswordVisible = false,
       onPasswordVisibilityChange,
 
       className = "",
@@ -80,6 +80,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    // Internal state for password visibility
+    const [internalPasswordVisible, setInternalPasswordVisible] = useState(false);
+    
+    // Use external state if provided, otherwise use internal state
+    const passwordVisible = onPasswordVisibilityChange ? externalPasswordVisible : internalPasswordVisible;
     // Determine the actual state based on props
     const actualState = disabled ? "disabled" : state;
 
@@ -142,13 +147,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     // Handle password visibility toggle
     const handlePasswordToggle = () => {
       if (onPasswordVisibilityChange) {
+        // External controlled mode
         onPasswordVisibilityChange(!passwordVisible);
+      } else {
+        // Internal controlled mode
+        setInternalPasswordVisible(!internalPasswordVisible);
       }
     };
 
     // Determine if we should show password toggle
     const shouldShowPasswordToggle = type === "password" && showPasswordToggle;
-    const effectiveType = type === "password" && passwordVisible ? "text" : type;
+    const effectiveType =
+      type === "password" && passwordVisible ? "text" : type;
 
     // Build CSS classes
     const inputClasses = [
@@ -160,7 +170,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         [styles.disabled]: disabled,
         [styles.readonly]: readonly,
         [styles["has-left-icon"]]: !!leftIconComponent,
-        [styles["has-right-icon"]]: !!rightIconComponent || shouldShowPasswordToggle,
+        [styles["has-right-icon"]]:
+          !!rightIconComponent || shouldShowPasswordToggle,
       },
       className,
     ].filter(Boolean);
@@ -204,10 +215,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               disabled={disabled}
               aria-label={passwordVisible ? "Hide password" : "Show password"}
             >
-              <Icon 
-                icon={passwordVisible ? VisibilityOff : Visibility} 
-                size={iconSize} 
-                color="muted" 
+              <Icon
+                icon={passwordVisible ? VisibilityOff : Visibility}
+                size={iconSize}
+                color="muted"
               />
             </button>
           </div>

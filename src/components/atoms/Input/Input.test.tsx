@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Input } from "./Input";
 
@@ -180,5 +180,54 @@ describe("Input Component", () => {
       />
     );
     expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "password");
+  });
+
+  it("toggles password visibility when clicking the eye icon", () => {
+    render(
+      <Input
+        type="password"
+        showPasswordToggle={true}
+        placeholder="Test"
+      />
+    );
+    
+    const input = screen.getByPlaceholderText("Test");
+    const toggleButton = screen.getByRole("button");
+    
+    // Initially should be password type
+    expect(input).toHaveAttribute("type", "password");
+    
+    // Click the toggle button
+    fireEvent.click(toggleButton);
+    
+    // Should now be text type
+    expect(input).toHaveAttribute("type", "text");
+    
+    // Click again to hide
+    fireEvent.click(toggleButton);
+    
+    // Should be password type again
+    expect(input).toHaveAttribute("type", "password");
+  });
+
+  it("calls onPasswordVisibilityChange when provided", () => {
+    const handleVisibilityChange = vi.fn();
+    render(
+      <Input
+        type="password"
+        showPasswordToggle={true}
+        passwordVisible={false}
+        onPasswordVisibilityChange={handleVisibilityChange}
+        placeholder="Test"
+      />
+    );
+    
+    const toggleButton = screen.getByRole("button");
+    
+    // Click the toggle button
+    fireEvent.click(toggleButton);
+    
+    // Should call the handler with true
+    expect(handleVisibilityChange).toHaveBeenCalledWith(true);
   });
 });
