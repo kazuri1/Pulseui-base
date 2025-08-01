@@ -3,8 +3,11 @@ import { Input } from "../Input";
 import { Icon } from "../Icon";
 import { InfoOutlined } from "../Icon/IconSet";
 import styles from "./TextInput.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface TextInputProps {
+export interface TextInputProps extends WithSxProps {
   /** Input label */
   label?: string;
   /** Whether the field is required */
@@ -31,8 +34,6 @@ export interface TextInputProps {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   /** Callback fired when input loses focus */
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  /** Additional CSS classes */
-  className?: string;
   /** Left icon for the input */
   leftIcon?: string;
   /** Right icon for the input */
@@ -65,6 +66,8 @@ export const TextInput: React.FC<TextInputProps> = ({
   showPasswordToggle,
   passwordVisible,
   onPasswordVisibilityChange,
+  sx,
+  style,
 }) => {
   const inputId =
     id || name || `text-input-${Math.random().toString(36).substr(2, 9)}`;
@@ -73,15 +76,21 @@ export const TextInput: React.FC<TextInputProps> = ({
     onChange?.(event.target.value);
   };
 
-  const inputClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const inputClasses = combineClassNames(
     styles.root,
     error && styles.error,
     disabled && styles.disabled,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   return (
-    <div className={inputClasses.join(" ")}>
+    <div className={inputClasses} style={sxStyle}>
       {label && (
         <label htmlFor={inputId} className={styles.label}>
           {label}
@@ -96,9 +105,6 @@ export const TextInput: React.FC<TextInputProps> = ({
         value={value}
         placeholder={placeholder}
         disabled={disabled}
-        onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
         showPasswordToggle={showPasswordToggle}

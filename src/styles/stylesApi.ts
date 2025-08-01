@@ -1,4 +1,5 @@
-import React, { CSSProperties } from "react";
+import * as React from "react";
+import type { CSSProperties } from "react";
 
 // Design token types
 export type Spacing = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
@@ -489,14 +490,8 @@ export const processSxProps = (
 };
 
 // Styled component factory
-export const styled = <T extends keyof JSX.IntrinsicElements>(
-  component: T,
-  defaultSx?: SxProps
-) => {
-  return React.forwardRef<
-    HTMLElementTagNameMap[T],
-    JSX.IntrinsicElements[T] & { sx?: SxProps }
-  >(({ sx, style, ...props }, ref) => {
+export const styled = (component: string, defaultSx?: SxProps) => {
+  return React.forwardRef<any, any>(({ sx, style, ...props }, ref) => {
     const processedSx = processSxProps({ ...defaultSx, ...sx });
     const mergedStyle = { ...processedSx, ...style };
 
@@ -695,7 +690,7 @@ export const Modal = styled("div", {
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  backgroundColor: "black",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -859,45 +854,3 @@ export const Spinner = styled("div", {
   borderRadius: "full",
   animation: "spin 1s linear infinite",
 });
-
-// Export all components
-export {
-  Box,
-  Typography,
-  Container,
-  Stack,
-  Grid,
-  Paper,
-  Card,
-  Button,
-  Input,
-  TextField,
-  Label,
-  HelperText,
-  ErrorText,
-  Divider,
-  Avatar,
-  Badge,
-  Chip,
-  Alert,
-  AlertSuccess,
-  AlertWarning,
-  AlertError,
-  AlertInfo,
-  Modal,
-  ModalContent,
-  Tooltip,
-  Skeleton,
-  Progress,
-  ProgressBar,
-  Switch,
-  SwitchThumb,
-  Checkbox,
-  Radio,
-  Select,
-  Textarea,
-  Link,
-  Image,
-  Icon,
-  Spinner,
-};

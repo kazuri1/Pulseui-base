@@ -83,12 +83,18 @@ export const GridWithBreakout: Story = {
   args: {
     strategy: "grid",
     children: (
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-md)",
+        }}
+      >
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
           <h3>Main Content</h3>
@@ -98,34 +104,25 @@ export const GridWithBreakout: Story = {
         <div
           data-breakout
           style={{
-            backgroundColor: "#007bff",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-primary-500)",
             color: "white",
-            padding: "40px 0",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <div
-            data-container
-            style={{
-              padding: "0 20px",
-            }}
-          >
-            <h3>Breakout Section</h3>
-            <p>
-              This section spans the full viewport width while maintaining the
-              container's content width.
-            </p>
-          </div>
+          <h3>Breakout Content</h3>
+          <p>This content breaks out of the container's max-width.</p>
         </div>
 
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>More Main Content</h3>
-          <p>Back to constrained width content.</p>
+          <h3>Main Content</h3>
+          <p>This content is constrained to the container's max-width.</p>
         </div>
       </div>
     ),
@@ -137,9 +134,9 @@ export const WithContent: Story = {
     children: (
       <div
         style={{
-          padding: "20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "8px",
+          padding: "var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
         }}
       >
         <h2>Sample Content</h2>
@@ -149,11 +146,11 @@ export const WithContent: Story = {
         </p>
         <button
           style={{
-            padding: "8px 16px",
-            backgroundColor: "#007bff",
+            padding: "var(--spacing-sm) var(--spacing-md)",
+            backgroundColor: "var(--color-primary-500)",
             color: "white",
             border: "none",
-            borderRadius: "4px",
+            borderRadius: "var(--radius-sm)",
           }}
         >
           Sample Button

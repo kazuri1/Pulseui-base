@@ -2,8 +2,11 @@ import React from "react";
 import { Icon } from "../Icon";
 import { Person } from "../Icon/IconSet";
 import styles from "./Avatar.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface AvatarProps {
+export interface AvatarProps extends WithSxProps {
   /** Avatar type */
   type?: "initial" | "icon" | "image";
   /** Avatar size */
@@ -18,8 +21,6 @@ export interface AvatarProps {
   alt?: string;
   /** Background color variant */
   variant?: "primary" | "secondary" | "success" | "warning" | "error" | "muted";
-  /** Additional CSS classes */
-  className?: string;
   /** Click handler */
   onClick?: () => void;
   /** Whether the avatar is interactive */
@@ -37,14 +38,22 @@ export const Avatar: React.FC<AvatarProps> = ({
   className = "",
   onClick,
   interactive = false,
+  sx,
+  style,
 }) => {
-  const avatarClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const avatarClasses = combineClassNames(
     styles.avatar,
     styles[`size-${size}`],
     styles[`variant-${variant}`],
     interactive && styles.interactive,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   const renderContent = () => {
     switch (type) {
@@ -103,10 +112,11 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div
-      className={avatarClasses.join(" ")}
+      className={avatarClasses}
       onClick={onClick}
       role={interactive ? "button" : undefined}
       tabIndex={interactive ? 0 : undefined}
+      style={sxStyle}
     >
       {renderContent()}
       {/* Fallback initials for image type */}

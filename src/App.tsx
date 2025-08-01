@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { Button } from "./components/atoms/Button";
 import { ThemeProvider, useTheme } from "./components/ThemeProvider";
+import { SxPropsExample } from "./components/examples/SxPropsExample";
 
 function AppContent() {
   const [count, setCount] = useState(0);
@@ -82,8 +83,13 @@ function AppContent() {
             marginBottom: "24px",
           }}
         >
-          Native Pulse design system with dark mode support
+          Native Pulse design system with dark mode support and SX Props
         </p>
+
+        {/* SX Props Example */}
+        <div style={{ marginBottom: "32px" }}>
+          <SxPropsExample />
+        </div>
 
         {/* Demo Section */}
         <div

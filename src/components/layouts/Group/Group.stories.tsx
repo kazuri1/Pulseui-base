@@ -62,10 +62,10 @@ export const Default: Story = {
       <div
         key="1"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
         Item 1
@@ -73,10 +73,10 @@ export const Default: Story = {
       <div
         key="2"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
         Item 2
@@ -84,10 +84,10 @@ export const Default: Story = {
       <div
         key="3"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
         Item 3
@@ -103,106 +103,118 @@ export const SpaceBetween: Story = {
       <div
         key="1"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Left Item
+        Item 1
       </div>,
       <div
         key="2"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Right Item
+        Item 2
+      </div>,
+      <div
+        key="3"
+        style={{
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
+        }}
+      >
+        Item 3
       </div>,
     ],
   },
 };
 
-export const Centered: Story = {
+export const Center: Story = {
   args: {
+    align: "center",
     justify: "center",
     children: [
       <div
         key="1"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Centered Item 1
+        Item 1
       </div>,
       <div
         key="2"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Centered Item 2
+        Item 2
       </div>,
       <div
         key="3"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Centered Item 3
+        Item 3
       </div>,
     ],
   },
 };
 
-export const LargeGap: Story = {
+export const Stretch: Story = {
   args: {
-    gap: "xl",
+    align: "stretch",
     children: [
       <div
         key="1"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Large Gap Item 1
+        Item 1
       </div>,
       <div
         key="2"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Large Gap Item 2
+        Item 2
       </div>,
       <div
         key="3"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Large Gap Item 3
+        Item 3
       </div>,
     ],
   },
@@ -215,140 +227,176 @@ export const NoWrap: Story = {
       <div
         key="1"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
-          whiteSpace: "nowrap",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        This is a very long item that won't wrap
+        Item 1
       </div>,
       <div
         key="2"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#e0e0e0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
-          whiteSpace: "nowrap",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Another long item
+        Item 2
       </div>,
       <div
         key="3"
         style={{
-          padding: "10px 20px",
-          backgroundColor: "#d0d0d0",
-          borderRadius: "6px",
-          border: "1px solid #ddd",
-          whiteSpace: "nowrap",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Third long item
+        Item 3
       </div>,
     ],
   },
 };
 
-export const FormLayout: Story = {
+export const LargeGap: Story = {
   args: {
-    justify: "space-between",
-    align: "center",
+    gap: "lg",
     children: [
       <div
-        key="label"
+        key="1"
         style={{
-          padding: "10px 0",
-          fontWeight: "bold",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        Email Address:
+        Item 1
       </div>,
       <div
-        key="input"
+        key="2"
         style={{
-          flex: 1,
-          maxWidth: "300px",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        <input
-          type="email"
-          placeholder="Enter your email"
-          style={{
-            width: "100%",
-            padding: "8px 12px",
-            border: "1px solid #ddd",
-            borderRadius: "4px",
-          }}
-        />
+        Item 2
       </div>,
       <div
-        key="button"
+        key="3"
         style={{
-          padding: "10px 0",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
         }}
       >
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Subscribe
-        </button>
+        Item 3
       </div>,
     ],
   },
 };
 
-export const ButtonGroup: Story = {
+export const SmallGap: Story = {
   args: {
     gap: "sm",
     children: [
-      <button
-        key="cancel"
+      <div
+        key="1"
         style={{
-          padding: "8px 16px",
-          backgroundColor: "#6c757d",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
+        }}
+      >
+        Item 1
+      </div>,
+      <div
+        key="2"
+        style={{
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-300)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
+        }}
+      >
+        Item 2
+      </div>,
+      <div
+        key="3"
+        style={{
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-400)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-primary)",
+        }}
+      >
+        Item 3
+      </div>,
+    ],
+  },
+};
+
+export const WithButtons: Story = {
+  args: {
+    children: [
+      <button
+        key="1"
+        style={{
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-primary-500)",
           color: "white",
           border: "none",
-          borderRadius: "4px",
+          borderRadius: "var(--radius-md)",
           cursor: "pointer",
         }}
       >
-        Cancel
+        Primary Button
       </button>,
       <button
-        key="save"
+        key="2"
         style={{
-          padding: "8px 16px",
-          backgroundColor: "#28a745",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-600)",
           color: "white",
           border: "none",
-          borderRadius: "4px",
+          borderRadius: "var(--radius-md)",
           cursor: "pointer",
         }}
       >
-        Save
+        Secondary Button
       </button>,
       <button
-        key="delete"
+        key="3"
         style={{
-          padding: "8px 16px",
-          backgroundColor: "#dc3545",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-green-500)",
           color: "white",
           border: "none",
-          borderRadius: "4px",
+          borderRadius: "var(--radius-md)",
           cursor: "pointer",
         }}
       >
-        Delete
+        Success Button
+      </button>,
+      <button
+        key="4"
+        style={{
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-red-500)",
+          color: "white",
+          border: "none",
+          borderRadius: "var(--radius-md)",
+          cursor: "pointer",
+        }}
+      >
+        Danger Button
       </button>,
     ],
   },

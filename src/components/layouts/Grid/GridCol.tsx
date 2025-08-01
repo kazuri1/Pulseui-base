@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./GridCol.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface GridColProps {
+export interface GridColProps extends WithSxProps {
   /** Column content */
   children: React.ReactNode;
   /** Number of columns to span (1-12). Can be a number or responsive object */
@@ -15,15 +18,21 @@ export interface GridColProps {
         lg?: number;
         xl?: number;
       };
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const GridCol: React.FC<GridColProps> = ({
   children,
   span = 12,
   className = "",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const getSpanClasses = () => {
     if (typeof span === "number") {
       return [styles[`span-${span}`]];
@@ -41,9 +50,15 @@ export const GridCol: React.FC<GridColProps> = ({
     return classes;
   };
 
-  const colClasses = [styles.root, ...getSpanClasses(), className].filter(
-    Boolean
+  const colClasses = combineClassNames(
+    styles.root,
+    ...getSpanClasses(),
+    sxClassName
   );
 
-  return <div className={colClasses.join(" ")}>{children}</div>;
+  return (
+    <div className={colClasses} style={sxStyle}>
+      {children}
+    </div>
+  );
 };

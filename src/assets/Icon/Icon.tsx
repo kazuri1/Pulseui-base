@@ -10,7 +10,14 @@ export interface IconProps {
   /** Additional CSS classes */
   className?: string;
   /** Icon color (uses design tokens) */
-  color?: "primary" | "secondary" | "success" | "warning" | "error" | "muted" | "inherit";
+  color?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "error"
+    | "muted"
+    | "inherit";
   /** Whether the icon should be clickable */
   clickable?: boolean;
   /** Click handler */
@@ -45,4 +52,4 @@ export const Icon: React.FC<IconProps> = ({
       onClick={clickable && !disabled ? onClick : undefined}
     />
   );
-}; 
+};

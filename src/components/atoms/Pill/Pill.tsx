@@ -2,8 +2,11 @@ import React from "react";
 import { Close } from "../Icon/IconSet";
 import { Icon } from "../Icon/index";
 import styles from "./Pill.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface PillProps {
+export interface PillProps extends WithSxProps {
   /** Content to display inside the pill */
   children: React.ReactNode;
   /** Pill size */
@@ -12,8 +15,6 @@ export interface PillProps {
   closable?: boolean;
   /** Close button click handler */
   onClose?: () => void;
-  /** Additional CSS classes */
-  className?: string;
   /** Disabled state */
   disabled?: boolean;
 }
@@ -25,6 +26,8 @@ export const Pill: React.FC<PillProps> = ({
   onClose,
   className = "",
   disabled = false,
+  sx,
+  style,
 }) => {
   const handleClose = () => {
     if (!disabled && onClose) {
@@ -32,18 +35,22 @@ export const Pill: React.FC<PillProps> = ({
     }
   };
 
-  const pillClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const pillClasses = combineClassNames(
     styles.pill,
     styles[`size-${size}`],
-    {
-      [styles.closable]: closable,
-      [styles.disabled]: disabled,
-    },
-    className,
-  ].filter(Boolean);
+    closable && styles.closable,
+    disabled && styles.disabled,
+    sxClassName
+  );
 
   return (
-    <div className={pillClasses.join(" ")}>
+    <div className={pillClasses} style={sxStyle}>
       <span className={styles.content}>{children}</span>
       {closable && (
         <button

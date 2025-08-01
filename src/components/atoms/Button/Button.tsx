@@ -15,8 +15,11 @@ import {
   Settings,
 } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface ButtonProps {
+export interface ButtonProps extends WithSxProps {
   /** Button text content */
   children: React.ReactNode;
   /** Left icon */
@@ -35,8 +38,6 @@ export interface ButtonProps {
   compact?: boolean;
   /** Click handler */
   onClick?: () => void;
-  /** Additional CSS classes */
-  className?: string;
   /** Disabled state */
   disabled?: boolean;
   /** Button type */
@@ -56,17 +57,23 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
   disabled = false,
   type = "button",
+  sx,
+  style,
 }) => {
-  const buttonClasses = classNames(
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const buttonClasses = combineClassNames(
     styles.button,
     styles[`variant-${variant}`],
     styles[`size-${size}`],
     styles[`state-${state}`],
     styles[`justify-${justify}`],
-    {
-      [styles.compact]: compact,
-    },
-    className
+    compact && styles.compact,
+    sxClassName
   );
 
   // Map string values to icon components
@@ -133,6 +140,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={buttonClasses}
       onClick={onClick}
       disabled={disabled || state === "disabled"}
+      style={sxStyle}
     >
       {leftIconComponent && (
         <Icon

@@ -10,31 +10,159 @@ The Pulse UI Styles API provides a powerful, MUI-inspired styling system that in
 
 The Styles API consists of three main parts:
 
-1. **SX Prop** - Inline styling with design token support
+1. **SX Prop** - Inline styling with design token support (available on ALL components)
 2. **Styled Components** - Pre-built components with consistent styling
 3. **Theme System** - Centralized design token management
 
 ## SX Prop
 
-The `sx` prop allows you to apply styles directly to components using design tokens and CSS properties.
+The `sx` prop allows you to apply styles directly to components using design tokens and CSS properties. **This prop is available on ALL components in the Pulse UI design system.**
+
+### Component Support
+
+All components now support the `sx` prop:
+
+#### Atom Components
+
+- ✅ **Pill** - Custom styling for pill components
+- ✅ **Button** - Custom button styles and variants
+- ✅ **Input** - Custom input field styling
+- ✅ **Avatar** - Custom avatar sizes and colors
+- ✅ **Switch** - Custom switch styling
+- ✅ **Textarea** - Custom textarea styling
+- ✅ **TextInput** - Custom text input with label styling
+
+#### Layout Components
+
+- ✅ **Container** - Custom container sizing and positioning
+- ✅ **Stack** - Custom stack alignment and spacing
+- ✅ **Group** - Custom group layout and spacing
+- ✅ **Grid** - Custom grid layout and column styling
+- ✅ **GridCol** - Custom column styling within grids
 
 ### Basic Usage
 
 ```tsx
-import { Box } from '../styles/stylesApi';
+import { Button, Pill, Container, Stack } from '../components';
 
-// Basic styling
-<Box sx={{ p: 'md', backgroundColor: 'primary', color: 'white' }}>
-  Styled content
-</Box>
+// Basic styling on any component
+<Button sx={{ backgroundColor: 'primary', color: 'white' }}>
+  Custom Button
+</Button>
 
-// Responsive design
-<Box sx={{
-  p: { xs: 'sm', md: 'lg' },
-  fontSize: { xs: 'text-sm', md: 'text-lg' }
-}}>
-  Responsive content
-</Box>
+<Pill sx={{ backgroundColor: 'success', color: 'white' }}>
+  Success Pill
+</Pill>
+
+<Container sx={{ backgroundColor: 'surface', padding: 'lg' }}>
+  Custom Container
+</Container>
+
+<Stack sx={{ gap: 'md', backgroundColor: 'gray-1' }}>
+  <div>Item 1</div>
+  <div>Item 2</div>
+</Stack>
+```
+
+### Design Token Integration
+
+The sx prop seamlessly integrates with the design system's tokens:
+
+#### Colors
+
+```tsx
+// Semantic colors
+backgroundColor: "primary" | "secondary" | "success" | "warning" | "error";
+
+// Brand colors
+backgroundColor: "blue-6" | "red-5" | "green-4" | "yellow-3";
+
+// Gray scale
+backgroundColor: "gray-1" | "gray-2" | "gray-3" | "gray-4";
+```
+
+#### Spacing
+
+```tsx
+// Token-based spacing
+padding: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+
+// Numeric spacing (multiplied by 4px)
+padding: 1; // 4px
+padding: 2; // 8px
+padding: 3; // 12px
+```
+
+#### Typography
+
+```tsx
+// Typography variants
+typography: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+typography: "text-xs" | "text-sm" | "text-md" | "text-lg" | "text-xl";
+
+// Font weights
+fontWeight: "normal" | "medium" | "semibold" | "bold";
+```
+
+### Advanced Usage Examples
+
+#### Responsive Design
+
+```tsx
+<Container
+  sx={{
+    padding: "md",
+    "@media (min-width: 768px)": {
+      padding: "lg",
+    },
+  }}
+>
+  Responsive Container
+</Container>
+```
+
+#### Pseudo-selectors
+
+```tsx
+<Button
+  sx={{
+    backgroundColor: "primary",
+    "&:hover": {
+      backgroundColor: "blue-7",
+    },
+    "&:active": {
+      transform: "scale(0.95)",
+    },
+  }}
+>
+  Interactive Button
+</Button>
+```
+
+#### Layout Components with SX
+
+```tsx
+<Stack
+  sx={{
+    backgroundColor: "surface",
+    padding: "lg",
+    borderRadius: "lg",
+  }}
+>
+  <Group sx={{ justifyContent: "space-between" }}>
+    <span>Left</span>
+    <span>Right</span>
+  </Group>
+
+  <Grid sx={{ backgroundColor: "gray-1" }}>
+    <Grid.Col span={6} sx={{ backgroundColor: "surface" }}>
+      Column 1
+    </Grid.Col>
+    <Grid.Col span={6} sx={{ backgroundColor: "primary", color: "white" }}>
+      Column 2
+    </Grid.Col>
+  </Grid>
+</Stack>
 ```
 
 ### Spacing

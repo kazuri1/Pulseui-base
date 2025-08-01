@@ -80,9 +80,9 @@ export const Default: Story = {
       <Grid.Col key="1" span={4}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
           Column 1
@@ -91,9 +91,9 @@ export const Default: Story = {
       <Grid.Col key="2" span={4}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
           }}
         >
           Column 2
@@ -102,9 +102,9 @@ export const Default: Story = {
       <Grid.Col key="3" span={4}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#d0d0d0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
           }}
         >
           Column 3
@@ -116,216 +116,113 @@ export const Default: Story = {
 
 export const ThreeColumns: Story = {
   args: {
+    columns: 3,
     children: [
-      <Grid.Col key="1" span={4}>
+      <Grid.Col key="1" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Column 1</h3>
-          <p>This is the first column with some content.</p>
+          Column 1
         </div>
       </Grid.Col>,
-      <Grid.Col key="2" span={4}>
+      <Grid.Col key="2" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Column 2</h3>
-          <p>This is the second column with some content.</p>
+          Column 2
         </div>
       </Grid.Col>,
-      <Grid.Col key="3" span={4}>
+      <Grid.Col key="3" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#d0d0d0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Column 3</h3>
-          <p>This is the third column with some content.</p>
+          Column 3
         </div>
       </Grid.Col>,
     ],
   },
 };
 
-export const CenteredAlignment: Story = {
+export const SixColumns: Story = {
   args: {
-    align: "center",
-    justify: "center",
+    columns: 6,
     children: [
-      <Grid.Col key="1" span={3}>
+      <Grid.Col key="1" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
-            height: "100px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          Centered
+          Col 1
         </div>
       </Grid.Col>,
-      <Grid.Col key="2" span={3}>
+      <Grid.Col key="2" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
-            height: "150px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          Centered
+          Col 2
         </div>
       </Grid.Col>,
-      <Grid.Col key="3" span={3}>
+      <Grid.Col key="3" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#d0d0d0",
-            borderRadius: "8px",
-            height: "80px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          Centered
+          Col 3
         </div>
       </Grid.Col>,
-      <Grid.Col key="4" span={3}>
+      <Grid.Col key="4" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#c0c0c0",
-            borderRadius: "8px",
-            height: "120px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-500)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          Centered
+          Col 4
         </div>
       </Grid.Col>,
-    ],
-  },
-};
-
-export const LargeGutter: Story = {
-  args: {
-    gutter: "xl",
-
-    children: [
-      <Grid.Col key="1" span={2}>
+      <Grid.Col key="5" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-600)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          Large Gap
+          Col 5
         </div>
       </Grid.Col>,
-      <Grid.Col key="2" span={2}>
+      <Grid.Col key="6" span={1}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-700)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          Large Gap
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="3" span={2}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#d0d0d0",
-            borderRadius: "8px",
-          }}
-        >
-          Large Gap
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="4" span={2}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#c0c0c0",
-            borderRadius: "8px",
-          }}
-        >
-          Large Gap
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="5" span={2}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#b0b0b0",
-            borderRadius: "8px",
-          }}
-        >
-          Large Gap
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="6" span={2}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#a0a0a0",
-            borderRadius: "8px",
-          }}
-        >
-          Large Gap
-        </div>
-      </Grid.Col>,
-    ],
-
-    align: "baseline"
-  },
-};
-
-export const SpaceBetween: Story = {
-  args: {
-    justify: "space-between",
-    children: [
-      <Grid.Col key="1" span={4}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
-          }}
-        >
-          Left
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="2" span={4}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
-          }}
-        >
-          Center
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="3" span={4}>
-        <div
-          style={{
-            padding: "20px",
-            backgroundColor: "#d0d0d0",
-            borderRadius: "8px",
-          }}
-        >
-          Right
+          Col 6
         </div>
       </Grid.Col>,
     ],
@@ -334,86 +231,322 @@ export const SpaceBetween: Story = {
 
 export const TwelveColumns: Story = {
   args: {
-    gutter: "sm",
-    children: Array.from({ length: 12 }, (_, i) => (
-      <Grid.Col key={i} span={1}>
+    columns: 12,
+    children: [
+      <Grid.Col key="1" span={1}>
         <div
           style={{
-            padding: "10px",
-            backgroundColor: `hsl(${(i * 30) % 360}, 70%, 80%)`,
-            borderRadius: "4px",
-            textAlign: "center",
-            fontSize: "12px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          {i + 1}
+          1
         </div>
-      </Grid.Col>
-    )),
+      </Grid.Col>,
+      <Grid.Col key="2" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          2
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="3" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          3
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="4" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-500)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          4
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="5" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-600)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          5
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="6" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-700)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          6
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="7" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-800)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          7
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="8" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-900)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          8
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="9" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-100)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          9
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="10" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-200)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          10
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="11" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          11
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="12" span={1}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          12
+        </div>
+      </Grid.Col>,
+    ],
   },
 };
 
-export const ResponsiveSpan: Story = {
+export const MixedSpans: Story = {
   args: {
+    columns: 12,
     children: [
-      <Grid.Col key="1" span={{ base: 12, md: 6, lg: 3 }}>
+      <Grid.Col key="1" span={8}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Responsive Column</h3>
-          <p>
-            This column spans 12/12 on mobile, 6/12 on medium, and 3/12 on large
-            screens.
-          </p>
+          Wide Column (8 spans)
         </div>
       </Grid.Col>,
-      <Grid.Col key="2" span={{ base: 12, md: 6, lg: 3 }}>
+      <Grid.Col key="2" span={4}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Responsive Column</h3>
-          <p>
-            This column spans 12/12 on mobile, 6/12 on medium, and 3/12 on large
-            screens.
-          </p>
+          Narrow Column (4 spans)
         </div>
       </Grid.Col>,
-      <Grid.Col key="3" span={{ base: 12, md: 6, lg: 3 }}>
+    ],
+  },
+};
+
+export const ResponsiveGrid: Story = {
+  args: {
+    columns: 12,
+    children: [
+      <Grid.Col key="1" span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#d0d0d0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Responsive Column</h3>
-          <p>
-            This column spans 12/12 on mobile, 6/12 on medium, and 3/12 on large
-            screens.
-          </p>
+          Responsive Column 1
         </div>
       </Grid.Col>,
-      <Grid.Col key="4" span={{ base: 12, md: 6, lg: 3 }}>
+      <Grid.Col key="2" span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
         <div
           style={{
-            padding: "20px",
-            backgroundColor: "#c0c0c0",
-            borderRadius: "8px",
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
           }}
         >
-          <h3>Responsive Column</h3>
-          <p>
-            This column spans 12/12 on mobile, 6/12 on medium, and 3/12 on large
-            screens.
-          </p>
+          Responsive Column 2
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="3" span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Responsive Column 3
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="4" span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-500)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Responsive Column 4
+        </div>
+      </Grid.Col>,
+    ],
+  },
+};
+
+export const WithGrow: Story = {
+  args: {
+    columns: 12,
+    grow: true,
+    children: [
+      <Grid.Col key="1" span={4}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Fixed Width Column
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="2" span={4}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Fixed Width Column
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="3" span={4}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Growing Column
+        </div>
+      </Grid.Col>,
+    ],
+  },
+};
+
+export const LargeGutter: Story = {
+  args: {
+    gutter: "lg",
+    children: [
+      <Grid.Col key="1" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Column 1
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="2" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Column 2
+        </div>
+      </Grid.Col>,
+    ],
+  },
+};
+
+export const SmallGutter: Story = {
+  args: {
+    gutter: "sm",
+    children: [
+      <Grid.Col key="1" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Column 1
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="2" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          Column 2
         </div>
       </Grid.Col>,
     ],

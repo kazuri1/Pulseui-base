@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./Group.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
 export type GroupAlign =
   | "stretch"
@@ -16,7 +19,7 @@ export type GroupJustify =
   | "space-evenly";
 export type MantineSpacing = "xs" | "sm" | "md" | "lg" | "xl";
 
-export interface GroupProps {
+export interface GroupProps extends WithSxProps {
   /** Group content */
   children: React.ReactNode;
   /** Sets the `align-items` CSS property. Default: `center` */
@@ -27,8 +30,6 @@ export interface GroupProps {
   justify?: GroupJustify;
   /** Whether to wrap items to the next line. Default: `true` */
   wrap?: boolean;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const Group: React.FC<GroupProps> = ({
@@ -38,25 +39,34 @@ export const Group: React.FC<GroupProps> = ({
   justify = "flex-start",
   wrap = true,
   className = "",
+  sx,
+  style,
 }) => {
-  const groupClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const groupClasses = combineClassNames(
     styles.root,
     styles[`align-${align}`],
     styles[`justify-${justify}`],
     styles[`gap-${gap}`],
     !wrap && styles.nowrap,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   const groupStyle: React.CSSProperties = {
     "--group-gap":
       typeof gap === "string" && !["xs", "sm", "md", "lg", "xl"].includes(gap)
         ? gap
         : undefined,
+    ...sxStyle,
   } as React.CSSProperties;
 
   return (
-    <div className={groupClasses.join(" ")} style={groupStyle}>
+    <div className={groupClasses} style={groupStyle}>
       {children}
     </div>
   );

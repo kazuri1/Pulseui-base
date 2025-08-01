@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./Grid.module.scss";
 import { GridCol } from "./GridCol";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
 export type AlignItems =
   | "stretch"
@@ -26,7 +29,7 @@ export interface GridBreakpoints {
   xl?: number;
 }
 
-export interface GridProps {
+export interface GridProps extends WithSxProps {
   /** Grid content */
   children: React.ReactNode;
   /** Sets the `align-items` CSS property. Default: `stretch` */
@@ -45,8 +48,6 @@ export interface GridProps {
   overflow?: Overflow;
   /** Determines the type of queries used for responsive styles. Default: `'media'` */
   type?: "media" | "container";
-  /** Additional CSS classes */
-  className?: string;
 }
 
 // Create the Grid component with Col as a static property
@@ -61,8 +62,16 @@ export const Grid: React.FC<GridProps> & { Col: typeof GridCol } = ({
   overflow = "visible",
   type = "media",
   className = "",
+  sx,
+  style,
 }) => {
-  const gridClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const gridClasses = combineClassNames(
     styles.root,
     styles[`align-${align}`],
     styles[`justify-${justify}`],
@@ -70,8 +79,8 @@ export const Grid: React.FC<GridProps> & { Col: typeof GridCol } = ({
     styles[`gutter-${gutter}`],
     styles[`columns-${columns}`],
     grow && styles.grow,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   const gridStyle: React.CSSProperties = {
     "--grid-columns": columns,
@@ -80,10 +89,11 @@ export const Grid: React.FC<GridProps> & { Col: typeof GridCol } = ({
       !["xs", "sm", "md", "lg", "xl"].includes(gutter)
         ? gutter
         : undefined,
+    ...sxStyle,
   } as React.CSSProperties;
 
   return (
-    <div className={gridClasses.join(" ")} style={gridStyle}>
+    <div className={gridClasses} style={gridStyle}>
       {children}
     </div>
   );

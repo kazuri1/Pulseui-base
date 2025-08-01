@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./Stack.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
 export type StackAlign =
   | "stretch"
@@ -16,7 +19,7 @@ export type StackJustify =
   | "space-evenly";
 export type MantineSpacing = "xs" | "sm" | "md" | "lg" | "xl";
 
-export interface StackProps {
+export interface StackProps extends WithSxProps {
   /** Stack content */
   children: React.ReactNode;
   /** Sets the `align-items` CSS property. Default: `stretch` */
@@ -25,8 +28,6 @@ export interface StackProps {
   gap?: MantineSpacing | string;
   /** Sets the `justify-content` CSS property. Default: `flex-start` */
   justify?: StackJustify;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const Stack: React.FC<StackProps> = ({
@@ -35,24 +36,33 @@ export const Stack: React.FC<StackProps> = ({
   gap = "md",
   justify = "flex-start",
   className = "",
+  sx,
+  style,
 }) => {
-  const stackClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const stackClasses = combineClassNames(
     styles.root,
     styles[`align-${align}`],
     styles[`justify-${justify}`],
     styles[`gap-${gap}`],
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   const stackStyle: React.CSSProperties = {
     "--stack-gap":
       typeof gap === "string" && !["xs", "sm", "md", "lg", "xl"].includes(gap)
         ? gap
         : undefined,
+    ...sxStyle,
   } as React.CSSProperties;
 
   return (
-    <div className={stackClasses.join(" ")} style={stackStyle}>
+    <div className={stackClasses} style={stackStyle}>
       {children}
     </div>
   );

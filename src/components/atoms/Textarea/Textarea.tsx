@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./Textarea.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface TextareaProps {
+export interface TextareaProps extends WithSxProps {
   /** Textarea label */
   label?: string;
   /** Whether the field is required */
@@ -28,8 +31,6 @@ export interface TextareaProps {
   onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
   /** Callback fired when textarea loses focus */
   onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const Textarea: React.FC<TextareaProps> = ({
@@ -47,6 +48,8 @@ export const Textarea: React.FC<TextareaProps> = ({
   onFocus,
   onBlur,
   className = "",
+  sx,
+  style,
 }) => {
   const textareaId =
     id || name || `textarea-${Math.random().toString(36).substr(2, 9)}`;
@@ -55,21 +58,27 @@ export const Textarea: React.FC<TextareaProps> = ({
     onChange?.(event.target.value);
   };
 
-  const textareaClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const textareaClasses = combineClassNames(
     styles.textarea,
     !resizable && styles.noResize,
     disabled && styles.disabled,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
-  const containerClasses = [
+  const containerClasses = combineClassNames(
     styles.root,
     disabled && styles.disabled,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   return (
-    <div className={containerClasses.join(" ")}>
+    <div className={containerClasses} style={sxStyle}>
       {label && (
         <label htmlFor={textareaId} className={styles.label}>
           {label}
@@ -87,7 +96,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        className={textareaClasses.join(" ")}
+        className={textareaClasses}
       />
 
       {caption && (

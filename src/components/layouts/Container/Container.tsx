@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./Container.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface ContainerProps {
+export interface ContainerProps extends WithSxProps {
   /** Container content */
   children: React.ReactNode;
   /** If set, the container takes 100% width of its parent and `size` prop is ignored */
@@ -10,8 +13,6 @@ export interface ContainerProps {
   size?: number | "xs" | "sm" | "md" | "lg" | "xl";
   /** Centering strategy */
   strategy?: "block" | "grid";
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const Container: React.FC<ContainerProps> = ({
@@ -20,13 +21,25 @@ export const Container: React.FC<ContainerProps> = ({
   size = "md",
   strategy = "block",
   className = "",
+  sx,
+  style,
 }) => {
-  const containerClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const containerClasses = combineClassNames(
     styles.root,
     styles[`strategy-${strategy}`],
     fluid ? styles.fluid : styles[`size-${size}`],
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
-  return <div className={containerClasses.join(" ")}>{children}</div>;
+  return (
+    <div className={containerClasses} style={sxStyle}>
+      {children}
+    </div>
+  );
 };

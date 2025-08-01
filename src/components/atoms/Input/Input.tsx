@@ -15,8 +15,11 @@ import {
   VisibilityOff,
 } from "../Icon/IconSet";
 import styles from "./Input.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface InputProps {
+export interface InputProps extends WithSxProps {
   /** Input value */
   value?: string;
   /** Input placeholder text */
@@ -47,8 +50,6 @@ export interface InputProps {
   /** Password visibility change handler */
   onPasswordVisibilityChange?: (visible: boolean) => void;
 
-  /** Additional CSS classes */
-  className?: string;
   /** Input name */
   name?: string;
   /** Input id */
@@ -77,6 +78,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       className = "",
       name,
       id,
+      sx,
+      style,
     },
     ref
   ) => {
@@ -90,6 +93,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       : internalPasswordVisible;
     // Determine the actual state based on props
     const actualState = disabled ? "disabled" : state;
+
+    const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+      sx,
+      style,
+      className
+    );
 
     // Map input size to icon size
     const getIconSize = (inputSize: string) => {
@@ -165,20 +174,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type === "password" && passwordVisible ? "text" : type;
 
     // Build CSS classes
-    const inputClasses = [
+    const inputClasses = combineClassNames(
       styles.input,
       styles[`variant-${variant}`],
       styles[`size-${size}`],
       styles[`state-${actualState}`],
-      {
-        [styles.disabled]: disabled,
-        [styles.readonly]: readonly,
-        [styles["has-left-icon"]]: !!leftIconComponent,
-        [styles["has-right-icon"]]:
-          !!rightIconComponent || shouldShowPasswordToggle,
-      },
-      className,
-    ].filter(Boolean);
+      disabled && styles.disabled,
+      readonly && styles.readonly,
+      !!leftIconComponent && styles["has-left-icon"],
+      (!!rightIconComponent || shouldShowPasswordToggle) &&
+        styles["has-right-icon"],
+      sxClassName
+    );
 
     return (
       <div className={styles.inputWrapper}>
@@ -192,7 +199,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           required={required}
           name={name}
           id={id}
-          className={inputClasses.join(" ")}
+          className={inputClasses}
+          style={sxStyle}
         />
 
         {/* Left Icon */}

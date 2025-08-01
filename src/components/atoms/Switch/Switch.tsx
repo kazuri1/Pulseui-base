@@ -2,8 +2,11 @@ import React from "react";
 import { Icon } from "../Icon";
 import { InfoOutlined } from "../Icon/IconSet";
 import styles from "./Switch.module.scss";
+import type { SxProps } from "../../../styles/stylesApi";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface SwitchProps {
+export interface SwitchProps extends WithSxProps {
   /** Switch label */
   label?: string;
   /** Whether the field is required */
@@ -24,8 +27,6 @@ export interface SwitchProps {
   id?: string;
   /** Callback fired when switch state changes */
   onChange?: (checked: boolean) => void;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
@@ -40,6 +41,8 @@ export const Switch: React.FC<SwitchProps> = ({
   id,
   onChange,
   className = "",
+  sx,
+  style,
 }) => {
   const switchId =
     id || name || `switch-${Math.random().toString(36).substr(2, 9)}`;
@@ -48,17 +51,23 @@ export const Switch: React.FC<SwitchProps> = ({
     onChange?.(event.target.checked);
   };
 
-  const containerClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const containerClasses = combineClassNames(
     styles.root,
     styles[`size-${size}`],
     error && styles.error,
     disabled && styles.disabled,
     !caption && !error && styles.centerLabel,
-    className,
-  ].filter(Boolean);
+    sxClassName
+  );
 
   return (
-    <div className={containerClasses.join(" ")}>
+    <div className={containerClasses} style={sxStyle}>
       <div className={styles.switchContainer}>
         <label htmlFor={switchId} className={styles.switchLabel}>
           <input
