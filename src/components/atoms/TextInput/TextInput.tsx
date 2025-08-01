@@ -72,10 +72,6 @@ export const TextInput: React.FC<TextInputProps> = ({
   const inputId =
     id || name || `text-input-${Math.random().toString(36).substr(2, 9)}`;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(event.target.value);
-  };
-
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -110,6 +106,9 @@ export const TextInput: React.FC<TextInputProps> = ({
         showPasswordToggle={showPasswordToggle}
         passwordVisible={passwordVisible}
         onPasswordVisibilityChange={onPasswordVisibilityChange}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
         className={styles.input}
       />
 

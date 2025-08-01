@@ -50,6 +50,13 @@ export interface InputProps extends WithSxProps {
   /** Password visibility change handler */
   onPasswordVisibilityChange?: (visible: boolean) => void;
 
+  /** Callback fired when input value changes */
+  onChange?: (value: string) => void;
+  /** Callback fired when input is focused */
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  /** Callback fired when input loses focus */
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+
   /** Input name */
   name?: string;
   /** Input id */
@@ -72,8 +79,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       readonly = false,
       required = false,
       showPasswordToggle = false,
-      passwordVisible: externalPasswordVisible = false,
+      passwordVisible: externalPasswordVisible,
       onPasswordVisibilityChange,
+
+      onChange,
+      onFocus,
+      onBlur,
 
       className = "",
       name,
@@ -88,9 +99,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       useState(false);
 
     // Use external state if provided, otherwise use internal state
-    const passwordVisible = onPasswordVisibilityChange
-      ? externalPasswordVisible
-      : internalPasswordVisible;
+    const passwordVisible =
+      onPasswordVisibilityChange !== undefined
+        ? externalPasswordVisible ?? false
+        : internalPasswordVisible;
     // Determine the actual state based on props
     const actualState = disabled ? "disabled" : state;
 
@@ -158,12 +170,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     // Handle password visibility toggle
     const handlePasswordToggle = () => {
+      console.log("Toggle clicked! Current state:", {
+        passwordVisible,
+        internalPasswordVisible,
+        hasExternalHandler: !!onPasswordVisibilityChange,
+      });
+
       if (onPasswordVisibilityChange) {
         // External controlled mode
+        console.log("Calling external handler with:", !passwordVisible);
         onPasswordVisibilityChange(!passwordVisible);
       } else {
         // Internal controlled mode
-        setInternalPasswordVisible(!internalPasswordVisible);
+        console.log("Setting internal state to:", !passwordVisible);
+        setInternalPasswordVisible(!passwordVisible);
       }
     };
 
@@ -172,6 +192,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type === "password" && showPasswordToggle !== false;
     const effectiveType =
       type === "password" && passwordVisible ? "text" : type;
+
+    console.log("Input render state:", {
+      type,
+      passwordVisible,
+      effectiveType,
+      shouldShowPasswordToggle,
+    });
 
     // Build CSS classes
     const inputClasses = combineClassNames(
@@ -199,6 +226,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           required={required}
           name={name}
           id={id}
+          onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+          onFocus={onFocus}
+          onBlur={onBlur}
           className={inputClasses}
           style={sxStyle}
         />

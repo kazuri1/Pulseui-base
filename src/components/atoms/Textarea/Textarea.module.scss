@@ -6,7 +6,7 @@
   gap: var(--spacing-xs);
   width: 100%;
   font-family: var(--font-family);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .label {
@@ -34,10 +34,11 @@
   line-height: var(--line-height-sm);
   padding: var(--spacing-sm) var(--spacing-md);
   resize: vertical;
-  transition: all 0.2s ease-in-out;
+  transition: none;
   outline: none;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: auto;
+  min-height: 100px;
 
   // Remove default browser styles
   &::-webkit-scrollbar {
@@ -67,12 +68,14 @@
   // Focus styles
   &:focus {
     border-color: var(--color-input-border-focus);
-    box-shadow: 0 0 0 var(--border-width-thin) var(--color-input-border-focus);
+    box-shadow: 0 0 0 2px var(--color-input-border-focus);
+    transition: none;
   }
 
   // Hover styles
   &:hover:not(:disabled) {
     border-color: var(--color-border-primary);
+    transition: none;
   }
 
   // Disabled styles

@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import { Button } from "./components/atoms/Button";
 import { ThemeProvider, useTheme } from "./components/ThemeProvider";
 import { SxPropsExample } from "./components/examples/SxPropsExample";
+import { PasswordInputExample } from "./components/examples/PasswordInputExample";
 
 function AppContent() {
   const [count, setCount] = useState(0);
@@ -89,6 +90,11 @@ function AppContent() {
         {/* SX Props Example */}
         <div style={{ marginBottom: "32px" }}>
           <SxPropsExample />
+        </div>
+
+        {/* Password Input Example */}
+        <div style={{ marginBottom: "32px" }}>
+          <PasswordInputExample />
         </div>
 
         {/* Demo Section */}

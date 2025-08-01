@@ -38,7 +38,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   required = false,
   placeholder,
   caption,
-  value,
+  value = "",
   disabled = false,
   name,
   id,
@@ -55,7 +55,9 @@ export const Textarea: React.FC<TextareaProps> = ({
     id || name || `textarea-${Math.random().toString(36).substr(2, 9)}`;
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onChange?.(event.target.value);
+    if (onChange) {
+      onChange(event.target.value);
+    }
   };
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
@@ -73,8 +75,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 
   const containerClasses = combineClassNames(
     styles.root,
-    disabled && styles.disabled,
-    sxClassName
+    disabled && styles.disabled
   );
 
   return (
@@ -107,3 +108,5 @@ export const Textarea: React.FC<TextareaProps> = ({
     </div>
   );
 };
+
+Textarea.displayName = "Textarea";
