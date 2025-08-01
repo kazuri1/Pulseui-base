@@ -170,19 +170,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     // Handle password visibility toggle
     const handlePasswordToggle = () => {
-      console.log("Toggle clicked! Current state:", {
-        passwordVisible,
-        internalPasswordVisible,
-        hasExternalHandler: !!onPasswordVisibilityChange,
-      });
-
       if (onPasswordVisibilityChange) {
         // External controlled mode
-        console.log("Calling external handler with:", !passwordVisible);
         onPasswordVisibilityChange(!passwordVisible);
       } else {
         // Internal controlled mode
-        console.log("Setting internal state to:", !passwordVisible);
         setInternalPasswordVisible(!passwordVisible);
       }
     };
@@ -193,12 +185,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const effectiveType =
       type === "password" && passwordVisible ? "text" : type;
 
-    console.log("Input render state:", {
-      type,
-      passwordVisible,
-      effectiveType,
-      shouldShowPasswordToggle,
-    });
+
 
     // Build CSS classes
     const inputClasses = combineClassNames(

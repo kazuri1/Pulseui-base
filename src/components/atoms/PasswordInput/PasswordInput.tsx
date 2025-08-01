@@ -65,19 +65,11 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
       : internalPasswordVisible;
 
   const handlePasswordToggle = () => {
-    console.log("PasswordInput handlePasswordToggle called:", {
-      passwordVisible,
-      internalPasswordVisible,
-      hasExternalHandler: !!onPasswordVisibilityChange,
-    });
-
     if (onPasswordVisibilityChange) {
       // External controlled mode
-      console.log("Calling external handler with:", !passwordVisible);
       onPasswordVisibilityChange(!passwordVisible);
     } else {
       // Internal controlled mode
-      console.log("Setting internal state to:", !passwordVisible);
       setInternalPasswordVisible(!passwordVisible);
     }
   };
