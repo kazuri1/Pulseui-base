@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextInput } from "../TextInput";
 import type { WithSxProps } from "../../../utils/sxUtils";
+import classNames from "classnames";
 
 export interface PasswordInputProps extends WithSxProps {
   /** Input label */

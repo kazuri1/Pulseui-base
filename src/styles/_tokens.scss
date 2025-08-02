@@ -203,6 +203,11 @@
     var(--motion-easing-bounce);
   --motion-transition-elastic: all var(--motion-duration-slow)
     var(--motion-easing-elastic);
+
+  // Transform and shadow tokens
+  --transform-hover: translateY(-1px);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-normal: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 // Dark mode colors (will be applied by ThemeProvider)

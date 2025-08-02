@@ -185,8 +185,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const effectiveType =
       type === "password" && passwordVisible ? "text" : type;
 
-
-
     // Build CSS classes
     const inputClasses = combineClassNames(
       styles.input,

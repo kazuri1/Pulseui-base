@@ -1,8 +1,8 @@
 @import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
 
 .root {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   gap: 2px;
   width: 100%;
   font-family: var(--font-family);
@@ -89,19 +89,13 @@ body.light .errorMessage {
 // Error state
 .root.error {
   .input {
-    border-color: var(--color-error);
-
-    &:focus {
-      border-color: var(--color-error);
-      box-shadow: 0 0 0 2px var(--color-error);
-    }
+    @include error-state;
   }
 }
 
 // Disabled state
 .root.disabled {
-  opacity: 0.6;
-  pointer-events: none;
+  @include disabled;
 
   .label {
     cursor: not-allowed;
