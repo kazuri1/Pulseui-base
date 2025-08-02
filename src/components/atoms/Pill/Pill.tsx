@@ -75,13 +75,13 @@ const getIconSize = (pillSize: string) => {
     case "sm":
       return "sm";
     case "md":
-      return "md";
+      return "sm";
     case "lg":
       return "md";
     case "xl":
       return "lg";
     default:
-      return "md";
+      return "sm";
   }
 };
 

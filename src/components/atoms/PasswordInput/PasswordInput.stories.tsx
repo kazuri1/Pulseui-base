@@ -16,6 +16,7 @@ const meta: Meta<typeof PasswordInput> = {
     disabled: { control: "boolean" },
     required: { control: "boolean" },
     showPasswordToggle: { control: "boolean" },
+    showStrengthMeter: { control: "boolean" },
     caption: { control: "text" },
     error: { control: "text" },
   },
@@ -166,6 +167,82 @@ export const AllStates: Story = {
           disabled
           value="password123"
         />
+      </div>
+    );
+  },
+};
+
+export const WithStrengthMeter: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+    return <PasswordInput {...args} value={value} onChange={setValue} />;
+  },
+  args: {
+    label: "Password",
+    placeholder: "Enter your password",
+    showStrengthMeter: true,
+  },
+};
+
+export const StrengthMeterExamples: Story = {
+  render: () => {
+    const [weakPassword, setWeakPassword] = useState("abc");
+    const [mediumPassword, setMediumPassword] = useState("abc123");
+    const [strongPassword, setStrongPassword] = useState("Abc123!@#");
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          width: "400px",
+        }}
+      >
+        <div>
+          <h3
+            style={{ marginBottom: "8px", fontSize: "16px", fontWeight: "600" }}
+          >
+            Weak Password
+          </h3>
+          <PasswordInput
+            label="Password"
+            placeholder="Enter your password"
+            value={weakPassword}
+            onChange={setWeakPassword}
+            showStrengthMeter={true}
+          />
+        </div>
+
+        <div>
+          <h3
+            style={{ marginBottom: "8px", fontSize: "16px", fontWeight: "600" }}
+          >
+            Medium Password
+          </h3>
+          <PasswordInput
+            label="Password"
+            placeholder="Enter your password"
+            value={mediumPassword}
+            onChange={setMediumPassword}
+            showStrengthMeter={true}
+          />
+        </div>
+
+        <div>
+          <h3
+            style={{ marginBottom: "8px", fontSize: "16px", fontWeight: "600" }}
+          >
+            Strong Password
+          </h3>
+          <PasswordInput
+            label="Password"
+            placeholder="Enter your password"
+            value={strongPassword}
+            onChange={setStrongPassword}
+            showStrengthMeter={true}
+          />
+        </div>
       </div>
     );
   },

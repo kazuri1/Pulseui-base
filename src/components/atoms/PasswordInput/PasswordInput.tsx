@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextInput } from "../TextInput";
+import { PasswordStrengthMeter } from "./PasswordStrengthMeter";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import classNames from "classnames";
 
@@ -34,6 +35,8 @@ export interface PasswordInputProps extends WithSxProps {
   passwordVisible?: boolean;
   /** Callback when password visibility changes */
   onPasswordVisibilityChange?: (visible: boolean) => void;
+  /** Whether to show password strength meter */
+  showStrengthMeter?: boolean;
 }
 
 export const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -53,6 +56,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   showPasswordToggle = true,
   passwordVisible: externalPasswordVisible,
   onPasswordVisibilityChange,
+  showStrengthMeter = false,
   sx,
   style,
 }) => {
@@ -76,27 +80,29 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   };
 
   return (
-    <TextInput
-      label={label}
-      required={required}
-      placeholder={placeholder}
-      caption={caption}
-      error={error}
-      value={value}
-      type="password"
-      disabled={disabled}
-      name={name}
-      id={id}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      showPasswordToggle={showPasswordToggle}
-      passwordVisible={passwordVisible}
-      onPasswordVisibilityChange={handlePasswordToggle}
-      className={className}
-      sx={sx}
-      style={style}
-    />
+    <div className={className}>
+      <TextInput
+        label={label}
+        required={required}
+        placeholder={placeholder}
+        caption={caption}
+        error={error}
+        value={value}
+        type="password"
+        disabled={disabled}
+        name={name}
+        id={id}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        showPasswordToggle={showPasswordToggle}
+        passwordVisible={passwordVisible}
+        onPasswordVisibilityChange={handlePasswordToggle}
+        sx={sx}
+        style={style}
+      />
+      {showStrengthMeter && value && <PasswordStrengthMeter password={value} />}
+    </div>
   );
 };
 
