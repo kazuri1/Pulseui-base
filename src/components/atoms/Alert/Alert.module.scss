@@ -1,0 +1,367 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  box-shadow: var(--shadow-sm);
+  border: var(--border-width-thin) solid transparent;
+  transition: var(--motion-transition-fast);
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    pointer-events: none;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+}
+
+.message {
+  line-height: var(--line-height-normal);
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  opacity: var(--opacity-70);
+  transition: var(--motion-transition-fast);
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus);
+    outline-offset: var(--outline-offset);
+  }
+
+  &:disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+  }
+}
+
+// Variants
+.variant-info {
+  &.style-default {
+    background-color: var(--color-blue-1);
+    color: var(--color-blue-9);
+    border-color: var(--color-blue-3);
+  }
+
+  &.style-filled {
+    background-color: var(--color-blue-6);
+    color: var(--color-white);
+    border-color: var(--color-blue-6);
+  }
+
+  &.style-light {
+    background-color: var(--color-blue-0);
+    color: var(--color-blue-8);
+    border-color: var(--color-blue-2);
+  }
+
+  &.style-outline {
+    background-color: transparent;
+    color: var(--color-blue-6);
+    border-color: var(--color-blue-6);
+  }
+
+  &.style-transparent {
+    background-color: transparent;
+    color: var(--color-blue-6);
+    border-color: transparent;
+  }
+
+  &.style-white {
+    background-color: var(--color-white);
+    color: var(--color-blue-6);
+    border-color: var(--color-blue-3);
+  }
+}
+
+.variant-success {
+  &.style-default {
+    background-color: var(--color-green-1);
+    color: var(--color-green-9);
+    border-color: var(--color-green-3);
+  }
+
+  &.style-filled {
+    background-color: var(--color-green-6);
+    color: var(--color-white);
+    border-color: var(--color-green-6);
+  }
+
+  &.style-light {
+    background-color: var(--color-green-0);
+    color: var(--color-green-8);
+    border-color: var(--color-green-2);
+  }
+
+  &.style-outline {
+    background-color: transparent;
+    color: var(--color-green-6);
+    border-color: var(--color-green-6);
+  }
+
+  &.style-transparent {
+    background-color: transparent;
+    color: var(--color-green-6);
+    border-color: transparent;
+  }
+
+  &.style-white {
+    background-color: var(--color-white);
+    color: var(--color-green-6);
+    border-color: var(--color-green-3);
+  }
+}
+
+.variant-warning {
+  &.style-default {
+    background-color: var(--color-yellow-1);
+    color: var(--color-yellow-9);
+    border-color: var(--color-yellow-3);
+  }
+
+  &.style-filled {
+    background-color: var(--color-yellow-6);
+    color: var(--color-white);
+    border-color: var(--color-yellow-6);
+  }
+
+  &.style-light {
+    background-color: var(--color-yellow-0);
+    color: var(--color-yellow-8);
+    border-color: var(--color-yellow-2);
+  }
+
+  &.style-outline {
+    background-color: transparent;
+    color: var(--color-yellow-6);
+    border-color: var(--color-yellow-6);
+  }
+
+  &.style-transparent {
+    background-color: transparent;
+    color: var(--color-yellow-6);
+    border-color: transparent;
+  }
+
+  &.style-white {
+    background-color: var(--color-white);
+    color: var(--color-yellow-6);
+    border-color: var(--color-yellow-3);
+  }
+}
+
+.variant-error {
+  &.style-default {
+    background-color: var(--color-red-1);
+    color: var(--color-red-9);
+    border-color: var(--color-red-3);
+  }
+
+  &.style-filled {
+    background-color: var(--color-red-6);
+    color: var(--color-white);
+    border-color: var(--color-red-6);
+  }
+
+  &.style-light {
+    background-color: var(--color-red-0);
+    color: var(--color-red-8);
+    border-color: var(--color-red-2);
+  }
+
+  &.style-outline {
+    background-color: transparent;
+    color: var(--color-red-6);
+    border-color: var(--color-red-6);
+  }
+
+  &.style-transparent {
+    background-color: transparent;
+    color: var(--color-red-6);
+    border-color: transparent;
+  }
+
+  &.style-white {
+    background-color: var(--color-white);
+    color: var(--color-red-6);
+    border-color: var(--color-red-3);
+  }
+}
+
+// Sizes
+.size-xs {
+  padding: var(--spacing-xs);
+  gap: var(--spacing-xs);
+
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .title {
+    font-size: var(--font-size-xs);
+  }
+
+  .message {
+    font-size: var(--font-size-xs);
+  }
+
+  .closeButton {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.size-sm {
+  padding: var(--spacing-sm);
+  gap: var(--spacing-sm);
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .title {
+    font-size: var(--font-size-sm);
+  }
+
+  .message {
+    font-size: var(--font-size-sm);
+  }
+
+  .closeButton {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.size-md {
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .title {
+    font-size: var(--font-size-md);
+  }
+
+  .message {
+    font-size: var(--font-size-md);
+  }
+
+  .closeButton {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.size-lg {
+  padding: var(--spacing-lg);
+  gap: var(--spacing-lg);
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .title {
+    font-size: var(--font-size-lg);
+  }
+
+  .message {
+    font-size: var(--font-size-lg);
+  }
+
+  .closeButton {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.size-xl {
+  padding: var(--spacing-xl);
+  gap: var(--spacing-xl);
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .title {
+    font-size: var(--font-size-xl);
+  }
+
+  .message {
+    font-size: var(--font-size-xl);
+  }
+
+  .closeButton {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .alert {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .content {
+    gap: var(--spacing-xs);
+  }
+
+  .text {
+    gap: var(--spacing-xs);
+  }
+}
