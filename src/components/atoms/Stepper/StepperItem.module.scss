@@ -1,0 +1,68 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.stepperItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  user-select: none;
+}
+
+.asterisk {
+  color: var(--color-red-6);
+  margin-left: var(--spacing-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+// Size variants
+.size-xs {
+  gap: var(--spacing-xs);
+  
+  .label {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-tight);
+  }
+}
+
+.size-sm {
+  gap: var(--spacing-sm);
+  
+  .label {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+  }
+}
+
+.size-md {
+  gap: var(--spacing-sm);
+  
+  .label {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+  }
+}
+
+.size-lg {
+  gap: var(--spacing-md);
+  
+  .label {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
+  }
+}
+
+.size-xl {
+  gap: var(--spacing-md);
+  
+  .label {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+  }
+} 
