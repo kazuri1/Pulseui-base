@@ -1,0 +1,60 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.stepperIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: var(--border-width-thin) solid var(--color-border-primary);
+  transition: var(--motion-transition-fast);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+// Size variants
+.size-xs {
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+  font-size: var(--font-size-xs);
+}
+.size-sm {
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+}
+.size-md {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+  font-size: var(--font-size-md);
+}
+.size-lg {
+  width: var(--spacing-xxl);
+  height: var(--spacing-xxl);
+  font-size: var(--font-size-lg);
+}
+.size-xl {
+  width: calc(var(--spacing-xxl) + var(--spacing-md));
+  height: calc(var(--spacing-xxl) + var(--spacing-md));
+  font-size: var(--font-size-xl);
+}
+
+// Status variants
+.status-default {
+  background: var(--color-gray-1);
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+.status-active {
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  border-color: var(--color-blue-6);
+}
+.status-complete {
+  background: var(--color-blue-6);
+  color: var(--color-white);
+  border-color: var(--color-blue-6);
+}
