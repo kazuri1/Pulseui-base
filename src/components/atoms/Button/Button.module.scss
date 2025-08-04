@@ -44,7 +44,7 @@
   &.variant-filled {
     background-color: var(--color-blue-8);
     color: var(--color-white);
-    border: 1px solid var(--color-blue-8);
+    border: var(--border-width-thin) solid var(--color-blue-8);
 
     &:hover:not(:disabled) {
       background-color: var(--color-blue-9);
@@ -60,7 +60,7 @@
   &.variant-subtle {
     background-color: var(--color-gray-1);
     color: var(--color-blue-8);
-    border: 1px solid var(--color-gray-1);
+    border: var(--border-width-thin) solid var(--color-gray-1);
 
     &:hover:not(:disabled) {
       background-color: var(--color-gray-2);
@@ -90,7 +90,7 @@
   &.variant-outline {
     background-color: transparent;
     color: var(--color-blue-8);
-    border: 1px solid var(--color-blue-8);
+    border: var(--border-width-thin) solid var(--color-blue-8);
 
     &:hover:not(:disabled) {
       background-color: var(--color-blue-0);
@@ -106,7 +106,7 @@
   &.variant-white {
     background-color: var(--color-white);
     color: var(--color-blue-8);
-    border: 1px solid var(--color-gray-3);
+    border: var(--border-width-thin) solid var(--color-gray-3);
 
     &:hover:not(:disabled) {
       background-color: var(--color-gray-0);
@@ -122,7 +122,7 @@
   &.variant-default {
     background-color: var(--color-white);
     color: var(--color-black);
-    border: 1px solid var(--color-gray-3);
+    border: var(--border-width-thin) solid var(--color-gray-3);
 
     &:hover:not(:disabled) {
       background-color: var(--color-gray-0);

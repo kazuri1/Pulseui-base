@@ -41,7 +41,7 @@
 
 // Variant styles
 .variant-default {
-  border: 1px solid var(--color-input-border);
+  border: var(--border-width-thin) solid var(--color-input-border);
   background-color: var(--color-input-background);
   color: var(--color-input-text);
 
@@ -52,7 +52,7 @@
 
   &:focus {
     border-color: var(--color-input-border-focus);
-    box-shadow: 0 0 0 2px var(--color-border-focus);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-border-focus);
     transition: none;
   }
 
@@ -61,14 +61,14 @@
 
     &:focus {
       border-color: var(--color-error);
-      box-shadow: 0 0 0 2px var(--color-error);
+      box-shadow: 0 0 0 var(--border-width-normal) var(--color-error);
       transition: none;
     }
   }
 }
 
 .variant-filled {
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   background-color: var(--color-surface-secondary);
   color: var(--color-input-text);
 
@@ -80,7 +80,7 @@
   &:focus {
     background-color: var(--color-input-background);
     border-color: var(--color-input-border-focus);
-    box-shadow: 0 0 0 2px var(--color-input-border-focus);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-input-border-focus);
     transition: none;
   }
 
@@ -91,7 +91,7 @@
     &:focus {
       background-color: var(--color-input-background);
       border-color: var(--color-error);
-      box-shadow: 0 0 0 2px var(--color-error);
+      box-shadow: 0 0 0 var(--border-width-normal) var(--color-error);
       transition: none;
     }
   }
@@ -307,10 +307,12 @@
 .leftIcon {
   left: var(--spacing-icon);
   pointer-events: none;
+  padding: var(--spacing-xs);
 }
 
 .rightIcon {
   right: var(--spacing-icon);
+  padding: var(--spacing-xs);
 }
 
 // Adjust padding when icons are present
@@ -492,8 +494,8 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-border-focus);
-    outline-offset: 2px;
+    outline: var(--border-width-normal) solid var(--color-border-focus);
+    outline-offset: var(--border-width-normal);
     border-radius: var(--radius-sm);
   }
 }

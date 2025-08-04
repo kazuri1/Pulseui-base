@@ -6,7 +6,7 @@
   justify-content: flex-start;
   gap: var(--spacing-xs);
   background-color: var(--color-gray-1);
-  border: 1px solid var(--color-gray-3);
+  border: var(--border-width-thin) solid var(--color-gray-3);
   border-radius: var(--radius-full);
   font-family: var(--font-family);
   font-weight: var(--font-weight-normal);
@@ -151,8 +151,8 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-blue-6);
-    outline-offset: 2px;
+    outline: var(--border-width-normal) solid var(--color-blue-6);
+    outline-offset: var(--border-width-normal);
     border-radius: var(--radius-sm);
   }
 

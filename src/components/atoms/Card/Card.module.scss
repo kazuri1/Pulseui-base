@@ -1,0 +1,121 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: var(--border-width-thin) solid var(--color-gray-3);
+  overflow: hidden;
+  transition: var(--motion-transition-normal);
+  box-shadow: var(--shadow-normal);
+  max-width: calc(var(--spacing-xl) * 12.5);
+  width: 100%;
+
+  &:hover:not(.disabled) {
+    box-shadow: var(--shadow-hover);
+    transform: var(--transform-hover);
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover:not(.disabled) {
+      box-shadow: var(--shadow-hover);
+      transform: var(--transform-hover);
+    }
+
+    &:active:not(.disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-normal);
+    }
+  }
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  height: calc(var(--spacing-xl) * 6.25);
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.description {
+  margin: 0;
+  margin-top: var(--spacing-xs);
+}
+
+.buttonContainer {
+  margin-top: var(--spacing-sm);
+
+  // Make button full width
+  :global(.button) {
+    width: 100%;
+  }
+}
+
+.customContent {
+  margin-top: var(--spacing-md);
+
+  // Remove margin from first child to avoid double spacing
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  // Remove margin from last child if button follows
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .content {
+    padding: var(--spacing-md);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .title {
+    // Title styling is now handled by Text component
+  }
+}

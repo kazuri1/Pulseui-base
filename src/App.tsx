@@ -5,6 +5,10 @@ import { Button } from "./components/atoms/Button";
 import { ThemeProvider, useTheme } from "./components/ThemeProvider";
 import { SxPropsExample } from "./components/examples/SxPropsExample";
 import { PasswordInputExample } from "./components/examples/PasswordInputExample";
+import { BadgeExample } from "./components/examples/BadgeExample";
+import { ImageExample } from "./components/examples/ImageExample";
+import { CardExample } from "./components/examples/CardExample";
+import { RadioExample } from "./components/examples/RadioExample";
 
 function AppContent() {
   const [count, setCount] = useState(0);
@@ -95,6 +99,26 @@ function AppContent() {
         {/* Password Input Example */}
         <div style={{ marginBottom: "32px" }}>
           <PasswordInputExample />
+        </div>
+
+        {/* Badge Example */}
+        <div style={{ marginBottom: "32px" }}>
+          <BadgeExample />
+        </div>
+
+        {/* Image Example */}
+        <div style={{ marginBottom: "32px" }}>
+          <ImageExample />
+        </div>
+
+        {/* Card Example */}
+        <div style={{ marginBottom: "32px" }}>
+          <CardExample />
+        </div>
+
+        {/* Radio Example */}
+        <div style={{ marginBottom: "32px" }}>
+          <RadioExample />
         </div>
 
         {/* Demo Section */}

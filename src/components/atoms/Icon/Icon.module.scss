@@ -6,7 +6,7 @@
   justify-content: center;
   flex-shrink: 0;
   transition: all 0.2s ease-in-out;
-  padding: var(--spacing-icon);
+  padding: 0;
 
   // Size variants
   &.size-xs {
@@ -20,28 +20,28 @@
     width: var(--icon-size-md);
     height: var(--icon-size-md);
     font-size: var(--icon-size-md);
-    padding: var(--spacing-icon);
+    padding: 0;
   }
 
   &.size-md {
     width: var(--icon-size-md);
     height: var(--icon-size-md);
     font-size: var(--icon-size-md);
-    padding: var(--spacing-icon);
+    padding: 0;
   }
 
   &.size-lg {
     width: var(--icon-size-lg);
     height: var(--icon-size-lg);
     font-size: var(--icon-size-lg);
-    padding: var(--spacing-icon);
+    padding: 0;
   }
 
   &.size-xl {
     width: var(--icon-size-xl);
     height: var(--icon-size-xl);
     font-size: var(--icon-size-xl);
-    padding: var(--spacing-icon);
+    padding: 0;
   }
 
   // Color variants

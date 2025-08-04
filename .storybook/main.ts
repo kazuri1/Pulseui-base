@@ -5,7 +5,6 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
@@ -16,6 +15,10 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  staticDirs: ["../public"],
+  viteFinal: async (config) => {
+    return config;
   },
 };
 export default config;

@@ -3,7 +3,7 @@
 
 .root {
   @include flex-column;
-  gap: 2px;
+  gap: var(--spacing-xs);
   width: 100%;
   font-family: var(--font-family);
 }

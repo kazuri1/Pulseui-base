@@ -1,0 +1,98 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.text {
+  margin: 0;
+  font-family: var(--font-family);
+  line-height: var(--line-height-md);
+  color: var(--color-gray-9);
+
+  // Typography variants using design tokens
+  &.variant-xs {
+    @include text-style(xs, normal);
+  }
+
+  &.variant-sm {
+    @include text-style(sm, normal);
+  }
+
+  &.variant-md {
+    @include text-style(md, normal);
+  }
+
+  &.variant-lg {
+    @include text-style(lg, normal);
+  }
+
+  &.variant-xl {
+    @include text-style(xl, normal);
+  }
+
+  &.variant-xxl {
+    @include text-style(xxl, normal);
+  }
+
+  // Color variants
+  &.color-primary {
+    color: var(--color-gray-9);
+  }
+
+  &.color-secondary {
+    color: var(--color-gray-7);
+  }
+
+  &.color-muted {
+    color: var(--color-gray-6);
+  }
+
+  &.color-success {
+    color: var(--color-green-7);
+  }
+
+  &.color-warning {
+    color: var(--color-yellow-7);
+  }
+
+  &.color-error {
+    color: var(--color-red-7);
+  }
+
+  // Weight variants
+  &.weight-normal {
+    font-weight: var(--font-weight-normal);
+  }
+
+  &.weight-medium {
+    font-weight: var(--font-weight-medium);
+  }
+
+  &.weight-semibold {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &.weight-bold {
+    font-weight: var(--font-weight-bold);
+  }
+
+  // Truncation using mixins
+  &.truncate {
+    @include text-truncate;
+  }
+
+  // Multi-line truncation using mixins
+  &.lines-1 {
+    @include text-truncate;
+  }
+
+  &.lines-2 {
+    @include text-multiline-truncate(2);
+  }
+
+  &.lines-3 {
+    @include text-multiline-truncate(3);
+  }
+
+  &.lines-4 {
+    @include text-multiline-truncate(4);
+  }
+}

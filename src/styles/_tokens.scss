@@ -117,6 +117,7 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
   --spacing-xxl: 48px;
+  --spacing-2xl: 64px;
   --spacing-icon: 10px;
 
   // Border radius
@@ -159,6 +160,30 @@
   --icon-size-md: 20px;
   --icon-size-lg: 24px;
   --icon-size-xl: 32px;
+
+  // Switch sizes
+  --switch-track-width-sm: 32px;
+  --switch-track-height-sm: 18px;
+  --switch-thumb-size-sm: 16px;
+  --switch-thumb-offset-sm: 1px;
+  --switch-thumb-translate-sm: 14px;
+
+  --switch-track-width-md: 44px;
+  --switch-track-height-md: 24px;
+  --switch-thumb-size-md: 20px;
+  --switch-thumb-offset-md: 2px;
+  --switch-thumb-translate-md: 20px;
+
+  --switch-track-width-lg: 56px;
+  --switch-track-height-lg: 30px;
+  --switch-thumb-size-lg: 24px;
+  --switch-thumb-offset-lg: 3px;
+  --switch-thumb-translate-lg: 26px;
+
+  // Border widths
+  --border-width-thin: 1px;
+  --border-width-normal: 2px;
+  --border-width-thick: 3px;
 
   // Opacity
   --opacity-0: 0;

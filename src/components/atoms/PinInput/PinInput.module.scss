@@ -28,7 +28,7 @@
 .digitInput {
   width: 48px;
   height: 48px;
-  border: 1px solid var(--color-gray-3);
+  border: var(--border-width-thin) solid var(--color-gray-3);
   border-radius: var(--radius-md);
   background-color: var(--color-white);
   text-align: center;
@@ -41,7 +41,7 @@
 
   &:focus {
     border-color: var(--color-blue-5);
-    box-shadow: 0 0 0 2px var(--color-blue-1);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-blue-1);
   }
 
   &:disabled {
@@ -52,12 +52,12 @@
 
   &.error {
     border-color: var(--color-red-5);
-    box-shadow: 0 0 0 2px var(--color-red-1);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-red-1);
   }
 
   &.focused {
     border-color: var(--color-blue-5);
-    box-shadow: 0 0 0 2px var(--color-blue-1);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-blue-1);
   }
 
   // Size variants

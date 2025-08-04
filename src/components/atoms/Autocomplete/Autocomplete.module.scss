@@ -56,17 +56,17 @@
   z-index: 1000;
   margin-top: var(--spacing-xs);
   background-color: var(--color-white);
-  border: 1px solid var(--color-gray-3);
+  border: var(--border-width-thin) solid var(--color-gray-3);
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-height: 240px;
+  box-shadow: var(--shadow-hover);
+  max-height: calc(var(--spacing-xl) * 7.5);
   overflow: hidden;
   animation: dropdownEnter var(--motion-duration-fast)
     var(--motion-easing-ease-out);
 }
 
 .optionsList {
-  max-height: 240px;
+  max-height: calc(var(--spacing-xl) * 7.5);
   overflow-y: auto;
   padding: var(--spacing-xs) 0;
 }
@@ -183,7 +183,7 @@
 // Scrollbar styling
 .optionsList {
   &::-webkit-scrollbar {
-    width: 6px;
+    width: var(--spacing-xs);
   }
 
   &::-webkit-scrollbar-track {

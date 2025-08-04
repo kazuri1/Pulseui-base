@@ -1,0 +1,301 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-full);
+  transition: var(--motion-transition-fast);
+  cursor: default;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+
+  &:hover:not(.disabled) {
+    transition: var(--motion-transition-fast);
+  }
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+}
+
+// Size variants
+.size-xs {
+  padding: calc(var(--spacing-xs) / 2) var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  min-height: 20px;
+  gap: calc(var(--spacing-xs) / 2);
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.size-sm {
+  padding: calc(var(--spacing-xs) / 2) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  min-height: 24px;
+  gap: var(--spacing-xs);
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.size-md {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  min-height: 28px;
+  gap: var(--spacing-xs);
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.size-lg {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  min-height: 32px;
+  gap: var(--spacing-sm);
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.size-xl {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  min-height: 40px;
+  gap: var(--spacing-md);
+
+  .dot {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// Variant styles
+.variant-dot {
+  background-color: var(--color-blue-8);
+  color: var(--color-white);
+  border: var(--border-width-thin) solid var(--color-blue-8);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-blue-9);
+    border-color: var(--color-blue-9);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-blue-7);
+    border-color: var(--color-blue-7);
+  }
+
+  .dot {
+    background-color: var(--color-white);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+}
+
+.variant-filled {
+  background-color: var(--color-blue-8);
+  color: var(--color-white);
+  border: var(--border-width-thin) solid var(--color-blue-8);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-blue-9);
+    border-color: var(--color-blue-9);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-blue-7);
+    border-color: var(--color-blue-7);
+  }
+}
+
+.variant-subtle {
+  background-color: var(--color-gray-1);
+  color: var(--color-blue-8);
+  border: var(--border-width-thin) solid var(--color-gray-1);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-gray-2);
+    border-color: var(--color-gray-2);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-gray-3);
+    border-color: var(--color-gray-3);
+  }
+}
+
+.variant-light {
+  background-color: transparent;
+  color: var(--color-blue-8);
+  border: none;
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-blue-0);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-blue-1);
+  }
+}
+
+.variant-outline {
+  background-color: transparent;
+  color: var(--color-blue-8);
+  border: var(--border-width-thin) solid var(--color-blue-8);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-blue-0);
+    border-color: var(--color-blue-9);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-blue-1);
+    border-color: var(--color-blue-7);
+  }
+}
+
+.variant-white {
+  background-color: var(--color-white);
+  color: var(--color-blue-8);
+  border: var(--border-width-thin) solid var(--color-gray-3);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-gray-0);
+    border-color: var(--color-gray-4);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-gray-1);
+    border-color: var(--color-gray-5);
+  }
+}
+
+.variant-default {
+  background-color: var(--color-white);
+  color: var(--color-gray-9);
+  border: 1px solid var(--color-gray-3);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-gray-0);
+    border-color: var(--color-gray-4);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-gray-1);
+    border-color: var(--color-gray-5);
+  }
+}
+
+// State styles
+.state-hover {
+  &:not(.disabled) {
+    @include interactive-hover;
+  }
+}
+
+.state-disabled {
+  @include disabled;
+}
+
+// Content styling
+.content {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: inherit;
+  align-self: center;
+}
+
+// Icon styles
+.left,
+.right {
+  flex-shrink: 0;
+  @include flex-center;
+  margin: 0;
+  padding: 0;
+
+  // Remove any padding from the icon component itself
+  :global(.MuiSvgIcon-root) {
+    padding: 0 !important;
+  }
+
+  // Target any SVG elements directly
+  svg {
+    padding: 0 !important;
+  }
+
+  // Override the Icon component's padding
+  :global(.icon) {
+    padding: 0 !important;
+  }
+
+  // Override all size variants of the Icon component
+  :global(.icon.size-xs),
+  :global(.icon.size-sm),
+  :global(.icon.size-md),
+  :global(.icon.size-lg),
+  :global(.icon.size-xl) {
+    padding: 0 !important;
+  }
+
+  // Target the dynamically generated icon class pattern
+  :global([class*="_icon_"]) {
+    padding: 0 !important;
+  }
+
+  // Target any element with icon in the class name
+  :global([class*="icon"]) {
+    padding: 0 !important;
+  }
+
+  // Specific override for the Icon component's CSS module class
+  // This targets the exact pattern: ._icon_[hash]
+  :global([class^="_icon_"]) {
+    padding: 0 !important;
+  }
+
+  // Additional override for any class that starts with underscore and contains icon
+  :global([class^="_"][class*="icon"]) {
+    padding: 0 !important;
+  }
+}
+
+// Dot styling
+.dot {
+  flex-shrink: 0;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: var(--spacing-xs);
+}

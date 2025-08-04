@@ -1,0 +1,69 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: var(--motion-transition-fast);
+  border-radius: inherit; // Inherit border radius from parent
+
+  // Ensure proper display
+  &[width] {
+    width: auto;
+  }
+
+  &[height] {
+    height: auto;
+  }
+
+  // Handle different object-fit values
+  &[style*="object-fit: fill"] {
+    object-fit: fill;
+  }
+
+  &[style*="object-fit: contain"] {
+    object-fit: contain;
+  }
+
+  &[style*="object-fit: cover"] {
+    object-fit: cover;
+  }
+
+  &[style*="object-fit: none"] {
+    object-fit: none;
+  }
+
+  &[style*="object-fit: scale-down"] {
+    object-fit: scale-down;
+  }
+
+  // Loading state
+  &[loading="lazy"] {
+    opacity: 0;
+    transition: opacity var(--motion-duration-normal)
+      var(--motion-easing-ease-out);
+
+    &.loaded {
+      opacity: 1;
+    }
+  }
+
+  // Error state styling
+  &.error {
+    background-color: var(--color-gray-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-6);
+    font-size: var(--font-size-sm);
+    min-height: 100px;
+    border-radius: inherit; // Inherit border radius for error state
+
+    &::before {
+      content: "⚠️";
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-xs);
+    }
+  }
+}

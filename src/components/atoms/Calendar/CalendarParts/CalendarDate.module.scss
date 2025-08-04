@@ -1,0 +1,279 @@
+@import "../../../../styles/_tokens.scss";
+@import "../../../../styles/_mixins.scss";
+
+.calendarDate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: var(--motion-transition-fast);
+  border-radius: var(--radius-sm);
+  user-select: none;
+
+  &:focus-visible {
+    outline: var(--border-width-normal) solid var(--color-border-focus);
+    outline-offset: var(--border-width-normal);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.dayNumber {
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  z-index: 1;
+}
+
+.indicator {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-red-6);
+  z-index: 2;
+}
+
+// Size variants
+.size-xs {
+  width: 24px;
+  height: 24px;
+  font-size: var(--font-size-xs);
+
+  .indicator {
+    width: 3px;
+    height: 3px;
+    top: 1px;
+    right: 1px;
+  }
+}
+
+.size-sm {
+  width: 28px;
+  height: 28px;
+  font-size: var(--font-size-sm);
+
+  .indicator {
+    width: 3px;
+    height: 3px;
+    top: 1px;
+    right: 1px;
+  }
+}
+
+.size-md {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-md);
+
+  .indicator {
+    width: 4px;
+    height: 4px;
+    top: 2px;
+    right: 2px;
+  }
+}
+
+.size-lg {
+  width: 36px;
+  height: 36px;
+  font-size: var(--font-size-lg);
+
+  .indicator {
+    width: 4px;
+    height: 4px;
+    top: 2px;
+    right: 2px;
+  }
+}
+
+.size-xl {
+  width: 40px;
+  height: 40px;
+  font-size: var(--font-size-xl);
+
+  .indicator {
+    width: 5px;
+    height: 5px;
+    top: 3px;
+    right: 3px;
+  }
+}
+
+// Variant styles
+.variant-default {
+  color: var(--color-gray-9);
+  background-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-gray-1);
+  }
+}
+
+.variant-holiday {
+  color: var(--color-red-7);
+  background-color: transparent;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-red-1);
+  }
+}
+
+.variant-disabled {
+  color: var(--color-gray-5);
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+.variant-text {
+  color: var(--color-gray-9);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-gray-1);
+  }
+}
+
+// Active state styles
+.active-off {
+  // Default state - no special styling
+}
+
+.active-initial {
+  background-color: var(--color-button-primary);
+  color: var(--color-white);
+
+  .indicator {
+    background-color: var(--color-white);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-button-primary-hover);
+  }
+}
+
+.active-end {
+  background-color: var(--color-blue-6);
+  color: var(--color-white);
+
+  .indicator {
+    background-color: var(--color-white);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-blue-7);
+  }
+}
+
+.active-passive {
+  background-color: var(--color-blue-1);
+  color: var(--color-blue-9);
+
+  .indicator {
+    background-color: var(--color-red-6);
+    opacity: 0.6;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-blue-2);
+  }
+}
+
+.active-selected {
+  background-color: var(--color-blue-6);
+  color: var(--color-white);
+
+  .indicator {
+    background-color: var(--color-white);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-blue-7);
+  }
+}
+
+// State variants
+.state-default {
+  // Default state styles are handled above
+}
+
+.state-hover {
+  &:hover:not(:disabled) {
+    background-color: var(--color-gray-1);
+  }
+
+  &.active-initial:hover:not(:disabled) {
+    background-color: var(--color-button-primary-hover);
+  }
+
+  &.active-end:hover:not(:disabled),
+  &.active-selected:hover:not(:disabled) {
+    background-color: var(--color-blue-7);
+  }
+
+  &.active-passive:hover:not(:disabled) {
+    background-color: var(--color-blue-2);
+  }
+}
+
+// Disabled state
+.stateDisabled {
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
+
+  .indicator {
+    opacity: var(--opacity-50);
+  }
+}
+
+// Focus styles for accessibility
+.calendarDate:focus-visible {
+  outline: var(--border-width-normal) solid var(--color-border-focus);
+  outline-offset: var(--border-width-normal);
+}
+
+// Weekend styles - Saturday and Sunday dates
+.weekend {
+  color: var(--color-red-6) !important;
+
+  // Override active states to maintain red color for weekend dates
+  &.active-initial {
+    color: var(--color-white) !important;
+  }
+
+  &.active-end {
+    color: var(--color-white) !important;
+  }
+
+  &.active-passive {
+    color: var(--color-blue-9) !important;
+  }
+
+  &.active-selected {
+    color: var(--color-white) !important;
+  }
+
+  // Override variant colors for weekend
+  &.variant-holiday {
+    color: var(--color-red-7) !important;
+  }
+
+  &.variant-disabled {
+    color: var(--color-gray-5) !important;
+  }
+
+  &.variant-text {
+    color: var(--color-red-6) !important;
+  }
+}

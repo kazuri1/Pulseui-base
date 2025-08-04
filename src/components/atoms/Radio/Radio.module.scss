@@ -1,0 +1,203 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family);
+  transition: var(--motion-transition-fast);
+
+  &:hover:not(.state-disabled) {
+    .radioButton {
+      border-color: var(--color-blue-6);
+    }
+  }
+
+  &.state-error:hover:not(.state-disabled) {
+    .radioButton {
+      border-color: var(--color-red-7);
+    }
+  }
+
+  &:focus-within {
+    .radioButton {
+      border-color: var(--color-blue-6);
+      box-shadow: 0 0 0 var(--border-width-normal) var(--color-blue-1);
+    }
+  }
+
+  &.state-error:focus-within {
+    .radioButton {
+      border-color: var(--color-red-6);
+      box-shadow: 0 0 0 var(--border-width-normal) var(--color-red-1);
+    }
+  }
+
+  &.labelLeft {
+    flex-direction: row-reverse;
+    gap: var(--spacing-xs);
+  }
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.radioButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-normal) solid var(--color-gray-4);
+  border-radius: 50%;
+  background-color: var(--color-white);
+  transition: var(--motion-transition-fast);
+  flex-shrink: 0;
+
+  .input:checked + & {
+    border-color: var(--color-blue-6);
+    background-color: var(--color-blue-6);
+
+    .radioDot {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .state-error .input:checked + & {
+    border-color: var(--color-red-6) !important;
+    background-color: var(--color-red-6) !important;
+  }
+
+  .input:disabled + & {
+    border-color: var(--color-gray-3);
+    background-color: var(--color-gray-1);
+    cursor: not-allowed;
+  }
+}
+
+.radioDot {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  opacity: 0;
+  transform: scale(0);
+  transition: var(--motion-transition-fast);
+}
+
+.label {
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--color-gray-9);
+  cursor: pointer;
+
+  .state-disabled & {
+    color: var(--color-gray-5);
+    cursor: not-allowed;
+  }
+
+  .state-error & {
+    color: var(--color-red-7);
+  }
+}
+
+// Size variants
+.size-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+
+  .radioButton {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+  }
+}
+
+.size-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+
+  .radioButton {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+  }
+}
+
+.size-md {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+
+  .radioButton {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+  }
+}
+
+.size-lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+
+  .radioButton {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+  }
+}
+
+.size-xl {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+
+  .radioButton {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+  }
+}
+
+// State variants
+.state-default {
+  // Default state styles are handled above
+}
+
+.state-disabled {
+  cursor: not-allowed;
+  opacity: var(--opacity-50);
+
+  &:hover {
+    .radioButton {
+      border-color: var(--color-gray-3);
+    }
+  }
+}
+
+.state-error {
+  .radioButton {
+    border-color: var(--color-red-6);
+
+    .input:checked + & {
+      border-color: var(--color-red-6) !important;
+      background-color: var(--color-red-6) !important;
+    }
+  }
+
+  &:hover:not(.state-disabled) {
+    .radioButton {
+      border-color: var(--color-red-7);
+    }
+  }
+
+  &:focus-within {
+    .radioButton {
+      border-color: var(--color-red-6);
+      box-shadow: 0 0 0 var(--border-width-normal) var(--color-red-1);
+    }
+  }
+}
