@@ -4,7 +4,7 @@ import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { Icon } from "../Icon";
-import { ChevronLeft, ChevronRight, MoreHoriz } from "../Icon/IconSet";
+import { ArrowBack, ArrowForward, MoreHoriz } from "../Icon/IconSet";
 
 export interface PaginationProps extends WithSxProps {
   /** Current page number (1-based) */
@@ -176,10 +176,10 @@ export const Pagination: React.FC<PaginationProps> = ({
             disabled={disabled || currentPage === 1}
             aria-label="Go to first page"
             type="button"
-          >
-            <Icon icon={ChevronLeft} />
-            <Icon icon={ChevronLeft} />
-          </button>
+                     >
+             <Icon icon={ArrowBack} />
+             <Icon icon={ArrowBack} />
+           </button>
         )}
 
         {showPrevNext && (
@@ -192,9 +192,9 @@ export const Pagination: React.FC<PaginationProps> = ({
             disabled={disabled || currentPage === 1}
             aria-label="Go to previous page"
             type="button"
-          >
-            <Icon icon={ChevronLeft} />
-          </button>
+                     >
+             <Icon icon={ArrowBack} />
+           </button>
         )}
 
         <div className={styles.pageNumbers}>
@@ -240,7 +240,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             aria-label="Go to next page"
             type="button"
           >
-            <Icon icon={ChevronRight} />
+            <Icon icon={ArrowForward} />
           </button>
         )}
 
@@ -256,8 +256,8 @@ export const Pagination: React.FC<PaginationProps> = ({
             aria-label="Go to last page"
             type="button"
           >
-            <Icon icon={ChevronRight} />
-            <Icon icon={ChevronRight} />
+            <Icon icon={ArrowForward} />
+            <Icon icon={ArrowForward} />
           </button>
         )}
       </div>
