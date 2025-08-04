@@ -240,8 +240,8 @@
   gap: var(--spacing-xs);
 
   .icon {
-    width: 12px;
-    height: 12px;
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
   }
 
   .title {
@@ -253,8 +253,8 @@
   }
 
   .closeButton {
-    width: 16px;
-    height: 16px;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
   }
 }
 
@@ -263,8 +263,8 @@
   gap: var(--spacing-sm);
 
   .icon {
-    width: 14px;
-    height: 14px;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
   }
 
   .title {
@@ -276,8 +276,8 @@
   }
 
   .closeButton {
-    width: 18px;
-    height: 18px;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
   }
 }
 
@@ -286,8 +286,8 @@
   gap: var(--spacing-md);
 
   .icon {
-    width: 16px;
-    height: 16px;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
   }
 
   .title {
@@ -299,8 +299,8 @@
   }
 
   .closeButton {
-    width: 20px;
-    height: 20px;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
   }
 }
 
@@ -309,8 +309,8 @@
   gap: var(--spacing-lg);
 
   .icon {
-    width: 18px;
-    height: 18px;
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
   }
 
   .title {
@@ -322,8 +322,8 @@
   }
 
   .closeButton {
-    width: 22px;
-    height: 22px;
+    width: var(--icon-size-lg);
+    height: var(--icon-size-lg);
   }
 }
 
@@ -332,8 +332,8 @@
   gap: var(--spacing-xl);
 
   .icon {
-    width: 20px;
-    height: 20px;
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
   }
 
   .title {
@@ -345,8 +345,8 @@
   }
 
   .closeButton {
-    width: 24px;
-    height: 24px;
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
   }
 }
 
