@@ -1,0 +1,75 @@
+# Development files
+.vscode/
+.cursor/
+*.log
+*.tsbuildinfo
+
+# Build outputs (except dist and types)
+build/
+storybook-static/
+
+# Development dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+coverage/
+.nyc_output/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+vitest.config.ts
+vitest.shims.d.ts
+
+# Storybook files
+.storybook/
+*.stories.tsx
+*.stories.ts
+
+# Development scripts
+vite.config.ts
+vite.lib.config.ts
+postcss.config.js
+tailwind.config.js
+eslint.config.js
+
+# Source maps (included in dist)
+*.map
+
+# Documentation (except README)
+docs/
+*.md
+!README.md
+
+# Git
+.git/
+.gitignore
+
+# Package files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Temporary files
+tmp/
+temp/ 

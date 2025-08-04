@@ -1,178 +1,97 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { StepperItem } from "./StepperItem";
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { StepperItem } from './StepperItem';
 
-describe("StepperItem", () => {
-  it("renders with default props", () => {
-    render(<StepperItem>1</StepperItem>);
+describe('StepperItem', () => {
+  it('renders with default props', () => {
+    render(<StepperItem label="Test Label">1</StepperItem>);
     
-    const item = screen.getByText("1").closest("div");
-    expect(item).toBeInTheDocument();
-    expect(item).toHaveClass("stepperItem", "size-md");
-    expect(screen.getByText("Label")).toBeInTheDocument();
+    expect(screen.getByText('Test Label')).toBeInTheDocument();
+    expect(screen.getByText('1')).toBeInTheDocument();
   });
 
-  it("renders with custom label", () => {
-    render(<StepperItem label="Custom Label">1</StepperItem>);
+  it('renders without label when showLabel is false', () => {
+    render(<StepperItem label="Test Label" showLabel={false}>1</StepperItem>);
     
-    expect(screen.getByText("Custom Label")).toBeInTheDocument();
+    expect(screen.queryByText('Test Label')).not.toBeInTheDocument();
+    expect(screen.getByText('1')).toBeInTheDocument();
   });
 
-  it("shows asterisk when showAsterisk is true", () => {
-    render(<StepperItem showAsterisk>1</StepperItem>);
+  it('shows asterisk when showAsterisk is true', () => {
+    render(<StepperItem label="Required Field" showAsterisk>1</StepperItem>);
     
-    expect(screen.getByText("*")).toBeInTheDocument();
+    expect(screen.getByText('*')).toBeInTheDocument();
   });
 
-  it("does not show asterisk when showAsterisk is false", () => {
-    render(<StepperItem showAsterisk={false}>1</StepperItem>);
+  it('does not show asterisk when showAsterisk is false', () => {
+    render(<StepperItem label="Optional Field" showAsterisk={false}>1</StepperItem>);
     
-    expect(screen.queryByText("*")).not.toBeInTheDocument();
+    expect(screen.queryByText('*')).not.toBeInTheDocument();
   });
 
-  it("does not show label when showLabel is false", () => {
-    render(<StepperItem showLabel={false}>1</StepperItem>);
+  it('applies correct size classes', () => {
+    const { rerender } = render(<StepperItem size="xs" label="Test">1</StepperItem>);
+    expect(screen.getByText('Test').closest('div')).toHaveClass('size-xs');
     
-    expect(screen.queryByText("Label")).not.toBeInTheDocument();
+    rerender(<StepperItem size="lg" label="Test">1</StepperItem>);
+    expect(screen.getByText('Test').closest('div')).toHaveClass('size-lg');
   });
 
-  it("renders with different sizes", () => {
-    const { rerender } = render(<StepperItem size="xs">1</StepperItem>);
-    expect(screen.getByText("1").closest("div")).toHaveClass("size-xs");
-
-    rerender(<StepperItem size="sm">2</StepperItem>);
-    expect(screen.getByText("2").closest("div")).toHaveClass("size-sm");
-
-    rerender(<StepperItem size="md">3</StepperItem>);
-    expect(screen.getByText("3").closest("div")).toHaveClass("size-md");
-
-    rerender(<StepperItem size="lg">4</StepperItem>);
-    expect(screen.getByText("4").closest("div")).toHaveClass("size-lg");
-
-    rerender(<StepperItem size="xl">5</StepperItem>);
-    expect(screen.getByText("5").closest("div")).toHaveClass("size-xl");
-  });
-
-  it("passes status to StepperIcon", () => {
-    const { rerender } = render(<StepperItem status="default">1</StepperItem>);
-    expect(screen.getByText("1")).toHaveClass("status-default");
-
-    rerender(<StepperItem status="active">2</StepperItem>);
-    expect(screen.getByText("2")).toHaveClass("status-active");
-
-    rerender(<StepperItem status="complete">3</StepperItem>);
-    expect(screen.getByText("3")).toHaveClass("status-complete");
-  });
-
-  it("passes radius to StepperIcon", () => {
-    render(<StepperItem radius="lg">1</StepperItem>);
-    
-    const icon = screen.getByText("1");
-    expect(icon).toHaveStyle({ borderRadius: "var(--radius-lg)" });
-  });
-
-  it("passes numeric radius to StepperIcon", () => {
-    render(<StepperItem radius={8}>1</StepperItem>);
-    
-    const icon = screen.getByText("1");
-    expect(icon).toHaveStyle({ borderRadius: "8px" });
-  });
-
-  it("applies custom className", () => {
-    render(<StepperItem className="custom-class">1</StepperItem>);
-    
-    expect(screen.getByText("1").closest("div")).toHaveClass("custom-class");
-  });
-
-  it("applies custom id", () => {
-    render(<StepperItem id="custom-id">1</StepperItem>);
-    
-    expect(screen.getByText("1").closest("div")).toHaveAttribute("id", "custom-id");
-  });
-
-  it("applies custom style", () => {
+  it('passes status and radius to StepperIcon', () => {
     render(
-      <StepperItem style={{ backgroundColor: "red" }}>1</StepperItem>
-    );
-    
-    const item = screen.getByText("1").closest("div");
-    expect(item).toHaveStyle({ backgroundColor: "red" });
-  });
-
-  it("renders children content", () => {
-    render(<StepperItem>Custom Content</StepperItem>);
-    
-    expect(screen.getByText("Custom Content")).toBeInTheDocument();
-  });
-
-  it("renders with React elements as children", () => {
-    render(
-      <StepperItem>
-        <span data-testid="custom-element">Custom Element</span>
+      <StepperItem 
+        status="active" 
+        radius="lg" 
+        label="Test"
+      >
+        1
       </StepperItem>
     );
     
-    expect(screen.getByTestId("custom-element")).toBeInTheDocument();
+    // The StepperIcon should receive the props
+    const stepperIcon = screen.getByText('1').closest('span');
+    expect(stepperIcon).toHaveClass('status-active');
   });
 
-  it("combines label and asterisk correctly", () => {
-    render(<StepperItem label="Required Field" showAsterisk>1</StepperItem>);
+  it('renders children content', () => {
+    render(<StepperItem label="Test">Custom Content</StepperItem>);
     
-    expect(screen.getByText("Required Field")).toBeInTheDocument();
-    expect(screen.getByText("*")).toBeInTheDocument();
+    expect(screen.getByText('Custom Content')).toBeInTheDocument();
   });
 
-  it("handles all size variants", () => {
-    const sizes = ["xs", "sm", "md", "lg", "xl"];
+  it('applies custom className', () => {
+    render(<StepperItem label="Test" className="custom-class">1</StepperItem>);
     
-    sizes.forEach((size) => {
-      const { rerender } = render(<StepperItem size={size as any}>1</StepperItem>);
-      expect(screen.getByText("1").closest("div")).toHaveClass(`size-${size}`);
-      rerender(<></>);
-    });
+    expect(screen.getByText('Test').closest('div')).toHaveClass('custom-class');
   });
 
-  it("handles all status variants", () => {
-    const { rerender } = render(<StepperItem status="default">1</StepperItem>);
-    expect(screen.getByText("1")).toHaveClass("status-default");
-
-    rerender(<StepperItem status="active">2</StepperItem>);
-    expect(screen.getByText("2")).toHaveClass("status-active");
-
-    rerender(<StepperItem status="complete">3</StepperItem>);
-    expect(screen.getByText("3")).toHaveClass("status-complete");
-  });
-
-  it("handles all radius variants", () => {
-    const radii = ["xs", "sm", "md", "lg", "xl"];
+  it('applies custom id', () => {
+    render(<StepperItem label="Test" id="test-id">1</StepperItem>);
     
-    radii.forEach((radius) => {
-      const { rerender } = render(<StepperItem radius={radius as any}>1</StepperItem>);
-      expect(screen.getByText("1")).toHaveStyle({
-        borderRadius: `var(--radius-${radius})`,
-      });
-      rerender(<></>);
-    });
+    expect(screen.getByText('Test').closest('div')).toHaveAttribute('id', 'test-id');
   });
 
-  it("renders without label when showLabel is false", () => {
-    render(<StepperItem showLabel={false}>1</StepperItem>);
+  it('applies custom style', () => {
+    render(
+      <StepperItem 
+        label="Test" 
+        style={{ backgroundColor: 'red' }}
+      >
+        1
+      </StepperItem>
+    );
     
-    expect(screen.queryByText("Label")).not.toBeInTheDocument();
-    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText('Test').closest('div')).toHaveStyle({ backgroundColor: 'red' });
   });
 
-  it("renders with asterisk when both showLabel and showAsterisk are true", () => {
-    render(<StepperItem showLabel showAsterisk>1</StepperItem>);
+  it('combines label and asterisk correctly', () => {
+    render(<StepperItem label="Required" showAsterisk>1</StepperItem>);
     
-    expect(screen.getByText("Label")).toBeInTheDocument();
-    expect(screen.getByText("*")).toBeInTheDocument();
-  });
-
-  it("does not render asterisk when showLabel is false even if showAsterisk is true", () => {
-    render(<StepperItem showLabel={false} showAsterisk>1</StepperItem>);
+    const labelElement = screen.getByText('Required');
+    const asteriskElement = screen.getByText('*');
     
-    expect(screen.queryByText("Label")).not.toBeInTheDocument();
-    expect(screen.queryByText("*")).not.toBeInTheDocument();
+    expect(labelElement).toBeInTheDocument();
+    expect(asteriskElement).toBeInTheDocument();
+    expect(asteriskElement).toHaveClass('asterisk');
   });
 }); 

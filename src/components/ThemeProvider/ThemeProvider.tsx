@@ -19,7 +19,7 @@ export const useTheme = () => {
   return context;
 };
 
-interface ThemeProviderProps {
+export interface ThemeProviderProps {
   children: React.ReactNode;
   initialTheme?: Theme;
 }
