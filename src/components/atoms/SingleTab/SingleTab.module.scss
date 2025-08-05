@@ -1,0 +1,227 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.tab {
+  @include flex-start;
+  @include interactive;
+  @include focus-visible;
+
+  position: relative;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  background: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  font-weight: var(--font-weight-normal);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+  border-radius: var(--radius-md);
+  min-height: 40px;
+  gap: var(--spacing-sm);
+
+  // Base content styles
+  .content {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // Icon styles
+  .leftIcon,
+  .rightIcon {
+    flex-shrink: 0;
+    @include flex-center;
+  }
+
+  .leftIcon {
+    margin-right: var(--spacing-xs);
+  }
+
+  .rightIcon {
+    margin-left: var(--spacing-xs);
+  }
+
+  // Variant styles
+  &.variant-default {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: none;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-gray-0);
+      color: var(--color-text-primary);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-gray-1);
+    }
+
+    // Default state with border line based on position
+    &.state-default {
+      // Top position - border at bottom
+      &.position-top {
+        border-bottom: var(--border-width-thin) solid var(--color-gray-3);
+        border-radius: 0;
+        padding-bottom: calc(var(--spacing-md) - var(--border-width-thin));
+      }
+
+      // Bottom position - border at top
+      &.position-bottom {
+        border-top: var(--border-width-thin) solid var(--color-gray-3);
+        border-radius: 0;
+        padding-top: calc(var(--spacing-md) - var(--border-width-thin));
+      }
+
+      // Left position - border at right
+      &.position-left {
+        border-right: var(--border-width-thin) solid var(--color-gray-3);
+        border-radius: 0;
+        padding-right: calc(var(--spacing-md) - var(--border-width-thin));
+      }
+
+      // Right position - border at left
+      &.position-right {
+        border-left: var(--border-width-thin) solid var(--color-gray-3);
+        border-radius: 0;
+        padding-left: calc(var(--spacing-md) - var(--border-width-thin));
+      }
+    }
+
+    // Selected state with underline - position affects underline location
+    &.state-selected {
+      color: var(--color-blue-8);
+      background-color: transparent;
+
+      // Top position - underline at bottom
+      &.position-top {
+        border-bottom: var(--border-width-normal) solid var(--color-blue-8);
+        border-radius: 0;
+        padding-bottom: calc(var(--spacing-md) - var(--border-width-normal));
+      }
+
+      // Bottom position - underline at top
+      &.position-bottom {
+        border-top: var(--border-width-normal) solid var(--color-blue-8);
+        border-radius: 0;
+        padding-top: calc(var(--spacing-md) - var(--border-width-normal));
+      }
+
+      // Left position - underline at right
+      &.position-left {
+        border-right: var(--border-width-normal) solid var(--color-blue-8);
+        border-radius: 0;
+        padding-right: calc(var(--spacing-md) - var(--border-width-normal));
+      }
+
+      // Right position - underline at left
+      &.position-right {
+        border-left: var(--border-width-normal) solid var(--color-blue-8);
+        border-radius: 0;
+        padding-left: calc(var(--spacing-md) - var(--border-width-normal));
+      }
+
+      &:hover:not(:disabled) {
+        background-color: var(--color-blue-0);
+      }
+    }
+  }
+
+  &.variant-pill {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: none;
+    border-radius: var(--radius-full);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-gray-0);
+      color: var(--color-text-primary);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-gray-1);
+    }
+
+    // Selected state with filled background
+    &.state-selected {
+      background-color: var(--color-blue-8);
+      color: var(--color-white);
+
+      &:hover:not(:disabled) {
+        background-color: var(--color-blue-9);
+      }
+
+      .leftIcon,
+      .rightIcon {
+        color: var(--color-white);
+      }
+    }
+  }
+
+  // Position styles
+  &.position-top {
+    // Default horizontal layout
+  }
+
+  &.position-bottom {
+    // Same as top for now, but can be customized
+  }
+
+  &.position-left {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: auto;
+
+    .leftIcon {
+      margin-right: 0;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .rightIcon {
+      margin-left: 0;
+      margin-top: var(--spacing-xs);
+    }
+  }
+
+  &.position-right {
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: auto;
+
+    .leftIcon {
+      margin-right: 0;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .rightIcon {
+      margin-left: 0;
+      margin-top: var(--spacing-xs);
+    }
+  }
+
+  // State styles
+  &.state-hover {
+    &:not(:disabled) {
+      @include interactive-hover;
+    }
+  }
+
+  &.state-disabled {
+    @include disabled;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  // Disabled state
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

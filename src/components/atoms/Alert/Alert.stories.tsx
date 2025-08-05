@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Alert } from "./Alert";
 
 const meta: Meta<typeof Alert> = {
-  title: "Atoms/Alert/Alert",
+  title: "Components/Alert",
   component: Alert,
   parameters: {
     layout: "centered",
@@ -16,7 +16,14 @@ const meta: Meta<typeof Alert> = {
     },
     styleVariant: {
       control: { type: "select" },
-      options: ["default", "filled", "light", "outline", "transparent", "white"],
+      options: [
+        "default",
+        "filled",
+        "light",
+        "outline",
+        "transparent",
+        "white",
+      ],
     },
     size: {
       control: { type: "select" },
@@ -113,7 +120,11 @@ export const AllStyles: Story = {
 
       <div>
         <h4 style={{ marginBottom: "8px" }}>Transparent Style:</h4>
-        <Alert variant="info" styleVariant="transparent" title="Transparent Alert">
+        <Alert
+          variant="info"
+          styleVariant="transparent"
+          title="Transparent Alert"
+        >
           This is a transparent style alert with no background.
         </Alert>
       </div>
@@ -289,48 +300,104 @@ export const AllVariantsAndStyles: Story = {
       <div>
         <h3 style={{ marginBottom: "16px" }}>Info Variant - All Styles</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Alert variant="info" styleVariant="default" title="Default">Default info alert</Alert>
-          <Alert variant="info" styleVariant="filled" title="Filled">Filled info alert</Alert>
-          <Alert variant="info" styleVariant="light" title="Light">Light info alert</Alert>
-          <Alert variant="info" styleVariant="outline" title="Outline">Outline info alert</Alert>
-          <Alert variant="info" styleVariant="transparent" title="Transparent">Transparent info alert</Alert>
-          <Alert variant="info" styleVariant="white" title="White">White info alert</Alert>
+          <Alert variant="info" styleVariant="default" title="Default">
+            Default info alert
+          </Alert>
+          <Alert variant="info" styleVariant="filled" title="Filled">
+            Filled info alert
+          </Alert>
+          <Alert variant="info" styleVariant="light" title="Light">
+            Light info alert
+          </Alert>
+          <Alert variant="info" styleVariant="outline" title="Outline">
+            Outline info alert
+          </Alert>
+          <Alert variant="info" styleVariant="transparent" title="Transparent">
+            Transparent info alert
+          </Alert>
+          <Alert variant="info" styleVariant="white" title="White">
+            White info alert
+          </Alert>
         </div>
       </div>
 
       <div>
         <h3 style={{ marginBottom: "16px" }}>Success Variant - All Styles</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Alert variant="success" styleVariant="default" title="Default">Default success alert</Alert>
-          <Alert variant="success" styleVariant="filled" title="Filled">Filled success alert</Alert>
-          <Alert variant="success" styleVariant="light" title="Light">Light success alert</Alert>
-          <Alert variant="success" styleVariant="outline" title="Outline">Outline success alert</Alert>
-          <Alert variant="success" styleVariant="transparent" title="Transparent">Transparent success alert</Alert>
-          <Alert variant="success" styleVariant="white" title="White">White success alert</Alert>
+          <Alert variant="success" styleVariant="default" title="Default">
+            Default success alert
+          </Alert>
+          <Alert variant="success" styleVariant="filled" title="Filled">
+            Filled success alert
+          </Alert>
+          <Alert variant="success" styleVariant="light" title="Light">
+            Light success alert
+          </Alert>
+          <Alert variant="success" styleVariant="outline" title="Outline">
+            Outline success alert
+          </Alert>
+          <Alert
+            variant="success"
+            styleVariant="transparent"
+            title="Transparent"
+          >
+            Transparent success alert
+          </Alert>
+          <Alert variant="success" styleVariant="white" title="White">
+            White success alert
+          </Alert>
         </div>
       </div>
 
       <div>
         <h3 style={{ marginBottom: "16px" }}>Warning Variant - All Styles</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Alert variant="warning" styleVariant="default" title="Default">Default warning alert</Alert>
-          <Alert variant="warning" styleVariant="filled" title="Filled">Filled warning alert</Alert>
-          <Alert variant="warning" styleVariant="light" title="Light">Light warning alert</Alert>
-          <Alert variant="warning" styleVariant="outline" title="Outline">Outline warning alert</Alert>
-          <Alert variant="warning" styleVariant="transparent" title="Transparent">Transparent warning alert</Alert>
-          <Alert variant="warning" styleVariant="white" title="White">White warning alert</Alert>
+          <Alert variant="warning" styleVariant="default" title="Default">
+            Default warning alert
+          </Alert>
+          <Alert variant="warning" styleVariant="filled" title="Filled">
+            Filled warning alert
+          </Alert>
+          <Alert variant="warning" styleVariant="light" title="Light">
+            Light warning alert
+          </Alert>
+          <Alert variant="warning" styleVariant="outline" title="Outline">
+            Outline warning alert
+          </Alert>
+          <Alert
+            variant="warning"
+            styleVariant="transparent"
+            title="Transparent"
+          >
+            Transparent warning alert
+          </Alert>
+          <Alert variant="warning" styleVariant="white" title="White">
+            White warning alert
+          </Alert>
         </div>
       </div>
 
       <div>
         <h3 style={{ marginBottom: "16px" }}>Error Variant - All Styles</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <Alert variant="error" styleVariant="default" title="Default">Default error alert</Alert>
-          <Alert variant="error" styleVariant="filled" title="Filled">Filled error alert</Alert>
-          <Alert variant="error" styleVariant="light" title="Light">Light error alert</Alert>
-          <Alert variant="error" styleVariant="outline" title="Outline">Outline error alert</Alert>
-          <Alert variant="error" styleVariant="transparent" title="Transparent">Transparent error alert</Alert>
-          <Alert variant="error" styleVariant="white" title="White">White error alert</Alert>
+          <Alert variant="error" styleVariant="default" title="Default">
+            Default error alert
+          </Alert>
+          <Alert variant="error" styleVariant="filled" title="Filled">
+            Filled error alert
+          </Alert>
+          <Alert variant="error" styleVariant="light" title="Light">
+            Light error alert
+          </Alert>
+          <Alert variant="error" styleVariant="outline" title="Outline">
+            Outline error alert
+          </Alert>
+          <Alert variant="error" styleVariant="transparent" title="Transparent">
+            Transparent error alert
+          </Alert>
+          <Alert variant="error" styleVariant="white" title="White">
+            White error alert
+          </Alert>
         </div>
       </div>
     </div>

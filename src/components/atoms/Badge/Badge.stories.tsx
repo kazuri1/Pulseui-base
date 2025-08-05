@@ -3,7 +3,7 @@ import { Badge } from "./Badge";
 import { Add, Close, Search, Settings } from "../Icon/IconSet";
 
 const meta: Meta<typeof Badge> = {
-  title: "Atoms/Badge",
+  title: "Components/Badge",
   component: Badge,
   parameters: {
     layout: "centered",

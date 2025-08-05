@@ -3,7 +3,7 @@ import { useState } from "react";
 import { PasswordInput } from "./PasswordInput";
 
 const meta: Meta<typeof PasswordInput> = {
-  title: "Atoms/PasswordInput",
+  title: "Components/PasswordInput",
   component: PasswordInput,
   parameters: {
     layout: "centered",

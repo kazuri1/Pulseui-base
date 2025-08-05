@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { PillInput } from "./PillInput";
 
 const meta: Meta<typeof PillInput> = {
-  title: "Components/atoms/PillInput",
+  title: "Components/PillInput",
   component: PillInput,
   parameters: {
     layout: "padded",

@@ -13,7 +13,7 @@ import {
 } from "../Icon/IconSet";
 
 const meta: Meta<typeof ActionButton> = {
-  title: "Components/atoms/ActionButton",
+  title: "Components/ActionButton",
   component: ActionButton,
   parameters: {
     layout: "padded",

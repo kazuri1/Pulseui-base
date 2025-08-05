@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Pagination } from "./Pagination";
 
 const meta: Meta<typeof Pagination> = {
-  title: "Atoms/Pagination/Pagination",
+  title: "Components/Pagination",
   component: Pagination,
   parameters: {
     layout: "centered",
@@ -220,4 +220,4 @@ export const CustomStyling: Story = {
       borderRadius: "var(--radius-lg)",
     },
   },
-}; 
+};

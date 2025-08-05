@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Container } from "./Container";
 
 const meta: Meta<typeof Container> = {
-  title: "Components/layouts/Container",
+  title: "Components/Container",
   component: Container,
   parameters: {
     layout: "padded",

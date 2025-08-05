@@ -11,7 +11,7 @@ import {
 } from "../Icon/IconSet";
 
 const meta: Meta<typeof Avatar> = {
-  title: "Components/atoms/Avatar",
+  title: "Components/Avatar",
   component: Avatar,
   parameters: {
     layout: "padded",

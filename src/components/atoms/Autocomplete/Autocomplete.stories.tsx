@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Autocomplete } from "./Autocomplete";
 
 const meta: Meta<typeof Autocomplete> = {
-  title: "Components/atoms/Autocomplete",
+  title: "Components/Autocomplete",
   component: Autocomplete,
   parameters: {
     layout: "padded",

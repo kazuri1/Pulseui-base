@@ -3,7 +3,7 @@ import { useState } from "react";
 import { PinInput } from "./PinInput";
 
 const meta: Meta<typeof PinInput> = {
-  title: "Atoms/PinInput",
+  title: "Components/PinInput",
   component: PinInput,
   parameters: {
     layout: "centered",

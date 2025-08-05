@@ -1,17 +1,20 @@
 # PulseUI Base
 
-A modern React design system with TypeScript support, design tokens, and comprehensive component library.
+A modern React design system with TypeScript support, design tokens, comprehensive component library, advanced theming, animations, and error handling.
 
 ## 🚀 Features
 
 - **TypeScript First** - Full TypeScript support with comprehensive type definitions
 - **Design Tokens** - Consistent styling with CSS custom properties
+- **Advanced Theming** - Dynamic theme switching, custom themes, system preference detection
+- **Animation System** - 16+ animation types with scroll triggers and performance optimizations
+- **Error Handling** - Error boundaries, fallback UI, and performance monitoring
 - **Accessibility** - ARIA attributes and keyboard navigation built-in
 - **Responsive** - Mobile-first responsive design
 - **Tree Shakeable** - Only import what you use
 - **CSS Modules** - Scoped styling with SCSS support
 - **Icon Integration** - Material-UI icons included
-- **Theme Support** - Customizable theming system
+- **Performance** - Virtual scrolling, debouncing, and memory monitoring
 
 ## 📦 Installation
 
@@ -22,7 +25,7 @@ npm install pulseui-base
 ## 🎯 Quick Start
 
 ```tsx
-import { Button, Alert, Text } from 'pulseui-base';
+import { Button, Alert, Text } from "pulseui-base";
 
 function App() {
   return (
@@ -44,7 +47,7 @@ function App() {
 Import design tokens for consistent styling:
 
 ```css
-@import 'pulseui-base/tokens';
+@import "pulseui-base/tokens";
 ```
 
 Or use the CSS custom properties directly:
@@ -63,15 +66,17 @@ Or use the CSS custom properties directly:
 ### Core Components
 
 #### Button
+
 ```tsx
-import { Button } from 'pulseui-base';
+import { Button } from "pulseui-base";
 
 <Button variant="primary" size="md" disabled={false}>
   Click me
-</Button>
+</Button>;
 ```
 
 #### Input Components
+
 ```tsx
 import { TextInput, PasswordInput, Textarea } from 'pulseui-base';
 
@@ -81,17 +86,19 @@ import { TextInput, PasswordInput, Textarea } from 'pulseui-base';
 ```
 
 #### Alert
+
 ```tsx
-import { Alert } from 'pulseui-base';
+import { Alert } from "pulseui-base";
 
 <Alert variant="success" title="Success" closeable>
   Operation completed successfully!
-</Alert>
+</Alert>;
 ```
 
 #### Pagination
+
 ```tsx
-import { Pagination } from 'pulseui-base';
+import { Pagination } from "pulseui-base";
 
 <Pagination
   currentPage={1}
@@ -99,69 +106,74 @@ import { Pagination } from 'pulseui-base';
   onPageChange={(page) => console.log(page)}
   showFirstLast
   showPrevNext
-/>
+/>;
 ```
 
 #### Stepper
+
 ```tsx
-import { Stepper } from 'pulseui-base';
+import { Stepper } from "pulseui-base";
 
 const steps = [
-  { id: '1', content: '1', label: 'Step 1', status: 'complete' },
-  { id: '2', content: '2', label: 'Step 2', status: 'active' },
-  { id: '3', content: '3', label: 'Step 3', status: 'default' },
+  { id: "1", content: "1", label: "Step 1", status: "complete" },
+  { id: "2", content: "2", label: "Step 2", status: "active" },
+  { id: "3", content: "3", label: "Step 3", status: "default" },
 ];
 
-<Stepper steps={steps} size="md" showLabels />
+<Stepper steps={steps} size="md" showLabels />;
 ```
 
 ### Layout Components
 
 #### Grid System
+
 ```tsx
-import { Grid, GridCol } from 'pulseui-base';
+import { Grid, GridCol } from "pulseui-base";
 
 <Grid gap="md">
   <GridCol span={6}>Column 1</GridCol>
   <GridCol span={6}>Column 2</GridCol>
-</Grid>
+</Grid>;
 ```
 
 #### Stack
+
 ```tsx
-import { Stack } from 'pulseui-base';
+import { Stack } from "pulseui-base";
 
 <Stack gap="md" direction="vertical">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</Stack>
+</Stack>;
 ```
 
 ### Calendar Components
 
 ```tsx
-import { Calendar } from 'pulseui-base';
+import { Calendar } from "pulseui-base";
 
 <Calendar
   view="month"
   currentDate={new Date()}
   onDateSelect={(date) => console.log(date)}
-/>
+/>;
 ```
 
 ## 🎨 Theming
 
 ### Theme Provider
+
 ```tsx
-import { ThemeProvider } from 'pulseui-base';
+import { ThemeProvider } from "pulseui-base";
 
 <ThemeProvider>
   <App />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ### Custom CSS Variables
+
 ```css
 :root {
   --color-primary: #007bff;
@@ -192,24 +204,167 @@ Components include proper ARIA attributes and keyboard navigation:
 ## 🔧 Utilities
 
 ### SX Props
+
 ```tsx
-import { mergeSxWithStyles, combineClassNames } from 'pulseui-base';
+import { mergeSxWithStyles, combineClassNames } from "pulseui-base";
 
 const styles = mergeSxWithStyles(sx, style, className);
-const classes = combineClassNames('base-class', conditionalClass);
+const classes = combineClassNames("base-class", conditionalClass);
 ```
 
 ### Breakpoint Hook
+
 ```tsx
-import { useBreakpoint } from 'pulseui-base';
+import { useBreakpoint } from "pulseui-base";
 
 const breakpoint = useBreakpoint();
 // Returns: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 ```
 
+## 🎨 Advanced Features
+
+### Advanced Theming
+
+```tsx
+import { ThemeProvider, useTheme } from "pulseui-base";
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="portfolio" enableSystemPreference>
+      <YourApp />
+    </ThemeProvider>
+  );
+}
+
+function ThemeSwitcher() {
+  const { currentTheme, setTheme, addCustomTheme } = useTheme();
+
+  const addPortfolioTheme = () => {
+    addCustomTheme("portfolio", {
+      description: "Portfolio theme",
+      mode: {
+        light: {
+          primary: { type: "color", value: "#6366f1" },
+          secondary: { type: "color", value: "#f59e0b" },
+        },
+        dark: {
+          primary: { type: "color", value: "#818cf8" },
+          secondary: { type: "color", value: "#fbbf24" },
+        },
+      },
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={() => setTheme("default")}>Default</button>
+      <button onClick={() => setTheme("portfolio")}>Portfolio</button>
+      <button onClick={addPortfolioTheme}>Add Custom Theme</button>
+    </div>
+  );
+}
+```
+
+### Animation System
+
+```tsx
+import { Animation, useAnimation, useStaggerAnimation } from "pulseui-base";
+
+function AnimatedComponent() {
+  const { isAnimating, animate } = useAnimation({ type: "fade" });
+  const { animatedItems, startStagger } = useStaggerAnimation(5, 200);
+
+  return (
+    <div>
+      <Animation type="slide-up" trigger="scroll" duration="slow">
+        <Card>Scroll-triggered animation</Card>
+      </Animation>
+
+      <Animation type="fade" delay={100} trigger="mount">
+        <Text>Mount animation</Text>
+      </Animation>
+
+      <Button onClick={animate} disabled={isAnimating}>
+        {isAnimating ? "Animating..." : "Animate"}
+      </Button>
+    </div>
+  );
+}
+```
+
+### Error Handling
+
+```tsx
+import { ErrorBoundary, useErrorHandler } from "pulseui-base";
+
+function App() {
+  return (
+    <ErrorBoundary fallback={<div>Something went wrong</div>} showErrorDetails>
+      <YourApp />
+    </ErrorBoundary>
+  );
+}
+
+function ComponentWithError() {
+  const { error, handleError, resetError } = useErrorHandler();
+
+  const handleRiskyOperation = () => {
+    try {
+      // Risky operation
+    } catch (err) {
+      handleError(err);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={handleRiskyOperation}>Risky Operation</button>
+      {error && (
+        <div>
+          <p>Error: {error.message}</p>
+          <button onClick={resetError}>Reset</button>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+### Performance Optimization
+
+```tsx
+import {
+  usePerformanceMonitor,
+  useDebounce,
+  useVirtualScroll,
+} from "pulseui-base";
+
+function OptimizedComponent() {
+  const { metrics } = usePerformanceMonitor("MyComponent");
+  const debouncedValue = useDebounce(searchTerm, 300);
+
+  const { visibleItems, totalHeight, setScrollTop } = useVirtualScroll(
+    largeList,
+    { itemHeight: 50, containerHeight: 400 }
+  );
+
+  return (
+    <div>
+      <p>Render time: {metrics[metrics.length - 1]?.renderTime.toFixed(2)}ms</p>
+      <div style={{ height: totalHeight }}>
+        {visibleItems.map((item) => (
+          <div key={item.id}>{item.name}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
 ## 📚 Component Props
 
 ### Common Props
+
 All components support these common props:
 
 - `size`: `'xs' | 'sm' | 'md' | 'lg' | 'xl'`
@@ -219,10 +374,11 @@ All components support these common props:
 - `id`: `string`
 
 ### Button Props
+
 ```tsx
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   disabled?: boolean;
   loading?: boolean;
   children: React.ReactNode;
@@ -231,11 +387,18 @@ interface ButtonProps {
 ```
 
 ### Alert Props
+
 ```tsx
 interface AlertProps {
-  variant?: 'info' | 'success' | 'warning' | 'error';
-  styleVariant?: 'default' | 'filled' | 'light' | 'outline' | 'transparent' | 'white';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  variant?: "info" | "success" | "warning" | "error";
+  styleVariant?:
+    | "default"
+    | "filled"
+    | "light"
+    | "outline"
+    | "transparent"
+    | "white";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   title?: string;
   closeable?: boolean;
   children: React.ReactNode;
@@ -245,13 +408,14 @@ interface AlertProps {
 ## 🎯 Examples
 
 ### Form Example
+
 ```tsx
-import { TextInput, PasswordInput, Button, Alert } from 'pulseui-base';
+import { TextInput, PasswordInput, Button, Alert } from "pulseui-base";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   return (
     <form onSubmit={handleSubmit}>
@@ -281,8 +445,9 @@ function LoginForm() {
 ```
 
 ### Dashboard Example
+
 ```tsx
-import { Grid, Card, Text, Button, Alert } from 'pulseui-base';
+import { Grid, Card, Text, Button, Alert } from "pulseui-base";
 
 function Dashboard() {
   return (
@@ -292,14 +457,14 @@ function Dashboard() {
           Welcome to your dashboard!
         </Alert>
       </GridCol>
-      
+
       <GridCol span={6}>
         <Card>
           <Text variant="h3">Statistics</Text>
           <Text>Your stats here</Text>
         </Card>
       </GridCol>
-      
+
       <GridCol span={6}>
         <Card>
           <Text variant="h3">Actions</Text>
@@ -314,6 +479,7 @@ function Dashboard() {
 ## 🔧 Development
 
 ### Local Development
+
 ```bash
 git clone https://github.com/kazuri1/Pulseui.git
 cd pulseui-v1.0
@@ -322,16 +488,19 @@ npm run dev
 ```
 
 ### Storybook
+
 ```bash
 npm run storybook
 ```
 
 ### Testing
+
 ```bash
 npm test
 ```
 
 ### Building
+
 ```bash
 npm run build
 ```

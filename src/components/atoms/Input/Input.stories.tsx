@@ -5,7 +5,7 @@ import { Info, ArrowDropDown, Search, FilterList } from "../Icon/IconSet";
 import { Icon } from "../Icon/index";
 
 const meta: Meta<typeof Input> = {
-  title: "Components/atoms/Input",
+  title: "Components/Input",
   component: Input,
   parameters: {
     layout: "padded",

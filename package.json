@@ -1,7 +1,7 @@
 {
   "name": "pulseui-base",
-  "version": "1.0.0",
-  "description": "A modern React design system with TypeScript support, design tokens, and comprehensive component library",
+  "version": "1.1.0",
+  "description": "A modern React design system with TypeScript support, design tokens, comprehensive component library, advanced theming, animations, and error handling",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -95,7 +95,11 @@
     "scss",
     "design-tokens",
     "accessibility",
-    "responsive"
+    "responsive",
+    "theming",
+    "animations",
+    "error-handling",
+    "performance"
   ],
   "author": "Kazuri",
   "license": "MIT",
