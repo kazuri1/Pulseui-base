@@ -1,0 +1,268 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.tabs {
+  display: flex;
+  font-family: var(--font-family);
+  transition: all var(--transition-duration) ease;
+
+  // Horizontal orientation
+  &.orientation-horizontal {
+    flex-direction: column;
+
+    .tabsList {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .tabsPanel {
+      flex: 1;
+    }
+
+    // Placement variants for horizontal orientation
+    &.placement-left {
+      flex-direction: column;
+    }
+
+    &.placement-right {
+      flex-direction: column-reverse;
+
+      .tabsList {
+        order: 2;
+        margin-bottom: 0;
+        margin-top: var(--spacing-md);
+      }
+
+      .tabsPanel {
+        order: 1;
+      }
+    }
+  }
+
+  // Vertical orientation
+  &.orientation-vertical {
+    flex-direction: row;
+    gap: var(--spacing-lg);
+
+    .tabsList {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+      min-width: 200px;
+    }
+
+    .tabsPanel {
+      flex: 1;
+    }
+
+    // Placement variants for vertical orientation
+    &.placement-left {
+      flex-direction: row;
+    }
+
+    &.placement-right {
+      flex-direction: row-reverse;
+
+      .tabsList {
+        order: 2;
+      }
+
+      .tabsPanel {
+        order: 1;
+      }
+    }
+  }
+}
+
+.tabsList {
+  display: flex;
+  gap: var(--spacing-xs);
+  border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
+
+  // Orientation variants
+  &.orientation-horizontal {
+    flex-direction: row;
+  }
+
+  &.orientation-vertical {
+    flex-direction: column;
+    border-bottom: none;
+    border-right: var(--border-width-thin) solid var(--color-border-secondary);
+  }
+
+  // Border position variants for horizontal orientation
+  .tabs.orientation-horizontal.borderPosition-top & {
+    border-bottom: none;
+    border-top: var(--border-width-thin) solid var(--color-border-secondary);
+  }
+
+  .tabs.orientation-horizontal.borderPosition-bottom & {
+    border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
+    border-top: none;
+  }
+
+  // Placement variants for horizontal orientation (overrides border position)
+  .tabs.orientation-horizontal.placement-right & {
+    border-bottom: none;
+    border-top: var(--border-width-thin) solid var(--color-border-secondary);
+  }
+
+  // Grow variant
+  &.grow {
+    .tab {
+      flex: 1;
+    }
+  }
+
+  // Justify variants
+  &.justify-flex-start {
+    justify-content: flex-start;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-flex-end {
+    justify-content: flex-end;
+  }
+
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+
+  &.justify-space-around {
+    justify-content: space-around;
+  }
+
+  &.justify-space-evenly {
+    justify-content: space-evenly;
+  }
+}
+
+.tab {
+  cursor: pointer;
+  transition: all var(--transition-duration) ease;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+
+  &:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-focus);
+    outline-offset: var(--spacing-xs);
+  }
+
+  &.active {
+    // Active tab styling is handled by SingleTab component
+  }
+
+  // Vertical tab specific styling
+  .tabsList.orientation-vertical & {
+    width: 100%;
+  }
+}
+
+// Vertical tab styling
+.verticalTab {
+  .tab {
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+    padding: var(--spacing-md) var(--spacing-lg) !important;
+    min-height: 40px !important;
+    width: 100% !important;
+
+    // Override position-based flex-direction
+    &.position-left,
+    &.position-right {
+      flex-direction: row !important;
+      align-items: center !important;
+      text-align: left !important;
+      padding: var(--spacing-md) var(--spacing-lg) !important;
+      min-height: 40px !important;
+    }
+
+    // Ensure content stays in one line
+    .content {
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .leftIcon {
+      margin-right: var(--spacing-xs) !important;
+      margin-bottom: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    .rightIcon {
+      margin-left: var(--spacing-xs) !important;
+      margin-top: 0 !important;
+      flex-shrink: 0 !important;
+    }
+  }
+}
+
+.tabsPanel {
+  display: none;
+  padding: var(--spacing-md);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+
+  &.active {
+    display: block;
+  }
+
+  // Animation for panel transitions
+  transition: opacity var(--transition-duration) ease;
+
+  &:not(.active) {
+    opacity: 0;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .tabs {
+    &.orientation-vertical {
+      flex-direction: column;
+      gap: var(--spacing-md);
+
+      .tabsList {
+        border-right: none;
+        border-bottom: var(--border-width-thin) solid
+          var(--color-border-secondary);
+        min-width: auto;
+      }
+
+      &.placement-right {
+        flex-direction: column;
+
+        .tabsList {
+          order: 1;
+        }
+
+        .tabsPanel {
+          order: 2;
+        }
+      }
+    }
+  }
+
+  .tabsList {
+    &.orientation-vertical {
+      flex-direction: row;
+      overflow-x: auto;
+      padding-bottom: var(--spacing-sm);
+    }
+  }
+}
