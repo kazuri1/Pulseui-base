@@ -25,8 +25,8 @@ const CustomThemeExample: React.FC = () => {
   const { currentTheme, setTheme, addCustomTheme } = useTheme();
 
   const handleAddCustomTheme = () => {
-    addCustomTheme("portfolio", {
-      description: "Portfolio theme with custom colors",
+    addCustomTheme("custom", {
+      description: "Custom theme with custom colors",
       mode: {
         light: {
           primary: { type: "color", value: "#6366f1" },
@@ -60,7 +60,7 @@ const CustomThemeExample: React.FC = () => {
             MedTech Theme
           </Button>
           <Button variant="primary" onClick={handleAddCustomTheme}>
-            Add Portfolio Theme
+            Add Custom Theme
           </Button>
         </Grid>
       </Stack>

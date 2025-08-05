@@ -230,7 +230,7 @@ import { ThemeProvider, useTheme } from "pulseui-base";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="portfolio" enableSystemPreference>
+    <ThemeProvider defaultTheme="default" enableSystemPreference>
       <YourApp />
     </ThemeProvider>
   );
@@ -239,9 +239,9 @@ function App() {
 function ThemeSwitcher() {
   const { currentTheme, setTheme, addCustomTheme } = useTheme();
 
-  const addPortfolioTheme = () => {
-    addCustomTheme("portfolio", {
-      description: "Portfolio theme",
+  const addCustomTheme = () => {
+    addCustomTheme("custom", {
+      description: "Custom theme",
       mode: {
         light: {
           primary: { type: "color", value: "#6366f1" },
@@ -258,8 +258,8 @@ function ThemeSwitcher() {
   return (
     <div>
       <button onClick={() => setTheme("default")}>Default</button>
-      <button onClick={() => setTheme("portfolio")}>Portfolio</button>
-      <button onClick={addPortfolioTheme}>Add Custom Theme</button>
+      <button onClick={() => setTheme("custom")}>Custom</button>
+      <button onClick={addCustomTheme}>Add Custom Theme</button>
     </div>
   );
 }
