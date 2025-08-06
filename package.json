@@ -24,11 +24,16 @@
       "import": "./src/styles/pulseui-base.scss",
       "require": "./src/styles/pulseui-base.scss"
     },
+    "./scss-compiled": {
+      "import": "./dist/pulseui-base.scss.css",
+      "require": "./dist/pulseui-base.scss.css"
+    },
     "./package.json": "./package.json"
   },
   "files": [
     "dist",
     "types",
+    "src/styles",
     "README.md",
     "LICENSE"
   ],
