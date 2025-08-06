@@ -5,10 +5,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
   background-color: var(--color-white);
   border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
-  min-height: 80px;
+  min-height: 60px;
   font-family: var(--font-family);
   width: 100%;
   box-sizing: border-box;
@@ -34,8 +34,9 @@
 
 .brandInfo {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-lg);
 }
 
 .brandName {
@@ -105,14 +106,23 @@
 // Responsive design
 @media (max-width: 768px) {
   .simpleTopNav {
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
     flex-direction: column;
     gap: var(--spacing-md);
     min-height: auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .brand {
     justify-content: center;
+  }
+
+  .brandInfo {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-items: center;
+    text-align: center;
   }
 
   .navigation {
@@ -135,6 +145,13 @@
 @media (max-width: 480px) {
   .simpleTopNav {
     padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .brandInfo {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    align-items: center;
+    text-align: center;
   }
 
   .navigation {
