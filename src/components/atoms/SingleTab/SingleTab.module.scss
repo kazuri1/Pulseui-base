@@ -60,35 +60,11 @@
       background-color: var(--color-gray-1);
     }
 
-    // Default state with border line based on position
+    // Default state - no border lines (handled by TabsList when used in Tabs)
     &.state-default {
-      // Top position - border at bottom
-      &.position-top {
-        border-bottom: var(--border-width-thin) solid var(--color-gray-3);
-        border-radius: 0;
-        padding-bottom: calc(var(--spacing-md) - var(--border-width-thin));
-      }
-
-      // Bottom position - border at top
-      &.position-bottom {
-        border-top: var(--border-width-thin) solid var(--color-gray-3);
-        border-radius: 0;
-        padding-top: calc(var(--spacing-md) - var(--border-width-thin));
-      }
-
-      // Left position - border at right
-      &.position-left {
-        border-right: var(--border-width-thin) solid var(--color-gray-3);
-        border-radius: 0;
-        padding-right: calc(var(--spacing-md) - var(--border-width-thin));
-      }
-
-      // Right position - border at left
-      &.position-right {
-        border-left: var(--border-width-thin) solid var(--color-gray-3);
-        border-radius: 0;
-        padding-left: calc(var(--spacing-md) - var(--border-width-thin));
-      }
+      // Remove all border lines for default state
+      border: none;
+      border-radius: 0;
     }
 
     // Selected state with underline - position affects underline location

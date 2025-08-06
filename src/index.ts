@@ -35,6 +35,12 @@ export type { AlertProps } from "./components/atoms/Alert";
 export { Pagination } from "./components/atoms/Pagination";
 export type { PaginationProps } from "./components/atoms/Pagination";
 
+export { SimpleTopNav } from "./components/atoms/SimpleTopNav";
+export type {
+  SimpleTopNavProps,
+  SimpleTopNavItem,
+} from "./components/atoms/SimpleTopNav";
+
 // Stepper Components
 export { StepperIcon } from "./components/atoms/Stepper/StepperIcon";
 export type { StepperIconProps } from "./components/atoms/Stepper/StepperIcon";
