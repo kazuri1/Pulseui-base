@@ -139,6 +139,7 @@ export type { IconProps } from "./components/atoms/Icon/Icon";
 // Theme Provider
 export { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
 export type { ThemeProviderProps } from "./components/ThemeProvider/ThemeProvider";
+export { useTheme } from "./components/ThemeProvider/ThemeProvider";
 
 // Utilities
 export { mergeSxWithStyles, combineClassNames } from "./utils/sxUtils";
