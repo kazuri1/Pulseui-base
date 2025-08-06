@@ -8,7 +8,6 @@ import {
   TextInput,
   Alert,
   Badge,
-  Avatar,
   Switch,
   Radio,
   Tabs,
@@ -26,17 +25,7 @@ import {
   GridCol,
   Stack,
   Group,
-  Image,
-  Pill,
-  ActionButton,
-  Textarea,
-  PinInput,
-  PasswordInput,
-  Autocomplete,
-  PillInput,
-  Calendar,
-  Icon,
-  useTheme
+  useTheme,
 } from "pulseui-base";
 
 export default function Home() {
@@ -54,109 +43,113 @@ export default function Home() {
     { value: "tab3", label: "Tab 3", content: "Content for tab 3" },
   ];
 
-  const tocItems = [
-    { id: "section1", label: "Section 1", level: 1 },
-    { id: "section2", label: "Section 2", level: 1 },
-    { id: "subsection2a", label: "Subsection 2a", level: 2 },
-    { id: "section3", label: "Section 3", level: 1 },
-  ];
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
       {/* Navigation */}
       <SimpleTopNav
         brandName="Pulse UI Test"
-        brandTitle="Next.js Compatibility Test"
+        brandTitle="Next.js Compatibility"
         items={navItems}
+        className="mb-8"
       />
 
-      <Container size="lg" py="xl">
+      <Container size="lg" sx={{ paddingY: "xl" }}>
         <Stack gap="xl">
           {/* Header */}
           <div>
-            <Text variant="h1" mb="sm">
+            <Text variant="xl" sx={{ marginBottom: "sm" }}>
               Pulse UI Next.js Compatibility Test
             </Text>
-            <Text variant="body" color="muted">
-              Testing all components for Next.js SSR compatibility
+            <Text variant="md" color="muted">
+              Testing all components with Next.js 15
             </Text>
           </div>
 
-          {/* Basic Components */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Basic Components
+          {/* Buttons */}
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
+              Buttons
             </Text>
             <Group gap="md">
-              <Button variant="primary">Primary Button</Button>
-              <Button variant="secondary">Secondary Button</Button>
-              <Button variant="outline">Outline Button</Button>
-              <Badge variant="success">Success Badge</Badge>
-              <Badge variant="warning">Warning Badge</Badge>
+              <Button variant="filled">Primary Button</Button>
+              <Button variant="outline">Secondary Button</Button>
+              <Button variant="subtle">Success Button</Button>
+              <Button variant="light">Warning Button</Button>
             </Group>
-          </Card>
+          </div>
 
-          {/* Form Components */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Form Components
+          {/* Cards */}
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
+              Cards
             </Text>
-            <Grid cols={2} gap="md">
-              <GridCol>
-                <TextInput
-                  label="Text Input"
-                  placeholder="Enter text..."
-                  required
+            <Grid columns={12} gutter="md">
+              <GridCol span={4}>
+                <Card
+                  title="Card 1"
+                  description="This is a sample card"
+                  buttonText="Learn More"
                 />
               </GridCol>
-              <GridCol>
-                <Input
-                  label="Input"
-                  placeholder="Enter input..."
-                  required
+              <GridCol span={4}>
+                <Card
+                  title="Card 2"
+                  description="Another sample card"
+                  buttonText="View Details"
                 />
               </GridCol>
-              <GridCol>
-                <PasswordInput
-                  label="Password Input"
-                  placeholder="Enter password..."
-                  required
-                />
-              </GridCol>
-              <GridCol>
-                <Textarea
-                  label="Textarea"
-                  placeholder="Enter text..."
-                  rows={3}
+              <GridCol span={4}>
+                <Card
+                  title="Card 3"
+                  description="Third sample card"
+                  buttonText="Get Started"
                 />
               </GridCol>
             </Grid>
-          </Card>
+          </div>
 
-          {/* Interactive Components */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Interactive Components
+          {/* Form Elements */}
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
+              Form Elements
             </Text>
-            <Group gap="md">
-              <Switch label="Toggle Switch" />
-              <Radio
-                name="test-radio"
-                label="Radio Option 1"
-                value="option1"
+            <Stack gap="md">
+              <TextInput
+                label="Email"
+                placeholder="Enter your email"
+                required
               />
-              <Radio
-                name="test-radio"
-                label="Radio Option 2"
-                value="option2"
-              />
-            </Group>
-          </Card>
+              <Input placeholder="Simple input" />
+              <Switch label="Enable notifications" />
+              <Radio label="Accept terms" />
+            </Stack>
+          </div>
 
-          {/* Tabs Component */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Tabs Component
+          {/* Alerts */}
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
+              Alerts
+            </Text>
+            <Stack gap="sm">
+              <Alert variant="info" title="Information">
+                This is an informational alert.
+              </Alert>
+              <Alert variant="success" title="Success">
+                Operation completed successfully.
+              </Alert>
+              <Alert variant="warning" title="Warning">
+                Please review your input.
+              </Alert>
+              <Alert variant="error" title="Error">
+                Something went wrong.
+              </Alert>
+            </Stack>
+          </div>
+
+          {/* Tabs */}
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
+              Tabs
             </Text>
             <Tabs defaultValue="tab1">
               <TabsList>
@@ -168,106 +161,59 @@ export default function Home() {
               </TabsList>
               {tabsItems.map((item) => (
                 <TabsPanel key={item.value} value={item.value}>
-                  <Text>{item.content}</Text>
+                  {item.content}
                 </TabsPanel>
               ))}
             </Tabs>
-          </Card>
+          </div>
 
-          {/* Stepper Component */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Stepper Component
+          {/* Stepper */}
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
+              Stepper
             </Text>
-            <Stepper active={1}>
-              <StepperItem label="Step 1" description="First step">
-                <StepperIcon>1</StepperIcon>
-              </StepperItem>
-              <StepperItem label="Step 2" description="Second step">
-                <StepperIcon>2</StepperIcon>
-              </StepperItem>
-              <StepperItem label="Step 3" description="Third step">
-                <StepperIcon>3</StepperIcon>
-              </StepperItem>
-            </Stepper>
-          </Card>
-
-          {/* Layout Components */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Layout Components
-            </Text>
-            <Grid cols={3} gap="md">
-              <GridCol>
-                <Card>
-                  <Text variant="h3">Grid Column 1</Text>
-                  <Text>This is content in the first grid column.</Text>
-                </Card>
-              </GridCol>
-              <GridCol>
-                <Card>
-                  <Text variant="h3">Grid Column 2</Text>
-                  <Text>This is content in the second grid column.</Text>
-                </Card>
-              </GridCol>
-              <GridCol>
-                <Card>
-                  <Text variant="h3">Grid Column 3</Text>
-                  <Text>This is content in the third grid column.</Text>
-                </Card>
-              </GridCol>
-            </Grid>
-          </Card>
-
-          {/* Alert Components */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Alert Components
-            </Text>
-            <Stack gap="sm">
-              <Alert variant="success" title="Success Alert">
-                This is a success alert message.
-              </Alert>
-              <Alert variant="warning" title="Warning Alert">
-                This is a warning alert message.
-              </Alert>
-              <Alert variant="error" title="Error Alert">
-                This is an error alert message.
-              </Alert>
-              <Alert variant="info" title="Info Alert">
-                This is an info alert message.
-              </Alert>
-            </Stack>
-          </Card>
-
-          {/* Table of Contents */}
-          <Card>
-            <Text variant="h2" mb="md">
-              Table of Contents
-            </Text>
-            <TableOfContents items={tocItems} />
-          </Card>
+            <Stepper
+              steps={[
+                {
+                  id: "step1",
+                  label: "Step 1",
+                  status: "complete",
+                  content: "Step 1 content",
+                },
+                {
+                  id: "step2",
+                  label: "Step 2",
+                  status: "active",
+                  content: "Step 2 content",
+                },
+                {
+                  id: "step3",
+                  label: "Step 3",
+                  status: "default",
+                  content: "Step 3 content",
+                },
+              ]}
+            />
+          </div>
 
           {/* Pagination */}
-          <Card>
-            <Text variant="h2" mb="md">
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
               Pagination
             </Text>
-            <Pagination total={100} page={1} />
-          </Card>
+            <Pagination currentPage={1} totalPages={10} />
+          </div>
 
           {/* Theme Info */}
-          <Card>
-            <Text variant="h2" mb="md">
+          <div>
+            <Text variant="lg" sx={{ marginBottom: "md" }}>
               Theme Information
             </Text>
-            <Text>
-              Current Theme: {theme?.currentTheme || "default"}
-            </Text>
-            <Text>
-              Current Mode: {theme?.currentMode || "light"}
-            </Text>
-          </Card>
+            <Card>
+              <Text variant="md">Current Theme: {theme.currentTheme}</Text>
+              <Text variant="md">Current Mode: {theme.currentMode}</Text>
+            </Card>
+          </div>
         </Stack>
       </Container>
     </div>

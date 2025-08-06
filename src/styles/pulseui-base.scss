@@ -1,0 +1,211 @@
+// =============================================================================
+// Pulse UI - Master Entry Point
+// =============================================================================
+// This file bundles ALL Pulse UI styles in the correct order:
+// 1. Design tokens (CSS custom properties)
+// 2. SCSS mixins and functions
+// 3. ALL Component SCSS modules (bundled for customer use)
+// 4. Global styles and utilities
+// =============================================================================
+
+// =============================================================================
+// 1. Design Tokens (CSS Custom Properties)
+// =============================================================================
+// Import design tokens first - these define all CSS custom properties
+// that components and mixins will reference
+@use "./tokens" as *;
+
+// =============================================================================
+// 2. SCSS Mixins and Functions
+// =============================================================================
+// Import SCSS mixins and utility functions that components can use
+// These mixins reference the CSS custom properties from tokens
+@use "./mixins" as *;
+
+// =============================================================================
+// 3. ALL Component SCSS Modules (Bundled)
+// =============================================================================
+// This section bundles ALL component SCSS modules so that when customers
+// import any component, they automatically get all the styles.
+// Each component's styles are included here to ensure complete styling.
+
+// Animation Component
+@import "../components/Animation/Animation.module.scss";
+
+// ThemeProvider Component
+@import "../components/ThemeProvider/ThemeProvider.module.scss";
+
+// Button Component
+@import "../components/atoms/Button/Button.module.scss";
+
+// Input Component
+@import "../components/atoms/Input/Input.module.scss";
+
+// Text Component
+@import "../components/atoms/Text/Text.module.scss";
+
+// Card Component
+@import "../components/atoms/Card/Card.module.scss";
+
+// Alert Component
+@import "../components/atoms/Alert/Alert.module.scss";
+
+// Badge Component
+@import "../components/atoms/Badge/Badge.module.scss";
+
+// Avatar Component
+@import "../components/atoms/Avatar/Avatar.module.scss";
+
+// Icon Component
+@import "../components/atoms/Icon/Icon.module.scss";
+
+// Switch Component
+@import "../components/atoms/Switch/Switch.module.scss";
+
+// Radio Component
+@import "../components/atoms/Radio/Radio.module.scss";
+
+// Textarea Component
+@import "../components/atoms/Textarea/Textarea.module.scss";
+
+// Pill Component
+@import "../components/atoms/Pill/Pill.module.scss";
+
+// PillInput Component
+@import "../components/atoms/PillInput/PillInput.module.scss";
+
+// PasswordInput Component (PasswordStrengthMeter)
+@import "../components/atoms/PasswordInput/PasswordStrengthMeter.module.scss";
+
+// PinInput Component
+@import "../components/atoms/PinInput/PinInput.module.scss";
+
+// Image Component
+@import "../components/atoms/Image/Image.module.scss";
+
+// ActionButton Component
+@import "../components/atoms/ActionButton/ActionButton.module.scss";
+
+// Autocomplete Component
+@import "../components/atoms/Autocomplete/Autocomplete.module.scss";
+
+// SingleTab Component
+@import "../components/atoms/SingleTab/SingleTab.module.scss";
+
+// Tabs Component
+@import "../components/atoms/Tabs/Tabs.module.scss";
+
+// Stepper Component
+@import "../components/atoms/Stepper/Stepper.module.scss";
+
+// StepperIcon Component
+@import "../components/atoms/Stepper/StepperIcon.module.scss";
+
+// StepperItem Component
+@import "../components/atoms/Stepper/StepperItem.module.scss";
+
+// Pagination Component
+@import "../components/atoms/Pagination/Pagination.module.scss";
+
+// Calendar Component
+@import "../components/atoms/Calendar/Calendar.module.scss";
+
+// CalendarDecade Component
+@import "../components/atoms/Calendar/CalendarDecade/CalendarDecade.module.scss";
+
+// CalendarDate Component
+@import "../components/atoms/Calendar/CalendarParts/CalendarDate.module.scss";
+
+// CalendarTitle Component
+@import "../components/atoms/Calendar/CalendarParts/CalendarTitle.module.scss";
+
+// CalendarYear Component
+@import "../components/atoms/Calendar/CalendarYear/CalendarYear.module.scss";
+
+// TableOfContents Component
+@import "../components/atoms/TableOfContents/TableOfContents.module.scss";
+
+// SimpleTopNav Component
+@import "../components/atoms/SimpleTopNav/SimpleTopNav.module.scss";
+
+// TextInput Component
+@import "../components/atoms/TextInput/TextInput.module.scss";
+
+// Layout Components
+@import "../components/layouts/Container/Container.module.scss";
+@import "../components/layouts/Grid/Grid.module.scss";
+@import "../components/layouts/Grid/GridCol.module.scss";
+@import "../components/layouts/Group/Group.module.scss";
+@import "../components/layouts/Stack/Stack.module.scss";
+
+// =============================================================================
+// 4. Global Styles and Utilities
+// =============================================================================
+// Any global styles, resets, or utilities that should be available
+// across all components
+
+// Loading animation
+@keyframes pulse-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// =============================================================================
+// 5. Theme Overrides (Optional)
+// =============================================================================
+// Any theme-specific overrides or customizations can be added here
+// This allows users to override tokens after importing the base styles
+
+// =============================================================================
+// Usage Instructions:
+// =============================================================================
+//
+// In your project, import this file to get the complete Pulse UI styling:
+//
+// SCSS:
+// @use "pulseui-base/scss" as *;
+//
+// CSS:
+// @import "pulseui-base/styles";
+//
+// JavaScript/TypeScript:
+// import "pulseui-base/styles";
+//
+// =============================================================================
+// What's Included:
+// =============================================================================
+// ✅ Design tokens (colors, spacing, typography, effects)
+// ✅ SCSS mixins (layout, interactive, focus, accessibility)
+// ✅ Utility functions (spacing, color, radius, font-size)
+// ✅ ALL Component styles (Button, Input, Text, Card, Alert, etc.)
+// ✅ Theme-aware CSS custom properties
+// ✅ Multi-brand support
+// ✅ Light/dark mode support
+//
+// =============================================================================
+// Component Bundling:
+// =============================================================================
+// When you import ANY component from Pulse UI, you automatically get:
+// - All design tokens and CSS custom properties
+// - All SCSS mixins and utility functions
+// - ALL component styles (not just the one you imported)
+// - Global styles and animations
+//
+// This ensures complete styling consistency across your application.
+//
+// =============================================================================
+// Customization:
+// =============================================================================
+// You can override any CSS custom properties after importing:
+//
+// :root {
+//   --color-primary: #your-custom-color;
+//   --spacing-md: 20px;
+//   --font-family: "Your Font", sans-serif;
+// }
+//
+// =============================================================================

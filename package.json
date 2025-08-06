@@ -20,6 +20,10 @@
       "import": "./dist/tokens.css",
       "require": "./dist/tokens.css"
     },
+    "./scss": {
+      "import": "./src/styles/pulseui-base.scss",
+      "require": "./src/styles/pulseui-base.scss"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -37,7 +41,7 @@
     "build": "npm run build:lib && npm run build:styles",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:types": "tsc --project tsconfig.build.json",
-    "build:styles": "sass src/styles/_tokens.scss:dist/tokens.css --style compressed",
+    "build:styles": "sass src/styles/_tokens.scss:dist/tokens.css --style compressed && sass src/styles/pulseui-base.scss:dist/pulseui-base.scss.css --style compressed",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview",

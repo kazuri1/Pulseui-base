@@ -6,7 +6,128 @@ This directory contains the core styling infrastructure for the Pulse UI design 
 
 - `_tokens.scss` - Design tokens and CSS custom properties
 - `_mixins.scss` - Reusable SCSS mixins and functions
+- `pulseui-base.scss` - **Master entry point** - bundles ALL styles in correct order
 - `README.md` - This documentation file
+
+## 🎯 Master Entry Point (`pulseui-base.scss`)
+
+**This is the recommended way to import Pulse UI styles!**
+
+The `pulseui-base.scss` file is a master entry point that **bundles ALL Pulse UI styles** in the correct order:
+
+1. **Design tokens** (CSS custom properties)
+2. **SCSS mixins and functions**
+3. **ALL Component SCSS modules** (bundled for customer use)
+4. **Global styles and utilities**
+5. **Theme overrides** (optional)
+
+### 🎨 **Complete Component Bundling**
+
+When customers import **ANY component** from Pulse UI, they automatically get:
+
+- ✅ **All design tokens** - Colors, spacing, typography, effects
+- ✅ **All SCSS mixins** - Layout, interactive, focus, accessibility
+- ✅ **ALL component styles** - Button, Input, Text, Card, Alert, Badge, Avatar, etc.
+- ✅ **Global styles** - Animations, utilities, theme support
+- ✅ **Theme-aware CSS** - Light/dark mode support
+- ✅ **Multi-brand support** - Default, MedDash, FitCore, LabSync
+
+### Usage
+
+#### SCSS Import
+
+```scss
+// Import the complete Pulse UI styling system
+@use "pulseui-base/scss" as *;
+```
+
+#### CSS Import
+
+```css
+/* Import compiled CSS */
+@import "pulseui-base/styles";
+```
+
+#### JavaScript/TypeScript Import
+
+```typescript
+// Import in your main file
+import "pulseui-base/styles";
+```
+
+#### Next.js Usage
+
+```typescript
+// In your app/layout.tsx or pages/_app.tsx
+import "pulseui-base/styles";
+```
+
+### What's Included
+
+✅ **Design tokens** - Colors, spacing, typography, effects  
+✅ **SCSS mixins** - Layout, interactive, focus, accessibility  
+✅ **Utility functions** - spacing(), color(), radius(), font-size()  
+✅ **ALL Component styles** - Button, Input, Text, Card, Alert, Badge, Avatar, Icon, Switch, Radio, Textarea, Pill, PillInput, PasswordInput, PinInput, Image, ActionButton, Autocomplete, SingleTab, Tabs, Stepper, Pagination, Calendar, TableOfContents, SimpleTopNav, TextInput, Container, Grid, Group, Stack  
+✅ **Theme-aware CSS** - Light/dark mode support  
+✅ **Multi-brand support** - Default, MedDash, FitCore, LabSync
+
+### Usage Examples
+
+#### Using React Components (Recommended)
+
+```tsx
+import { Button, Input, Text, Card, Alert } from "pulseui-base";
+
+// All styles are automatically included!
+<Button variant="filled" size="md">Click me</Button>
+<Input placeholder="Enter text" size="md" />
+<Text variant="lg" weight="bold">Hello World</Text>
+<Card>Content</Card>
+<Alert variant="info">Information</Alert>
+```
+
+#### Using Global CSS Classes
+
+```html
+<!-- After importing pulseui-base/styles -->
+<button class="button variant-filled size-md">Click me</button>
+
+<input class="input size-md" placeholder="Enter text" />
+
+<p class="text variant-lg weight-bold">Hello World</p>
+```
+
+#### Using SCSS Mixins
+
+```scss
+@use "pulseui-base/scss" as *;
+
+.my-custom-button {
+  @include button-base;
+  background-color: var(--color-primary);
+}
+
+.my-custom-input {
+  @include input-base;
+  border-radius: var(--radius-lg);
+}
+```
+
+### Customization
+
+You can override any CSS custom properties after importing:
+
+```scss
+// Import Pulse UI first
+@import "pulseui-base/scss";
+
+// Then override tokens
+:root {
+  --color-primary: #your-custom-color;
+  --spacing-md: 20px;
+  --font-family: "Your Font", sans-serif;
+}
+```
 
 ## Design Tokens (`_tokens.scss`)
 
