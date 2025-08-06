@@ -26,16 +26,22 @@ export default defineConfig({
           'react/jsx-runtime': 'jsxRuntime',
           '@mui/icons-material': 'MuiIcons',
           classnames: 'classNames'
-        }
+        },
+        exports: 'named',
+        preserveModules: false
       }
     },
     outDir: 'dist',
     sourcemap: true,
-    minify: false
+    minify: false,
+    target: 'es2015'
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
     }
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
   }
 }); 

@@ -35,6 +35,7 @@ export type { AlertProps } from "./components/atoms/Alert";
 export { Pagination } from "./components/atoms/Pagination";
 export type { PaginationProps } from "./components/atoms/Pagination";
 
+// Navigation Components
 export { SimpleTopNav } from "./components/atoms/SimpleTopNav";
 export type {
   SimpleTopNavProps,
@@ -97,6 +98,10 @@ export type {
   TabsTabProps,
   TabsPanelProps,
 } from "./components/atoms/Tabs";
+
+// Single Tab Component
+export { SingleTab } from "./components/atoms/SingleTab/SingleTab";
+export type { SingleTabProps } from "./components/atoms/SingleTab/SingleTab";
 
 // Layout Components
 export { Container } from "./components/layouts/Container";

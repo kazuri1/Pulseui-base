@@ -14,7 +14,7 @@ export const usePerformanceMonitor = (componentName: string) => {
 
   useEffect(() => {
     renderStart.current = performance.now();
-    
+
     return () => {
       const renderTime = performance.now() - renderStart.current;
       const newMetric: PerformanceMetrics = {
@@ -23,11 +23,13 @@ export const usePerformanceMonitor = (componentName: string) => {
         timestamp: Date.now(),
       };
 
-      setMetrics(prev => [...prev, newMetric]);
+      setMetrics((prev) => [...prev, newMetric]);
 
       // Log slow renders in development
       if (process.env.NODE_ENV === "development" && renderTime > 16) {
-        console.warn(`Slow render detected in ${componentName}: ${renderTime.toFixed(2)}ms`);
+        console.warn(
+          `Slow render detected in ${componentName}: ${renderTime.toFixed(2)}ms`
+        );
       }
     };
   });
@@ -41,12 +43,13 @@ export const createLazyComponent = <T extends React.ComponentType<any>>(
   fallback?: React.ReactNode
 ) => {
   const LazyComponent = React.lazy(importFunc);
-  
-  return (props: React.ComponentProps<T>) => (
-    <React.Suspense fallback={fallback || <div>Loading...</div>}>
-      <LazyComponent {...props} />
-    </React.Suspense>
-  );
+
+  return (props: React.ComponentProps<T>) =>
+    React.createElement(
+      React.Suspense,
+      { fallback: fallback || React.createElement("div", null, "Loading...") },
+      React.createElement(LazyComponent, props)
+    );
 };
 
 // Memoization utilities
@@ -117,7 +120,7 @@ export const useIntersectionObserver = (
     const observer = new IntersectionObserver(([entry]) => {
       const isIntersecting = entry.isIntersecting;
       setIsIntersecting(isIntersecting);
-      
+
       if (isIntersecting && !hasIntersected) {
         setHasIntersected(true);
       }
@@ -140,10 +143,7 @@ export interface VirtualScrollConfig {
   overscan?: number;
 }
 
-export const useVirtualScroll = (
-  items: any[],
-  config: VirtualScrollConfig
-) => {
+export const useVirtualScroll = (items: any[], config: VirtualScrollConfig) => {
   const { itemHeight, containerHeight, overscan = 5 } = config;
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -153,7 +153,7 @@ export const useVirtualScroll = (
       start + Math.ceil(containerHeight / itemHeight) + overscan,
       items.length
     );
-    
+
     return {
       start: Math.max(0, start - overscan),
       end,
@@ -195,10 +195,10 @@ export const useExpensiveCalculation = <T>(
   useEffect(() => {
     const performCalculation = () => {
       setIsCalculating(true);
-      
+
       // Use requestIdleCallback if available, otherwise setTimeout
       const scheduleCalculation = (fn: () => void) => {
-        if ('requestIdleCallback' in window) {
+        if ("requestIdleCallback" in window) {
           requestIdleCallback(fn, { timeout: options.maxTime || 50 });
         } else {
           setTimeout(fn, 0);
@@ -210,7 +210,7 @@ export const useExpensiveCalculation = <T>(
           const newResult = calculationRef.current();
           setResult(newResult);
         } catch (error) {
-          console.error('Calculation error:', error);
+          console.error("Calculation error:", error);
         } finally {
           setIsCalculating(false);
         }
@@ -229,7 +229,7 @@ export const useMemoryMonitor = () => {
 
   useEffect(() => {
     const updateMemoryInfo = () => {
-      if ('memory' in performance) {
+      if ("memory" in performance) {
         setMemoryInfo(performance.memory);
       }
     };
@@ -241,4 +241,4 @@ export const useMemoryMonitor = () => {
   }, []);
 
   return memoryInfo;
-}; 
+};
