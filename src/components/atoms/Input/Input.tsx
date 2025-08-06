@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import * as React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { Icon } from "../Icon/index";
 import {
@@ -63,7 +63,7 @@ export interface InputProps extends WithSxProps {
   id?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       value = "",
@@ -96,7 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     // Internal state for password visibility
     const [internalPasswordVisible, setInternalPasswordVisible] =
-      useState(false);
+      React.useState(false);
 
     // Use external state if provided, otherwise use internal state
     const passwordVisible =

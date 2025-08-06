@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import * as React from "react";
 import styles from "./ThemeProvider.module.scss";
 import type { ThemeConfig, ThemeMode, CustomTheme } from "./types";
 
@@ -12,7 +12,9 @@ interface ThemeContextType {
   getThemeValue: (path: string) => string;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const ThemeContext = React.createContext<ThemeContextType | undefined>(
+  undefined
+);
 
 export interface ThemeProviderProps {
   children: React.ReactNode;
@@ -31,12 +33,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   enableSystemPreference = true,
   enableAnimation = true,
 }) => {
-  const [currentTheme, setCurrentTheme] = useState(defaultTheme);
-  const [currentMode, setCurrentMode] = useState<ThemeMode>(defaultMode);
-  const [availableThemes, setAvailableThemes] = useState(themes);
+  const [currentTheme, setCurrentTheme] = React.useState(defaultTheme);
+  const [currentMode, setCurrentMode] = React.useState<ThemeMode>(defaultMode);
+  const [availableThemes, setAvailableThemes] = React.useState(themes);
 
   // System preference detection
-  useEffect(() => {
+  React.useEffect(() => {
     if (enableSystemPreference) {
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
       const handleChange = (e: MediaQueryListEvent) => {
@@ -51,7 +53,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   }, [enableSystemPreference]);
 
   // Apply theme to CSS custom properties
-  useEffect(() => {
+  React.useEffect(() => {
     const theme = availableThemes[currentTheme];
     if (!theme) return;
 
@@ -139,7 +141,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 };
 
 export const useTheme = () => {
-  const context = useContext(ThemeContext);
+  const context = React.useContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }

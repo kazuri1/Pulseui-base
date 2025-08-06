@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useRef, useEffect } from "react";
+import * as React from "react";
 import type { KeyboardEvent } from "react";
 import { Input } from "../Input/Input";
 import { Icon } from "../Icon/Icon";
@@ -48,7 +48,7 @@ export interface AutocompleteProps {
   id?: string;
 }
 
-export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(
+export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps>(
   (
     {
       options = [],
@@ -71,12 +71,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(
     },
     ref
   ) => {
-    const [inputValue, setInputValue] = useState(value);
-    const [isOpen, setIsOpen] = useState(false);
-    const [highlightedIndex, setHighlightedIndex] = useState(-1);
-    const [isFocused, setIsFocused] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const [inputValue, setInputValue] = React.useState(value);
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
+    const [isFocused, setIsFocused] = React.useState(false);
+    const dropdownRef = React.useRef<HTMLDivElement>(null);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
     // Filter options based on input value
     const filteredOptions = filterOptions
@@ -179,7 +179,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(
     };
 
     // Close dropdown when clicking outside
-    useEffect(() => {
+    React.useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (
           dropdownRef.current &&
@@ -199,7 +199,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>(
     }, []);
 
     // Update input value when prop changes
-    useEffect(() => {
+    React.useEffect(() => {
       setInputValue(value);
     }, [value]);
 

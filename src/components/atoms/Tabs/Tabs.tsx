@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import * as React from "react";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
@@ -17,10 +17,10 @@ export interface TabsContextValue {
   id: string;
 }
 
-const TabsContext = createContext<TabsContextValue | null>(null);
+const TabsContext = React.createContext<TabsContextValue | null>(null);
 
 export const useTabs = () => {
-  const context = useContext(TabsContext);
+  const context = React.useContext(TabsContext);
   if (!context) {
     throw new Error("useTabs must be used within a Tabs component");
   }
@@ -77,10 +77,10 @@ export const Tabs: React.FC<TabsProps> = ({
   sx,
   style,
 }) => {
-  const [internalValue, setInternalValue] = useState<string | null>(
+  const [internalValue, setInternalValue] = React.useState<string | null>(
     value ?? defaultValue ?? null
   );
-  const [generatedId] = useState(
+  const [generatedId] = React.useState(
     () => id || `tabs-${Math.random().toString(36).substr(2, 9)}`
   );
 
@@ -99,7 +99,7 @@ export const Tabs: React.FC<TabsProps> = ({
   );
 
   // Update internal value when controlled value changes
-  useEffect(() => {
+  React.useEffect(() => {
     if (value !== undefined) {
       setInternalValue(value);
     }

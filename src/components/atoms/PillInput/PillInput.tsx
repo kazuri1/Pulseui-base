@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import * as React from "react";
 import type { KeyboardEvent } from "react";
 import { Input } from "../Input/Input";
 import { Pill } from "../Pill/Pill";
@@ -39,7 +39,7 @@ export interface PillInputProps {
   id?: string;
 }
 
-export const PillInput = forwardRef<HTMLInputElement, PillInputProps>(
+export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
   (
     {
       pills = [],
@@ -61,8 +61,8 @@ export const PillInput = forwardRef<HTMLInputElement, PillInputProps>(
     },
     ref
   ) => {
-    const [inputValue, setInputValue] = useState("");
-    const [isFocused, setIsFocused] = useState(false);
+    const [inputValue, setInputValue] = React.useState("");
+    const [isFocused, setIsFocused] = React.useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.target.value);
