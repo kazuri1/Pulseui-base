@@ -70,7 +70,7 @@ export { CalendarDecade } from "./components/atoms/Calendar/CalendarDecade/Calen
 export type { CalendarDecadeProps } from "./components/atoms/Calendar/CalendarDecade/CalendarDecade";
 export { Icon } from "./components/atoms/Icon/Icon";
 export type { IconProps } from "./components/atoms/Icon/Icon";
-export { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
+export { ThemeProvider, useTheme } from "./components/ThemeProvider/ThemeProvider";
 export type { ThemeProviderProps } from "./components/ThemeProvider/ThemeProvider";
 export { mergeSxWithStyles, combineClassNames } from "./utils/sxUtils";
 export type { WithSxProps } from "./utils/sxUtils";
