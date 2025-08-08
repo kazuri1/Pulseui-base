@@ -9,6 +9,10 @@ const meta: Meta<typeof Card> = {
   },
   tags: ["autodocs"],
   argTypes: {
+    variant: {
+      control: { type: "select" },
+      options: ["default", "image-overlay"],
+    },
     badgeVariant: {
       control: { type: "select" },
       options: [
@@ -67,6 +71,18 @@ export const Default: Story = {
     buttonText: "Learn More",
     imageSrc:
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
+    imageAlt: "Mountain landscape",
+  },
+};
+
+export const ImageOverlay: Story = {
+  args: {
+    variant: "image-overlay",
+    title: "Beautiful Landscape",
+    description:
+      "A stunning mountain landscape with snow-capped peaks and clear blue skies.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
     imageAlt: "Mountain landscape",
   },
 };

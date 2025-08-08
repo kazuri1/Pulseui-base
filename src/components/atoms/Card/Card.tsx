@@ -54,6 +54,8 @@ export interface CardProps extends WithSxProps {
   imageRadius?: number | string;
   /** Whether to show the image */
   showImage?: boolean;
+  /** Card variant - 'default' or 'image-overlay' */
+  variant?: "default" | "image-overlay";
   /** Custom content to render inside the card */
   children?: React.ReactNode;
   /** Click handler for the button */
@@ -83,6 +85,7 @@ export const Card: React.FC<CardProps> = ({
   imageFit = "cover",
   imageRadius = 0,
   showImage = true,
+  variant = "default",
   children,
   onButtonClick,
   onClick,
@@ -100,6 +103,7 @@ export const Card: React.FC<CardProps> = ({
 
   const cardClasses = combineClassNames(
     styles.card,
+    variant === "image-overlay" && styles.imageOverlay,
     clickable && styles.clickable,
     disabled && styles.disabled,
     sxClassName
@@ -117,6 +121,9 @@ export const Card: React.FC<CardProps> = ({
     }
   };
 
+  // For image-overlay variant, set image radius to 0
+  const finalImageRadius = variant === "image-overlay" ? 0 : imageRadius;
+
   return (
     <div
       className={cardClasses}
@@ -132,53 +139,73 @@ export const Card: React.FC<CardProps> = ({
             src={imageSrc}
             alt={imageAlt}
             fit={imageFit}
-            radius={imageRadius}
+            radius={finalImageRadius}
             width="100%"
-            height="200px"
+            height={variant === "image-overlay" ? "300px" : "200px"}
           />
         </div>
       )}
 
       {/* Content Section */}
       <div className={styles.content}>
-        {/* Title and Badge Row */}
-        {((title && showTitle) || (badge && showBadge)) && (
-          <div className={styles.header}>
+        {/* For image-overlay variant, show title and description at bottom */}
+        {variant === "image-overlay" ? (
+          <>
+            {/* Title */}
             {title && showTitle && (
               <Text variant="lg" weight="semibold" color="primary" as="h3">
                 {title}
               </Text>
             )}
-            {badge && showBadge && (
-              <Badge variant={badgeVariant} size="sm">
-                {badge}
-              </Badge>
+            {/* Description */}
+            {description && showDescription && (
+              <Text variant="sm" color="secondary" as="p">
+                {description}
+              </Text>
             )}
-          </div>
-        )}
+          </>
+        ) : (
+          <>
+            {/* Title and Badge Row */}
+            {((title && showTitle) || (badge && showBadge)) && (
+              <div className={styles.header}>
+                {title && showTitle && (
+                  <Text variant="lg" weight="semibold" color="primary" as="h3">
+                    {title}
+                  </Text>
+                )}
+                {badge && showBadge && (
+                  <Badge variant={badgeVariant} size="sm">
+                    {badge}
+                  </Badge>
+                )}
+              </div>
+            )}
 
-        {/* Description */}
-        {description && showDescription && (
-          <Text variant="sm" color="secondary" as="p">
-            {description}
-          </Text>
-        )}
+            {/* Description */}
+            {description && showDescription && (
+              <Text variant="sm" color="secondary" as="p">
+                {description}
+              </Text>
+            )}
 
-        {/* Custom Content */}
-        {children && <div className={styles.customContent}>{children}</div>}
+            {/* Custom Content */}
+            {children && <div className={styles.customContent}>{children}</div>}
 
-        {/* Button */}
-        {buttonText && showButton && (
-          <div className={styles.buttonContainer}>
-            <Button
-              variant={buttonVariant}
-              size={buttonSize}
-              onClick={handleButtonClick}
-              disabled={disabled}
-            >
-              {buttonText}
-            </Button>
-          </div>
+            {/* Button */}
+            {buttonText && showButton && (
+              <div className={styles.buttonContainer}>
+                <Button
+                  variant={buttonVariant}
+                  size={buttonSize}
+                  onClick={handleButtonClick}
+                  disabled={disabled}
+                >
+                  {buttonText}
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

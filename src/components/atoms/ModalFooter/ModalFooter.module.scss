@@ -1,0 +1,59 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--spacing-lg);
+  border-top: var(--border-width-thin) solid var(--color-border-primary);
+  background-color: var(--color-surface);
+  gap: var(--spacing-md);
+
+  // Variant styles
+  &.variant-button-only {
+    justify-content: flex-start;
+  }
+
+  &.variant-primary,
+  &.variant-destructive {
+    justify-content: flex-end;
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .buttonGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .destructiveButton {
+    background-color: var(--color-red-8) !important;
+    border-color: var(--color-red-8) !important;
+    color: var(--color-white) !important;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-red-9) !important;
+      border-color: var(--color-red-9) !important;
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-red-7) !important;
+      border-color: var(--color-red-7) !important;
+    }
+
+    &:disabled {
+      background-color: var(--color-gray-3) !important;
+      border-color: var(--color-gray-3) !important;
+      color: var(--color-gray-5) !important;
+    }
+  }
+}

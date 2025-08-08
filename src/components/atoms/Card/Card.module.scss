@@ -35,6 +35,50 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+
+  // Image overlay variant
+  &.imageOverlay {
+    border-radius: 0;
+    border: none;
+    box-shadow: var(--shadow-normal);
+    max-width: calc(var(--spacing-xl) * 10);
+
+    &:hover:not(.disabled) {
+      box-shadow: var(--shadow-hover);
+      transform: var(--transform-hover);
+    }
+
+    .imageContainer {
+      border-radius: 0;
+      height: calc(var(--spacing-xl) * 7.5);
+    }
+
+    .content {
+      padding: var(--spacing-lg);
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+      );
+      position: relative;
+      z-index: 1;
+
+      // Override text colors for better contrast on dark overlay
+      :global(.text) {
+        color: var(--color-white) !important;
+      }
+
+      h3 {
+        color: var(--color-white) !important;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      p {
+        color: var(--color-gray-2) !important;
+      }
+    }
+  }
 }
 
 .imageContainer {
@@ -103,6 +147,16 @@
 @media (max-width: 480px) {
   .card {
     max-width: 100%;
+
+    &.imageOverlay {
+      .imageContainer {
+        height: calc(var(--spacing-xl) * 5);
+      }
+
+      .content {
+        padding: var(--spacing-md);
+      }
+    }
   }
 
   .content {
