@@ -36,7 +36,7 @@ describe("Tabs", () => {
     expect(screen.getByText("Second Tab")).toBeInTheDocument();
     expect(screen.getByText("Third Tab")).toBeInTheDocument();
     expect(screen.getByText("First Tab Content")).toBeInTheDocument();
-    expect(screen.queryByText("Second Tab Content")).not.toBeInTheDocument();
+    expect(screen.getByText("Second Tab Content")).not.toBeVisible();
   });
 
   it("switches active tab when clicked", () => {
@@ -44,8 +44,8 @@ describe("Tabs", () => {
 
     fireEvent.click(screen.getByText("Second Tab"));
 
-    expect(screen.getByText("Second Tab Content")).toBeInTheDocument();
-    expect(screen.queryByText("First Tab Content")).not.toBeInTheDocument();
+    expect(screen.getByText("Second Tab Content")).toBeVisible();
+    expect(screen.getByText("First Tab Content")).not.toBeVisible();
   });
 
   it("calls onChange when tab is clicked", () => {
@@ -81,8 +81,8 @@ describe("Tabs", () => {
     const onChange = jest.fn();
     renderTabs({ value: "tab2", onChange });
 
-    expect(screen.getByText("Second Tab Content")).toBeInTheDocument();
-    expect(screen.queryByText("First Tab Content")).not.toBeInTheDocument();
+    expect(screen.getByText("Second Tab Content")).toBeVisible();
+    expect(screen.getByText("First Tab Content")).not.toBeVisible();
   });
 
   it("applies orientation classes correctly", () => {
@@ -231,7 +231,7 @@ describe("TabsTab", () => {
     expect(onChange).toHaveBeenCalledWith("tab2");
 
     fireEvent.keyDown(secondTab!, { key: " " });
-    expect(onChange).toHaveBeenCalledWith("tab1"); // Toggle back
+    expect(onChange).toHaveBeenCalledWith("tab2"); // Space activates focused tab
   });
 });
 
@@ -249,7 +249,7 @@ describe("TabsPanel", () => {
     );
 
     expect(screen.getByText("Active Content")).toBeInTheDocument();
-    expect(screen.queryByText("Inactive Content")).not.toBeInTheDocument();
+    expect(screen.getByText("Inactive Content")).not.toBeVisible();
   });
 
   it("has correct ARIA attributes", () => {

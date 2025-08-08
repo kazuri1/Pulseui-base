@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Pill } from "./Pill";
+import React from "react";
 
 describe("Pill Component", () => {
   describe("Rendering", () => {
