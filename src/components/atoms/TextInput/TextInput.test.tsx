@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { TextInput } from "./TextInput";
 
 describe("TextInput", () => {
@@ -30,7 +32,7 @@ describe("TextInput", () => {
   });
 
   it("calls onChange when input changes", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<TextInput onChange={handleChange} />);
 
     const input = screen.getByRole("textbox");
@@ -40,7 +42,7 @@ describe("TextInput", () => {
   });
 
   it("calls onFocus when input is focused", () => {
-    const handleFocus = vi.fn();
+    const handleFocus = jest.fn();
     render(<TextInput onFocus={handleFocus} />);
 
     const input = screen.getByRole("textbox");
@@ -50,7 +52,7 @@ describe("TextInput", () => {
   });
 
   it("calls onBlur when input loses focus", () => {
-    const handleBlur = vi.fn();
+    const handleBlur = jest.fn();
     render(<TextInput onBlur={handleBlur} />);
 
     const input = screen.getByRole("textbox");

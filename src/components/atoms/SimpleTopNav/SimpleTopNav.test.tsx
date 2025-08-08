@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { SimpleTopNav } from "./SimpleTopNav";
 
 describe("SimpleTopNav", () => {
@@ -58,7 +60,7 @@ describe("SimpleTopNav", () => {
   });
 
   it("calls onClick handler when nav item is clicked", () => {
-    const mockOnClick = vi.fn();
+    const mockOnClick = jest.fn();
     const itemsWithClick = [
       {
         id: "work",

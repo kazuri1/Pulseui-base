@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { Textarea } from "./Textarea";
 
 describe("Textarea", () => {
@@ -26,7 +28,7 @@ describe("Textarea", () => {
   });
 
   it("calls onChange when textarea changes", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Textarea onChange={handleChange} />);
 
     const textarea = screen.getByRole("textbox");
@@ -36,7 +38,7 @@ describe("Textarea", () => {
   });
 
   it("calls onFocus when textarea is focused", () => {
-    const handleFocus = vi.fn();
+    const handleFocus = jest.fn();
     render(<Textarea onFocus={handleFocus} />);
 
     const textarea = screen.getByRole("textbox");
@@ -46,7 +48,7 @@ describe("Textarea", () => {
   });
 
   it("calls onBlur when textarea loses focus", () => {
-    const handleBlur = vi.fn();
+    const handleBlur = jest.fn();
     render(<Textarea onBlur={handleBlur} />);
 
     const textarea = screen.getByRole("textbox");

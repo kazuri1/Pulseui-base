@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import { Button } from "./Button";
+import React from "react";
 
 describe("Button", () => {
   it("renders with default props", () => {
@@ -77,7 +78,7 @@ describe("Button", () => {
   });
 
   it("handles click events", () => {
-    const handleClick = vi.fn();
+    const handleClick = jest.fn();
     render(<Button onClick={handleClick}>Button</Button>);
     const button = screen.getByRole("button", { name: "Button" });
     button.click();

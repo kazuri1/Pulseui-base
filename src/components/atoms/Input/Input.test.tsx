@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { Input } from "./Input";
 
 describe("Input Component", () => {
@@ -119,7 +121,7 @@ describe("Input Component", () => {
   });
 
   it("forwards ref correctly", () => {
-    const ref = vi.fn();
+    const ref = jest.fn();
     render(<Input ref={ref} placeholder="Test" />);
     expect(ref).toHaveBeenCalledWith(expect.any(HTMLInputElement));
   });
@@ -135,78 +137,55 @@ describe("Input Component", () => {
   });
 
   it("renders with both icon strings", () => {
-    render(
-      <Input
-        leftIcon="search"
-        rightIcon="dropdown"
-        placeholder="Test"
-      />
-    );
+    render(<Input leftIcon="search" rightIcon="dropdown" placeholder="Test" />);
     expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
   });
 
   it("renders password input with automatic toggle", () => {
-    render(
-      <Input
-        type="password"
-        placeholder="Test"
-      />
-    );
+    render(<Input type="password" placeholder="Test" />);
     expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeInTheDocument();
   });
 
   it("renders password input with visible password", () => {
-    render(
-      <Input
-        type="password"
-        passwordVisible={true}
-        placeholder="Test"
-      />
-    );
+    render(<Input type="password" passwordVisible={true} placeholder="Test" />);
     expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "text");
   });
 
   it("renders password input with hidden password", () => {
     render(
-      <Input
-        type="password"
-        passwordVisible={false}
-        placeholder="Test"
-      />
+      <Input type="password" passwordVisible={false} placeholder="Test" />
     );
-    expect(screen.getByPlaceholderText("Test")).toHaveAttribute("type", "password");
+    expect(screen.getByPlaceholderText("Test")).toHaveAttribute(
+      "type",
+      "password"
+    );
   });
 
   it("toggles password visibility when clicking the eye icon", () => {
-    render(
-      <Input
-        type="password"
-        placeholder="Test"
-      />
-    );
-    
+    render(<Input type="password" placeholder="Test" />);
+
     const input = screen.getByPlaceholderText("Test");
     const toggleButton = screen.getByRole("button");
-    
+
     // Initially should be password type
     expect(input).toHaveAttribute("type", "password");
-    
+
     // Click the toggle button
     fireEvent.click(toggleButton);
-    
+
     // Should now be text type
     expect(input).toHaveAttribute("type", "text");
-    
+
     // Click again to hide
     fireEvent.click(toggleButton);
-    
+
     // Should be password type again
     expect(input).toHaveAttribute("type", "password");
   });
 
   it("calls onPasswordVisibilityChange when provided", () => {
-    const handleVisibilityChange = vi.fn();
+    const handleVisibilityChange = jest.fn();
     render(
       <Input
         type="password"
@@ -215,25 +194,21 @@ describe("Input Component", () => {
         placeholder="Test"
       />
     );
-    
+
     const toggleButton = screen.getByRole("button");
-    
+
     // Click the toggle button
     fireEvent.click(toggleButton);
-    
+
     // Should call the handler with true
     expect(handleVisibilityChange).toHaveBeenCalledWith(true);
   });
 
   it("does not show toggle when explicitly disabled", () => {
     render(
-      <Input
-        type="password"
-        showPasswordToggle={false}
-        placeholder="Test"
-      />
+      <Input type="password" showPasswordToggle={false} placeholder="Test" />
     );
-    
+
     expect(screen.getByPlaceholderText("Test")).toBeInTheDocument();
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });

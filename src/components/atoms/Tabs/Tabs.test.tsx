@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { Tabs, TabsList, TabsTab, TabsPanel } from "./index";
 
 describe("Tabs", () => {
@@ -47,7 +49,7 @@ describe("Tabs", () => {
   });
 
   it("calls onChange when tab is clicked", () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     renderTabs({ onChange });
 
     fireEvent.click(screen.getByText("Second Tab"));
@@ -56,7 +58,7 @@ describe("Tabs", () => {
   });
 
   it("allows tab deactivation when allowTabDeactivation is true", () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     renderTabs({ allowTabDeactivation: true, onChange });
 
     // Click active tab to deactivate
@@ -66,7 +68,7 @@ describe("Tabs", () => {
   });
 
   it("prevents tab deactivation when allowTabDeactivation is false", () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     renderTabs({ allowTabDeactivation: false, onChange });
 
     // Click active tab - should not deactivate
@@ -76,7 +78,7 @@ describe("Tabs", () => {
   });
 
   it("works as controlled component", () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     renderTabs({ value: "tab2", onChange });
 
     expect(screen.getByText("Second Tab Content")).toBeInTheDocument();
@@ -210,7 +212,7 @@ describe("TabsTab", () => {
   });
 
   it("handles Enter and Space key presses", () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     render(
       <Tabs defaultValue="tab1" onChange={onChange}>
         <TabsList>

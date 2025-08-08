@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { TableOfContents } from "./TableOfContents";
 import type { TableOfContentsItem } from "./TableOfContents";
 
@@ -96,7 +98,7 @@ describe("TableOfContents", () => {
   });
 
   it("calls onItemClick when item is clicked", () => {
-    const mockOnItemClick = vi.fn();
+    const mockOnItemClick = jest.fn();
     render(<TableOfContents items={mockItems} onItemClick={mockOnItemClick} />);
 
     fireEvent.click(screen.getByText("Section 1"));
@@ -105,7 +107,7 @@ describe("TableOfContents", () => {
 
   it("scrolls to target element when item is clicked", () => {
     // Mock scrollTo
-    const mockScrollTo = vi.fn();
+    const mockScrollTo = jest.fn();
     Object.defineProperty(window, "scrollTo", {
       value: mockScrollTo,
       writable: true,
@@ -116,7 +118,7 @@ describe("TableOfContents", () => {
       offsetTop: 100,
       offsetHeight: 50,
     };
-    vi.spyOn(document, "getElementById").mockReturnValue(mockElement as any);
+    jest.spyOn(document, "getElementById").mockReturnValue(mockElement as any);
 
     render(<TableOfContents items={mockItems} scrollOffset={50} />);
 

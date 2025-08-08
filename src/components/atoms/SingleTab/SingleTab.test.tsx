@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { SingleTab } from "./SingleTab";
 import { InfoOutlined } from "../Icon/IconSet";
 
@@ -80,7 +82,7 @@ describe("SingleTab", () => {
   });
 
   it("calls onClick when clicked", () => {
-    const handleClick = vi.fn();
+    const handleClick = jest.fn();
     render(<SingleTab onClick={handleClick} />);
 
     fireEvent.click(screen.getByRole("button"));

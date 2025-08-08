@@ -25,7 +25,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"],
+  "include": ["src", "src/scss-modules.d.ts"],
   "exclude": [
     "node_modules/@types/react-native",
     "**/*.test.ts",

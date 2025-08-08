@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { Grid } from "./Grid";
 
 describe("Grid Component", () => {
@@ -105,4 +107,4 @@ describe("Grid Component", () => {
     const grid = screen.getByText("Test content").parentElement;
     expect(grid).toHaveStyle({ "--grid-columns": 8 });
   });
-}); 
+});

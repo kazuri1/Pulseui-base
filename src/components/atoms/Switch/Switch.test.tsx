@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import React from "react";
 import { Switch } from "./Switch";
 
 describe("Switch", () => {
@@ -25,7 +27,7 @@ describe("Switch", () => {
   });
 
   it("calls onChange when switch is toggled", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Switch onChange={handleChange} />);
 
     const checkbox = screen.getByRole("checkbox");
@@ -82,7 +84,7 @@ describe("Switch", () => {
   });
 
   it("toggles from unchecked to checked", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Switch checked={false} onChange={handleChange} />);
 
     const checkbox = screen.getByRole("checkbox");
@@ -92,7 +94,7 @@ describe("Switch", () => {
   });
 
   it("toggles from checked to unchecked", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Switch checked={true} onChange={handleChange} />);
 
     const checkbox = screen.getByRole("checkbox");
