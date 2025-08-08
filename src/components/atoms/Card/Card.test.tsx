@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { Card } from "./Card";
 
 describe("Card", () => {
@@ -78,8 +79,10 @@ describe("Card", () => {
     const handleClick = jest.fn();
     render(<Card {...defaultProps} clickable={true} onClick={handleClick} />);
 
-    const card = screen.getByRole("button");
-    fireEvent.click(card);
+    const cardButtons = screen.getAllByRole("button");
+    const cardElement = cardButtons.find(button => button.classList.contains("card"));
+    expect(cardElement).toBeDefined();
+    fireEvent.click(cardElement!);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -94,8 +97,10 @@ describe("Card", () => {
       />
     );
 
-    const card = screen.getByRole("button");
-    fireEvent.click(card);
+    const cardButtons = screen.getAllByRole("button");
+    const cardElement = cardButtons.find(button => button.classList.contains("card"));
+    expect(cardElement).toBeDefined();
+    fireEvent.click(cardElement!);
     expect(handleClick).not.toHaveBeenCalled();
   });
 
@@ -109,8 +114,10 @@ describe("Card", () => {
   it("applies clickable styles when clickable is true", () => {
     render(<Card {...defaultProps} clickable={true} />);
 
-    const card = screen.getByRole("button");
-    expect(card).toHaveClass("clickable");
+    const cardButtons = screen.getAllByRole("button");
+    const cardElement = cardButtons.find(button => button.classList.contains("card"));
+    expect(cardElement).toBeDefined();
+    expect(cardElement).toHaveClass("clickable");
   });
 
   it("renders without button when buttonText is not provided", () => {

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Button.module.scss";
-import classNames from "classnames";
 import { Icon } from "../Icon";
 import {
   Download,
@@ -15,7 +14,6 @@ import {
   Settings,
 } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
-import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
