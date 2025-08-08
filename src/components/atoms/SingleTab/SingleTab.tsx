@@ -17,7 +17,7 @@ import {
   FavoriteBorder,
   BookmarkBorder,
   FlagOutlined,
-  LockOutline,
+  LockOutlined,
 } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { SxProps } from "../../../styles/stylesApi";
@@ -102,7 +102,7 @@ export const SingleTab: React.FC<SingleTabProps> = ({
         favorite: FavoriteBorder,
         bookmark: BookmarkBorder,
         flag: FlagOutlined,
-        lock: LockOutline,
+        lock: LockOutlined,
         // Add more icon mappings as needed
       };
       return iconMap[leftIcon] || InfoOutlined;
@@ -136,7 +136,7 @@ export const SingleTab: React.FC<SingleTabProps> = ({
         favorite: FavoriteBorder,
         bookmark: BookmarkBorder,
         flag: FlagOutlined,
-        lock: LockOutline,
+        lock: LockOutlined,
         // Add more icon mappings as needed
       };
       return iconMap[rightIcon] || InfoOutlined;

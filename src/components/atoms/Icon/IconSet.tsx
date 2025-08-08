@@ -282,7 +282,7 @@ export { MeetingRoom, Desk, Chair, Fax, Scanner } from "@mui/icons-material";
 
 // Security & Privacy
 export {
-  LockOutline,
+  LockOutlined,
   LockPerson,
   VpnKey,
   Key,
