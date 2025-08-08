@@ -78,7 +78,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled = false,
       readonly = false,
       required = false,
-      showPasswordToggle = false,
+      showPasswordToggle = true,
       passwordVisible: externalPasswordVisible,
       onPasswordVisibilityChange,
 
@@ -100,8 +100,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     // Use external state if provided, otherwise use internal state
     const passwordVisible =
-      onPasswordVisibilityChange !== undefined
-        ? externalPasswordVisible ?? false
+      externalPasswordVisible !== undefined
+        ? externalPasswordVisible
         : internalPasswordVisible;
     // Determine the actual state based on props
     const actualState = disabled ? "disabled" : state;

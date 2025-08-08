@@ -6,19 +6,19 @@ import { Input } from "./Input";
 
 describe("Input Component", () => {
   it("renders with default props", () => {
-    render(<Input placeholder="Test placeholder" />);
+    render(<Input placeholder="Test placeholder" value="" onChange={() => {}} />);
     const input = screen.getByPlaceholderText("Test placeholder");
     expect(input).toBeInTheDocument();
   });
 
   it("renders with different variants", () => {
-    const { rerender } = render(<Input variant="default" placeholder="Test" />);
+    const { rerender } = render(<Input variant="default" placeholder="Test" value="" onChange={() => {}} />);
     expect(screen.getByPlaceholderText("Test")).toHaveClass("variant-default");
 
-    rerender(<Input variant="filled" placeholder="Test" />);
+    rerender(<Input variant="filled" placeholder="Test" value="" onChange={() => {}} />);
     expect(screen.getByPlaceholderText("Test")).toHaveClass("variant-filled");
 
-    rerender(<Input variant="unstyled" placeholder="Test" />);
+    rerender(<Input variant="unstyled" placeholder="Test" value="" onChange={() => {}} />);
     expect(screen.getByPlaceholderText("Test")).toHaveClass("variant-unstyled");
   });
 

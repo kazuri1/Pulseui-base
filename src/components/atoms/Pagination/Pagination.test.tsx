@@ -14,9 +14,18 @@ describe("Pagination", () => {
     expect(screen.getByRole("navigation")).toBeInTheDocument();
     expect(screen.getByText("1")).toBeInTheDocument();
     expect(screen.getByText("2")).toBeInTheDocument();
-    expect(screen.getByText("3")).toBeInTheDocument();
-    expect(screen.getByText("4")).toBeInTheDocument();
-    expect(screen.getByText("5")).toBeInTheDocument();
+    expect(screen.getByText("10")).toBeInTheDocument();
+    // With currentPage=1, siblingCount=1, boundaryCount=1, expect 1,2,...,10
+    expect(screen.getByTestId("MoreHorizIcon")).toBeInTheDocument(); // ellipsis
+  });
+
+  it("renders pagination with middle page showing siblings", () => {
+    render(<Pagination currentPage={5} totalPages={10} />);
+    
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument(); // sibling
+    expect(screen.getByText("5")).toBeInTheDocument(); // current
+    expect(screen.getByText("6")).toBeInTheDocument(); // sibling
     expect(screen.getByText("10")).toBeInTheDocument();
   });
 

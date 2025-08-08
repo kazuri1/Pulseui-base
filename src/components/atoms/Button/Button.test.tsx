@@ -23,7 +23,9 @@ describe("Button", () => {
     ] as const;
 
     variants.forEach((variant) => {
-      const { unmount } = render(<Button variant={variant}>{variant} Button</Button>);
+      const { unmount } = render(
+        <Button variant={variant}>{variant} Button</Button>
+      );
       const button = screen.getByRole("button", { name: `${variant} Button` });
       expect(button).toBeInTheDocument();
       expect(button).toHaveClass(`variant-${variant}`);
