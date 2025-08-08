@@ -113,7 +113,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   return (
     <div
       className={avatarClasses}
-      onClick={onClick}
+      onClick={interactive ? onClick : undefined}
       role={interactive ? "button" : undefined}
       tabIndex={interactive ? 0 : undefined}
       style={sxStyle}

@@ -179,8 +179,11 @@ describe("Alert", () => {
   });
 
   it("renders with sx props", () => {
-    render(<Alert sx={{ color: "blue" }}>Test message</Alert>);
+    render(<Alert sx={{ fontSize: "16px" }}>Test message</Alert>);
 
-    expect(screen.getByRole("alert")).toHaveStyle({ color: "blue" });
+    const alertElement = screen.getByRole("alert");
+    expect(alertElement).toBeInTheDocument();
+    // Check that sx styles are applied via style attribute  
+    expect(alertElement).toHaveStyle({ fontSize: "16px" });
   });
 });

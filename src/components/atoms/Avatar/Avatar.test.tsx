@@ -1,5 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, jest } from "@jest/globals";
+import "@testing-library/jest-dom";
 import { Avatar } from "./Avatar";
 import { Person } from "../Icon/IconSet";
 
@@ -11,7 +13,7 @@ describe("Avatar", () => {
 
   it("renders icon type correctly", () => {
     render(<Avatar type="icon" icon={Person} />);
-    expect(screen.getByRole("img")).toBeInTheDocument();
+    expect(screen.getByTestId("PersonIcon")).toBeInTheDocument();
   });
 
   it("renders image type correctly", () => {
