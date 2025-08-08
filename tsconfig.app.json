@@ -26,5 +26,16 @@
     "noUncheckedSideEffectImports": true
   },
   "include": ["src"],
-  "exclude": ["node_modules/@types/react-native"]
+  "exclude": [
+    "node_modules/@types/react-native",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.stories.tsx",
+    "**/*.stories.ts",
+    "src/test",
+    "**/__tests__/**",
+    "**/__mocks__/**"
+  ]
 }

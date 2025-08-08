@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type { ThemeConfig, ThemeMode, CustomTheme } from "./types";
 interface ThemeContextType {
     currentTheme: string;

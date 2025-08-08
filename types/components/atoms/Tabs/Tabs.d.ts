@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 export interface TabsContextValue {

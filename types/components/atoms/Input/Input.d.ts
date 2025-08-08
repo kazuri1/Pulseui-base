@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { WithSxProps } from "../../../utils/sxUtils";
 export interface InputProps extends WithSxProps {
