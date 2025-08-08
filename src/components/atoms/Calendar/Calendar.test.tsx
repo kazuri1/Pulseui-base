@@ -23,8 +23,8 @@ describe("Calendar", () => {
     expect(screen.getByText("Su")).toBeInTheDocument();
     expect(screen.getByText("Sa")).toBeInTheDocument();
 
-    // Check for some dates
-    expect(screen.getByText("1")).toBeInTheDocument();
+    // Check for some dates (using middle dates to avoid conflicts)
+    expect(screen.getByText("15")).toBeInTheDocument();
   });
 
   it("renders without navigation when showNavigation is false", () => {
@@ -46,8 +46,9 @@ describe("Calendar", () => {
       <Calendar date={new Date(2022, 0, 1)} onDateSelect={mockOnDateSelect} />
     );
 
-    const dateButton = screen.getByText("1");
-    fireEvent.click(dateButton);
+    // Find the button containing "15" (middle of month, no conflicts)
+    const dateButton = screen.getByText("15").closest('button');
+    fireEvent.click(dateButton!);
 
     expect(mockOnDateSelect).toHaveBeenCalledWith(expect.any(Date));
   });
@@ -72,8 +73,9 @@ describe("Calendar", () => {
       />
     );
 
-    const dateButton = screen.getByText("1");
-    fireEvent.click(dateButton);
+    // Find the button containing "15" (middle of month, no conflicts)
+    const dateButton = screen.getByText("15").closest('button');
+    fireEvent.click(dateButton!);
 
     expect(mockOnDateSelect).not.toHaveBeenCalled();
   });
@@ -106,16 +108,16 @@ describe("Calendar", () => {
       <Calendar date={new Date(2022, 0, 1)} selectedDate={selectedDate} />
     );
 
-    const selectedDateElement = screen.getByText("15");
-    expect(selectedDateElement).toHaveClass("active-selected");
+    const selectedDateButton = screen.getByText("15").closest('button');
+    expect(selectedDateButton).toHaveClass("active-selected");
   });
 
   it("shows today indicator", () => {
     const today = new Date();
     render(<Calendar date={today} />);
 
-    const todayElement = screen.getByText(today.getDate().toString());
-    expect(todayElement).toHaveClass("active-holiday");
+    const todayButton = screen.getByText(today.getDate().toString()).closest('button');
+    expect(todayButton).toHaveClass("variant-holiday");
   });
 
   it("renders range selection correctly", () => {
@@ -130,11 +132,11 @@ describe("Calendar", () => {
       />
     );
 
-    const startDate = screen.getByText("10");
-    const endDate = screen.getByText("15");
+    const startDateButton = screen.getByText("10").closest('button');
+    const endDateButton = screen.getByText("15").closest('button');
 
-    expect(startDate).toHaveClass("active-initial");
-    expect(endDate).toHaveClass("active-end");
+    expect(startDateButton).toHaveClass("active-initial");
+    expect(endDateButton).toHaveClass("active-end");
   });
 
   it("renders disabled state correctly", () => {
@@ -147,13 +149,15 @@ describe("Calendar", () => {
   it("renders dates from previous and next months as disabled", () => {
     render(<Calendar date={new Date(2022, 0, 1)} />);
 
-    // December 2021 dates should be disabled
-    const prevMonthDate = screen.getByText("26");
-    expect(prevMonthDate).toHaveClass("variant-disabled");
+    // December 2021 dates should be disabled - find all "26" and get the disabled one
+    const allDates26 = screen.getAllByText("26");
+    const prevMonthDate = allDates26.find(date => date.closest('button')?.classList.contains('variant-disabled'));
+    expect(prevMonthDate?.closest('button')).toHaveClass("variant-disabled");
 
-    // February 2022 dates should be disabled
-    const nextMonthDate = screen.getByText("1");
-    expect(nextMonthDate).toHaveClass("variant-disabled");
+    // February 2022 dates should be disabled - find all "1" and get the disabled one
+    const allDates1 = screen.getAllByText("1");
+    const nextMonthDate = allDates1.find(date => date.closest('button')?.classList.contains('variant-disabled'));
+    expect(nextMonthDate?.closest('button')).toHaveClass("variant-disabled");
   });
 
   it("has correct accessibility attributes", () => {
