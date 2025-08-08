@@ -52,6 +52,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "build-storybook:analyze": "ANALYZE=true storybook build",
     "test": "vitest",
     "type-check": "tsc --noEmit"
   },
