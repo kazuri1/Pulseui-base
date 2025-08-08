@@ -490,16 +490,25 @@ export const processSxProps = (
 };
 
 // Styled component factory
-export const styled = (component: string, defaultSx?: SxProps) => {
+export const styled = (component: string | React.ComponentType<any>, defaultSx?: SxProps) => {
   return React.forwardRef<any, any>(({ sx, style, ...props }, ref) => {
     const processedSx = processSxProps({ ...defaultSx, ...sx });
     const mergedStyle = { ...processedSx, ...style };
 
-    return React.createElement(component, {
-      ...props,
-      style: mergedStyle,
-      ref,
-    });
+    if (typeof component === 'string') {
+      return React.createElement(component, {
+        ...props,
+        style: mergedStyle,
+        ref,
+      });
+    } else {
+      return React.createElement(component, {
+        ...props,
+        sx: { ...defaultSx, ...sx },
+        style: mergedStyle,
+        ref,
+      });
+    }
   });
 };
 

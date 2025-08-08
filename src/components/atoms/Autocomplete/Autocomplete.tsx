@@ -90,12 +90,11 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
     const visibleOptions = filteredOptions.slice(0, maxSuggestions);
 
     // Handle input change
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setInputValue(newValue);
+    const handleInputChange = (value: string) => {
+      setInputValue(value);
       setIsOpen(true);
       setHighlightedIndex(-1);
-      onChange?.(newValue);
+      onChange?.(value);
     };
 
     // Handle keyboard navigation

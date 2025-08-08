@@ -28,6 +28,9 @@ export default {
       "ts-jest",
       {
         tsconfig: "tsconfig.test.json",
+        diagnostics: {
+          ignoreCodes: [2339], // Ignore "Property does not exist" for jest-dom matchers
+        },
       },
     ],
   },

@@ -7,8 +7,12 @@
     "noEmit": false,
     "moduleResolution": "node",
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true
   },
-  "include": ["src/**/*", "src/scss-modules.d.ts"],
+  "include": ["src/**/*", "src/scss-modules.d.ts", "src/types/jest-dom.d.ts"],
   "exclude": ["node_modules"]
 }
