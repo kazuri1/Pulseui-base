@@ -23,7 +23,8 @@ describe("Switch", () => {
   it("renders error message", () => {
     render(<Switch error="This feature is unavailable" />);
     expect(screen.getByText("This feature is unavailable")).toBeInTheDocument();
-    expect(screen.getByText("ℹ")).toBeInTheDocument();
+    // Check for the error icon SVG instead of text symbol
+    expect(screen.getByTestId("InfoOutlinedIcon")).toBeInTheDocument();
   });
 
   it("calls onChange when switch is toggled", () => {

@@ -26,9 +26,10 @@ describe("TextInput", () => {
   });
 
   it("renders error message", () => {
-    render(<TextInput error="Invalid email address" />);
+    render(<TextInput error="Invalid email address" value="" onChange={() => {}} />);
     expect(screen.getByText("Invalid email address")).toBeInTheDocument();
-    expect(screen.getByText("⚠")).toBeInTheDocument();
+    // Check for the error icon SVG instead of text symbol
+    expect(screen.getByTestId("InfoOutlinedIcon")).toBeInTheDocument();
   });
 
   it("calls onChange when input changes", () => {

@@ -23,9 +23,11 @@ describe("Button", () => {
     ] as const;
 
     variants.forEach((variant) => {
-      render(<Button variant={variant}>Button</Button>);
-      const button = screen.getByRole("button", { name: "Button" });
+      const { unmount } = render(<Button variant={variant}>{variant} Button</Button>);
+      const button = screen.getByRole("button", { name: `${variant} Button` });
       expect(button).toBeInTheDocument();
+      expect(button).toHaveClass(`variant-${variant}`);
+      unmount();
     });
   });
 
@@ -33,9 +35,11 @@ describe("Button", () => {
     const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
     sizes.forEach((size) => {
-      render(<Button size={size}>Button</Button>);
-      const button = screen.getByRole("button", { name: "Button" });
+      const { unmount } = render(<Button size={size}>{size} Button</Button>);
+      const button = screen.getByRole("button", { name: `${size} Button` });
       expect(button).toBeInTheDocument();
+      expect(button).toHaveClass(`size-${size}`);
+      unmount();
     });
   });
 
@@ -43,9 +47,11 @@ describe("Button", () => {
     const states = ["default", "hover", "disabled"] as const;
 
     states.forEach((state) => {
-      render(<Button state={state}>Button</Button>);
-      const button = screen.getByRole("button", { name: "Button" });
+      const { unmount } = render(<Button state={state}>{state} Button</Button>);
+      const button = screen.getByRole("button", { name: `${state} Button` });
       expect(button).toBeInTheDocument();
+      expect(button).toHaveClass(`state-${state}`);
+      unmount();
     });
   });
 
