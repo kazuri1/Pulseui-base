@@ -32,9 +32,9 @@ coverage/
 *.spec.ts
 *.spec.tsx
 
-# Storybook files
-.storybook/
-*.stories.tsx
+# Storybook files - needed for build
+# .storybook/
+# *.stories.tsx
 
 # TypeScript build files
 types/
