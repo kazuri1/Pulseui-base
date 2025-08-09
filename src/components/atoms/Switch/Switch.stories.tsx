@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Switch } from "./Switch";
 import React from "react";
 
@@ -176,3 +177,4 @@ export const Large: Story = {
     checked: true,
   },
 };
+

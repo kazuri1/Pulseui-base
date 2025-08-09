@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Pagination } from "./Pagination";
 
 const meta: Meta<typeof Pagination> = {
@@ -221,3 +222,4 @@ export const CustomStyling: Story = {
     },
   },
 };
+

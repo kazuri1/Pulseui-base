@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Avatar } from "./Avatar";
 import {
   Person,
@@ -265,3 +266,4 @@ export const ImageWithFallback: Story = {
     },
   },
 };
+

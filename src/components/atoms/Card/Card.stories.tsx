@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Card } from "./Card";
 
 const meta: Meta<typeof Card> = {
@@ -451,3 +452,4 @@ export const WithCustomContent: Story = {
     </div>
   ),
 };
+

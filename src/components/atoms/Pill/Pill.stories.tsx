@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Pill } from "./Pill";
 
 const meta: Meta<typeof Pill> = {
@@ -148,3 +149,4 @@ export const LongText: Story = {
     },
   },
 };
+

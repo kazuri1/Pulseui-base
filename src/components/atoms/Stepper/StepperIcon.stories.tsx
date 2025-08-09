@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { StepperIcon } from "./StepperIcon";
 import { Icon } from "../Icon";
 import { Check } from "../Icon/IconSet";
@@ -230,3 +231,4 @@ export const CustomStyling: Story = {
     },
   },
 };
+

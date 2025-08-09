@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Textarea } from "./Textarea";
 
 const meta: Meta<typeof Textarea> = {
@@ -157,3 +158,4 @@ export const ShortRows: Story = {
     rows: 2,
   },
 };
+

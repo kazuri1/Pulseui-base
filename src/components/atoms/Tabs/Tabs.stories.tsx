@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Tabs, TabsList, TabsTab, TabsPanel } from "./index";
 
 const meta: Meta<typeof Tabs> = {
@@ -661,3 +662,4 @@ export const AllSingleTabProps: Story = {
     </Tabs>
   ),
 };
+

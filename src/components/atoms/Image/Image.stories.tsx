@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Image } from "./Image";
 
 const meta: Meta<typeof Image> = {
@@ -220,3 +221,4 @@ export const Responsive: Story = {
     fit: "cover",
   },
 };
+
