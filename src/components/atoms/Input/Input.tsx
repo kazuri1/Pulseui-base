@@ -68,7 +68,7 @@ export interface InputProps extends WithSxProps {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      value = "",
+      value,
       placeholder = "",
       variant = "default",
       size = "md",
@@ -207,7 +207,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           type={effectiveType}
-          value={value}
+          {...(value !== undefined ? { value } : {})}
           placeholder={placeholder}
           disabled={disabled}
           readOnly={readonly}

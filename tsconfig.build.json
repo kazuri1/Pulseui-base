@@ -27,6 +27,7 @@
     "**/*.stories.tsx",
     "**/*.stories.ts",
     "src/test",
+    "src/setupTests.ts",
     "**/__tests__/**",
     "**/__mocks__/**",
     "src/components/examples/**",

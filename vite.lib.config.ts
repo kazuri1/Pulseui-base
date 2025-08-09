@@ -16,7 +16,6 @@ export default defineConfig({
         'react',
         'react-dom',
         'react/jsx-runtime',
-        '@mui/icons-material',
         'classnames'
       ],
       output: {
@@ -24,7 +23,6 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
-          '@mui/icons-material': 'MuiIcons',
           classnames: 'classNames'
         },
         exports: 'named',

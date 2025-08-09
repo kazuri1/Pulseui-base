@@ -103,7 +103,7 @@ describe("Input Component", () => {
   });
 
   it("renders with value", () => {
-    render(<Input value="test value" placeholder="Test" />);
+    render(<Input value="test value" placeholder="Test" onChange={() => {}} />);
     const input = screen.getByPlaceholderText("Test");
     expect(input).toHaveValue("test value");
   });
