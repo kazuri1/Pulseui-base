@@ -363,6 +363,61 @@ function generateSCSS(tokens) {
 }
 
 /**
+ * Merges Figma tokens with existing SCSS file
+ */
+function mergeTokensWithExisting(figmaTokens) {
+  console.log("🔄 Merging Figma tokens with existing file...");
+
+  if (!fs.existsSync(TOKENS_OUTPUT_PATH)) {
+    console.log("⚠️  No existing tokens file found, creating new one");
+    return generateScssFromTokens(figmaTokens);
+  }
+
+  // Read existing file
+  const existingContent = fs.readFileSync(TOKENS_OUTPUT_PATH, "utf8");
+  let updatedContent = existingContent;
+  let changesCount = 0;
+
+  // Extract all tokens from Figma data
+  const allFigmaTokens = {
+    ...figmaTokens.colors,
+    ...figmaTokens.spacing,
+    ...figmaTokens.sizes,
+    ...figmaTokens.typography,
+  };
+
+  // Update each token value if it exists in the file
+  Object.entries(allFigmaTokens).forEach(([tokenName, newValue]) => {
+    const tokenPattern = new RegExp(`(--${tokenName}\\s*:\\s*)([^;]+)(;)`, "g");
+    const match = existingContent.match(tokenPattern);
+
+    if (match) {
+      const currentValue = match[0].split(":")[1].trim().replace(";", "");
+      if (currentValue !== newValue) {
+        updatedContent = updatedContent.replace(
+          tokenPattern,
+          `$1${newValue}$3`
+        );
+        changesCount++;
+        console.log(`🔄 Updated --${tokenName}: ${currentValue} → ${newValue}`);
+      }
+    } else {
+      console.log(
+        `⚠️  Token --${tokenName} not found in existing file (skipping)`
+      );
+    }
+  });
+
+  if (changesCount === 0) {
+    console.log("✅ No token values changed");
+  } else {
+    console.log(`✅ Updated ${changesCount} token values`);
+  }
+
+  return updatedContent;
+}
+
+/**
  * Saves tokens to files
  */
 function saveTokens(tokens, scss) {
@@ -372,16 +427,17 @@ function saveTokens(tokens, scss) {
   fs.writeFileSync(TOKENS_JSON_PATH, JSON.stringify(tokens, null, 2));
   console.log(`✅ Saved JSON tokens to ${TOKENS_JSON_PATH}`);
 
-  // Save SCSS tokens (backup the original first)
+  // Create backup of existing SCSS file
   if (fs.existsSync(TOKENS_OUTPUT_PATH)) {
     const backup = TOKENS_OUTPUT_PATH.replace(".scss", ".backup.scss");
     fs.copyFileSync(TOKENS_OUTPUT_PATH, backup);
     console.log(`📋 Backed up existing tokens to ${backup}`);
   }
 
-  // Write new SCSS tokens
-  fs.writeFileSync(TOKENS_OUTPUT_PATH, scss);
-  console.log(`✅ Saved SCSS tokens to ${TOKENS_OUTPUT_PATH}`);
+  // Use smart merging instead of complete replacement
+  const mergedContent = mergeTokensWithExisting(tokens);
+  fs.writeFileSync(TOKENS_OUTPUT_PATH, mergedContent);
+  console.log(`✅ Merged SCSS tokens to ${TOKENS_OUTPUT_PATH}`);
 }
 
 /**
@@ -397,11 +453,8 @@ async function main() {
     // Process tokens
     const tokens = processTokens(figmaData);
 
-    // Generate SCSS
-    const scss = generateSCSS(tokens);
-
-    // Save files
-    saveTokens(tokens, scss);
+    // Save files with smart merging (no need for full SCSS generation)
+    saveTokens(tokens, null);
 
     // Summary
     const tokenCount = Object.values(tokens).reduce(
