@@ -36,6 +36,8 @@ export interface InputProps extends WithSxProps {
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
     /** Callback fired when input loses focus */
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+    /** Callback fired when key is pressed */
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     /** Input name */
     name?: string;
     /** Input id */

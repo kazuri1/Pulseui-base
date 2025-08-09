@@ -66,7 +66,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       case "icon":
         return (
           <div className={styles.iconWrapper}>
-            <Icon icon={icon} size={getIconSize(size)} color="inherit" />
+            <Icon icon={icon as any} size={getIconSize(size)} color="inherit" />
           </div>
         );
       case "image":

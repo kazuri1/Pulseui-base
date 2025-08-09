@@ -46,7 +46,7 @@
     "build": "npm run build:lib && npm run build:styles",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:types": "tsc --project tsconfig.build.json",
-    "build:styles": "npm run sync-tokens && sass src/styles/_tokens.scss:dist/tokens.css --style compressed && sass src/styles/pulseui-base.scss:dist/pulseui-base.scss.css --style compressed",
+    "build:styles": "npx sass src/styles/_tokens.scss:dist/tokens.css --style compressed && npx sass src/styles/pulseui-base.scss:dist/pulseui-base.scss.css --style compressed",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -78,8 +78,6 @@
     }
   },
   "dependencies": {
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
     "@material-symbols/font-400": "^0.33.0",
     "@mui/icons-material": "^5.15.0",
     "@mui/material": "^5.15.0",

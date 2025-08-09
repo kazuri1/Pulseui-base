@@ -40,11 +40,20 @@ coverage/
 *.spec.tsx
 vitest.config.ts
 vitest.shims.d.ts
+test-import.ts
+test-import.tsx
+jest.config.js
+setupTests.ts
 
 # Storybook files
 .storybook/
 *.stories.tsx
 *.stories.ts
+
+# Example/Demo files
+src/components/examples/
+*Example.tsx
+*Example.ts
 
 # Development scripts
 vite.config.ts
@@ -52,6 +61,13 @@ vite.lib.config.ts
 postcss.config.js
 tailwind.config.js
 eslint.config.js
+tsconfig*.json
+
+# App files (not needed for library)
+src/App.tsx
+src/App.css
+src/main.tsx
+src/index.css
 
 # Source maps (included in dist)
 *.map

@@ -20,5 +20,5 @@ export { Restaurant, LocalDining, LocalPizza, LocalCafe, LocalBar, LocalGroceryS
 export { Movie, MusicNote, MusicOff, Games, SportsEsports, SportsSoccer, SportsBasketball, SportsTennis, SportsGolf, SportsCricket, } from "@mui/icons-material";
 export { LibraryBooks, Book, Bookmark, BookmarkBorder, BookmarkAdd, BookmarkRemove, Assignment, Quiz, Grade, } from "@mui/icons-material";
 export { MeetingRoom, Desk, Chair, Fax, Scanner } from "@mui/icons-material";
-export { LockOutline, LockPerson, VpnKey, Key, Password, Fingerprint, Face, } from "@mui/icons-material";
+export { LockOutlined, LockPerson, VpnKey, Key, Password, Fingerprint, Face, } from "@mui/icons-material";
 export { Analytics, BarChart, PieChart, ShowChart, DataUsage, Storage, CloudQueue, } from "@mui/icons-material";
