@@ -1,237 +1,306 @@
+// Design Tokens - SCSS Variables
+// These tokens are used throughout the component library
 
-// Last Figma sync: 2025-08-09T04:01:30.903Z
-
-// Last Figma sync: 2025-08-09T03:57:32.760Z
-// Design Tokens - Auto-generated from Figma
-// Last updated: 2025-08-09T03:10:20.312Z
-// 
-// 🎨 This file maintains 100% design token compliance
-// ⚠️  DO NOT EDIT MANUALLY - Changes will be overwritten
-//
-
+// Colors
 :root {
-  // Colors
-  --color-extracted-color-1: #4DABF7;
-  --color-extracted-color-2: #d0ebff;
-  --color-extracted-color-3: #a5d8ff;
-  --color-extracted-color-4: #74c0fc;
-  --color-extracted-color-5: #4dabf7;
-  --color-extracted-color-6: #339af0;
-  --color-extracted-color-7: #228be6;
-  --color-extracted-color-8: #1c7ed6;
-  --color-extracted-color-9: #1971c2;
-  --color-extracted-color-10: #1864ab;
-  --color-extracted-color-11: #f8f9fa;
-  --color-extracted-color-12: #f1f3f5;
-  --color-extracted-color-13: #e9ecef;
-  --color-extracted-color-14: #dee2e6;
-  --color-extracted-color-15: #ced4da;
-  --color-extracted-color-16: #adb5bd;
-  --color-extracted-color-17: #868e96;
-  --color-extracted-color-18: #495057;
-  --color-extracted-color-19: #343a40;
-  --color-extracted-color-20: #212529;
-  --color-extracted-color-21: #212529;
-  --color-extracted-color-22: #495057;
-  --color-extracted-color-23: #868e96;
-  --color-extracted-color-24: #adb5bd;
-  --color-extracted-color-25: #dee2e6;
-  --color-extracted-color-26: #ced4da;
-  --color-extracted-color-27: #339af0;
-  --color-extracted-color-28: #e7f5ff;
-  --color-extracted-color-29: #d0ebff;
-  --color-extracted-color-30: #a5d8ff;
-  --color-extracted-color-31: #74c0fc;
-  --color-extracted-color-32: #4dabf7;
-  --color-extracted-color-33: #339af0;
-  --color-extracted-color-34: #228be6;
-  --color-extracted-color-35: #1c7ed6;
-  --color-extracted-color-36: #1971c2;
-  --color-extracted-color-37: #1864ab;
-  --color-extracted-color-38: #141414;
-  --color-extracted-color-39: #1f1f1f;
-  --color-extracted-color-40: #242424;
-  --color-extracted-color-41: #2e2e2e;
-  --color-extracted-color-42: #424242;
-  --color-extracted-color-43: #696969;
-  --color-extracted-color-44: #828282;
-  --color-extracted-color-45: #b8b8b8;
-  --color-extracted-color-46: #c9c9c9;
-  --color-extracted-color-47: #ffffff;
-  --color-extracted-color-48: #ffffff;
-  --color-extracted-color-49: #c9c9c9;
-  --color-extracted-color-50: #828282;
-  --color-extracted-color-51: #696969;
-  --color-extracted-color-52: #424242;
-  --color-extracted-color-53: #2e2e2e;
-  --color-extracted-color-54: #74c0fc;
-  --color-extracted-color-55: #1971c2;
-  --color-extracted-color-56: #1864ab;
-  --color-extracted-color-57: #155a9a;
-  --color-extracted-color-58: #12b886;
-  --color-extracted-color-59: #0ca678;
-  --color-extracted-color-60: #099268;
-  --color-extracted-color-61: #1971c2;
-  --color-extracted-color-62: #1864ab;
-  --color-extracted-color-63: #155a9a;
-  --color-extracted-color-64: #12b886;
-  --color-extracted-color-65: #0ca678;
-  --color-extracted-color-66: #099268;
-  --color-extracted-color-67: #fd7e14;
-  --color-extracted-color-68: #f76707;
-  --color-extracted-color-69: #e8590c;
-  --color-extracted-color-70: #40c057;
-  --color-extracted-color-71: #37b24d;
-  --color-extracted-color-72: #2f9e44;
-  --color-extracted-color-73: #fd7e14;
-  --color-extracted-color-74: #f76707;
-  --color-extracted-color-75: #e8590c;
-  --color-extracted-color-76: #40c057;
-  --color-extracted-color-77: #37b24d;
-  --color-extracted-color-78: #2f9e44;
-  --color-extracted-color-79: #7950f2;
-  --color-extracted-color-80: #7048e8;
-  --color-extracted-color-81: #6741d9;
-  --color-extracted-color-82: #15aabf;
-  --color-extracted-color-83: #1098ad;
-  --color-extracted-color-84: #0c8599;
-  --color-extracted-color-85: #7950f2;
-  --color-extracted-color-86: #7048e8;
-  --color-extracted-color-87: #6741d9;
-  --color-extracted-color-88: #15aabf;
-  --color-extracted-color-89: #1098ad;
-  --color-extracted-color-90: #0c8599;
-  --color-extracted-color-91: #9775fa;
-  --color-extracted-color-92: #845ef7;
-  --color-extracted-color-93: #7950f2;
-  --color-extracted-color-94: #7048e8;
-  --color-extracted-color-95: #6741d9;
-  --color-extracted-color-96: #5f3dc4;
-  --color-extracted-color-97: #edf2ff;
-  --color-extracted-color-98: #dbe4ff;
-  --color-extracted-color-99: #bac8ff;
-  --color-extracted-color-100: #91a7ff;
-  --color-extracted-color-101: #748ffc;
-  --color-extracted-color-102: #5c7cfa;
-  --color-extracted-color-103: #4c6ef5;
-  --color-extracted-color-104: #4263eb;
-  --color-extracted-color-105: #3b5bdb;
-  --color-extracted-color-106: #364fc7;
+  // Light mode colors (default)
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  // Gray scale
+  --color-gray-0: #f8f9fa;
+  --color-gray-1: #f1f3f5;
+  --color-gray-2: #e9ecef;
+  --color-gray-3: #dee2e6;
+  --color-gray-4: #ced4da;
+  --color-gray-5: #adb5bd;
+  --color-gray-6: #868e96;
+  --color-gray-7: #495057;
+  --color-gray-8: #343a40;
+  --color-gray-9: #212529;
+
+  // Blue scale
+  --color-blue-0: #e7f5ff;
+  --color-blue-1: #d0ebff;
+  --color-blue-2: #a5d8ff;
+  --color-blue-3: #74c0fc;
+  --color-blue-4: #4dabf7;
+  --color-blue-5: #339af0;
+  --color-blue-6: #228be6;
+  --color-blue-7: #1c7ed6;
+  --color-blue-8: #1971c2;
+  --color-blue-9: #1864ab;
+
+  // Red scale
+  --color-red-0: #fff5f5;
+  --color-red-1: #ffe3e3;
+  --color-red-2: #ffc9c9;
+  --color-red-3: #ffa8a8;
+  --color-red-4: #ff8787;
+  --color-red-5: #ff6b6b;
+  --color-red-6: #fa5252;
+  --color-red-7: #f03e3e;
+  --color-red-8: #e03131;
+  --color-red-9: #c92a2a;
+
+  // Green scale
+  --color-green-0: #ebfbee;
+  --color-green-1: #d3f9d8;
+  --color-green-2: #b2f2bb;
+  --color-green-3: #8ce99a;
+  --color-green-4: #69db7c;
+  --color-green-5: #51cf66;
+  --color-green-6: #40c057;
+  --color-green-7: #37b24d;
+  --color-green-8: #2f9e44;
+  --color-green-9: #2b8a3e;
+
+  // Yellow scale
+  --color-yellow-0: #fff9db;
+  --color-yellow-1: #fff3bf;
+  --color-yellow-2: #ffec99;
+  --color-yellow-3: #ffe066;
+  --color-yellow-4: #ffd43b;
+  --color-yellow-5: #fcc419;
+  --color-yellow-6: #fab005;
+  --color-yellow-7: #f59f00;
+  --color-yellow-8: #f08c00;
+  --color-yellow-9: #e67700;
+
+  // Theme-aware colors (will be overridden by ThemeProvider)
+  --color-background: var(--color-white);
+  --color-surface: var(--color-white);
+  --color-surface-secondary: var(--color-gray-0);
+  --color-surface-tertiary: var(--color-gray-1);
+  --color-text-primary: var(--color-gray-9);
+  --color-text-secondary: var(--color-gray-7);
+  --color-text-muted: var(--color-gray-6);
+  --color-text-disabled: var(--color-gray-5);
+  --color-border-primary: var(--color-gray-3);
+  --color-border-secondary: var(--color-gray-2);
+  --color-border-focus: var(--color-blue-6);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+
+  // Component-specific theme colors
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-gray-0);
+  --color-button-secondary-hover: var(--color-gray-1);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-gray-7);
+  --color-button-text-hover: var(--color-gray-9);
+
+  // Input colors
+  --color-input-background: var(--color-white);
+  --color-input-border: var(--color-gray-3);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-gray-9);
+  --color-input-placeholder: var(--color-gray-5);
+
+  // Icon colors
+  --color-icon-primary: var(--color-gray-7);
+  --color-icon-secondary: var(--color-gray-6);
+  --color-icon-muted: var(--color-gray-5);
+  --color-icon-inherit: currentColor;
+
+  // Status colors
+  --color-success: var(--color-green-6);
+  --color-warning: var(--color-yellow-6);
+  --color-error: var(--color-red-6);
+  --color-info: var(--color-blue-6);
 
   // Spacing
-  --spacing-extracted-spacing-1: 16px;
-  --spacing-extracted-spacing-2: 00px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-2xl: 64px;
+  --spacing-icon: 10px;
 
+  // Border radius
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  // Font sizes
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+
+  // Line heights
+  --line-height-xs: 15px;
+  --line-height-sm: 20.3px;
+  --line-height-md: 24px;
+  --line-height-lg: 27px;
+  --line-height-xl: 30px;
+  --line-height-xxl: 36px;
+
+  // Font weights
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // Font family
+  --font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+
+  // Icon sizes
+  --icon-size-xs: 12px;
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-xl: 32px;
+
+  // Switch sizes
+  --switch-track-width-sm: 32px;
+  --switch-track-height-sm: 18px;
+  --switch-thumb-size-sm: 16px;
+  --switch-thumb-offset-sm: 1px;
+  --switch-thumb-translate-sm: 14px;
+
+  --switch-track-width-md: 44px;
+  --switch-track-height-md: 24px;
+  --switch-thumb-size-md: 20px;
+  --switch-thumb-offset-md: 2px;
+  --switch-thumb-translate-md: 20px;
+
+  --switch-track-width-lg: 56px;
+  --switch-track-height-lg: 30px;
+  --switch-thumb-size-lg: 24px;
+  --switch-thumb-offset-lg: 3px;
+  --switch-thumb-translate-lg: 26px;
+
+  // Border widths
+  --border-width-thin: 1px;
+  --border-width-normal: 2px;
+  --border-width-thick: 3px;
+
+  // Opacity
+  --opacity-0: 0;
+  --opacity-25: 0.25;
+  --opacity-50: 0.5;
+  --opacity-75: 0.75;
+  --opacity-100: 1;
+
+  // Component Sizes
+  --size-xs: 24px;
+  --size-sm: 32px;
+  --size-md: 40px;
+  --size-lg: 48px;
+  --size-xl: 56px;
+  --size-xxl: 64px;
+
+  // Calendar/Widget Sizes
+  --widget-min-width: 280px;
+  --widget-max-width: 400px;
+  --control-size-sm: 32px;
+
+  // Overlay Colors
+  --color-overlay-light: rgba(0, 0, 0, 0.1);
+  --color-overlay-medium: rgba(0, 0, 0, 0.5);
+  --color-overlay-dark: rgba(0, 0, 0, 0.8);
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+
+  // Breakpoints
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1200px;
+
+  // Z-index
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  // Motion durations
+  --motion-duration-instant: 1ms;
+  --motion-duration-fast: 50ms;
+  --motion-duration-normal: 100ms;
+  --motion-duration-slow: 200ms;
+  --motion-duration-slower: 300ms;
+  --motion-duration-slowest: 500ms;
+
+  // Motion easing
+  --motion-easing-linear: linear;
+  --motion-easing-ease-in: ease-in;
+  --motion-easing-ease-out: ease-out;
+  --motion-easing-ease-in-out: ease-in-out;
+  --motion-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --motion-easing-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  // Motion transitions
+  --motion-transition-fast: all var(--motion-duration-fast)
+    var(--motion-easing-ease-out);
+  --motion-transition-normal: all var(--motion-duration-normal)
+    var(--motion-easing-ease-out);
+  --motion-transition-slow: all var(--motion-duration-slow)
+    var(--motion-easing-ease-out);
+  --motion-transition-bounce: all var(--motion-duration-normal)
+    var(--motion-easing-bounce);
+  --motion-transition-elastic: all var(--motion-duration-slow)
+    var(--motion-easing-elastic);
+
+  // Transform and shadow tokens
+  --transform-hover: translateY(-1px);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-normal: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-// Export tokens for JavaScript usage
-:export {
-  extractedcolor1: #4DABF7;
-  extractedcolor2: #d0ebff;
-  extractedcolor3: #a5d8ff;
-  extractedcolor4: #74c0fc;
-  extractedcolor5: #4dabf7;
-  extractedcolor6: #339af0;
-  extractedcolor7: #228be6;
-  extractedcolor8: #1c7ed6;
-  extractedcolor9: #1971c2;
-  extractedcolor10: #1864ab;
-  extractedcolor11: #f8f9fa;
-  extractedcolor12: #f1f3f5;
-  extractedcolor13: #e9ecef;
-  extractedcolor14: #dee2e6;
-  extractedcolor15: #ced4da;
-  extractedcolor16: #adb5bd;
-  extractedcolor17: #868e96;
-  extractedcolor18: #495057;
-  extractedcolor19: #343a40;
-  extractedcolor20: #212529;
-  extractedcolor21: #212529;
-  extractedcolor22: #495057;
-  extractedcolor23: #868e96;
-  extractedcolor24: #adb5bd;
-  extractedcolor25: #dee2e6;
-  extractedcolor26: #ced4da;
-  extractedcolor27: #339af0;
-  extractedcolor28: #e7f5ff;
-  extractedcolor29: #d0ebff;
-  extractedcolor30: #a5d8ff;
-  extractedcolor31: #74c0fc;
-  extractedcolor32: #4dabf7;
-  extractedcolor33: #339af0;
-  extractedcolor34: #228be6;
-  extractedcolor35: #1c7ed6;
-  extractedcolor36: #1971c2;
-  extractedcolor37: #1864ab;
-  extractedcolor38: #141414;
-  extractedcolor39: #1f1f1f;
-  extractedcolor40: #242424;
-  extractedcolor41: #2e2e2e;
-  extractedcolor42: #424242;
-  extractedcolor43: #696969;
-  extractedcolor44: #828282;
-  extractedcolor45: #b8b8b8;
-  extractedcolor46: #c9c9c9;
-  extractedcolor47: #ffffff;
-  extractedcolor48: #ffffff;
-  extractedcolor49: #c9c9c9;
-  extractedcolor50: #828282;
-  extractedcolor51: #696969;
-  extractedcolor52: #424242;
-  extractedcolor53: #2e2e2e;
-  extractedcolor54: #74c0fc;
-  extractedcolor55: #1971c2;
-  extractedcolor56: #1864ab;
-  extractedcolor57: #155a9a;
-  extractedcolor58: #12b886;
-  extractedcolor59: #0ca678;
-  extractedcolor60: #099268;
-  extractedcolor61: #1971c2;
-  extractedcolor62: #1864ab;
-  extractedcolor63: #155a9a;
-  extractedcolor64: #12b886;
-  extractedcolor65: #0ca678;
-  extractedcolor66: #099268;
-  extractedcolor67: #fd7e14;
-  extractedcolor68: #f76707;
-  extractedcolor69: #e8590c;
-  extractedcolor70: #40c057;
-  extractedcolor71: #37b24d;
-  extractedcolor72: #2f9e44;
-  extractedcolor73: #fd7e14;
-  extractedcolor74: #f76707;
-  extractedcolor75: #e8590c;
-  extractedcolor76: #40c057;
-  extractedcolor77: #37b24d;
-  extractedcolor78: #2f9e44;
-  extractedcolor79: #7950f2;
-  extractedcolor80: #7048e8;
-  extractedcolor81: #6741d9;
-  extractedcolor82: #15aabf;
-  extractedcolor83: #1098ad;
-  extractedcolor84: #0c8599;
-  extractedcolor85: #7950f2;
-  extractedcolor86: #7048e8;
-  extractedcolor87: #6741d9;
-  extractedcolor88: #15aabf;
-  extractedcolor89: #1098ad;
-  extractedcolor90: #0c8599;
-  extractedcolor91: #9775fa;
-  extractedcolor92: #845ef7;
-  extractedcolor93: #7950f2;
-  extractedcolor94: #7048e8;
-  extractedcolor95: #6741d9;
-  extractedcolor96: #5f3dc4;
-  extractedcolor97: #edf2ff;
-  extractedcolor98: #dbe4ff;
-  extractedcolor99: #bac8ff;
-  extractedcolor100: #91a7ff;
-  extractedcolor101: #748ffc;
-  extractedcolor102: #5c7cfa;
-  extractedcolor103: #4c6ef5;
-  extractedcolor104: #4263eb;
-  extractedcolor105: #3b5bdb;
-  extractedcolor106: #364fc7;
-  extractedspacing1: 16px;
-  extractedspacing2: 00px;
+// Dark mode colors (will be applied by ThemeProvider)
+[data-theme="dark"] {
+  --color-background: #141414;
+  --color-surface: #1f1f1f;
+  --color-surface-secondary: #242424;
+  --color-surface-tertiary: #2e2e2e;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #c9c9c9;
+  --color-text-muted: #828282;
+  --color-text-disabled: #696969;
+  --color-border-primary: #424242;
+  --color-border-secondary: #3b3b3b;
+  --color-border-focus: #4dabf7;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+
+  // Component-specific colors
+  --color-button-primary: #4dabf7;
+  --color-button-primary-hover: #74c0fc;
+  --color-button-secondary: #2e2e2e;
+  --color-button-secondary-hover: #3b3b3b;
+  --color-button-outline: #4dabf7;
+  --color-button-outline-hover: #74c0fc;
+  --color-button-text: #c9c9c9;
+  --color-button-text-hover: #ffffff;
+
+  // Input colors
+  --color-input-background: #1f1f1f;
+  --color-input-border: #424242;
+  --color-input-border-focus: #4dabf7;
+  --color-input-text: #ffffff;
+  --color-input-placeholder: #696969;
+
+  // Icon colors
+  --color-icon-primary: #c9c9c9;
+  --color-icon-secondary: #828282;
+  --color-icon-muted: #696969;
+  --color-icon-inherit: currentColor;
+
+  // Status colors
+  --color-success: #69db7c;
+  --color-warning: #ffd43b;
+  --color-error: #ff8787;
+  --color-info: #4dabf7;
 }

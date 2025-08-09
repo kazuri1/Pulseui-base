@@ -363,7 +363,16 @@ function generateSCSS(tokens) {
 }
 
 /**
- * Merges Figma tokens with existing SCSS file
+ * Surgically updates only changed token values from Figma
+ *
+ * PRESERVES EVERYTHING:
+ * - File structure and formatting
+ * - Comments and spacing
+ * - Organization and grouping
+ *
+ * ONLY CHANGES:
+ * - Token values that differ from Figma (e.g., #ffffff → #f8f9fa)
+ * - Nothing else
  */
 function mergeTokensWithExisting(figmaTokens) {
   console.log("🔄 Merging Figma tokens with existing file...");
@@ -396,25 +405,61 @@ function mergeTokensWithExisting(figmaTokens) {
   // Debug: Show what tokens we received from Figma
   console.log(
     "🔍 Debug: Figma tokens received:",
-    Object.keys(allFigmaTokens).slice(0, 10)
+    Object.keys(allFigmaTokens).length,
+    "tokens"
   );
 
-  // Update each token value if it exists in the file
+  // Only proceed if we actually have tokens from Figma
+  if (Object.keys(allFigmaTokens).length === 0) {
+    console.log(
+      "⚠️  No tokens received from Figma - keeping existing file unchanged"
+    );
+    console.log("🔍 This could mean:");
+    console.log("   - Figma API token is missing or invalid");
+    console.log("   - Figma file key is incorrect");
+    console.log("   - Figma file has no design tokens");
+    console.log("   - API connection failed");
+    return existingContent; // Return unchanged content
+  }
+
+  // Update each token value if it exists in the file AND we have a new value from Figma
   Object.entries(allFigmaTokens).forEach(([tokenName, newValue]) => {
-    const tokenPattern = new RegExp(`(--${tokenName}\\s*:\\s*)([^;]+)(;)`, "g");
+    // Skip if the token value is empty or undefined
+    if (!newValue || newValue.toString().trim() === "") {
+      console.log(`⚠️  Skipping empty token: --${tokenName}`);
+      return;
+    }
+
+    // Create a very precise regex that only matches the exact token
+    const escapedTokenName = tokenName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const tokenPattern = new RegExp(
+      `(^\\s*--${escapedTokenName}\\s*:\\s*)([^;\\n\\r]+)(;\\s*$)`,
+      "gm"
+    );
     const match = existingContent.match(tokenPattern);
 
-    if (match) {
-      const currentValue = match[0].split(":")[1].trim().replace(";", "");
-      if (currentValue !== newValue) {
+    if (match && match.length > 0) {
+      const fullMatch = match[0];
+      const currentValue = fullMatch
+        .split(":")[1]
+        .trim()
+        .replace(";", "")
+        .trim();
+      const cleanNewValue = newValue.toString().trim();
+
+      if (currentValue !== cleanNewValue) {
         updatedContent = updatedContent.replace(
           tokenPattern,
-          `$1${newValue}$3`
+          `$1${cleanNewValue}$3`
         );
         changesCount++;
-        console.log(`🔄 Updated --${tokenName}: ${currentValue} → ${newValue}`);
+        console.log(
+          `🔄 Updated --${tokenName}: "${currentValue}" → "${cleanNewValue}"`
+        );
       } else {
-        console.log(`✅ Token --${tokenName} already up to date`);
+        console.log(
+          `✅ Token --${tokenName} already up to date: "${currentValue}"`
+        );
       }
     } else {
       console.log(
@@ -423,16 +468,22 @@ function mergeTokensWithExisting(figmaTokens) {
     }
   });
 
+  // Only log changes, don't modify file structure or add timestamps
   if (changesCount === 0) {
-    console.log("✅ No token values changed - all tokens are already up to date!");
-    console.log("🔍 This means your Figma tokens exactly match your current file values");
-    
-    // FOR DEBUGGING: Add a comment to force a change and test the commit process
-    const debugComment = `\n// Last Figma sync: ${new Date().toISOString()}\n`;
-    updatedContent = debugComment + updatedContent;
-    console.log("🔍 DEBUG: Added timestamp comment to force git change detection");
+    console.log(
+      "✅ No token values changed - all tokens are already up to date!"
+    );
+    console.log(
+      "🔍 This means your Figma tokens exactly match your current file values"
+    );
+    console.log("📋 File will remain unchanged (no unnecessary commits)");
+    return existingContent; // Return unchanged content
   } else {
-    console.log(`✅ Updated ${changesCount} token values`);
+    console.log(`✅ Updated ${changesCount} token values from Figma`);
+    console.log(
+      "📋 File structure and formatting preserved - only values changed"
+    );
+    // DO NOT add timestamps or modify file structure - only token values changed
   }
 
   return updatedContent;
