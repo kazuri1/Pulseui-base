@@ -28,6 +28,10 @@ export interface TextInputProps extends WithSxProps {
   name?: string;
   /** Input id attribute */
   id?: string;
+  /** Input size */
+  size?: "sm" | "md" | "lg" | "xl";
+  /** Input variant style */
+  variant?: "default" | "filled" | "unstyled";
   /** Callback fired when input value changes */
   onChange?: (value: string) => void;
   /** Callback fired when input is focused */
@@ -57,6 +61,8 @@ export const TextInput: React.FC<TextInputProps> = ({
   disabled = false,
   name,
   id,
+  size = "md",
+  variant = "default",
   onChange,
   onFocus,
   onBlur,
@@ -101,6 +107,8 @@ export const TextInput: React.FC<TextInputProps> = ({
         value={value}
         placeholder={placeholder}
         disabled={disabled}
+        size={size}
+        variant={variant}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
         showPasswordToggle={showPasswordToggle}
