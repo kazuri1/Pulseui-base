@@ -476,7 +476,7 @@ async function main() {
 }
 
 // Run the script
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url.includes('sync-figma-tokens.js')) {
   main();
 }
 
