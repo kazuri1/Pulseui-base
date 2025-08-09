@@ -56,6 +56,8 @@ export interface InputProps extends WithSxProps {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   /** Callback fired when input loses focus */
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  /** Callback fired when key is pressed */
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 
   /** Input name */
   name?: string;
@@ -85,6 +87,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       onChange,
       onFocus,
       onBlur,
+      onKeyDown,
 
       className = "",
       name,
@@ -214,6 +217,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onChange={onChange ? (e) => onChange(e.target.value) : undefined}
           onFocus={onFocus}
           onBlur={onBlur}
+          onKeyDown={onKeyDown}
           className={inputClasses}
           style={sxStyle}
         />

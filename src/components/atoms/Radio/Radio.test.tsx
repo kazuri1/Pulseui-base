@@ -160,6 +160,7 @@ describe("Radio", () => {
     const label = screen.getByText("Test Radio");
     fireEvent.click(label);
 
-    expect(handleChange).toHaveBeenCalledWith(false);
+    // Radio buttons don't fire onChange when clicking an already selected radio
+    expect(handleChange).not.toHaveBeenCalled();
   });
 });

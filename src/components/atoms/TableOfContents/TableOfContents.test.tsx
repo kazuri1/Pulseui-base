@@ -38,32 +38,28 @@ describe("TableOfContents", () => {
     const { rerender } = render(
       <TableOfContents items={mockItems} variant="filled" />
     );
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass(
-      "variant-filled"
-    );
+    // Target the main container, not the item
+    const container = document.querySelector(".container");
+    expect(container).toHaveClass("variant-filled");
 
     rerender(<TableOfContents items={mockItems} variant="light" />);
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass(
-      "variant-light"
-    );
+    expect(document.querySelector(".container")).toHaveClass("variant-light");
 
     rerender(<TableOfContents items={mockItems} variant="subtle" />);
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass(
-      "variant-subtle"
-    );
+    expect(document.querySelector(".container")).toHaveClass("variant-subtle");
   });
 
   it("applies size classes correctly", () => {
     const { rerender } = render(
       <TableOfContents items={mockItems} size="sm" />
     );
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass("size-sm");
+    expect(document.querySelector(".container")).toHaveClass("size-sm");
 
     rerender(<TableOfContents items={mockItems} size="md" />);
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass("size-md");
+    expect(document.querySelector(".container")).toHaveClass("size-md");
 
     rerender(<TableOfContents items={mockItems} size="lg" />);
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass("size-lg");
+    expect(document.querySelector(".container")).toHaveClass("size-lg");
   });
 
   it("shows numbers when showNumbers is true", () => {
@@ -94,7 +90,8 @@ describe("TableOfContents", () => {
   it("applies compact class when compact prop is true", () => {
     render(<TableOfContents items={mockItems} compact={true} />);
 
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass("compact");
+    const container = document.querySelector(".container");
+    expect(container).toHaveClass("compact");
   });
 
   it("calls onItemClick when item is clicked", () => {
@@ -145,9 +142,8 @@ describe("TableOfContents", () => {
   it("renders with custom className", () => {
     render(<TableOfContents items={mockItems} className="custom-class" />);
 
-    expect(screen.getByText("Section 1").closest("div")).toHaveClass(
-      "custom-class"
-    );
+    const container = document.querySelector(".container");
+    expect(container).toHaveClass("custom-class");
   });
 
   it("renders with custom style", () => {
@@ -155,7 +151,7 @@ describe("TableOfContents", () => {
       <TableOfContents items={mockItems} style={{ backgroundColor: "red" }} />
     );
 
-    const container = screen.getByText("Section 1").closest("div");
+    const container = document.querySelector(".container");
     expect(container).toHaveStyle({ backgroundColor: "red" });
   });
 });

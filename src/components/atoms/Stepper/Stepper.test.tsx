@@ -72,26 +72,25 @@ describe("Stepper", () => {
   it("applies custom className", () => {
     render(<Stepper steps={mockSteps} className="custom-class" />);
 
-    expect(screen.getByText("Step 1").closest("div")).toHaveClass(
-      "custom-class"
-    );
+    // Target the main stepper container, not the step item
+    const stepper = document.querySelector(".stepper");
+    expect(stepper).toHaveClass("custom-class");
   });
 
   it("applies custom id", () => {
     render(<Stepper steps={mockSteps} id="test-id" />);
 
-    expect(screen.getByText("Step 1").closest("div")).toHaveAttribute(
-      "id",
-      "test-id"
-    );
+    // Target the main stepper container, not the step item
+    const stepper = document.querySelector(".stepper");
+    expect(stepper).toHaveAttribute("id", "test-id");
   });
 
   it("applies custom style", () => {
     render(<Stepper steps={mockSteps} style={{ backgroundColor: "red" }} />);
 
-    expect(screen.getByText("Step 1").closest("div")).toHaveStyle({
-      backgroundColor: "red",
-    });
+    // Target the main stepper container, not the step item
+    const stepper = document.querySelector(".stepper");
+    expect(stepper).toHaveStyle({ backgroundColor: "red" });
   });
 
   it("renders children content in steps", () => {
@@ -148,7 +147,8 @@ describe("Stepper", () => {
   it("handles empty steps array", () => {
     render(<Stepper steps={[]} />);
 
-    // Should render without errors
-    expect(screen.getByRole("generic")).toBeInTheDocument();
+    // Should render the stepper container even with no steps
+    const stepper = document.querySelector(".stepper");
+    expect(stepper).toBeInTheDocument();
   });
 });

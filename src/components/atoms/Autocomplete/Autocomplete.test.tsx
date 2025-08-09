@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Autocomplete } from "./Autocomplete";
+import React from "react";
 
 const mockOptions = [
   { value: "apple", label: "Apple", icon: "🍎" },
@@ -68,14 +69,19 @@ describe("Autocomplete", () => {
     const input = screen.getByPlaceholderText("Select an option...");
     await user.click(input);
 
+    // Ensure input is focused before keyboard navigation
+    expect(input).toHaveFocus();
+
     // Press arrow down to highlight first option
     await user.keyboard("{ArrowDown}");
-    const firstOption = screen.getByText("Apple");
+    const firstOption = screen.getByText("Apple").closest("div");
+    expect(firstOption).toHaveClass("option");
     expect(firstOption).toHaveClass("highlighted");
 
     // Press arrow down to highlight second option
     await user.keyboard("{ArrowDown}");
-    const secondOption = screen.getByText("Banana");
+    const secondOption = screen.getByText("Banana").closest("div");
+    expect(secondOption).toHaveClass("option");
     expect(secondOption).toHaveClass("highlighted");
 
     // Press enter to select
@@ -90,6 +96,8 @@ describe("Autocomplete", () => {
     const input = screen.getByPlaceholderText("Select an option...");
     await user.click(input);
 
+    // Ensure input is focused and dropdown is open
+    expect(input).toHaveFocus();
     expect(screen.getByText("Apple")).toBeInTheDocument();
 
     await user.keyboard("{Escape}");

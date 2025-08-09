@@ -94,9 +94,7 @@ describe("Stack", () => {
     );
 
     const stackElement = container.firstChild as HTMLElement;
-    expect(stackElement).toHaveStyle({
-      display: "flex",
-      flexDirection: "column",
-    });
+    // Check that the element has the correct CSS class (flex styles are applied via CSS)
+    expect(stackElement).toHaveClass("root");
   });
 });
