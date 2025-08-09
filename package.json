@@ -42,12 +42,18 @@
     "**/*.scss"
   ],
   "scripts": {
+    "dev": "vite",
     "build": "npm run build:lib && npm run build:styles && npm run build:types",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build:styles": "sass src/styles/_tokens.scss:dist/tokens.css --style compressed && sass src/styles/pulseui-base.scss:dist/pulseui-base.scss.css --style compressed",
     "prepublishOnly": "npm run build",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "preview": "vite preview",
+    "pack:preview": "npm pack --dry-run",
+    "pack:check": "npm pack && tar -tf *.tgz"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
@@ -61,15 +67,19 @@
       "optional": false
     }
   },
-  "dependencies": {
-    "classnames": "^2.5.1"
-  },
   "devDependencies": {
-    "@types/classnames": "^2.3.0",
+    "@storybook/addon-a11y": "^8.6.14",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/addon-themes": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "sass": "^1.89.2",
+    "storybook": "^8.6.14",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
   },
@@ -92,13 +102,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kazuri1/Pulseui.git"
+    "url": "https://github.com/kazuri1/Pulseui.git"
   },
   "bugs": {
     "url": "https://github.com/kazuri1/Pulseui/issues"
   },
-  "homepage": "https://github.com/kazuri1/Pulseui#readme",
-  "directories": {
-    "doc": "docs"
-  }
+  "homepage": "https://github.com/kazuri1/Pulseui#readme"
 }

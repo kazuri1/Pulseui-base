@@ -1,91 +1,47 @@
 # Development files
+.storybook/
+src/components/**/*.stories.tsx
+src/components/**/*.stories.ts
+src/components/**/*.test.tsx
+src/components/**/*.test.ts
+src/examples/
+src/main.tsx
+src/App.tsx
+src/App.css
+src/index.css
+src/test/
+src/setupTests.ts
+
+# Build artifacts
+node_modules/
+.vite/
+storybook-static/
+
+# Development tools
+.eslintrc*
+.prettier*
+cypress/
+cypress.config.ts
+jest.config.js
+vite.config.ts
+tsconfig.app.json
+tsconfig.node.json
+tsconfig.nextjs.json
+tsconfig.test.json
+
+# IDE and editor files
 .vscode/
 .cursor/
 *.log
-*.tsbuildinfo
 
-# Build outputs (except dist and types)
-build/
-storybook-static/
-
-# Development dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# IDE files
-.idea/
-*.swp
-*.swo
-*~
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Test files
-coverage/
-.nyc_output/
-*.test.ts
-*.test.tsx
-*.spec.ts
-*.spec.tsx
-vitest.config.ts
-vitest.shims.d.ts
-test-import.ts
-test-import.tsx
-jest.config.js
-setupTests.ts
-
-# Storybook files
-.storybook/
-*.stories.tsx
-*.stories.ts
-
-# Example/Demo files
-src/components/examples/
-*Example.tsx
-*Example.ts
-
-# Development scripts
-vite.config.ts
-vite.lib.config.ts
-postcss.config.js
-tailwind.config.js
-eslint.config.js
-tsconfig*.json
-
-# App files (not needed for library)
-src/App.tsx
-src/App.css
-src/main.tsx
-src/index.css
-
-# Source maps (included in dist)
-*.map
-
-# Documentation (except README)
+# Documentation development
 docs/
-*.md
-!README.md
+scripts/
 
-# Git
+# Git files  
 .git/
 .gitignore
 
-# Package files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Temporary files
-tmp/
-temp/ 
+# Other
+public/vite.svg
+index.html

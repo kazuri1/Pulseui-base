@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ModalFooter.module.scss";
-import classNames from "classnames";
+
 import { Button } from "../Button";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";

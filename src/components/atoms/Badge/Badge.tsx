@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Badge.module.scss";
-import classNames from "classnames";
 import { Icon } from "../Icon";
 import {
   Add,

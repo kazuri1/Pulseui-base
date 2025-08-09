@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./TableOfContents.module.scss";
-import classNames from "classnames";
+
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
