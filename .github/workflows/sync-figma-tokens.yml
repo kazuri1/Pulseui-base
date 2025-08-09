@@ -1,4 +1,4 @@
-name: 🎨 Sync Design Tokens from Figma
+name: Sync Design Tokens from Figma
 
 # Trigger the workflow
 on:
@@ -6,10 +6,13 @@ on:
   workflow_dispatch:
     inputs:
       force_sync:
-        description: "Force sync even if no changes detected"
+        description: 'Force sync even if no changes detected'
         required: false
-        default: false
-        type: boolean
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
 
   # Scheduled sync (every day at 2 AM UTC)
   schedule:
@@ -167,8 +170,6 @@ jobs:
             🤖 This PR was created automatically by the Figma token sync workflow.
 
             **Merge when ready** - All validations have passed.
-          branch: figma-token-sync
-          delete-branch: true
           draft: false
 
       - name: 🚀 Auto-merge if Minor Changes
