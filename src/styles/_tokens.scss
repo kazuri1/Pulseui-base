@@ -192,6 +192,31 @@
   --opacity-75: 0.75;
   --opacity-100: 1;
 
+  // Component Sizes
+  --size-xs: 24px;
+  --size-sm: 32px;
+  --size-md: 40px;
+  --size-lg: 48px;
+  --size-xl: 56px;
+  --size-xxl: 64px;
+
+  // Calendar/Widget Sizes
+  --widget-min-width: 280px;
+  --widget-max-width: 400px;
+  --control-size-sm: 32px;
+
+  // Overlay Colors
+  --color-overlay-light: rgba(0, 0, 0, 0.1);
+  --color-overlay-medium: rgba(0, 0, 0, 0.5);
+  --color-overlay-dark: rgba(0, 0, 0, 0.8);
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+
+  // Breakpoints
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1200px;
+
   // Z-index
   --z-dropdown: 1000;
   --z-sticky: 1020;

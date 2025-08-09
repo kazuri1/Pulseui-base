@@ -9,35 +9,35 @@
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
-    min-height: 24px;
+    min-height: var(--size-xs);
   }
 
   &.size-sm {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
-    min-height: 32px;
+    min-height: var(--size-sm);
   }
 
   &.size-md {
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
-    min-height: 40px;
+    min-height: var(--size-md);
   }
 
   &.size-lg {
     padding: var(--spacing-lg) var(--spacing-xl);
     font-size: var(--font-size-lg);
     line-height: var(--line-height-lg);
-    min-height: 48px;
+    min-height: var(--size-lg);
   }
 
   &.size-xl {
     padding: var(--spacing-xl) var(--spacing-xxl);
     font-size: var(--font-size-xl);
     line-height: var(--line-height-xl);
-    min-height: 56px;
+    min-height: var(--size-xl);
   }
 
   // Variant styles

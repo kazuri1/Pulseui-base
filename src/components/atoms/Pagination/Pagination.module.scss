@@ -227,7 +227,7 @@
 }
 
 // Responsive design
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-mobile)) {
   .container {
     gap: var(--spacing-xs);
   }

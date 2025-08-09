@@ -58,8 +58,8 @@
       background: linear-gradient(
         to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.1) 50%,
-        rgba(0, 0, 0, 0.8) 100%
+        var(--color-overlay-light) 50%,
+        var(--color-overlay-dark) 100%
       );
       position: relative;
       z-index: 1;
@@ -144,7 +144,7 @@
 }
 
 // Responsive adjustments
-@media (max-width: 480px) {
+@media (max-width: var(--breakpoint-mobile)) {
   .card {
     max-width: 100%;
 
