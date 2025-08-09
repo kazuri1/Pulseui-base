@@ -70,6 +70,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run linting (non-blocking)
+        continue-on-error: true
+        run: |
+          echo "🔍 Running ESLint (warnings only)..."
+          npm run lint || echo "⚠️ Linting issues found - continuing anyway"
+
       - name: Run tests
         run: npm test
 

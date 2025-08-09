@@ -1,5 +1,5 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+// ESLint configuration for the project
+// Note: Storybook ESLint plugin temporarily disabled due to version conflicts
 
 import js from '@eslint/js'
 import globals from 'globals'
@@ -23,4 +23,4 @@ export default tseslint.config([
       globals: globals.browser,
     },
   },
-], storybook.configs["flat/recommended"]);
+]);

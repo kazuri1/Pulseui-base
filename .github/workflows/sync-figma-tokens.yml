@@ -100,6 +100,14 @@ jobs:
           echo "⚠️  TODO: Re-enable after fixing 254 hardcoded values"
           echo "✅ Skipping compliance validation for now"
 
+      - name: 🔍 Run Linting (Non-blocking)
+        if: always() || github.event.inputs.force_sync == 'true'
+        continue-on-error: true
+        run: |
+          echo "🔍 Running ESLint (warnings only)..."
+          npm run lint || echo "⚠️ Linting issues found - continuing anyway"
+          echo "✅ Linting check completed"
+
       - name: 🧪 Run Tests (DEBUG MODE)
         if: always() || github.event.inputs.force_sync == 'true'
         run: |
