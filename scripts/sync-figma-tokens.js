@@ -378,6 +378,13 @@ function mergeTokensWithExisting(figmaTokens) {
   let updatedContent = existingContent;
   let changesCount = 0;
 
+  // Debug: Show what tokens exist in current file
+  const existingTokens = existingContent.match(/--[\w-]+:/g) || [];
+  console.log(
+    "🔍 Debug: Existing tokens in file:",
+    existingTokens.slice(0, 10).map((t) => t.replace(":", ""))
+  );
+
   // Extract all tokens from Figma data
   const allFigmaTokens = {
     ...figmaTokens.colors,
@@ -385,6 +392,12 @@ function mergeTokensWithExisting(figmaTokens) {
     ...figmaTokens.sizes,
     ...figmaTokens.typography,
   };
+
+  // Debug: Show what tokens we received from Figma
+  console.log(
+    "🔍 Debug: Figma tokens received:",
+    Object.keys(allFigmaTokens).slice(0, 10)
+  );
 
   // Update each token value if it exists in the file
   Object.entries(allFigmaTokens).forEach(([tokenName, newValue]) => {
@@ -400,6 +413,8 @@ function mergeTokensWithExisting(figmaTokens) {
         );
         changesCount++;
         console.log(`🔄 Updated --${tokenName}: ${currentValue} → ${newValue}`);
+      } else {
+        console.log(`✅ Token --${tokenName} already up to date`);
       }
     } else {
       console.log(
@@ -476,7 +491,7 @@ async function main() {
 }
 
 // Run the script
-if (import.meta.url.includes('sync-figma-tokens.js')) {
+if (import.meta.url.includes("sync-figma-tokens.js")) {
   main();
 }
 
