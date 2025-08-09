@@ -64,7 +64,14 @@ jobs:
           FIGMA_FILE_KEY: ${{ secrets.FIGMA_FILE_KEY }}
         run: |
           echo "🚀 Starting Figma token sync..."
-          node scripts/sync-figma-tokens.js
+          if [ -z "$FIGMA_API_TOKEN" ] || [ -z "$FIGMA_FILE_KEY" ]; then
+            echo "⚠️  Figma API secrets not configured - skipping sync"
+            echo "📋 To enable Figma sync, add FIGMA_API_TOKEN and FIGMA_FILE_KEY to repository secrets"
+            echo "✅ Continuing without Figma sync"
+          else
+            echo "🔗 Figma secrets found - running sync"
+            node scripts/sync-figma-tokens.js
+          fi
 
       - name: 🔍 Check for Changes
         id: changes

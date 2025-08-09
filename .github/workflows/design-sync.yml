@@ -27,11 +27,18 @@ jobs:
         run: npm ci
 
       - name: Sync Figma tokens
-        run: |
-          npm run sync-tokens
         env:
-          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           FIGMA_FILE_KEY: ${{ secrets.FIGMA_FILE_KEY }}
+        run: |
+          if [ -z "$FIGMA_API_TOKEN" ] || [ -z "$FIGMA_FILE_KEY" ]; then
+            echo "⚠️  Figma API secrets not configured - skipping sync"
+            echo "📋 To enable Figma sync, add FIGMA_API_TOKEN and FIGMA_FILE_KEY to repository secrets"
+            echo "✅ Continuing without Figma sync"
+          else
+            echo "🔗 Figma secrets found - running sync"
+            npm run sync-tokens
+          fi
 
       - name: Commit token changes
         run: |
