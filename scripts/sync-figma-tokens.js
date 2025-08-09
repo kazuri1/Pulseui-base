@@ -424,7 +424,13 @@ function mergeTokensWithExisting(figmaTokens) {
   });
 
   if (changesCount === 0) {
-    console.log("✅ No token values changed");
+    console.log("✅ No token values changed - all tokens are already up to date!");
+    console.log("🔍 This means your Figma tokens exactly match your current file values");
+    
+    // FOR DEBUGGING: Add a comment to force a change and test the commit process
+    const debugComment = `\n// Last Figma sync: ${new Date().toISOString()}\n`;
+    updatedContent = debugComment + updatedContent;
+    console.log("🔍 DEBUG: Added timestamp comment to force git change detection");
   } else {
     console.log(`✅ Updated ${changesCount} token values`);
   }
