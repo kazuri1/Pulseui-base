@@ -25,3 +25,8 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Figma sync generated files
+src/styles/_tokens.backup.scss
+tokens/
+token-report.md
