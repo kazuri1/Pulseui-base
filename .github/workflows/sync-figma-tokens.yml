@@ -129,6 +129,11 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          branch: figma-token-sync
+          base: master
+          delete-branch: true
+          committer: GitHub Actions <actions@github.com>
+          author: GitHub Actions <actions@github.com>
           commit-message: |
             🎨 Update design tokens from Figma
 
