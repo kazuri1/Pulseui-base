@@ -20,23 +20,60 @@ const meta: Meta<typeof SimpleTopNav> = {
     viewport: {
       defaultViewport: "desktop",
     },
+    docs: {
+      description: {
+        component: `
+# SimpleTopNav Component
+
+A responsive top navigation component that automatically adapts to different screen sizes using the \`useBreakpoint\` hook.
+
+## Features
+
+- **Responsive Design**: Automatically switches between desktop and mobile layouts
+- **Mobile Navigation**: Slide-in drawer with header and close button
+- **Icon Support**: Optional icons for navigation items
+- **Hook-based Responsiveness**: Uses \`useBreakpoint\` hook for breakpoint detection
+- **Accessibility**: Proper ARIA labels and keyboard navigation
+
+## Mobile Navigation
+
+The mobile navigation includes:
+- A slide-in drawer from the right side
+- Navigation header with title and close button
+- Smooth animations and transitions
+- Touch-friendly navigation items
+- Automatic menu closing when items are clicked
+
+## Breakpoints
+
+- **Desktop**: Shows full horizontal navigation
+- **Tablet/Mobile**: Shows hamburger menu toggle and mobile drawer
+        `,
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
     brandName: {
       control: { type: "text" },
+      description: "The main brand name to display",
     },
     brandTitle: {
       control: { type: "text" },
+      description: "The brand subtitle or role",
     },
     showBrand: {
       control: { type: "boolean" },
+      description: "Whether to show the brand section",
     },
     showNavigation: {
       control: { type: "boolean" },
+      description: "Whether to show the navigation section",
     },
     defaultMobileMenuOpen: {
       control: { type: "boolean" },
+      description:
+        "Whether the mobile menu should be open by default (useful for testing)",
     },
   },
 };
@@ -323,5 +360,154 @@ export const HookBasedResponsiveness: Story = {
     brandName: "VIGNESH VISHNUMOORTHY",
     brandTitle: "PRODUCT DESIGNER + ENGINEER",
     items: defaultItemsWithIcons,
+  },
+};
+
+// Enhanced Mobile Navigation Stories
+export const MobileNavigationDemo: Story = {
+  args: {
+    brandName: "VIGNESH VISHNUMOORTHY",
+    brandTitle: "PRODUCT DESIGNER + ENGINEER",
+    items: defaultItemsWithIcons,
+    defaultMobileMenuOpen: true,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Wait for the mobile menu to be visible
+    await expect(canvas.getByText("Navigation")).toBeInTheDocument();
+
+    // Verify the mobile navigation header is present
+    await expect(canvas.getByText("Navigation")).toBeInTheDocument();
+    await expect(
+      canvas.getByLabelText("Close mobile menu")
+    ).toBeInTheDocument();
+
+    // Verify navigation items are visible
+    await expect(canvas.getByText("Home")).toBeInTheDocument();
+    await expect(canvas.getByText("About")).toBeInTheDocument();
+    await expect(canvas.getByText("Work")).toBeInTheDocument();
+    await expect(canvas.getByText("Contact")).toBeInTheDocument();
+  },
+};
+
+export const MobileNavigationWithCustomItems: Story = {
+  args: {
+    brandName: "PULSE UI",
+    brandTitle: "COMPONENT LIBRARY",
+    items: [
+      {
+        id: "components",
+        label: "Components",
+        active: true,
+        icon: Assignment,
+      },
+      {
+        id: "documentation",
+        label: "Documentation",
+        active: false,
+        icon: Book,
+      },
+      {
+        id: "examples",
+        label: "Examples",
+        active: false,
+        icon: Store,
+      },
+      {
+        id: "support",
+        label: "Support",
+        active: false,
+        icon: Info,
+      },
+    ],
+    defaultMobileMenuOpen: true,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+};
+
+export const MobileNavigationInteraction: Story = {
+  args: {
+    brandName: "VIGNESH VISHNUMOORTHY",
+    brandTitle: "PRODUCT DESIGNER + ENGINEER",
+    items: defaultItemsWithIcons,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Find and click the mobile menu toggle
+    const menuToggle = canvas.getByLabelText("Toggle mobile menu");
+    await userEvent.click(menuToggle);
+
+    // Wait for the mobile menu to open
+    await expect(canvas.getByText("Navigation")).toBeInTheDocument();
+
+    // Test clicking on a navigation item
+    const homeItem = canvas.getByText("Home");
+    await userEvent.click(homeItem);
+
+    // Verify the menu closes after clicking an item
+    await expect(canvas.queryByText("Navigation")).not.toBeInTheDocument();
+  },
+};
+
+export const ResponsiveIconSizing: Story = {
+  args: {
+    brandName: "VIGNESH VISHNUMOORTHY",
+    brandTitle: "PRODUCT DESIGNER + ENGINEER",
+    items: [
+      {
+        id: "dashboard",
+        label: "Dashboard",
+        active: true,
+        icon: Home,
+      },
+      {
+        id: "profile",
+        label: "Profile",
+        active: false,
+        icon: Person,
+      },
+      {
+        id: "settings",
+        label: "Settings",
+        active: false,
+        icon: Assignment,
+      },
+      {
+        id: "help",
+        label: "Help",
+        active: false,
+        icon: Info,
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+This story demonstrates how icons automatically resize based on the current breakpoint:
+
+- **Desktop**: Icons use "sm" size for compact horizontal layout
+- **Mobile/Tablet**: Icons use "md" size for better touch targets
+
+The component automatically detects the screen size using the \`useBreakpoint\` hook and adjusts icon sizes accordingly.
+        `,
+      },
+    },
   },
 };

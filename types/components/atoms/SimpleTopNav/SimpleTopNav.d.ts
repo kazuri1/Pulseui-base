@@ -1,6 +1,7 @@
 import React from "react";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
+import type { SvgIconComponent } from "@mui/icons-material";
 export interface SimpleTopNavItem {
     /** Unique identifier for the nav item */
     id: string;
@@ -12,6 +13,8 @@ export interface SimpleTopNavItem {
     onClick?: () => void;
     /** URL for navigation (optional) */
     href?: string;
+    /** Icon for the nav item (optional) */
+    icon?: SvgIconComponent;
 }
 export interface SimpleTopNavProps extends WithSxProps {
     /** Brand name to display */
@@ -32,5 +35,7 @@ export interface SimpleTopNavProps extends WithSxProps {
     sx?: SxProps;
     /** Inline styles */
     style?: React.CSSProperties;
+    /** Whether to show mobile menu by default */
+    defaultMobileMenuOpen?: boolean;
 }
 export declare const SimpleTopNav: React.FC<SimpleTopNavProps>;

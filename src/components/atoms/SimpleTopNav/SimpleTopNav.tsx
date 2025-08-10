@@ -194,7 +194,20 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
           }`}
         >
           <div className={styles.mobileNavContent}>
-            {navItems.map((item) => renderNavItem(item, true))}
+            <div className={styles.mobileNavHeader}>
+              <h2 className={styles.mobileNavTitle}>Navigation</h2>
+              <button
+                className={styles.mobileNavCloseButton}
+                onClick={toggleMobileMenu}
+                aria-label="Close mobile menu"
+                type="button"
+              >
+                <Icon icon={Close} size="md" color="inherit" />
+              </button>
+            </div>
+            <div className={styles.mobileNavItems}>
+              {navItems.map((item) => renderNavItem(item, true))}
+            </div>
           </div>
         </div>
       )}
