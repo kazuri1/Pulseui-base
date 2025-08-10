@@ -281,3 +281,23 @@
     @apply bg-gray-50;
   }
 }
+
+/* Custom ComponentDisplay Styling */
+.custom-component-display {
+  border: 2px solid var(--color-primary-300);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.custom-component-display .component-display-header {
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100));
+  border-bottom: 2px solid var(--color-primary-200);
+}
+
+.custom-component-display .component-display-title {
+  color: var(--color-primary-800);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.custom-component-display .component-display-description {
+  color: var(--color-primary-700);
+}

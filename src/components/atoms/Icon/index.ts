@@ -1,6 +1,9 @@
 export { Icon } from "./Icon";
 export type { IconProps } from "./Icon";
 
+// Export custom icons
+export { NpmIcon } from "./NpmIcon";
+
 // Export all icons from IconSet
 export * from "./IconSet";
 

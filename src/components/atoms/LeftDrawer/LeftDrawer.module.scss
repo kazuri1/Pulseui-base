@@ -1,0 +1,262 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.leftDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(-100%);
+  transition: transform var(--motion-duration-normal)
+    var(--motion-easing-ease-out);
+  z-index: 1000;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--motion-duration-normal)
+      var(--motion-easing-ease-out),
+    visibility var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+  .leftDrawer.open & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
+  background-color: var(--color-surface-primary);
+  flex-shrink: 0;
+}
+
+.brandSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.brandName {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+  }
+
+  &:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-border-focus);
+    outline-offset: var(--spacing-xs);
+  }
+}
+
+.drawerNavigation {
+  flex: 1;
+  padding: var(--spacing-md) 0;
+  overflow-y: auto;
+}
+
+.drawerSection {
+  border-bottom: var(--border-width-thin) solid var(--color-border-tertiary);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.sectionHeader {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+  &:hover {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+  }
+
+  &:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-border-focus);
+    outline-offset: var(--spacing-xs);
+  }
+}
+
+.sectionIcon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.sectionTitle {
+  flex: 1;
+  text-align: left;
+}
+
+.expandIcon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: transform var(--motion-duration-normal)
+    var(--motion-easing-ease-out);
+}
+
+.sectionContent {
+  background-color: var(--color-surface-secondary);
+  overflow: hidden;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+  position: relative;
+
+  // Add vertical line indicator for expanded content
+  &::before {
+    content: "";
+    position: absolute;
+    left: var(--spacing-lg);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--color-border-tertiary);
+  }
+}
+
+.drawerItem {
+  &.level0 {
+    .itemButton {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-size: var(--font-size-md);
+    }
+  }
+
+  &.level1 {
+    .itemButton {
+      padding: var(--spacing-xs) var(--spacing-lg);
+      font-size: var(--font-size-sm);
+      margin-left: var(--spacing-lg);
+    }
+  }
+}
+
+.itemButton {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  text-align: left;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+  &:hover {
+    background-color: var(--color-surface-tertiary);
+    color: var(--color-text-primary);
+  }
+
+  &:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-border-focus);
+    outline-offset: var(--spacing-xs);
+  }
+}
+
+.itemIcon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.itemLabel {
+  flex: 1;
+  text-align: left;
+}
+
+.nestedItems {
+  margin-left: var(--spacing-lg);
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .leftDrawer {
+    width: 100vw !important;
+  }
+
+  .drawerHeader {
+    padding: var(--spacing-md);
+  }
+
+  .sectionHeader {
+    padding: var(--spacing-md);
+  }
+
+  .itemButton {
+    padding: var(--spacing-md) var(--spacing-md);
+  }
+}
+
+// Animation for accordion
+.sectionContent {
+  animation: slideDown var(--motion-duration-normal)
+    var(--motion-easing-ease-out);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}

@@ -42,6 +42,25 @@ export type {
   SimpleTopNavItem,
 } from "./components/atoms/SimpleTopNav";
 
+export { LeftDrawer } from "./components/atoms/LeftDrawer";
+export type {
+  LeftDrawerProps,
+  LeftDrawerItem,
+  LeftDrawerSection,
+} from "./components/atoms/LeftDrawer";
+
+export { Drawer } from "./components/atoms/Drawer";
+export type { DrawerProps } from "./components/atoms/Drawer";
+
+export { Modal } from "./components/atoms/Modal";
+export type { ModalProps } from "./components/atoms/Modal";
+
+export { ModalFooter } from "./components/atoms/ModalFooter";
+export type { ModalFooterProps } from "./components/atoms/ModalFooter";
+
+export { ComponentDisplay } from "./components/atoms/ComponentDisplay";
+export type { ComponentDisplayProps } from "./components/atoms/ComponentDisplay";
+
 // Stepper Components
 export { StepperIcon } from "./components/atoms/Stepper/StepperIcon";
 export type { StepperIconProps } from "./components/atoms/Stepper/StepperIcon";

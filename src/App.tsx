@@ -1,244 +1,110 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import { Button } from "./components/atoms/Button";
-import { ThemeProvider, useTheme } from "./components/ThemeProvider";
-import { SxPropsExample } from "./components/examples/SxPropsExample";
-import { PasswordInputExample } from "./components/examples/PasswordInputExample";
-import { BadgeExample } from "./components/examples/BadgeExample";
-import { ImageExample } from "./components/examples/ImageExample";
-import { CardExample } from "./components/examples/CardExample";
-import { RadioExample } from "./components/examples/RadioExample";
+import React from "react";
+import { ComponentDisplay } from "./components/atoms/ComponentDisplay/ComponentDisplay";
+import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
+import { Button } from "./components/atoms/Button/Button";
+import buttonStories from "./components/atoms/Button/Button.stories";
 
 function AppContent() {
-  const [count, setCount] = useState(0);
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <div
-      style={{
-        backgroundColor: "var(--color-background)",
-        color: "var(--color-text-primary)",
-        padding: "16px",
-        transition: "background-color 0.3s ease, color 0.3s ease",
-      }}
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "24px",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <a
-              href="https://vite.dev"
-              target="_blank"
-              style={{ opacity: 1, transition: "opacity 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              <img
-                src={viteLogo}
-                style={{ height: "48px", width: "48px" }}
-                alt="Vite logo"
-              />
-            </a>
-            <a
-              href="https://react.dev"
-              target="_blank"
-              style={{ opacity: 1, transition: "opacity 0.2s" }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              <img
-                src={reactLogo}
-                style={{
-                  height: "48px",
-                  width: "48px",
-                  animation: "spin 2s linear infinite",
-                }}
-                alt="React logo"
-              />
-            </a>
-          </div>
+    <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
+      <h1 style={{ 
+        textAlign: "center", 
+        marginBottom: "48px",
+        fontSize: "2.5rem",
+        fontWeight: "bold",
+        color: "var(--color-text-primary)"
+      }}>
+        PulseUI ComponentDisplay Demo
+      </h1>
 
-          {/* Theme Toggle */}
-          <Button onClick={toggleTheme} variant="outline">
-            {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
-          </Button>
-        </div>
+      {/* Auto-generated ComponentDisplay from Button component */}
+      <ComponentDisplay
+        component={Button}
+        componentName="Button"
+        stories={buttonStories}
+      />
 
-        <h1
-          style={{
-            fontSize: "2.5rem",
-            textAlign: "center",
-            marginBottom: "24px",
-          }}
-        >
-          Pulse UI Design System
-        </h1>
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--color-text-muted)",
-            marginBottom: "24px",
-          }}
-        >
-          Native Pulse design system with dark mode support and SX Props
-        </p>
-
-        {/* SX Props Example */}
-        <div style={{ marginBottom: "32px" }}>
-          <SxPropsExample />
-        </div>
-
-        {/* Password Input Example */}
-        <div style={{ marginBottom: "32px" }}>
-          <PasswordInputExample />
-        </div>
-
-        {/* Badge Example */}
-        <div style={{ marginBottom: "32px" }}>
-          <BadgeExample />
-        </div>
-
-        {/* Image Example */}
-        <div style={{ marginBottom: "32px" }}>
-          <ImageExample />
-        </div>
-
-        {/* Card Example */}
-        <div style={{ marginBottom: "32px" }}>
-          <CardExample />
-        </div>
-
-        {/* Radio Example */}
-        <div style={{ marginBottom: "32px" }}>
-          <RadioExample />
-        </div>
-
-        {/* Demo Section */}
-        <div
-          style={{
-            padding: "24px",
-            backgroundColor: "var(--color-surface)",
-            border: "1px solid var(--color-border-primary)",
-            borderRadius: "8px",
-            marginBottom: "24px",
-          }}
-        >
-          <h2 style={{ fontSize: "1.875rem", marginBottom: "16px" }}>
-            Interactive Demo
-          </h2>
-          <Button
-            onClick={() => setCount((count) => count + 1)}
-            variant="filled"
-          >
-            Count is {count}
-          </Button>
-          <p style={{ marginTop: "16px", color: "var(--color-text-muted)" }}>
-            Edit{" "}
-            <code
-              style={{
-                backgroundColor: "var(--color-surface-secondary)",
-                padding: "4px 8px",
-                borderRadius: "4px",
-                fontSize: "0.875rem",
-              }}
-            >
-              src/App.tsx
-            </code>{" "}
-            and save to test HMR
+      <div style={{ marginTop: "48px", textAlign: "center" }}>
+        <h2 style={{ 
+          fontSize: "1.5rem", 
+          marginBottom: "24px",
+          color: "var(--color-text-primary)"
+        }}>
+          Usage Instructions
+        </h2>
+        <div style={{ 
+          textAlign: "left", 
+          maxWidth: "800px", 
+          margin: "0 auto",
+          padding: "24px",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "8px",
+          border: "1px solid var(--color-border-secondary)"
+        }}>
+          <h3>Auto-Generation Feature</h3>
+          <p>
+            The ComponentDisplay component now supports automatic content generation from any PulseUI component:
           </p>
+          <pre style={{ 
+            backgroundColor: "var(--color-surface-tertiary)", 
+            padding: "16px", 
+            borderRadius: "4px",
+            overflow: "auto",
+            fontSize: "14px"
+          }}>
+{`import { ComponentDisplay } from '@pulseui-base';
+import { Button } from '@pulseui-base';
+import buttonStories from './Button.stories';
+
+// Auto-generate content from component
+<ComponentDisplay
+  component={Button}
+  componentName="Button"
+  stories={buttonStories}
+/>`}
+          </pre>
+          
+          <h3>What Gets Auto-Generated:</h3>
+          <ul>
+            <li><strong>Title & Description</strong> - From component name and display name</li>
+            <li><strong>Source URL</strong> - Links to GitHub repository</li>
+            <li><strong>Props Table</strong> - Extracted from Storybook argTypes</li>
+            <li><strong>Examples</strong> - Rendered from component stories</li>
+            <li><strong>Usage Instructions</strong> - Import and usage code</li>
+          </ul>
+
+          <h3>Props:</h3>
+          <ul>
+            <li><code>component</code> - The React component to display</li>
+            <li><code>componentName</code> - Optional custom name</li>
+            <li><code>stories</code> - Component's Storybook stories for enhanced content</li>
+            <li><code>title</code> - Optional custom title (overrides auto-generated)</li>
+            <li><code>description</code> - Optional custom description</li>
+            <li><code>sourceUrl</code> - Optional custom source URL</li>
+            <li><code>docsUrl</code> - Optional documentation URL</li>
+            <li><code>packageName</code> - Optional custom package name</li>
+            <li><code>children</code> - Optional custom content (overrides auto-generation)</li>
+            <li><code>className</code> - Optional custom CSS class</li>
+          </ul>
         </div>
-
-        {/* Component Showcase */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "24px",
-          }}
-        >
-          {/* Buttons */}
-          <div
-            style={{
-              padding: "24px",
-              backgroundColor: "var(--color-surface)",
-              border: "1px solid var(--color-border-primary)",
-              borderRadius: "8px",
-            }}
-          >
-            <h3 style={{ fontSize: "1.5rem", marginBottom: "16px" }}>
-              Button Variants
-            </h3>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-              <Button variant="filled">Primary</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="subtle">Subtle</Button>
-              <Button variant="light">Light</Button>
-              <Button variant="white">White</Button>
-              <Button variant="default">Default</Button>
-            </div>
-          </div>
-
-          {/* Input */}
-          <div
-            style={{
-              padding: "24px",
-              backgroundColor: "var(--color-surface)",
-              border: "1px solid var(--color-border-primary)",
-              borderRadius: "8px",
-            }}
-          >
-            <h3 style={{ fontSize: "1.5rem", marginBottom: "16px" }}>
-              Input Field
-            </h3>
-            <input
-              type="text"
-              placeholder="Enter your text here..."
-              style={{
-                width: "100%",
-                padding: "8px 12px",
-                border: "1px solid var(--color-input-border)",
-                borderRadius: "4px",
-                backgroundColor: "var(--color-input-background)",
-                color: "var(--color-input-text)",
-                fontSize: "14px",
-                outline: "none",
-                transition: "border-color 0.2s",
-              }}
-              onFocus={(e) =>
-                (e.target.style.borderColor = "var(--color-input-border-focus)")
-              }
-              onBlur={(e) =>
-                (e.target.style.borderColor = "var(--color-input-border)")
-              }
-            />
-          </div>
-        </div>
-
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--color-text-muted)",
-            marginTop: "32px",
-          }}
-        >
-          Click on the Vite and React logos to learn more
-        </p>
       </div>
+
+      <footer style={{ 
+        marginTop: "48px", 
+        textAlign: "center", 
+        padding: "24px",
+        borderTop: "1px solid var(--color-border-secondary)",
+        color: "var(--color-text-secondary)"
+      }}>
+        <p>PulseUI ComponentDisplay - Auto-generating component documentation</p>
+      </footer>
     </div>
   );
 }
 
 function App() {
   return (
-    <ThemeProvider initialTheme="light">
+    <ThemeProvider defaultTheme="default" defaultMode="light">
       <AppContent />
     </ThemeProvider>
   );
