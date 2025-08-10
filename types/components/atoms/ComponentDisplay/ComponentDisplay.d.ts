@@ -1,14 +1,15 @@
 import React from "react";
 export interface ComponentDisplayProps {
-    title?: string;
+    title: string;
     description?: string;
-    sourceUrl?: string;
-    docsUrl?: string;
-    packageName?: string;
-    children?: React.ReactNode;
-    className?: string;
-    component?: React.ComponentType<any>;
-    componentName?: string;
-    stories?: any;
+    component: React.ComponentType<any>;
+    props?: Record<string, any>;
+    stories?: React.ComponentType<any>;
+    storybookUrl?: string;
+    storyId?: string;
+    storybookViewMode?: "docs" | "story" | "canvas";
+    showCode?: boolean;
+    showProps?: boolean;
+    showStories?: boolean;
 }
 export declare const ComponentDisplay: React.FC<ComponentDisplayProps>;

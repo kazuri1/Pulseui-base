@@ -2,143 +2,65 @@ import React, { useMemo } from "react";
 import { Icon, NpmIcon } from "../Icon";
 import { GitHub, Edit } from "../Icon/IconSet";
 import styles from "./ComponentDisplay.module.scss";
+import { useState } from "react";
+import { Button } from "../Button";
 
 export interface ComponentDisplayProps {
-  title?: string;
+  title: string;
   description?: string;
-  sourceUrl?: string;
-  docsUrl?: string;
-  packageName?: string;
-  children?: React.ReactNode;
-  className?: string;
-  // New prop: the component to display
-  component?: React.ComponentType<any>;
-  // Optional: custom component name if different from the component's display name
-  componentName?: string;
-  // Optional: component stories for enhanced auto-generation
-  stories?: any;
+  component: React.ComponentType<any>;
+  props?: Record<string, any>;
+  stories?: React.ComponentType<any>;
+  storybookUrl?: string;
+  storyId?: string;
+  storybookViewMode?: "docs" | "story" | "canvas";
+  showCode?: boolean;
+  showProps?: boolean;
+  showStories?: boolean;
 }
 
 export const ComponentDisplay: React.FC<ComponentDisplayProps> = ({
   title,
   description,
-  sourceUrl,
-  docsUrl,
-  packageName,
-  children,
-  className,
-  component,
-  componentName,
-  stories,
+  component: Component,
+  props = {},
+  stories: Stories,
+  storybookUrl,
+  storyId,
+  storybookViewMode = "docs",
+  showCode = true,
+  showProps = true,
+  showStories = true,
 }) => {
-  // Auto-generate title and description from component if not provided
-  const autoTitle = useMemo(() => {
-    if (title) return title;
-    if (component) {
-      return (
-        componentName || component.displayName || component.name || "Component"
-      );
-    }
-    return "Component";
-  }, [title, component, componentName]);
-
-  const autoDescription = useMemo(() => {
-    if (description) return description;
-    if (component) {
-      return `Interactive documentation and examples for the ${autoTitle} component.`;
-    }
-    return "Component documentation and examples.";
-  }, [description, component, autoTitle]);
-
-  // Auto-generate source URL if not provided
-  const autoSourceUrl = useMemo(() => {
-    if (sourceUrl) return sourceUrl;
-    if (component) {
-      const componentPath =
-        component.displayName || component.name || "Component";
-      return `https://github.com/kazuri1/Pulseui/tree/main/src/components/${componentPath}`;
-    }
-    return undefined;
-  }, [sourceUrl, component]);
-
-  // Auto-generate package name if not provided
-  const autoPackageName = useMemo(() => {
-    if (packageName) return packageName;
-    return "@pulseui-base";
-  }, [packageName]);
+  // Auto-infer Storybook URL and story ID if not provided but stories exist
+  const autoStorybookUrl =
+    storybookUrl ||
+    (Stories ? window.location.origin + "/storybook" : undefined);
+  const autoStoryId =
+    storyId ||
+    (Stories
+      ? `${Stories.displayName || Stories.name || "default"}-docs`
+      : undefined);
+  const autoViewMode = storybookViewMode;
 
   return (
-    <div className={`${styles.componentDisplay} ${className || ""}`}>
-      <header className={styles.header}>
-        <div className={styles.titleSection}>
-          <h1 className={styles.title}>{autoTitle}</h1>
-          <p className={styles.description}>{autoDescription}</p>
-        </div>
+    <div className={styles.componentDisplay}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
+        {description && <p className={styles.description}>{description}</p>}
+      </div>
 
-        {(autoSourceUrl || docsUrl || autoPackageName) && (
-          <nav className={styles.metadata} aria-label="Component metadata">
-            {autoSourceUrl && (
-              <div className={styles.metadataItem}>
-                <span className={styles.metadataLabel}>Source</span>
-                <a
-                  href={autoSourceUrl}
-                  className={styles.metadataLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View source code for ${autoTitle}`}
-                >
-                  <Icon icon={GitHub} className={styles.metadataIcon} />
-                  <span>View source code</span>
-                </a>
-              </div>
-            )}
-
-            {docsUrl && (
-              <div className={styles.metadataItem}>
-                <span className={styles.metadataLabel}>Docs</span>
-                <a
-                  href={docsUrl}
-                  className={styles.metadataLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Edit documentation for ${autoTitle}`}
-                >
-                  <Icon icon={Edit} className={styles.metadataIcon} />
-                  <span>Edit this page</span>
-                </a>
-              </div>
-            )}
-
-            {autoPackageName && (
-              <div className={styles.metadataItem}>
-                <span className={styles.metadataLabel}>Package</span>
-                <div className={styles.packageInfo}>
-                  <NpmIcon className={styles.metadataIcon} />
-                  <a
-                    href={`https://www.npmjs.com/package/${autoPackageName.replace(
-                      "@",
-                      ""
-                    )}`}
-                    className={styles.packageLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${autoPackageName} on npm`}
-                  >
-                    {autoPackageName}
-                  </a>
-                </div>
-              </div>
-            )}
-          </nav>
-        )}
-      </header>
-
-      <main className={styles.content}>
-        {children ||
-          (component && (
-            <ComponentContent component={component} stories={stories} />
-          ))}
-      </main>
+      <ComponentContent
+        component={Component}
+        props={props}
+        stories={Stories}
+        showCode={showCode}
+        showProps={showProps}
+        showStories={showStories}
+        storybookUrl={autoStorybookUrl}
+        storyId={autoStoryId}
+        storybookViewMode={autoViewMode}
+      />
     </div>
   );
 };
@@ -146,168 +68,219 @@ export const ComponentDisplay: React.FC<ComponentDisplayProps> = ({
 // Component to auto-generate content from a component
 interface ComponentContentProps {
   component: React.ComponentType<any>;
-  stories?: any;
+  props: Record<string, any>;
+  stories?: React.ComponentType<any>;
+  showCode: boolean;
+  showProps: boolean;
+  showStories: boolean;
+  storybookUrl?: string;
+  storyId?: string;
+  storybookViewMode: "docs" | "story" | "canvas";
 }
 
 const ComponentContent: React.FC<ComponentContentProps> = ({
-  component,
-  stories,
+  component: Component,
+  props,
+  stories: Stories,
+  showCode,
+  showProps,
+  showStories,
+  storybookUrl,
+  storyId,
+  storybookViewMode,
 }) => {
-  // Get component props from TypeScript interface
-  const componentProps = useMemo(() => {
-    try {
-      const componentName =
-        component.displayName || component.name || "Component";
+  const [activeTab, setActiveTab] = useState<
+    "preview" | "code" | "props" | "stories" | "storybook"
+  >("preview");
 
-      // Try to extract props from stories if available
-      if (stories?.argTypes) {
-        const props = Object.entries(stories.argTypes).map(
-          ([key, value]: [string, any]) => ({
-            name: key,
-            type: value.control?.type || value.type || "unknown",
-            required: value.required || false,
-            defaultValue:
-              value.defaultValue || value.control?.defaultValue || "none",
-            description: value.description || "No description available",
-            options: value.options || null,
-          })
-        );
+  // State for large overlay components
+  const [isLargeComponentOpen, setIsLargeComponentOpen] = useState(false);
 
-        return {
-          name: componentName,
-          props,
-        };
-      }
+  // Show storybook tab if we have storybook URL and stories
+  const hasStorybook = storybookUrl && storyId && Stories;
 
-      // Fallback to basic structure
-      return {
-        name: componentName,
-        props: [],
-      };
-    } catch (error) {
-      console.warn("Could not extract component props:", error);
-      return { name: "Component", props: [] };
-    }
-  }, [component, stories]);
+  // Helper function to generate component code
+  const generateComponentCode = (
+    component: React.ComponentType<any>,
+    componentProps: Record<string, any>
+  ) => {
+    const componentName =
+      component.displayName || component.name || "Component";
+    const propsString = Object.entries(componentProps)
+      .map(([key, value]) => {
+        if (typeof value === "string") {
+          return `${key}="${value}"`;
+        } else if (typeof value === "boolean") {
+          return value ? key : `${key}={false}`;
+        } else {
+          return `${key}={${JSON.stringify(value)}}`;
+        }
+      })
+      .join(" ");
 
-  // Extract examples from stories if available
-  const examples = useMemo(() => {
-    if (!stories) return [];
+    return `<${componentName}${propsString ? ` ${propsString}` : ""} />`;
+  };
 
-    try {
-      // Get story names and descriptions
-      const storyEntries = Object.entries(stories).filter(
-        ([key, value]) =>
-          key !== "default" &&
-          typeof value === "object" &&
-          value !== null &&
-          "render" in value
+  // Helper function to check if component is a large overlay component
+  const isLargeOverlayComponent = (component: React.ComponentType<any>) => {
+    const componentName = component.displayName || component.name || "";
+    return componentName === "Modal" || componentName === "Drawer";
+  };
+
+  // Helper function to render component preview
+  const renderComponentPreview = () => {
+    const isLargeOverlay = isLargeOverlayComponent(Component);
+
+    if (isLargeOverlay) {
+      // For large overlay components, show a button to open them
+      return (
+        <div className={styles.previewContainer}>
+          <div className={styles.previewBox}>
+            <div className={styles.previewPlaceholder}>
+              <p>Large Component: {Component.displayName || Component.name}</p>
+              <Button
+                onClick={() => setIsLargeComponentOpen(true)}
+                variant="filled"
+                size="md"
+              >
+                Open {Component.displayName || Component.name}
+              </Button>
+            </div>
+          </div>
+
+          {/* Render the actual component with show prop controlled */}
+          <Component
+            {...props}
+            show={isLargeComponentOpen}
+            onClose={() => setIsLargeComponentOpen(false)}
+          />
+        </div>
       );
-
-      return storyEntries.map(([key, story]: [string, any]) => ({
-        name: story.name || key,
-        description:
-          story.parameters?.docs?.description?.story ||
-          "No description available",
-        render: story.render,
-      }));
-    } catch (error) {
-      console.warn("Could not extract examples from stories:", error);
-      return [];
+    } else {
+      // For regular components, render them directly in the preview box
+      return (
+        <div className={styles.previewContainer}>
+          <div className={styles.previewBox}>
+            <Component {...props} />
+          </div>
+        </div>
+      );
     }
-  }, [stories]);
+  };
 
   return (
-    <div className={styles.autoContent}>
-      <section className={styles.propsSection}>
-        <h2 className={styles.sectionTitle}>Props Reference</h2>
-        <p className={styles.sectionDescription}>
-          Available props for the {componentProps.name} component.
-        </p>
-        <div className={styles.propsTable}>
-          <table>
-            <thead>
-              <tr>
-                <th>Prop</th>
-                <th>Type</th>
-                <th>Required</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {componentProps.props.length > 0 ? (
-                componentProps.props.map((prop, index) => (
-                  <tr key={index}>
-                    <td>
-                      <code>{prop.name}</code>
-                    </td>
-                    <td>{prop.type}</td>
-                    <td>{prop.required ? "Yes" : "No"}</td>
-                    <td>{prop.defaultValue}</td>
-                    <td>{prop.description}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={5} className={styles.noProps}>
-                    Props information will be auto-generated from component
-                    interface.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </section>
+    <div className={styles.content}>
+      <div className={styles.tabs}>
+        <button
+          className={`${styles.tab} ${
+            activeTab === "preview" ? styles.active : ""
+          }`}
+          onClick={() => setActiveTab("preview")}
+        >
+          Preview
+        </button>
+        {showCode && (
+          <button
+            className={`${styles.tab} ${
+              activeTab === "code" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("code")}
+          >
+            Code
+          </button>
+        )}
+        {showProps && (
+          <button
+            className={`${styles.tab} ${
+              activeTab === "props" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("props")}
+          >
+            Props
+          </button>
+        )}
+        {showStories && Stories && (
+          <button
+            className={`${styles.tab} ${
+              activeTab === "stories" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("stories")}
+          >
+            Stories
+          </button>
+        )}
+        {hasStorybook && (
+          <button
+            className={`${styles.tab} ${
+              activeTab === "storybook" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("storybook")}
+          >
+            Interactive Docs
+          </button>
+        )}
+      </div>
 
-      <section className={styles.examplesSection}>
-        <h2 className={styles.sectionTitle}>Examples</h2>
-        <p className={styles.sectionDescription}>
-          Interactive examples and usage patterns for the {componentProps.name}{" "}
-          component.
-        </p>
-        {examples.length > 0 ? (
-          <div className={styles.examplesGrid}>
-            {examples.map((example, index) => (
-              <div key={index} className={styles.exampleCard}>
-                <h3 className={styles.exampleTitle}>{example.name}</h3>
-                <p className={styles.exampleDescription}>
-                  {example.description}
-                </p>
-                <div className={styles.examplePreview}>
-                  {/* Render the actual component example */}
-                  {example.render && example.render()}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className={styles.examplePlaceholder}>
-            <p>Examples will be auto-generated from component stories.</p>
+      <div className={styles.tabContent}>
+        {activeTab === "preview" && (
+          <div className={styles.preview}>{renderComponentPreview()}</div>
+        )}
+
+        {activeTab === "code" && showCode && (
+          <div className={styles.code}>
+            <pre>
+              <code>{generateComponentCode(Component, props)}</code>
+            </pre>
           </div>
         )}
-      </section>
 
-      <section className={styles.usageSection}>
-        <h2 className={styles.sectionTitle}>Usage</h2>
-        <p className={styles.sectionDescription}>
-          How to import and use the {componentProps.name} component.
-        </p>
-        <div className={styles.codeBlock}>
-          <pre>
-            <code>{`import { ${componentProps.name} } from '@pulseui-base';
+        {activeTab === "props" && showProps && (
+          <div className={styles.props}>
+            <pre>
+              <code>{JSON.stringify(props, null, 2)}</code>
+            </pre>
+          </div>
+        )}
 
-// Basic usage
-<${componentProps.name}>Content</${componentProps.name}>
+        {activeTab === "stories" && showStories && Stories && (
+          <div className={styles.stories}>
+            <Stories />
+          </div>
+        )}
 
-// With props
-<${componentProps.name} variant="primary" size="md">
-  Button Text
-</${componentProps.name}>`}</code>
-          </pre>
-        </div>
-      </section>
+        {activeTab === "storybook" && hasStorybook && (
+          <div className={styles.storybookSection}>
+            <div className={styles.storybookHeader}>
+              <h3 className={styles.storybookTitle}>
+                Interactive Documentation
+              </h3>
+              <a
+                href={`${storybookUrl}?path=/docs/${storyId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.storybookLink}
+              >
+                Open in Storybook →
+              </a>
+            </div>
+            <div className={styles.storybookEmbed}>
+              <iframe
+                src={`${storybookUrl}?path=/docs/${storyId}`}
+                className={styles.storybookIframe}
+                title="Interactive Storybook Documentation"
+                frameBorder="0"
+              />
+            </div>
+            <div className={styles.storybookInfo}>
+              <p>
+                This embedded Storybook documentation provides interactive
+                examples, prop controls, and comprehensive component
+                information.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

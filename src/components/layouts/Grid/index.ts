@@ -5,7 +5,7 @@ export type {
   AlignItems,
   JustifyContent,
   Overflow,
-  MantineSpacing,
+  Spacing,
 } from "./Grid";
 export { GridCol } from "./GridCol";
 export type { GridColProps } from "./GridCol";

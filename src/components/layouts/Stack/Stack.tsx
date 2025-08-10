@@ -17,7 +17,7 @@ export type StackJustify =
   | "space-between"
   | "space-around"
   | "space-evenly";
-export type MantineSpacing = "xs" | "sm" | "md" | "lg" | "xl";
+export type Spacing = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface StackProps extends WithSxProps {
   /** Stack content */
@@ -25,7 +25,7 @@ export interface StackProps extends WithSxProps {
   /** Sets the `align-items` CSS property. Default: `stretch` */
   align?: StackAlign;
   /** Controls the spacing between elements. Default: `md` */
-  gap?: MantineSpacing | string;
+  gap?: Spacing | string;
   /** Sets the `justify-content` CSS property. Default: `flex-start` */
   justify?: StackJustify;
 }

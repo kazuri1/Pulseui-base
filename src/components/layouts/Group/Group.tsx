@@ -17,7 +17,7 @@ export type GroupJustify =
   | "space-between"
   | "space-around"
   | "space-evenly";
-export type MantineSpacing = "xs" | "sm" | "md" | "lg" | "xl";
+export type Spacing = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface GroupProps extends WithSxProps {
   /** Group content */
@@ -25,7 +25,7 @@ export interface GroupProps extends WithSxProps {
   /** Sets the `align-items` CSS property. Default: `center` */
   align?: GroupAlign;
   /** Controls the spacing between elements. Default: `md` */
-  gap?: MantineSpacing | string;
+  gap?: Spacing | string;
   /** Sets the `justify-content` CSS property. Default: `flex-start` */
   justify?: GroupJustify;
   /** Whether to wrap items to the next line. Default: `true` */

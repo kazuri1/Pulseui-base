@@ -19,7 +19,7 @@ export type JustifyContent =
   | "space-around"
   | "space-evenly";
 export type Overflow = "visible" | "hidden" | "scroll" | "auto";
-export type MantineSpacing = "xs" | "sm" | "md" | "lg" | "xl";
+export type Spacing = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface GridBreakpoints {
   xs?: number;
@@ -41,7 +41,7 @@ export interface GridProps extends WithSxProps {
   /** If set to `true`, columns in the last row will expand to fill all available space. Default: `false` */
   grow?: boolean;
   /** Controls the spacing (gutter) between columns. Can be a key from `theme.spacing` or any valid CSS value. Default: `'md'` */
-  gutter?: MantineSpacing | string;
+  gutter?: Spacing | string;
   /** Sets the `justify-content` CSS property. Default: `flex-start` */
   justify?: JustifyContent;
   /** Sets the `overflow` CSS property on the root element. Default: `'visible'` */
