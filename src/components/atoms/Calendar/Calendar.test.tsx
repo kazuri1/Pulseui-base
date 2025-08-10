@@ -47,7 +47,7 @@ describe("Calendar", () => {
     );
 
     // Find the button containing "15" (middle of month, no conflicts)
-    const dateButton = screen.getByText("15").closest('button');
+    const dateButton = screen.getByText("15").closest("button");
     fireEvent.click(dateButton!);
 
     expect(mockOnDateSelect).toHaveBeenCalledWith(expect.any(Date));
@@ -74,7 +74,7 @@ describe("Calendar", () => {
     );
 
     // Find the button containing "15" (middle of month, no conflicts)
-    const dateButton = screen.getByText("15").closest('button');
+    const dateButton = screen.getByText("15").closest("button");
     fireEvent.click(dateButton!);
 
     expect(mockOnDateSelect).not.toHaveBeenCalled();
@@ -108,7 +108,7 @@ describe("Calendar", () => {
       <Calendar date={new Date(2022, 0, 1)} selectedDate={selectedDate} />
     );
 
-    const selectedDateButton = screen.getByText("15").closest('button');
+    const selectedDateButton = screen.getByText("15").closest("button");
     expect(selectedDateButton).toHaveClass("active-selected");
   });
 
@@ -116,7 +116,9 @@ describe("Calendar", () => {
     const today = new Date();
     render(<Calendar date={today} />);
 
-    const todayButton = screen.getByText(today.getDate().toString()).closest('button');
+    const todayButton = screen
+      .getByText(today.getDate().toString())
+      .closest("button");
     expect(todayButton).toHaveClass("variant-holiday");
   });
 
@@ -132,8 +134,8 @@ describe("Calendar", () => {
       />
     );
 
-    const startDateButton = screen.getByText("10").closest('button');
-    const endDateButton = screen.getByText("15").closest('button');
+    const startDateButton = screen.getByText("10").closest("button");
+    const endDateButton = screen.getByText("15").closest("button");
 
     expect(startDateButton).toHaveClass("active-initial");
     expect(endDateButton).toHaveClass("active-end");
@@ -151,13 +153,17 @@ describe("Calendar", () => {
 
     // December 2021 dates should be disabled - find all "26" and get the disabled one
     const allDates26 = screen.getAllByText("26");
-    const prevMonthDate = allDates26.find(date => date.closest('button')?.classList.contains('variant-disabled'));
-    expect(prevMonthDate?.closest('button')).toHaveClass("variant-disabled");
+    const prevMonthDate = allDates26.find((date) =>
+      date.closest("button")?.classList.contains("variant-disabled")
+    );
+    expect(prevMonthDate?.closest("button")).toHaveClass("variant-disabled");
 
     // February 2022 dates should be disabled - find all "1" and get the disabled one
     const allDates1 = screen.getAllByText("1");
-    const nextMonthDate = allDates1.find(date => date.closest('button')?.classList.contains('variant-disabled'));
-    expect(nextMonthDate?.closest('button')).toHaveClass("variant-disabled");
+    const nextMonthDate = allDates1.find((date) =>
+      date.closest("button")?.classList.contains("variant-disabled")
+    );
+    expect(nextMonthDate?.closest("button")).toHaveClass("variant-disabled");
   });
 
   it("has correct accessibility attributes", () => {

@@ -140,30 +140,30 @@ export const Calendar: React.FC<CalendarProps> = ({
 
     // Generate 42 dates (6 weeks * 7 days)
     for (let i = 0; i < 42; i++) {
-      const currentDate = new Date(startDate);
-      currentDate.setDate(startDate.getDate() + i);
+      const dateToAdd = new Date(startDate);
+      dateToAdd.setDate(startDate.getDate() + i);
 
-      const isCurrentMonth = currentDate.getMonth() === month;
-      const isToday = currentDate.toDateString() === today.toDateString();
+      const isCurrentMonth = dateToAdd.getMonth() === month;
+      const isToday = dateToAdd.toDateString() === today.toDateString();
       const isSelected = selectedDates.some(
-        (selected) => selected.toDateString() === currentDate.toDateString()
+        (selected) => selected.toDateString() === dateToAdd.toDateString()
       );
 
       const isRangeStart = !!(
-        rangeStart && currentDate.toDateString() === rangeStart.toDateString()
+        rangeStart && dateToAdd.toDateString() === rangeStart.toDateString()
       );
       const isRangeEnd = !!(
-        rangeEnd && currentDate.toDateString() === rangeEnd.toDateString()
+        rangeEnd && dateToAdd.toDateString() === rangeEnd.toDateString()
       );
       const isInRange = !!(
         rangeStart &&
         rangeEnd &&
-        currentDate >= rangeStart &&
-        currentDate <= rangeEnd
+        dateToAdd >= rangeStart &&
+        dateToAdd <= rangeEnd
       );
 
       dates.push({
-        date: currentDate,
+        date: dateToAdd,
         isCurrentMonth,
         isToday,
         isSelected,
@@ -288,7 +288,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   };
 
-  // Year view handlers
+  // Enhanced year click handler for better connected navigation
   const handleYearClick = (year: number) => {
     if (disabled) return;
 
@@ -296,6 +296,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       // Switch to month view for the selected year
       const newDate = new Date(year, 0, 1);
       setCurrentDate(newDate);
+      setCurrentYear(year);
       onViewChange("month");
     }
 
@@ -304,6 +305,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   };
 
+  // Enhanced month click handler for better connected navigation
   const handleMonthClick = (month: number) => {
     if (disabled) return;
 
@@ -352,7 +354,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   };
 
-  // Decade view handlers
+  // Enhanced decade view handler for better connected navigation
   const handleYearInDecadeClick = (year: number) => {
     if (disabled) return;
 
@@ -455,6 +457,11 @@ export const Calendar: React.FC<CalendarProps> = ({
     } else if (view === "year") {
       // Switch to decade view
       onViewChange("decade");
+    } else if (view === "decade") {
+      // Switch back to month view for the current year
+      const newDate = new Date(currentYear, 0, 1);
+      setCurrentDate(newDate);
+      onViewChange("month");
     }
   };
 
