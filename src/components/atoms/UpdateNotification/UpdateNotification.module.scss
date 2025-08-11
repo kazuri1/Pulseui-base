@@ -1,0 +1,76 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.updateNotification {
+  max-width: 800px;
+  width: 100%;
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+  background: var(--color-surface);
+}
+
+.content {
+  @include flex-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+.textContent {
+  @include flex-column;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.title {
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.message {
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.actions {
+  @include flex-between;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+.skipButton {
+  border-color: var(--color-border-secondary);
+  color: var(--color-text-secondary);
+}
+
+.downloadButton {
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  color: var(--color-surface);
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  .content {
+    @include flex-column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: var(--spacing-md);
+  }
+
+  .actions {
+    gap: var(--spacing-xs);
+  }
+}

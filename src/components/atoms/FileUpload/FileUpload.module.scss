@@ -1,0 +1,250 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.fileUpload {
+  @include flex-column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  max-width: 600px;
+  width: 100%;
+}
+
+.header {
+  @include flex-column;
+  gap: var(--spacing-xs);
+  text-align: center;
+}
+
+.title {
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.supportedTypes {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.dropZone {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  border: var(--border-width-thin) dashed var(--color-border-secondary);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-secondary);
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+  cursor: pointer;
+  min-height: 200px;
+  
+  &:hover {
+    border-color: var(--color-blue-6);
+    background: var(--color-surface-hover);
+  }
+  
+  &.dragOver {
+    border-color: var(--color-blue-6);
+    background: var(--color-blue-1);
+    transform: scale(1.02);
+  }
+}
+
+.uploadIcon {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.dropText {
+  color: var(--color-text-primary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.orText {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.browseButton {
+  min-width: 140px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.uploadList {
+  @include flex-column;
+  gap: var(--spacing-md);
+  border-top: var(--border-width-thin) solid var(--color-border-secondary);
+  padding-top: var(--spacing-lg);
+}
+
+.uploadTitle {
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.uploadItem {
+  @include flex-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+}
+
+.fileInfo {
+  @include flex-start;
+  gap: var(--spacing-sm);
+  flex: 1;
+  min-width: 0;
+}
+
+.fileIcon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.fileDetails {
+  @include flex-column;
+  gap: var(--spacing-xs);
+  flex: 1;
+  min-width: 0;
+}
+
+.fileName {
+  color: var(--color-text-primary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressContainer {
+  @include flex-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.progressBar {
+  flex: 1;
+  height: 6px;
+  background: var(--color-border-secondary);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-blue-6);
+  border-radius: var(--radius-sm);
+  transition: width var(--motion-duration-normal) var(--motion-easing-ease-out);
+}
+
+.timeRemaining {
+  color: var(--color-text-muted);
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cancelButton {
+  padding: var(--spacing-xs);
+  min-width: auto;
+  
+  &:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-error);
+  }
+}
+
+// Variant styles
+.fileUpload {
+  &.uploading {
+    .dropZone {
+      background: var(--color-blue-1);
+      border-color: var(--color-blue-6);
+      cursor: not-allowed;
+      
+      &:hover {
+        background: var(--color-blue-1);
+        border-color: var(--color-blue-6);
+        transform: none;
+      }
+    }
+    
+    .uploadIcon {
+      color: var(--color-blue-6);
+      animation: pulse 2s infinite;
+    }
+  }
+  
+  &.completed {
+    .dropZone {
+      background: var(--color-green-1);
+      border-color: var(--color-green-6);
+      cursor: default;
+      
+      &:hover {
+        background: var(--color-green-1);
+        border-color: var(--color-green-6);
+        transform: none;
+      }
+    }
+    
+    .uploadIcon {
+      color: var(--color-green-6);
+    }
+  }
+}
+
+// Animation for uploading state
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .fileUpload {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+  
+  .dropZone {
+    padding: var(--spacing-lg);
+    min-height: 160px;
+  }
+  
+  .uploadItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .progressContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .progressBar {
+    width: 100%;
+    min-width: 0;
+  }
+  
+  .cancelButton {
+    align-self: flex-end;
+  }
+}

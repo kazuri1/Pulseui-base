@@ -65,7 +65,10 @@ export { ComponentBox } from "./components/atoms/ComponentBox";
 export type { ComponentBoxProps } from "./components/atoms/ComponentBox";
 
 export { LoginForm } from "./components/atoms/LoginForm";
-export type { LoginFormProps, LoginFormData } from "./components/atoms/LoginForm";
+export type {
+  LoginFormProps,
+  LoginFormData,
+} from "./components/atoms/LoginForm";
 
 // Stepper Components
 export { StepperIcon } from "./components/atoms/Stepper/StepperIcon";
@@ -98,6 +101,18 @@ export type { ImageProps } from "./components/atoms/Image";
 
 export { Pill } from "./components/atoms/Pill";
 export type { PillProps } from "./components/atoms/Pill";
+
+export { FileUpload } from "./components/atoms/FileUpload";
+export type {
+  FileUploadProps,
+  UploadFile,
+} from "./components/atoms/FileUpload";
+
+export { ProfileCard } from "./components/atoms/ProfileCard";
+export type { ProfileCardProps } from "./components/atoms/ProfileCard";
+
+export { UpdateNotification } from "./components/atoms/UpdateNotification";
+export type { UpdateNotificationProps } from "./components/atoms/UpdateNotification";
 
 export {
   Accordion,

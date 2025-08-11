@@ -1,0 +1,118 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.profileCard {
+  @include flex-column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-xl);
+  max-width: 400px;
+  width: 100%;
+  gap: var(--spacing-lg);
+}
+
+.avatarContainer {
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+  :global(.avatar) {
+    width: 120px;
+    height: 120px;
+    border: var(--border-width-thin) solid var(--color-border-secondary);
+    margin: 0 auto;
+  }
+}
+
+.profileInfo {
+  @include flex-column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.name {
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.email {
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.bio {
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.4;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.hashtag {
+  color: var(--color-blue-6);
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.statsContainer {
+  @include flex-between;
+  width: 100%;
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-width-thin) solid var(--color-border-secondary);
+  margin-top: var(--spacing-md);
+}
+
+.statItem {
+  @include flex-column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.statNumber {
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.statLabel {
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.2;
+  text-transform: lowercase;
+}
+
+.statDivider {
+  width: var(--border-width-thin);
+  height: 40px;
+  background: var(--color-border-secondary);
+  margin: 0 var(--spacing-sm);
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .profileCard {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .avatarContainer {
+    :global(.avatar) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .statsContainer {
+    gap: var(--spacing-sm);
+  }
+
+  .statDivider {
+    margin: 0 var(--spacing-xs);
+  }
+}

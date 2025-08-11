@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "../Icon";
 import { Person } from "../Icon/IconSet";
+import mypic from "../../../assets/mypic.jpg";
 import styles from "./Avatar.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
@@ -72,18 +73,23 @@ export const Avatar: React.FC<AvatarProps> = ({
       case "image":
         return (
           <img
-            src={src}
+            src={src || mypic}
             alt={alt || "Avatar"}
             className={styles.image}
             onError={(e) => {
-              // Fallback to initial if image fails to load
+              // Fallback to mypic if image fails to load
               const target = e.target as HTMLImageElement;
-              target.style.display = "none";
-              const fallback = target.parentElement?.querySelector(
-                `.${styles.initials}`
-              ) as HTMLElement;
-              if (fallback) {
-                fallback.style.display = "flex";
+              if (target.src !== mypic) {
+                target.src = mypic;
+              } else {
+                // If mypic also fails, fallback to initials
+                target.style.display = "none";
+                const fallback = target.parentElement?.querySelector(
+                  `.${styles.initials}`
+                ) as HTMLElement;
+                if (fallback) {
+                  fallback.style.display = "flex";
+                }
               }
             }}
           />
