@@ -61,6 +61,9 @@ export type { ModalFooterProps } from "./components/atoms/ModalFooter";
 export { ComponentDisplay } from "./components/atoms/ComponentDisplay";
 export type { ComponentDisplayProps } from "./components/atoms/ComponentDisplay";
 
+export { ComponentBox } from "./components/atoms/ComponentBox";
+export type { ComponentBoxProps } from "./components/atoms/ComponentBox";
+
 // Stepper Components
 export { StepperIcon } from "./components/atoms/Stepper/StepperIcon";
 export type { StepperIconProps } from "./components/atoms/Stepper/StepperIcon";
