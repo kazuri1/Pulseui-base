@@ -29,6 +29,9 @@ export type { RadioProps } from "./components/atoms/Radio";
 export { Switch } from "./components/atoms/Switch";
 export type { SwitchProps } from "./components/atoms/Switch";
 
+export { Checkbox } from "./components/atoms/Checkbox";
+export type { CheckboxProps } from "./components/atoms/Checkbox";
+
 export { Alert } from "./components/atoms/Alert";
 export type { AlertProps } from "./components/atoms/Alert";
 
@@ -92,6 +95,9 @@ export type { BadgeProps } from "./components/atoms/Badge";
 
 export { Card } from "./components/atoms/Card";
 export type { CardProps } from "./components/atoms/Card";
+
+export { ContentCard } from "./components/atoms/ContentCard";
+export type { ContentCardProps } from "./components/atoms/ContentCard";
 
 export { Avatar } from "./components/atoms/Avatar";
 export type { AvatarProps } from "./components/atoms/Avatar";
