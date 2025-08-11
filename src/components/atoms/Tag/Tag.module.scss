@@ -1,0 +1,147 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.tag {
+  cursor: default;
+
+  .tagContent {
+    @include flex-between;
+    align-items: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+  }
+
+  .tagIcon {
+    flex-shrink: 0;
+  }
+
+  .tagText {
+    font-family: var(--font-family);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .closeButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Size variants
+  &.sm {
+    .tagContent {
+      gap: var(--spacing-xs);
+    }
+
+    .tagText {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  &.md {
+    .tagContent {
+      gap: var(--spacing-sm);
+    }
+
+    .tagText {
+      font-size: var(--font-size-md);
+    }
+  }
+
+  &.lg {
+    .tagContent {
+      gap: var(--spacing-md);
+    }
+
+    .tagText {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  &.xl {
+    .tagContent {
+      gap: var(--spacing-lg);
+    }
+
+    .tagText {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  // Color variants
+  &.default {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
+
+    .closeButton:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &.selected {
+    background: var(--color-text-primary);
+    color: var(--color-surface);
+    border-color: var(--color-text-primary);
+
+    .closeButton {
+      color: var(--color-surface);
+    }
+
+    .closeButton:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &.mint {
+    background: var(--color-green-1);
+    color: var(--color-green-8);
+    border-color: var(--color-green-3);
+
+    .closeButton:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &.teal {
+    background: var(--color-blue-6);
+    color: var(--color-surface);
+    border-color: var(--color-blue-6);
+
+    .closeButton:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .tag {
+    &.lg {
+      .tagContent {
+        gap: var(--spacing-sm);
+      }
+    }
+
+    &.xl {
+      .tagContent {
+        gap: var(--spacing-md);
+      }
+    }
+  }
+}

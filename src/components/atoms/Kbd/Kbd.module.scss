@@ -1,0 +1,65 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  font-family: var(--font-family-sans);
+  user-select: none;
+  cursor: default;
+
+  // Size variants
+  &.sm {
+    padding: 4px 8px;
+    min-width: 24px;
+    height: 24px;
+  }
+
+  &.md {
+    padding: 6px 12px;
+    min-width: 32px;
+    height: 32px;
+  }
+
+  &.lg {
+    padding: 8px 16px;
+    min-width: 40px;
+    height: 40px;
+  }
+
+  &.xl {
+    padding: 10px 20px;
+    min-width: 48px;
+    height: 48px;
+  }
+}
+
+.keyText {
+  color: #495057;
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .kbd {
+    &.lg {
+      padding: 6px 12px;
+      min-width: 36px;
+      height: 36px;
+    }
+
+    &.xl {
+      padding: 8px 16px;
+      min-width: 44px;
+      height: 44px;
+    }
+  }
+}

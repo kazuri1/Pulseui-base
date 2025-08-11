@@ -114,6 +114,15 @@ export type { ProfileCardProps } from "./components/atoms/ProfileCard";
 export { UpdateNotification } from "./components/atoms/UpdateNotification";
 export type { UpdateNotificationProps } from "./components/atoms/UpdateNotification";
 
+export { Kbd } from "./components/atoms/Kbd";
+export type { KbdProps } from "./components/atoms/Kbd";
+
+export { Tag } from "./components/atoms/Tag";
+export type { TagProps } from "./components/atoms/Tag";
+
+export { TagCard } from "./components/atoms/TagCard";
+export type { TagCardProps, TagItem } from "./components/atoms/TagCard";
+
 export {
   Accordion,
   AccordionItem,

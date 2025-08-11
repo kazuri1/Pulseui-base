@@ -1,0 +1,56 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.tagCard {
+  max-width: 900px;
+  width: 100%;
+  padding: var(--spacing-md);
+}
+
+.cardHeader {
+  margin-bottom: var(--spacing-sm);
+
+  .cardTitle {
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    margin-bottom: 40px;
+  }
+}
+
+.tagGrid {
+  display: grid;
+  align-items: start;
+  justify-items: center;
+
+  // Responsive grid adjustments
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--spacing-sm) !important;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr !important;
+    gap: var(--spacing-md) !important;
+  }
+}
+
+// Custom grid layouts for different column counts
+.tagGrid[style*="repeat(3, 1fr)"] {
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.tagGrid[style*="repeat(2, 1fr)"] {
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr !important;
+  }
+}
