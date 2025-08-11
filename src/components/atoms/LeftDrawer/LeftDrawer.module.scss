@@ -8,6 +8,7 @@
   height: 100vh;
   background-color: var(--color-white);
   box-shadow: var(--shadow-lg);
+  border-right: var(--border-width-thin) solid var(--color-border-secondary);
   transform: translateX(-100%);
   transition: transform var(--motion-duration-normal)
     var(--motion-easing-ease-out);

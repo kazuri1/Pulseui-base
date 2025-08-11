@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "../Card";
 import { Tag } from "../Tag";
 import { LocalHospital } from "@mui/icons-material";
+import type { SvgIconComponent } from "@mui/icons-material";
 import styles from "./TagCard.module.scss";
 
 export interface TagItem {
@@ -10,7 +11,7 @@ export interface TagItem {
   /** Text content of the tag */
   text: string;
   /** Icon to display in the tag */
-  icon?: React.ComponentType<any>;
+  icon?: SvgIconComponent;
   /** Size variant of the tag */
   size?: "sm" | "md" | "lg" | "xl";
   /** Color variant of the tag */
@@ -53,12 +54,12 @@ export const TagCard: React.FC<TagCardProps> = ({
           <h3 className={styles.cardTitle}>{title}</h3>
         </div>
       )}
-      
-      <div 
+
+      <div
         className={styles.tagGrid}
-        style={{ 
+        style={{
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          gap: "var(--spacing-md)"
+          gap: "var(--spacing-md)",
         }}
       >
         {tags.map((tag) => (
