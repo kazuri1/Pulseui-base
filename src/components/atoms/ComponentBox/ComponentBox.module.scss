@@ -4,17 +4,13 @@
 .componentBox {
   @include flex-column;
   align-items: center;
-  gap: var(--spacing-md);
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  width: 300px;
 }
 
 .componentArea {
   @include flex-center;
   width: 100%;
-  min-height: 120px;
-  padding: var(--spacing-xl);
+  min-height: 200px;
   background-color: var(--color-surface-secondary);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-subtle);
@@ -48,8 +44,7 @@
 // Size variants
 .size-sm {
   .componentArea {
-    min-height: 80px;
-    padding: var(--spacing-lg);
+    min-height: 160px;
   }
 
   .title {
@@ -59,8 +54,7 @@
 
 .size-md {
   .componentArea {
-    min-height: 120px;
-    padding: var(--spacing-xl);
+    min-height: 200px;
   }
 
   .title {
@@ -70,8 +64,7 @@
 
 .size-lg {
   .componentArea {
-    min-height: 160px;
-    padding: var(--spacing-xxl);
+    min-height: 240px;
   }
 
   .title {
@@ -81,8 +74,7 @@
 
 .size-xl {
   .componentArea {
-    min-height: 200px;
-    padding: var(--spacing-xxxl);
+    min-height: 280px;
   }
 
   .title {
@@ -109,50 +101,23 @@
   }
 }
 
-// Responsive adjustments
+// Responsive adjustments - maintain fixed width
 @media (max-width: 768px) {
-  .componentArea {
-    padding: var(--spacing-lg);
-    min-height: 100px;
+  .componentBox {
+    width: 300px;
   }
 
   .title {
     font-size: var(--font-size-md);
   }
-
-  .size-lg .componentArea {
-    padding: var(--spacing-xl);
-    min-height: 140px;
-  }
-
-  .size-xl .componentArea {
-    padding: var(--spacing-xxl);
-    min-height: 180px;
-  }
 }
 
 @media (max-width: 480px) {
-  .componentArea {
-    padding: var(--spacing-md);
-    min-height: 80px;
+  .componentBox {
+    width: 300px;
   }
 
   .title {
     font-size: var(--font-size-sm);
-  }
-
-  .size-md .componentArea {
-    padding: var(--spacing-lg);
-    min-height: 100px;
-  }
-
-  .size-lg .componentArea {
-    padding: var(--spacing-lg);
-    min-height: 120px;
-  }
-
-  .size-xl .componentArea {
-    padding: var(--spacing-xl);
-    min-height: 160px;
   }
 }

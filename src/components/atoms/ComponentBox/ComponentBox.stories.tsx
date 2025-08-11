@@ -231,3 +231,35 @@ export const ModalWithButton: Story = {
     children: <ModalButton />,
   },
 };
+
+// Shows 3 boxes in a row
+export const ThreeBoxesInRow: Story = {
+  render: () => (
+    <div
+      style={{
+        display: "flex",
+        gap: "40px",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        flexWrap: "nowrap",
+        padding: "20px",
+        width: "100%",
+        overflowX: "auto",
+      }}
+    >
+      <ComponentBox title="Box 1" size="sm">
+        <Button variant="filled" size="sm">
+          Button 1
+        </Button>
+      </ComponentBox>
+      <ComponentBox title="Box 2" size="sm">
+        <Badge variant="filled">Badge 2</Badge>
+      </ComponentBox>
+      <ComponentBox title="Box 3" size="sm">
+        <Alert title="Info Alert" variant="info">
+          This is an info alert
+        </Alert>
+      </ComponentBox>
+    </div>
+  ),
+};
