@@ -232,8 +232,8 @@ export const ModalWithButton: Story = {
   },
 };
 
-// Shows 3 boxes in a row
-export const ThreeBoxesInRow: Story = {
+// Shows 4 boxes in a row
+export const FourBoxesInRow: Story = {
   render: () => (
     <div
       style={{
@@ -259,6 +259,11 @@ export const ThreeBoxesInRow: Story = {
         <Alert title="Info Alert" variant="info">
           This is an info alert
         </Alert>
+      </ComponentBox>
+      <ComponentBox title="Box 4" size="sm">
+        <Button variant="outline" size="sm">
+          Button 4
+        </Button>
       </ComponentBox>
     </div>
   ),

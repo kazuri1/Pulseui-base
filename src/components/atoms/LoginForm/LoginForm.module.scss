@@ -1,0 +1,172 @@
+@import '../../../styles/_mixins.scss';
+@import '../../../styles/_tokens.scss';
+
+.loginForm {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  background: var(--color-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-md);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  @include flex-center;
+  gap: var(--spacing-xs);
+  
+  .signUpLink {
+    background: none;
+    border: none;
+    color: var(--color-primary-600);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+    
+    &:hover {
+      color: var(--color-primary-700);
+    }
+    
+    &:focus {
+      @include focus-ring;
+    }
+  }
+}
+
+.form {
+  margin-bottom: var(--spacing-xl);
+}
+
+.inputGroup {
+  margin-bottom: var(--spacing-lg);
+}
+
+.label {
+  @include flex-center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.input {
+  width: 100%;
+}
+
+.options {
+  @include flex-center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-md);
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+}
+
+.forgotPassword {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--color-primary-600);
+  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+  
+  &:hover {
+    color: var(--color-primary-700);
+  }
+  
+  &:focus {
+    @include focus-ring;
+  }
+}
+
+.loginButton {
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+}
+
+.socialSection {
+  .divider {
+    @include flex-center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    
+    .dividerLine {
+      flex: 1;
+      height: var(--border-width-thin);
+      background: var(--color-border-secondary);
+    }
+    
+    .dividerText {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+      white-space: nowrap;
+    }
+  }
+  
+  .socialButtons {
+    @include flex-center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    
+    .socialButton {
+      flex: 1;
+      min-width: 120px;
+      @include flex-center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: var(--border-width-thin) solid var(--color-border-secondary);
+      background: var(--color-surface-primary);
+      color: var(--color-text-primary);
+      transition: all var(--motion-duration-fast) var(--motion-easing-standard);
+      
+      &:hover {
+        background: var(--color-surface-secondary);
+        border-color: var(--color-border-primary);
+        transform: translateY(-1px);
+        box-shadow: var(--box-shadow-sm);
+      }
+      
+      &:focus {
+        @include focus-ring;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .loginForm {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md);
+  }
+  
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .socialButtons {
+    flex-direction: column;
+    
+    .socialButton {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+}
