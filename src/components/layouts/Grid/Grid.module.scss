@@ -2,7 +2,10 @@
 
 .root {
   display: grid;
-  grid-template-columns: repeat(var(--grid-columns, 12), 1fr);
+  grid-template-columns: var(
+    --grid-template-columns,
+    repeat(var(--grid-columns, 12), 1fr)
+  );
   gap: var(--grid-gutter, var(--spacing-md));
   width: 100%;
 
@@ -90,6 +93,56 @@
     gap: var(--spacing-xl);
   }
 
+  // Separate horizontal and vertical gutters
+  &.gutter-x-xs {
+    column-gap: var(--spacing-xs);
+  }
+
+  &.gutter-x-sm {
+    column-gap: var(--spacing-sm);
+  }
+
+  &.gutter-x-md {
+    column-gap: var(--spacing-md);
+  }
+
+  &.gutter-x-lg {
+    column-gap: var(--spacing-lg);
+  }
+
+  &.gutter-x-xl {
+    column-gap: var(--spacing-xl);
+  }
+
+  &.gutter-y-xs {
+    row-gap: var(--spacing-xs);
+  }
+
+  &.gutter-y-sm {
+    row-gap: var(--spacing-sm);
+  }
+
+  &.gutter-y-md {
+    row-gap: var(--spacing-md);
+  }
+
+  &.gutter-y-lg {
+    row-gap: var(--spacing-lg);
+  }
+
+  &.gutter-y-xl {
+    row-gap: var(--spacing-xl);
+  }
+
+  // Negative gutters for edge-to-edge layouts
+  &.negativeGutter {
+    margin: calc(-1 * var(--grid-gutter, var(--spacing-md)));
+
+    > * {
+      padding: calc(var(--grid-gutter, var(--spacing-md)) / 2);
+    }
+  }
+
   // Column configurations
   &.columns-1 {
     grid-template-columns: repeat(1, 1fr);
@@ -145,4 +198,13 @@
       min-height: 0;
     }
   }
-} 
+
+  // Auto-fit behavior
+  &.autoFit {
+    grid-template-columns: var(--grid-template-columns);
+
+    > * {
+      min-width: 0;
+    }
+  }
+}

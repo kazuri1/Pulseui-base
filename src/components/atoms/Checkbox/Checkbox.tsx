@@ -2,8 +2,10 @@ import React, { forwardRef } from "react";
 import { Icon } from "../Icon";
 import { Check } from "../Icon/IconSet";
 import styles from "./Checkbox.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface CheckboxProps {
+export interface CheckboxProps extends WithSxProps {
   id?: string;
   name?: string;
   checked?: boolean;
@@ -16,7 +18,6 @@ export interface CheckboxProps {
   onChange?: (checked: boolean) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  className?: string;
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
@@ -35,12 +36,20 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onFocus,
       onBlur,
       className = "",
+      sx,
+      style,
     },
     ref
   ) => {
     const [internalChecked, setInternalChecked] = React.useState(
       defaultChecked || false
     );
+    const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+      sx,
+      style,
+      className
+    );
+
     const isControlled = checked !== undefined;
     const currentChecked = isControlled ? checked : internalChecked;
 
@@ -56,9 +65,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
     const errorId = error ? `${checkboxId}-error` : undefined;
 
+    const containerClasses = combineClassNames(
+      styles.checkboxContainer,
+      sxClassName
+    );
+
     return (
-      <div className={`${styles.checkboxContainer} ${className}`}>
-        <div className={styles.checkboxWrapper}>
+      <div className={containerClasses} style={sxStyle}>
+        <div className={styles.checkboxLabelGroup}>
           <input
             ref={ref}
             id={checkboxId}
@@ -112,16 +126,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 ${styles[`size-${size}`]}
                 ${disabled ? styles.disabled : ""}
               `}
-              onClick={() => {
-                if (!disabled) {
-                  const input = document.getElementById(
-                    checkboxId
-                  ) as HTMLInputElement;
-                  if (input) {
-                    input.click();
-                  }
-                }
-              }}
             >
               {label}
               {required && <span className={styles.required}>*</span>}
@@ -132,7 +136,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         {error && (
           <div
             id={errorId}
-            className={`${styles.errorMessage} ${styles[`size-${size}`]}`}
+            className={`
+              ${styles.errorMessage}
+              ${styles[`size-${size}`]}
+            `}
             role="alert"
           >
             {error}

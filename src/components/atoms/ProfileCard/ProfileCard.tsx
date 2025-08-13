@@ -4,8 +4,10 @@ import { Text } from "../Text";
 import { Avatar } from "../Avatar";
 import mypic from "../../../assets/mypic.jpg";
 import styles from "./ProfileCard.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface ProfileCardProps {
+export interface ProfileCardProps extends WithSxProps {
   /** Profile avatar image URL (defaults to mypic.jpg) */
   avatarUrl?: string;
   /** Profile avatar alt text */
@@ -24,8 +26,6 @@ export interface ProfileCardProps {
   followers: number;
   /** Number of following */
   following: number;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({
@@ -39,7 +39,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   followers,
   following,
   className = "",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const formatNumber = (num: number): string => {
     if (num >= 1000) {
       return (num / 1000).toFixed(1).replace(/\.0$/, "") + "k";
@@ -47,8 +55,13 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     return num.toString();
   };
 
+  const profileCardClasses = combineClassNames(
+    styles.profileCard,
+    sxClassName
+  );
+
   return (
-    <Card className={`${styles.profileCard} ${className}`}>
+    <Card className={profileCardClasses} sx={sx} style={sxStyle}>
       <div className={styles.avatarContainer}>
         <Avatar
           type="image"

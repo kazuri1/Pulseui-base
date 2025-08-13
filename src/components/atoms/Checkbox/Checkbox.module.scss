@@ -2,15 +2,20 @@
 @import "../../../styles/_mixins.scss";
 
 .checkboxContainer {
-  @include flex-column;
-  gap: var(--spacing-xs);
+  @include flex-start;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
   font-family: var(--font-family);
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.checkboxWrapper {
+.checkboxLabelGroup {
   @include flex-start;
   gap: var(--spacing-sm);
   align-items: center;
+  flex-shrink: 0;
+  min-height: 20px; // Ensure consistent height for alignment
 }
 
 .checkboxInput {
@@ -21,13 +26,14 @@
   margin: 0;
   padding: 0;
   pointer-events: none;
+  z-index: -1;
 }
 
 .checkbox {
   position: relative;
   flex-shrink: 0;
-  border: var(--border-width-thin) solid var(--color-border-secondary);
-  border-radius: var(--radius-sm);
+  border: var(--border-width-thick) solid var(--color-border-primary);
+  border-radius: var(--radius-md);
   background: var(--color-surface);
   cursor: pointer;
   @include transition;
@@ -35,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 
   &:hover:not(.disabled) {
     border-color: var(--color-border-focus);
@@ -104,6 +111,12 @@
   font-weight: var(--font-weight-medium);
   line-height: 1.4;
   user-select: none;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin: 0;
+  padding: 0;
+  min-height: 20px; // Match checkbox height for perfect alignment
 
   &.disabled {
     cursor: not-allowed;
@@ -133,7 +146,7 @@
 }
 
 .errorMessage {
-  margin-left: calc(20px + var(--spacing-sm)); // checkbox width + gap
+  margin-top: var(--spacing-xs);
   color: var(--color-error);
   font-size: var(--font-size-sm);
   line-height: 1.4;
@@ -142,18 +155,15 @@
   &.size-sm {
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
-    margin-left: calc(16px + var(--spacing-sm));
   }
 
   &.size-md {
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
-    margin-left: calc(20px + var(--spacing-sm));
   }
 
   &.size-lg {
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
-    margin-left: calc(24px + var(--spacing-sm));
   }
 }

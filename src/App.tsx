@@ -1,102 +1,255 @@
-import React from "react";
-import { ComponentDisplay } from "./components/atoms/ComponentDisplay/ComponentDisplay";
+import React, { useState } from "react";
 import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
+import { SimpleTopNav } from "./components/atoms/SimpleTopNav/SimpleTopNav";
 import { Button } from "./components/atoms/Button/Button";
-import buttonStories from "./components/atoms/Button/Button.stories";
+import { Input } from "./components/atoms/Input/Input";
+import { useTheme } from "./contexts/ThemeContext";
+
+// Button variant options
+const buttonVariants = [
+  "filled",
+  "subtle",
+  "light",
+  "outline",
+  "white",
+  "default",
+] as const;
+
+type ButtonVariant = (typeof buttonVariants)[number];
 
 function AppContent() {
-  return (
-    <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
-      <h1 style={{ 
-        textAlign: "center", 
-        marginBottom: "48px",
-        fontSize: "2.5rem",
-        fontWeight: "bold",
-        color: "var(--color-text-primary)"
-      }}>
-        PulseUI ComponentDisplay Demo
-      </h1>
+  const { themeName, setTheme } = useTheme();
+  const [selectedVariant, setSelectedVariant] =
+    useState<ButtonVariant>("filled");
 
-      {/* Auto-generated ComponentDisplay from Button component */}
-      <ComponentDisplay
-        component={Button}
-        componentName="Button"
-        stories={buttonStories}
+  const navItems = [
+    {
+      id: "home",
+      label: "Home",
+      active: true,
+      onClick: () => console.log("Home clicked"),
+    },
+    {
+      id: "about",
+      label: "About",
+      onClick: () => console.log("About clicked"),
+    },
+    {
+      id: "contact",
+      label: "Contact",
+      onClick: () => console.log("Contact clicked"),
+    },
+  ];
+
+  return (
+    <div
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
+      {/* Top Navigation */}
+      <SimpleTopNav
+        brandName="PulseUI"
+        brandTitle="Component Library"
+        items={navItems}
+        versionSelector={{
+          version: "1.6.0",
+          versions: ["1.5.0", "1.6.0", "1.7.0"],
+          onVersionChange: (version) =>
+            console.log("Version changed to:", version),
+          show: true,
+        }}
       />
 
-      <div style={{ marginTop: "48px", textAlign: "center" }}>
-        <h2 style={{ 
-          fontSize: "1.5rem", 
-          marginBottom: "24px",
-          color: "var(--color-text-primary)"
-        }}>
-          Usage Instructions
-        </h2>
-        <div style={{ 
-          textAlign: "left", 
-          maxWidth: "800px", 
-          margin: "0 auto",
+      {/* Main Content */}
+      <main
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           padding: "24px",
-          backgroundColor: "var(--color-surface-secondary)",
-          borderRadius: "8px",
-          border: "1px solid var(--color-border-secondary)"
-        }}>
-          <h3>Auto-Generation Feature</h3>
-          <p>
-            The ComponentDisplay component now supports automatic content generation from any PulseUI component:
-          </p>
-          <pre style={{ 
-            backgroundColor: "var(--color-surface-tertiary)", 
-            padding: "16px", 
-            borderRadius: "4px",
-            overflow: "auto",
-            fontSize: "14px"
-          }}>
-{`import { ComponentDisplay } from '@pulseui-base';
-import { Button } from '@pulseui-base';
-import buttonStories from './Button.stories';
-
-// Auto-generate content from component
-<ComponentDisplay
-  component={Button}
-  componentName="Button"
-  stories={buttonStories}
-/>`}
-          </pre>
-          
-          <h3>What Gets Auto-Generated:</h3>
-          <ul>
-            <li><strong>Title & Description</strong> - From component name and display name</li>
-            <li><strong>Source URL</strong> - Links to GitHub repository</li>
-            <li><strong>Props Table</strong> - Extracted from Storybook argTypes</li>
-            <li><strong>Examples</strong> - Rendered from component stories</li>
-            <li><strong>Usage Instructions</strong> - Import and usage code</li>
-          </ul>
-
-          <h3>Props:</h3>
-          <ul>
-            <li><code>component</code> - The React component to display</li>
-            <li><code>componentName</code> - Optional custom name</li>
-            <li><code>stories</code> - Component's Storybook stories for enhanced content</li>
-            <li><code>title</code> - Optional custom title (overrides auto-generated)</li>
-            <li><code>description</code> - Optional custom description</li>
-            <li><code>sourceUrl</code> - Optional custom source URL</li>
-            <li><code>docsUrl</code> - Optional documentation URL</li>
-            <li><code>packageName</code> - Optional custom package name</li>
-            <li><code>children</code> - Optional custom content (overrides auto-generation)</li>
-            <li><code>className</code> - Optional custom CSS class</li>
-          </ul>
+          gap: "32px",
+        }}
+      >
+        {/* Theme Switcher */}
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            padding: "16px",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "8px",
+            border: "1px solid var(--color-border-secondary)",
+          }}
+        >
+          <span
+            style={{ fontSize: "14px", color: "var(--color-text-secondary)" }}
+          >
+            Theme:
+          </span>
+          <button
+            onClick={() => setTheme("default-light")}
+            style={{
+              padding: "8px 16px",
+              backgroundColor:
+                themeName === "default-light"
+                  ? "var(--color-primary)"
+                  : "var(--color-surface-tertiary)",
+              color:
+                themeName === "default-light"
+                  ? "white"
+                  : "var(--color-text-primary)",
+              border: "1px solid var(--color-border-secondary)",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: "500",
+            }}
+          >
+            ☀️ Light
+          </button>
+          <button
+            onClick={() => setTheme("default-dark")}
+            style={{
+              padding: "8px 16px",
+              backgroundColor:
+                themeName === "default-dark"
+                  ? "var(--color-primary)"
+                  : "var(--color-surface-tertiary)",
+              color:
+                themeName === "default-dark"
+                  ? "white"
+                  : "var(--color-text-primary)",
+              border: "1px solid var(--color-border-secondary)",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: "500",
+            }}
+          >
+            🌙 Dark
+          </button>
         </div>
-      </div>
 
-      <footer style={{ 
-        marginTop: "48px", 
-        textAlign: "center", 
-        padding: "24px",
-        borderTop: "1px solid var(--color-border-secondary)",
-        color: "var(--color-text-secondary)"
-      }}>
-        <p>PulseUI ComponentDisplay - Auto-generating component documentation</p>
+        {/* Button Variant Selector */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "16px",
+            padding: "24px",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "12px",
+            border: "1px solid var(--color-border-secondary)",
+            minWidth: "300px",
+          }}
+        >
+          <h3
+            style={{
+              margin: 0,
+              fontSize: "1.2rem",
+              color: "var(--color-text-primary)",
+              textAlign: "center",
+            }}
+          >
+            Button Variant Selector
+          </h3>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              width: "100%",
+              maxWidth: "250px",
+            }}
+          >
+            <label
+              style={{
+                fontSize: "14px",
+                color: "var(--color-text-secondary)",
+                fontWeight: "500",
+              }}
+            >
+              Select Variant:
+            </label>
+            <select
+              value={selectedVariant}
+              onChange={(e) =>
+                setSelectedVariant(e.target.value as ButtonVariant)
+              }
+              style={{
+                padding: "12px",
+                border: "1px solid var(--color-border-secondary)",
+                borderRadius: "6px",
+                backgroundColor: "var(--color-surface)",
+                color: "var(--color-text-primary)",
+                fontSize: "14px",
+                cursor: "pointer",
+              }}
+            >
+              {buttonVariants.map((variant) => (
+                <option key={variant} value={variant}>
+                  {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Centered Button */}
+          <div
+            style={{
+              marginTop: "16px",
+              padding: "24px",
+              border: "2px dashed var(--color-border-secondary)",
+              borderRadius: "8px",
+              backgroundColor: "var(--color-surface)",
+              minWidth: "200px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              variant={selectedVariant}
+              size="lg"
+              onClick={() => console.log(`${selectedVariant} button clicked!`)}
+            >
+              {selectedVariant.charAt(0).toUpperCase() +
+                selectedVariant.slice(1)}{" "}
+              Button
+            </Button>
+          </div>
+
+          {/* Button Info */}
+          <div
+            style={{
+              fontSize: "12px",
+              color: "var(--color-text-secondary)",
+              textAlign: "center",
+              fontStyle: "italic",
+            }}
+          >
+            Current variant: <strong>{selectedVariant}</strong>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer
+        style={{
+          padding: "24px",
+          textAlign: "center",
+          borderTop: "1px solid var(--color-border-secondary)",
+          color: "var(--color-text-secondary)",
+          backgroundColor: "var(--color-surface-secondary)",
+        }}
+      >
+        <p style={{ margin: 0, fontSize: "14px" }}>
+          PulseUI Dev Environment - Simple and Clean
+        </p>
       </footer>
     </div>
   );
@@ -104,7 +257,7 @@ import buttonStories from './Button.stories';
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="default" defaultMode="light">
+    <ThemeProvider defaultTheme="default-light">
       <AppContent />
     </ThemeProvider>
   );

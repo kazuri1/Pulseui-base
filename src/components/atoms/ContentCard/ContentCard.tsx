@@ -4,8 +4,10 @@ import { Text } from "../Text";
 import { Avatar } from "../Avatar";
 import { Image } from "../Image";
 import styles from "./ContentCard.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface ContentCardProps {
+export interface ContentCardProps extends WithSxProps {
   /** URL of the featured image */
   imageUrl: string;
   /** Alt text for the image */
@@ -24,8 +26,6 @@ export interface ContentCardProps {
   authorImageUrl?: string;
   /** Optional click handler for the card */
   onClick?: () => void;
-  /** Additional CSS classes */
-  className?: string;
   /** Size variant of the card */
   size?: "sm" | "md" | "lg";
 }
@@ -42,18 +42,34 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   onClick,
   className = "",
   size = "md",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const handleClick = () => {
     if (onClick) {
       onClick();
     }
   };
 
+  const contentCardClasses = combineClassNames(
+    styles.contentCard,
+    styles[`size-${size}`],
+    sxClassName
+  );
+
   return (
     <Card
-      className={`${styles.contentCard} ${styles[`size-${size}`]} ${className}`}
+      className={contentCardClasses}
       onClick={handleClick}
       clickable={!!onClick}
+      sx={sx}
+      style={sxStyle}
     >
       <div className={styles.imageContainer}>
         <Image src={imageUrl} alt={imageAlt} className={styles.featuredImage} />

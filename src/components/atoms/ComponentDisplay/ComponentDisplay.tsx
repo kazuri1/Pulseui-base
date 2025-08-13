@@ -4,8 +4,10 @@ import { GitHub, Edit } from "../Icon/IconSet";
 import styles from "./ComponentDisplay.module.scss";
 import { useState } from "react";
 import { Button } from "../Button";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface ComponentDisplayProps {
+export interface ComponentDisplayProps extends WithSxProps {
   title: string;
   description?: string;
   component: React.ComponentType<any>;
@@ -31,7 +33,16 @@ export const ComponentDisplay: React.FC<ComponentDisplayProps> = ({
   showCode = true,
   showProps = true,
   showStories = true,
+  className = "",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   // Auto-infer Storybook URL and story ID if not provided but stories exist
   const autoStorybookUrl =
     storybookUrl ||
@@ -43,8 +54,13 @@ export const ComponentDisplay: React.FC<ComponentDisplayProps> = ({
       : undefined);
   const autoViewMode = storybookViewMode;
 
+  const componentDisplayClasses = combineClassNames(
+    styles.componentDisplay,
+    sxClassName
+  );
+
   return (
-    <div className={styles.componentDisplay}>
+    <div className={componentDisplayClasses} style={sxStyle}>
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         {description && <p className={styles.description}>{description}</p>}

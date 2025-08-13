@@ -1,6 +1,6 @@
 {
   "name": "pulseui-base",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "description": "⚡ Ultra-lightweight React component library with design tokens, multi-brand theming, and TypeScript support. Zero heavy dependencies - perfect for production apps.",
   "type": "module",
   "main": "dist/index.js",
@@ -43,7 +43,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:lib && npm run build:styles && npm run build:types",
+    "build": "npm run generate-themes && npm run build:lib && npm run build:styles && npm run build:types",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build:styles": "sass src/styles/_tokens.scss:dist/tokens.css --style compressed && sass src/styles/pulseui-base.scss:dist/pulseui-base.scss.css --style compressed",
@@ -53,7 +53,8 @@
     "build-storybook": "storybook build",
     "preview": "vite preview",
     "pack:preview": "npm pack --dry-run",
-    "pack:check": "npm pack && tar -tf *.tgz"
+    "pack:check": "npm pack && tar -tf *.tgz",
+    "generate-themes": "node scripts/generate-themes.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",

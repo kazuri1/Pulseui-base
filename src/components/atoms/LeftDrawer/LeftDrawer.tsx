@@ -4,6 +4,8 @@ import { Menu, Close, ExpandMore, ExpandLess } from "../Icon/IconSet";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
 import styles from "./LeftDrawer.module.scss";
 import type { SvgIconComponent } from "@mui/icons-material";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
 export interface LeftDrawerItem {
   id: string;
@@ -21,7 +23,7 @@ export interface LeftDrawerSection {
   items: LeftDrawerItem[];
 }
 
-export interface LeftDrawerProps {
+export interface LeftDrawerProps extends WithSxProps {
   isOpen: boolean;
   onClose: () => void;
   sections: LeftDrawerSection[];
@@ -29,7 +31,6 @@ export interface LeftDrawerProps {
   brandLogo?: React.ReactNode;
   showOverlay?: boolean;
   width?: string;
-  className?: string;
 }
 
 export const LeftDrawer: React.FC<LeftDrawerProps> = ({
@@ -40,8 +41,16 @@ export const LeftDrawer: React.FC<LeftDrawerProps> = ({
   brandLogo,
   showOverlay = true,
   width = "280px",
-  className,
+  className = "",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     new Set()
   );
@@ -152,9 +161,9 @@ export const LeftDrawer: React.FC<LeftDrawerProps> = ({
       {/* Drawer */}
       <div
         className={`${styles.leftDrawer} ${isOpen ? styles.open : ""} ${
-          className || ""
+          sxClassName || ""
         }`}
-        style={{ width }}
+        style={{ width, ...sxStyle }}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation drawer"

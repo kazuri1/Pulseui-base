@@ -3,8 +3,10 @@ import type { KeyboardEvent } from "react";
 import { Input } from "../Input/Input";
 import { Pill } from "../Pill/Pill";
 import styles from "./PillInput.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface PillInputProps {
+export interface PillInputProps extends WithSxProps {
   /** Array of pills/tags */
   pills?: string[];
   /** Placeholder text for the input */
@@ -31,8 +33,6 @@ export interface PillInputProps {
   onPillRemove?: (pill: string, index: number) => void;
   /** Callback when a pill is added */
   onPillAdd?: (pill: string) => void;
-  /** Additional CSS classes */
-  className?: string;
   /** Input name */
   name?: string;
   /** Input id */
@@ -58,9 +58,17 @@ export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
       className = "",
       name,
       id,
+      sx,
+      style,
     },
     ref
   ) => {
+    const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+      sx,
+      style,
+      className
+    );
+
     const [inputValue, setInputValue] = React.useState("");
     const [isFocused, setIsFocused] = React.useState(false);
 
@@ -132,8 +140,13 @@ export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
       },
     ].filter(Boolean);
 
+    const pillInputClasses = combineClassNames(
+      styles.pillInput,
+      sxClassName
+    );
+
     return (
-      <div className={`${styles.pillInput} ${className}`}>
+      <div className={pillInputClasses} style={sxStyle}>
         <div className={inputContainerClasses.join(" ")}>
           {pills.length > 0 && (
             <div className={styles.pillsContainer}>

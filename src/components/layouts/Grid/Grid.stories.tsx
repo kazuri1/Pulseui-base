@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, expect } from "@storybook/test";
 import { Grid } from "./Grid";
@@ -32,6 +33,28 @@ const meta: Meta<typeof Grid> = {
       options: ["xs", "sm", "md", "lg", "xl"],
       description: "Controls the spacing (gutter) between columns",
     },
+    gutterX: {
+      control: { type: "select" },
+      options: ["xs", "sm", "md", "lg", "xl"],
+      description: "Horizontal gutter (between columns)",
+    },
+    gutterY: {
+      control: { type: "select" },
+      options: ["xs", "sm", "md", "lg", "xl"],
+      description: "Vertical gutter (between rows)",
+    },
+    autoFit: {
+      control: "boolean",
+      description: "Auto-fit columns with minimum width",
+    },
+    minColumnWidth: {
+      control: "text",
+      description: "Minimum column width for auto-fit",
+    },
+    negativeGutter: {
+      control: "boolean",
+      description: "Negative gutters for edge-to-edge layouts",
+    },
     justify: {
       control: { type: "select" },
       options: [
@@ -65,9 +88,14 @@ const meta: Meta<typeof Grid> = {
     columns: 12,
     grow: false,
     gutter: "md",
+    gutterX: undefined,
+    gutterY: undefined,
     justify: "flex-start",
     overflow: "visible",
     type: "media",
+    autoFit: false,
+    minColumnWidth: "200px",
+    negativeGutter: false,
     className: "",
   },
 };
@@ -156,250 +184,6 @@ export const ThreeColumns: Story = {
   },
 };
 
-export const SixColumns: Story = {
-  args: {
-    columns: 6,
-    children: [
-      <Grid.Col key="1" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-secondary)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Col 1
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="2" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-300)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Col 2
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="3" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-400)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Col 3
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="4" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-500)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Col 4
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="5" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-600)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Col 5
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="6" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-700)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Col 6
-        </div>
-      </Grid.Col>,
-    ],
-  },
-};
-
-export const TwelveColumns: Story = {
-  args: {
-    columns: 12,
-    children: [
-      <Grid.Col key="1" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-secondary)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          1
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="2" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-300)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          2
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="3" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-400)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          3
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="4" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-500)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          4
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="5" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-600)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          5
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="6" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-700)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          6
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="7" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-800)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          7
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="8" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-900)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          8
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="9" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-100)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          9
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="10" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-200)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          10
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="11" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-300)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          11
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="12" span={1}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-400)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          12
-        </div>
-      </Grid.Col>,
-    ],
-  },
-};
-
-export const MixedSpans: Story = {
-  args: {
-    columns: 12,
-    children: [
-      <Grid.Col key="1" span={8}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-secondary)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Wide Column (8 spans)
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="2" span={4}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-300)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Narrow Column (4 spans)
-        </div>
-      </Grid.Col>,
-    ],
-  },
-};
-
 export const ResponsiveGrid: Story = {
   args: {
     columns: 12,
@@ -452,50 +236,112 @@ export const ResponsiveGrid: Story = {
   },
 };
 
-export const WithGrow: Story = {
+export const AutoFitGrid: Story = {
   args: {
-    columns: 12,
-    grow: true,
+    autoFit: true,
+    minColumnWidth: "250px",
+    gutter: "md",
     children: [
-      <Grid.Col key="1" span={4}>
+      <Grid.Col key="1">
         <div
           style={{
             padding: "var(--spacing-md)",
             backgroundColor: "var(--color-surface-secondary)",
             borderRadius: "var(--radius-md)",
+            minHeight: "100px",
           }}
         >
-          Fixed Width Column
+          Auto-fit Column 1
         </div>
       </Grid.Col>,
-      <Grid.Col key="2" span={4}>
+      <Grid.Col key="2">
         <div
           style={{
             padding: "var(--spacing-md)",
             backgroundColor: "var(--color-surface-300)",
             borderRadius: "var(--radius-md)",
+            minHeight: "100px",
           }}
         >
-          Fixed Width Column
+          Auto-fit Column 2
         </div>
       </Grid.Col>,
-      <Grid.Col key="3" span={4}>
+      <Grid.Col key="3">
         <div
           style={{
             padding: "var(--spacing-md)",
             backgroundColor: "var(--color-surface-400)",
             borderRadius: "var(--radius-md)",
+            minHeight: "100px",
           }}
         >
-          Growing Column
+          Auto-fit Column 3
         </div>
       </Grid.Col>,
     ],
   },
 };
 
-export const LargeGutter: Story = {
+export const SeparateGutters: Story = {
   args: {
+    gutterX: "lg",
+    gutterY: "sm",
+    children: [
+      <Grid.Col key="1" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-md)",
+            minHeight: "100px",
+          }}
+        >
+          Column 1
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="2" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-300)",
+            borderRadius: "var(--radius-md)",
+            minHeight: "100px",
+          }}
+        >
+          Column 2
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="3" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-400)",
+            borderRadius: "var(--radius-md)",
+            minHeight: "100px",
+          }}
+        >
+          Column 3
+        </div>
+      </Grid.Col>,
+      <Grid.Col key="4" span={6}>
+        <div
+          style={{
+            padding: "var(--spacing-md)",
+            backgroundColor: "var(--color-surface-500)",
+            borderRadius: "var(--radius-md)",
+            minHeight: "100px",
+          }}
+        >
+          Column 4
+        </div>
+      </Grid.Col>,
+    ],
+  },
+};
+
+export const NegativeGutter: Story = {
+  args: {
+    negativeGutter: true,
     gutter: "lg",
     children: [
       <Grid.Col key="1" span={6}>
@@ -504,9 +350,10 @@ export const LargeGutter: Story = {
             padding: "var(--spacing-md)",
             backgroundColor: "var(--color-surface-secondary)",
             borderRadius: "var(--radius-md)",
+            minHeight: "100px",
           }}
         >
-          Column 1
+          Edge-to-edge Column 1
         </div>
       </Grid.Col>,
       <Grid.Col key="2" span={6}>
@@ -515,42 +362,12 @@ export const LargeGutter: Story = {
             padding: "var(--spacing-md)",
             backgroundColor: "var(--color-surface-300)",
             borderRadius: "var(--radius-md)",
+            minHeight: "100px",
           }}
         >
-          Column 2
+          Edge-to-edge Column 2
         </div>
       </Grid.Col>,
     ],
   },
 };
-
-export const SmallGutter: Story = {
-  args: {
-    gutter: "sm",
-    children: [
-      <Grid.Col key="1" span={6}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-secondary)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Column 1
-        </div>
-      </Grid.Col>,
-      <Grid.Col key="2" span={6}>
-        <div
-          style={{
-            padding: "var(--spacing-md)",
-            backgroundColor: "var(--color-surface-300)",
-            borderRadius: "var(--radius-md)",
-          }}
-        >
-          Column 2
-        </div>
-      </Grid.Col>,
-    ],
-  },
-};
-

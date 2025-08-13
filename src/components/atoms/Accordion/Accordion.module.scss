@@ -3,7 +3,7 @@
 
 .accordion {
   @include flex-column;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-md);
   font-family: var(--font-family);
   width: 100%;
   min-width: 600px;
@@ -21,12 +21,13 @@
   min-width: 600px;
   max-width: 600px;
   box-sizing: border-box;
+  margin-bottom: var(--spacing-sm);
 }
 
 .accordionHeader {
   @include flex-between;
   width: 100%;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   background: var(--color-surface-secondary);
   border: none;
   cursor: pointer;
@@ -54,14 +55,16 @@
 }
 
 .title {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text-primary);
-  line-height: var(--line-height-md);
+  line-height: var(--line-height-sm);
   flex: 1;
   min-width: 0;
   width: 100%;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .titleWrapper {
@@ -69,6 +72,7 @@
   min-width: 0;
   flex: 1;
   box-sizing: border-box;
+  padding-right: var(--spacing-sm);
 }
 
 .chevron {
@@ -88,12 +92,25 @@
 }
 
 .contentInner {
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   line-height: var(--line-height-sm);
   width: 100%;
   box-sizing: border-box;
+
+  // Better text readability
+  p,
+  div,
+  span {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Add some spacing between content elements
+  > * + * {
+    margin-top: var(--spacing-sm);
+  }
 }
 
 .contentWrapper {
@@ -109,8 +126,8 @@
   }
 
   .title {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-sm);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
   }
 
   .contentInner {
@@ -122,35 +139,35 @@
 
 .size-md {
   .accordionHeader {
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
   }
 
   .title {
-    font-size: var(--font-size-md);
-    line-height: var(--line-height-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
   }
 
   .contentInner {
-    padding: var(--spacing-md);
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-sm);
+    padding: var(--spacing-lg);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
   }
 }
 
 .size-lg {
   .accordionHeader {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl);
   }
 
   .title {
-    font-size: var(--font-size-lg);
-    line-height: var(--line-height-lg);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
   }
 
   .contentInner {
-    padding: var(--spacing-lg);
-    font-size: var(--font-size-md);
-    line-height: var(--line-height-md);
+    padding: var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
   }
 }
 

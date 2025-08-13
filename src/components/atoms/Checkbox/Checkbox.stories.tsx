@@ -205,3 +205,30 @@ export const Simple: Story = {
     },
   },
 };
+
+// Inline layout example
+export const InlineLayout: Story = {
+  render: () => (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        gap: "20px",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+      }}
+    >
+      <Checkbox label="Option 1" />
+      <Checkbox label="Option 2" defaultChecked />
+      <Checkbox label="Option 3" />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Multiple checkboxes in a horizontal layout showing the inline alignment.",
+      },
+    },
+  },
+};

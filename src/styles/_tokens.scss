@@ -82,7 +82,7 @@
   --color-shadow: rgba(0, 0, 0, 0.1);
 
   // Component-specific theme colors
-  --color-button-primary: var(--color-blue-6);
+  --color-button-primary: var(--color-blue-8);
   --color-button-primary-hover: var(--color-blue-7);
   --color-button-secondary: var(--color-gray-0);
   --color-button-secondary-hover: var(--color-gray-1);
@@ -109,6 +109,12 @@
   --color-warning: var(--color-yellow-6);
   --color-error: var(--color-red-6);
   --color-info: var(--color-blue-6);
+
+  // Primary colors (alias for blue)
+  --color-primary: var(--color-blue-8);
+  --color-primary-1: var(--color-blue-1);
+  --color-primary-6: var(--color-blue-6);
+  --color-primary-7: var(--color-blue-7);
 
   // Spacing
   --spacing-xs: 4px;
@@ -211,7 +217,15 @@
   --color-overlay-dark: rgba(0, 0, 0, 0.8);
   --color-backdrop: rgba(0, 0, 0, 0.5);
 
-  // Breakpoints
+  // Breakpoints (Industry Standard)
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
+  // Legacy breakpoints (deprecated, kept for backward compatibility)
   --breakpoint-mobile: 480px;
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1024px;
@@ -258,49 +272,70 @@
   --transform-hover: translateY(-1px);
   --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-normal: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+  // Component sizing tokens
+  --size-dropdown-min-width: 80px;
+  --size-dropdown-min-width-mobile: 70px;
+  --size-dropdown-max-height: 200px;
+  --size-dropdown-option-min-width: 100px;
 }
 
-// Dark mode colors (will be applied by ThemeProvider)
+// Dark theme colors - Connected to design system
 [data-theme="dark"] {
-  --color-background: #141414;
-  --color-surface: #1f1f1f;
-  --color-surface-secondary: #242424;
-  --color-surface-tertiary: #2e2e2e;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #c9c9c9;
-  --color-text-muted: #828282;
-  --color-text-disabled: #696969;
-  --color-border-primary: #424242;
-  --color-border-secondary: #3b3b3b;
-  --color-border-focus: #4dabf7;
-  --color-shadow: rgba(0, 0, 0, 0.3);
+  // Use design system tokens for consistency
+  --color-background: var(--color-gray-9);
+  --color-surface: var(--color-gray-8);
+  --color-surface-secondary: var(--color-gray-7);
+  --color-surface-tertiary: var(--color-gray-6);
+
+  // Text colors using design system tokens
+  --color-text-primary: var(--color-gray-0);
+  --color-text-secondary: var(--color-gray-2);
+  --color-text-muted: var(--color-gray-4);
+  --color-text-disabled: var(--color-gray-5);
+
+  // Border colors using design system tokens
+  --color-border-primary: var(--color-gray-6);
+  --color-border-secondary: var(--color-gray-7);
+  --color-border-focus: var(--color-blue-6);
+
+  // Primary colors using design system tokens
+  --color-primary: var(--color-blue-6);
+  --color-primary-1: var(--color-blue-9);
+  --color-primary-6: var(--color-blue-6);
+  --color-primary-7: var(--color-blue-5);
 
   // Component-specific colors
-  --color-button-primary: #4dabf7;
-  --color-button-primary-hover: #74c0fc;
-  --color-button-secondary: #2e2e2e;
-  --color-button-secondary-hover: #3b3b3b;
-  --color-button-outline: #4dabf7;
-  --color-button-outline-hover: #74c0fc;
-  --color-button-text: #c9c9c9;
-  --color-button-text-hover: #ffffff;
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-5);
+  --color-button-secondary: var(--color-gray-6);
+  --color-button-secondary-hover: var(--color-gray-5);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-5);
+  --color-button-text: var(--color-gray-2);
+  --color-button-text-hover: var(--color-gray-0);
 
   // Input colors
-  --color-input-background: #1f1f1f;
-  --color-input-border: #424242;
-  --color-input-border-focus: #4dabf7;
-  --color-input-text: #ffffff;
-  --color-input-placeholder: #696969;
+  --color-input-background: var(--color-gray-8);
+  --color-input-border: var(--color-gray-6);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-gray-0);
+  --color-input-placeholder: var(--color-gray-5);
 
   // Icon colors
-  --color-icon-primary: #c9c9c9;
-  --color-icon-secondary: #828282;
-  --color-icon-muted: #696969;
+  --color-icon-primary: var(--color-gray-2);
+  --color-icon-secondary: var(--color-gray-4);
+  --color-icon-muted: var(--color-gray-5);
   --color-icon-inherit: currentColor;
 
-  // Status colors
-  --color-success: #69db7c;
-  --color-warning: #ffd43b;
-  --color-error: #ff8787;
-  --color-info: #4dabf7;
+  // Status colors using design system tokens
+  --color-success: var(--color-green-6);
+  --color-warning: var(--color-yellow-6);
+  --color-error: var(--color-red-6);
+  --color-info: var(--color-blue-6);
+
+  // Shadows
+  --color-shadow: rgba(0, 0, 0, 0.3);
 }

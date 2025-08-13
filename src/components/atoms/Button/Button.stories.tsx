@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "@storybook/test";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -54,7 +55,7 @@ const meta: Meta<typeof Button> = {
     },
     disabled: {
       control: "boolean",
-      description: "Disabled state",
+      description: "Whether the button is disabled",
     },
     type: {
       control: { type: "select" },

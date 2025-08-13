@@ -1,14 +1,14 @@
 import React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
 import styles from "./Icon.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface IconProps {
+export interface IconProps extends WithSxProps {
   /** The MUI icon component to render */
   icon: SvgIconComponent;
   /** Icon size */
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  /** Additional CSS classes */
-  className?: string;
   /** Icon color (uses design tokens) */
   color?:
     | "primary"
@@ -29,26 +29,33 @@ export interface IconProps {
 export const Icon: React.FC<IconProps> = ({
   icon: IconComponent,
   size = "md",
-  className = "",
   color = "inherit",
   clickable = false,
   onClick,
   disabled = false,
+  className = "",
+  sx,
+  style,
 }) => {
-  const iconClasses = [
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const iconClasses = combineClassNames(
     styles.icon,
     styles[`size-${size}`],
     styles[`color-${color}`],
-    {
-      [styles.clickable]: clickable,
-      [styles.disabled]: disabled,
-    },
-    className,
-  ].filter(Boolean);
+    clickable && styles.clickable,
+    disabled && styles.disabled,
+    sxClassName
+  );
 
   return (
     <IconComponent
-      className={iconClasses.join(" ")}
+      className={iconClasses}
+      style={sxStyle}
       onClick={clickable && !disabled ? onClick : undefined}
     />
   );

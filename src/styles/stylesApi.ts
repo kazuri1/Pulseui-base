@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { CSSProperties } from "react";
+import { defaultTheme } from "./themes";
 
 // Design token types
 export type Spacing = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
@@ -219,161 +220,6 @@ export interface Theme {
   };
 }
 
-// Default theme
-export const defaultTheme: Theme = {
-  colors: {
-    primary: "var(--color-primary-6)",
-    secondary: "var(--color-gray-6)",
-    success: "var(--color-success)",
-    warning: "var(--color-warning)",
-    error: "var(--color-error)",
-    info: "var(--color-info)",
-    surface: "var(--color-surface)",
-    text: "var(--color-text-primary)",
-    border: "var(--color-border-primary)",
-    background: "var(--color-background)",
-    white: "var(--color-white)",
-    black: "var(--color-black)",
-    "gray-0": "var(--color-gray-0)",
-    "gray-1": "var(--color-gray-1)",
-    "gray-2": "var(--color-gray-2)",
-    "gray-3": "var(--color-gray-3)",
-    "gray-4": "var(--color-gray-4)",
-    "gray-5": "var(--color-gray-5)",
-    "gray-6": "var(--color-gray-6)",
-    "gray-7": "var(--color-gray-7)",
-    "gray-8": "var(--color-gray-8)",
-    "gray-9": "var(--color-gray-9)",
-    "blue-0": "var(--color-blue-0)",
-    "blue-1": "var(--color-blue-1)",
-    "blue-2": "var(--color-blue-2)",
-    "blue-3": "var(--color-blue-3)",
-    "blue-4": "var(--color-blue-4)",
-    "blue-5": "var(--color-blue-5)",
-    "blue-6": "var(--color-blue-6)",
-    "blue-7": "var(--color-blue-7)",
-    "blue-8": "var(--color-blue-8)",
-    "blue-9": "var(--color-blue-9)",
-    "red-0": "var(--color-red-0)",
-    "red-1": "var(--color-red-1)",
-    "red-2": "var(--color-red-2)",
-    "red-3": "var(--color-red-3)",
-    "red-4": "var(--color-red-4)",
-    "red-5": "var(--color-red-5)",
-    "red-6": "var(--color-red-6)",
-    "red-7": "var(--color-red-7)",
-    "red-8": "var(--color-red-8)",
-    "red-9": "var(--color-red-9)",
-    "green-0": "var(--color-green-0)",
-    "green-1": "var(--color-green-1)",
-    "green-2": "var(--color-green-2)",
-    "green-3": "var(--color-green-3)",
-    "green-4": "var(--color-green-4)",
-    "green-5": "var(--color-green-5)",
-    "green-6": "var(--color-green-6)",
-    "green-7": "var(--color-green-7)",
-    "green-8": "var(--color-green-8)",
-    "green-9": "var(--color-green-9)",
-    "yellow-0": "var(--color-yellow-0)",
-    "yellow-1": "var(--color-yellow-1)",
-    "yellow-2": "var(--color-yellow-2)",
-    "yellow-3": "var(--color-yellow-3)",
-    "yellow-4": "var(--color-yellow-4)",
-    "yellow-5": "var(--color-yellow-5)",
-    "yellow-6": "var(--color-yellow-6)",
-    "yellow-7": "var(--color-yellow-7)",
-    "yellow-8": "var(--color-yellow-8)",
-    "yellow-9": "var(--color-yellow-9)",
-  },
-  spacing: {
-    xs: "var(--spacing-xs)",
-    sm: "var(--spacing-sm)",
-    md: "var(--spacing-md)",
-    lg: "var(--spacing-lg)",
-    xl: "var(--spacing-xl)",
-    xxl: "var(--spacing-xxl)",
-  },
-  typography: {
-    h1: {
-      fontSize: "var(--font-size-xxl)",
-      lineHeight: "var(--line-height-xxl)",
-      fontWeight: "bold",
-    },
-    h2: {
-      fontSize: "var(--font-size-xl)",
-      lineHeight: "var(--line-height-xl)",
-      fontWeight: "bold",
-    },
-    h3: {
-      fontSize: "var(--font-size-lg)",
-      lineHeight: "var(--line-height-lg)",
-      fontWeight: "bold",
-    },
-    h4: {
-      fontSize: "var(--font-size-md)",
-      lineHeight: "var(--line-height-md)",
-      fontWeight: "bold",
-    },
-    h5: {
-      fontSize: "var(--font-size-sm)",
-      lineHeight: "var(--line-height-sm)",
-      fontWeight: "bold",
-    },
-    h6: {
-      fontSize: "var(--font-size-xs)",
-      lineHeight: "var(--line-height-xs)",
-      fontWeight: "bold",
-    },
-    "text-xs": {
-      fontSize: "var(--font-size-xs)",
-      lineHeight: "var(--line-height-xs)",
-      fontWeight: "normal",
-    },
-    "text-sm": {
-      fontSize: "var(--font-size-sm)",
-      lineHeight: "var(--line-height-sm)",
-      fontWeight: "normal",
-    },
-    "text-md": {
-      fontSize: "var(--font-size-md)",
-      lineHeight: "var(--line-height-md)",
-      fontWeight: "normal",
-    },
-    "text-lg": {
-      fontSize: "var(--font-size-lg)",
-      lineHeight: "var(--line-height-lg)",
-      fontWeight: "normal",
-    },
-    "text-xl": {
-      fontSize: "var(--font-size-xl)",
-      lineHeight: "var(--line-height-xl)",
-      fontWeight: "normal",
-    },
-  },
-  borderRadius: {
-    xs: "var(--radius-xs)",
-    sm: "var(--radius-sm)",
-    md: "var(--radius-md)",
-    lg: "var(--radius-lg)",
-    xl: "var(--radius-xl)",
-    full: "var(--radius-full)",
-  },
-  shadows: {
-    xs: "var(--shadow-xs)",
-    sm: "var(--shadow-sm)",
-    md: "var(--shadow-md)",
-    lg: "var(--shadow-lg)",
-    xl: "var(--shadow-xl)",
-  },
-  breakpoints: {
-    xs: "0px",
-    sm: "600px",
-    md: "900px",
-    lg: "1200px",
-    xl: "1536px",
-  },
-};
-
 // Utility functions
 export const getSpacingValue = (
   value: number | Spacing,
@@ -490,12 +336,15 @@ export const processSxProps = (
 };
 
 // Styled component factory
-export const styled = (component: string | React.ComponentType<any>, defaultSx?: SxProps) => {
+export const styled = (
+  component: string | React.ComponentType<any>,
+  defaultSx?: SxProps
+) => {
   return React.forwardRef<any, any>(({ sx, style, ...props }, ref) => {
     const processedSx = processSxProps({ ...defaultSx, ...sx });
     const mergedStyle = { ...processedSx, ...style };
 
-    if (typeof component === 'string') {
+    if (typeof component === "string") {
       return React.createElement(component, {
         ...props,
         style: mergedStyle,

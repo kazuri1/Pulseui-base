@@ -207,6 +207,7 @@ export {
   Thunderstorm,
   Air,
   WaterDrop,
+  Bedtime, // Dark mode icon
 } from "@mui/icons-material";
 
 // Health & Fitness

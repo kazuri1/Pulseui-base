@@ -4,6 +4,8 @@ import { Input } from "../Input/Input";
 import { Icon } from "../Icon/Icon";
 import { ArrowDropDown } from "../Icon/IconSet";
 import styles from "./Autocomplete.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
 export interface AutocompleteOption {
   value: string;
@@ -11,7 +13,7 @@ export interface AutocompleteOption {
   icon?: string;
 }
 
-export interface AutocompleteProps {
+export interface AutocompleteProps extends WithSxProps {
   /** Array of options to display */
   options: AutocompleteOption[];
   /** Current value */
@@ -40,8 +42,6 @@ export interface AutocompleteProps {
   onChange?: (value: string) => void;
   /** Callback when an option is selected */
   onSelect?: (option: AutocompleteOption) => void;
-  /** Additional CSS classes */
-  className?: string;
   /** Input name */
   name?: string;
   /** Input id */
@@ -68,9 +68,17 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
       className = "",
       name,
       id,
+      sx,
+      style,
     },
     ref
   ) => {
+    const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+      sx,
+      style,
+      className
+    );
+
     const [inputValue, setInputValue] = React.useState(value);
     const [isOpen, setIsOpen] = React.useState(false);
     const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
@@ -204,8 +212,13 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
 
     const actualState = disabled ? "disabled" : isFocused ? "focus" : state;
 
+    const autocompleteClasses = combineClassNames(
+      styles.autocomplete,
+      sxClassName
+    );
+
     return (
-      <div className={`${styles.autocomplete} ${className}`}>
+      <div className={autocompleteClasses} style={sxStyle}>
         <div className={styles.inputContainer}>
           <Input
             ref={ref}
