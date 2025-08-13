@@ -7,6 +7,7 @@ import { Icon } from "../Icon/Icon";
 import { Menu, Close, Home, Person, Store, Email } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
+import { VersionSelector } from "./VersionSelector";
 
 export interface SimpleTopNavItem {
   /** Unique identifier for the nav item */
@@ -44,6 +45,17 @@ export interface SimpleTopNavProps extends WithSxProps {
   style?: React.CSSProperties;
   /** Whether to show mobile menu by default */
   defaultMobileMenuOpen?: boolean;
+  /** Version selector configuration */
+  versionSelector?: {
+    /** Current version to display */
+    version?: string;
+    /** Available versions to select from */
+    versions?: string[];
+    /** Callback when version changes */
+    onVersionChange?: (version: string) => void;
+    /** Whether to show the version selector */
+    show?: boolean;
+  };
 }
 
 export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
@@ -57,6 +69,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
   sx,
   style,
   defaultMobileMenuOpen = false,
+  versionSelector = {},
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(
     defaultMobileMenuOpen
@@ -155,6 +168,14 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
               <h1 className={styles.brandName}>{brandName}</h1>
               {brandTitle && <p className={styles.brandTitle}>{brandTitle}</p>}
             </div>
+            {versionSelector.show && (
+              <VersionSelector
+                version={versionSelector.version}
+                versions={versionSelector.versions}
+                onVersionChange={versionSelector.onVersionChange}
+                className={styles.versionSelector}
+              />
+            )}
           </div>
         )}
 

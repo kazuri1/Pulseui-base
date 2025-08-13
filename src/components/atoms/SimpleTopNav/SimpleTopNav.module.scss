@@ -42,6 +42,11 @@
   gap: var(--spacing-lg);
 }
 
+.versionSelector {
+  margin-left: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
 .brandName {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);

@@ -43,10 +43,11 @@ export { Animation } from "./components/Animation";
 export type { AnimationProps } from "./components/Animation";
 
 // Navigation Components
-export { SimpleTopNav } from "./components/atoms/SimpleTopNav";
+export { SimpleTopNav, VersionSelector } from "./components/atoms/SimpleTopNav";
 export type {
   SimpleTopNavProps,
   SimpleTopNavItem,
+  VersionSelectorProps,
 } from "./components/atoms/SimpleTopNav";
 
 export { LeftDrawer } from "./components/atoms/LeftDrawer";

@@ -511,3 +511,29 @@ The component automatically detects the screen size using the \`useBreakpoint\` 
     },
   },
 };
+
+export const WithVersionSelector: Story = {
+  args: {
+    brandName: "PULSEUI",
+    brandTitle: "DESIGN SYSTEM",
+    versionSelector: {
+      show: true,
+      version: "v8.2.4",
+      versions: ["v8.2.4", "v8.2.3", "v8.2.2", "v8.1.0"],
+      onVersionChange: (version: string) => console.log(`Version changed to: ${version}`),
+    },
+    items: [
+      { id: "home", label: "HOME", icon: Home, active: true },
+      { id: "docs", label: "DOCS", icon: Book },
+      { id: "components", label: "COMPONENTS", icon: Store },
+      { id: "about", label: "ABOUT", icon: Person },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "SimpleTopNav with version selector positioned adjacent to the brand. The version selector allows users to switch between different versions of the design system.",
+      },
+    },
+  },
+};

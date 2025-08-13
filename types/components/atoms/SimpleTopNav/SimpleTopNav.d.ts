@@ -37,5 +37,16 @@ export interface SimpleTopNavProps extends WithSxProps {
     style?: React.CSSProperties;
     /** Whether to show mobile menu by default */
     defaultMobileMenuOpen?: boolean;
+    /** Version selector configuration */
+    versionSelector?: {
+        /** Current version to display */
+        version?: string;
+        /** Available versions to select from */
+        versions?: string[];
+        /** Callback when version changes */
+        onVersionChange?: (version: string) => void;
+        /** Whether to show the version selector */
+        show?: boolean;
+    };
 }
 export declare const SimpleTopNav: React.FC<SimpleTopNavProps>;
