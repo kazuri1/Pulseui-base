@@ -38,7 +38,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: var(--color-red-6);
+  background-color: var(--color-blue-6);
   z-index: 2;
 }
 
@@ -119,11 +119,11 @@
 }
 
 .variant-holiday {
-  color: var(--color-red-7);
+  color: var(--color-blue-7);
   background-color: transparent;
 
   &:hover:not(:disabled) {
-    background-color: var(--color-red-1);
+    background-color: var(--color-blue-1);
   }
 }
 
@@ -180,7 +180,7 @@
   color: var(--color-blue-9);
 
   .indicator {
-    background-color: var(--color-red-6);
+    background-color: var(--color-blue-6);
     opacity: 0.6;
   }
 

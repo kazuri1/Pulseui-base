@@ -1,0 +1,151 @@
+@import "../../../styles/tokens";
+
+.datePicker {
+  position: relative;
+  width: 280px;
+  font-family: var(--font-family);
+}
+
+.label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 4px;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inputWrapper {
+  flex: 1;
+  cursor: pointer;
+}
+
+.dateInput {
+  width: 100%;
+}
+
+.calendarWrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  margin-top: 4px;
+  width: 280px;
+}
+
+.calendar {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px var(--color-shadow);
+}
+
+.calendarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border-primary);
+  background-color: var(--color-white);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: var(--motion-transition-fast);
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-focus);
+    color: var(--color-text-primary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-border-focus-alpha);
+  }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    background-color: var(--color-surface-tertiary);
+    border-color: var(--color-border-secondary);
+  }
+}
+
+.errorMessage {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-error);
+  line-height: 1.4;
+}
+
+// Error state
+.error {
+  .calendarButton {
+    border-color: var(--color-error);
+
+    &:focus {
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 3px var(--color-error-alpha);
+    }
+  }
+}
+
+// Disabled state
+.disabled {
+  .label {
+    color: var(--color-text-disabled);
+  }
+
+  .calendarButton {
+    background-color: var(--color-surface-tertiary);
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    border-color: var(--color-border-secondary);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .calendarButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .inputContainer {
+    gap: 6px;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .calendarButton:focus {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .calendarButton {
+    transition: none;
+  }
+}
