@@ -24,6 +24,8 @@ export { Alert } from "./components/atoms/Alert";
 export type { AlertProps } from "./components/atoms/Alert";
 export { Pagination } from "./components/atoms/Pagination";
 export type { PaginationProps } from "./components/atoms/Pagination";
+export { Animation } from "./components/Animation";
+export type { AnimationProps } from "./components/Animation";
 export { SimpleTopNav } from "./components/atoms/SimpleTopNav";
 export type { SimpleTopNavProps, SimpleTopNavItem, } from "./components/atoms/SimpleTopNav";
 export { LeftDrawer } from "./components/atoms/LeftDrawer";
@@ -100,6 +102,8 @@ export { CalendarYear } from "./components/atoms/Calendar/CalendarYear/CalendarY
 export type { CalendarYearProps } from "./components/atoms/Calendar/CalendarYear/CalendarYear";
 export { CalendarDecade } from "./components/atoms/Calendar/CalendarDecade/CalendarDecade";
 export type { CalendarDecadeProps } from "./components/atoms/Calendar/CalendarDecade/CalendarDecade";
+export { DatePicker } from "./components/atoms/DatePicker";
+export type { DatePickerProps } from "./components/atoms/DatePicker";
 export { Icon } from "./components/atoms/Icon/Icon";
 export type { IconProps } from "./components/atoms/Icon/Icon";
 export { ThemeProvider, useTheme } from "./components/ThemeProvider";

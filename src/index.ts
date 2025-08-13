@@ -38,6 +38,10 @@ export type { AlertProps } from "./components/atoms/Alert";
 export { Pagination } from "./components/atoms/Pagination";
 export type { PaginationProps } from "./components/atoms/Pagination";
 
+// Animation Component
+export { Animation } from "./components/Animation";
+export type { AnimationProps } from "./components/Animation";
+
 // Navigation Components
 export { SimpleTopNav } from "./components/atoms/SimpleTopNav";
 export type {
@@ -200,6 +204,10 @@ export type { CalendarYearProps } from "./components/atoms/Calendar/CalendarYear
 
 export { CalendarDecade } from "./components/atoms/Calendar/CalendarDecade/CalendarDecade";
 export type { CalendarDecadeProps } from "./components/atoms/Calendar/CalendarDecade/CalendarDecade";
+
+// DatePicker Component
+export { DatePicker } from "./components/atoms/DatePicker";
+export type { DatePickerProps } from "./components/atoms/DatePicker";
 
 // Icon Component
 export { Icon } from "./components/atoms/Icon/Icon";
