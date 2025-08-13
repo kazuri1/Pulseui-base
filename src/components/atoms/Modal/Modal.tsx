@@ -6,6 +6,7 @@ import { Close } from "../Icon/IconSet";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface ModalProps extends WithSxProps {
   /** Modal content */
@@ -81,6 +82,7 @@ export const Modal: React.FC<ModalProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
@@ -155,6 +157,7 @@ export const Modal: React.FC<ModalProps> = ({
         style={sxStyle}
         id={id}
         tabIndex={-1}
+        data-theme={isDark ? "dark" : "light"}
       >
         {/* Header */}
         {(showTitle && title) || showClose ? (

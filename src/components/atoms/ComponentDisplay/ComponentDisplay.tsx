@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Button } from "../Button";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface ComponentDisplayProps extends WithSxProps {
   title: string;
@@ -37,6 +38,7 @@ export const ComponentDisplay: React.FC<ComponentDisplayProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

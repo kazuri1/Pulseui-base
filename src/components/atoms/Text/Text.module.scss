@@ -5,31 +5,43 @@
   margin: 0;
   font-family: var(--font-family);
   line-height: var(--line-height-md);
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
+
+  // Variant styles
+  &.variant-body {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-normal);
+  }
+
+  &.variant-caption {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+  }
+
+  &.variant-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
 
   // Typography variants using design tokens
-  &.variant-xs {
-    @include text-style(xs, normal);
+  &.variant-heading {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
   }
 
-  &.variant-sm {
-    @include text-style(sm, normal);
+  &.variant-subtitle {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
   }
 
-  &.variant-md {
-    @include text-style(md, normal);
-  }
-
-  &.variant-lg {
-    @include text-style(lg, normal);
-  }
-
-  &.variant-xl {
-    @include text-style(xl, normal);
-  }
-
-  &.variant-xxl {
-    @include text-style(xxl, normal);
+  &.variant-caption {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
   }
 
   // Color variants

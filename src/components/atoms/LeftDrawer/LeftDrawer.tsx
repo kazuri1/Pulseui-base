@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "../Icon/Icon";
 import { Menu, Close, ExpandMore, ExpandLess } from "../Icon/IconSet";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
@@ -6,6 +6,7 @@ import styles from "./LeftDrawer.module.scss";
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface LeftDrawerItem {
   id: string;
@@ -55,6 +56,7 @@ export const LeftDrawer: React.FC<LeftDrawerProps> = ({
     new Set()
   );
   const { isMobile, isTablet } = useBreakpoint();
+  const { isDark } = useTheme();
 
   const toggleSection = (sectionId: string) => {
     const newExpanded = new Set(expandedSections);
@@ -167,6 +169,7 @@ export const LeftDrawer: React.FC<LeftDrawerProps> = ({
         role="dialog"
         aria-modal="true"
         aria-label="Navigation drawer"
+        data-theme={isDark ? "dark" : "light"}
       >
         {/* Header */}
         <div className={styles.drawerHeader}>

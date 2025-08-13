@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "../Card";
 import { Text } from "../Text";
 import { Button } from "../Button";
 import styles from "./UpdateNotification.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface UpdateNotificationProps extends WithSxProps {
   /** Notification title */
@@ -32,6 +33,7 @@ export const UpdateNotification: React.FC<UpdateNotificationProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

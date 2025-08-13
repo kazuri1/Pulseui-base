@@ -7,6 +7,7 @@ import { Text } from "../Text";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface CardProps extends WithSxProps {
   /** Card title */
@@ -95,6 +96,7 @@ export const Card: React.FC<CardProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -131,6 +133,7 @@ export const Card: React.FC<CardProps> = ({
       style={sxStyle}
       role={clickable ? "button" : undefined}
       tabIndex={clickable ? 0 : undefined}
+      data-theme={isDark ? "dark" : "light"}
     >
       {/* Image Section */}
       {showImage && imageSrc && (

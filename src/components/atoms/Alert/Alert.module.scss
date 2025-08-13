@@ -84,153 +84,105 @@
 // Variants
 .variant-info {
   &.style-default {
-    background-color: var(--color-blue-1);
-    color: var(--color-blue-9);
-    border-color: var(--color-blue-3);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-filled {
-    background-color: var(--color-blue-6);
-    color: var(--color-white);
-    border-color: var(--color-blue-6);
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
   }
 
   &.style-light {
-    background-color: var(--color-blue-0);
-    color: var(--color-blue-8);
-    border-color: var(--color-blue-2);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-blue-6);
-    border-color: var(--color-blue-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-blue-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-blue-6);
-    border-color: var(--color-blue-3);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }
 
 .variant-success {
   &.style-default {
-    background-color: var(--color-green-1);
-    color: var(--color-green-9);
-    border-color: var(--color-green-3);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-filled {
-    background-color: var(--color-green-6);
-    color: var(--color-white);
-    border-color: var(--color-green-6);
+    background-color: var(--color-success);
+    color: var(--color-surface);
+    border-color: var(--color-success);
   }
 
   &.style-light {
-    background-color: var(--color-green-0);
-    color: var(--color-green-8);
-    border-color: var(--color-green-2);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-success);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-green-6);
-    border-color: var(--color-green-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-green-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-green-6);
-    border-color: var(--color-green-3);
+    color: var(--color-success);
+    border-color: var(--color-success);
   }
 }
 
 .variant-warning {
   &.style-default {
-    background-color: var(--color-yellow-1);
-    color: var(--color-yellow-9);
-    border-color: var(--color-yellow-3);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-filled {
-    background-color: var(--color-yellow-6);
-    color: var(--color-white);
-    border-color: var(--color-yellow-6);
+    background-color: var(--color-warning);
+    color: var(--color-surface);
+    border-color: var(--color-warning);
   }
 
   &.style-light {
-    background-color: var(--color-yellow-0);
-    color: var(--color-yellow-8);
-    border-color: var(--color-yellow-2);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-warning);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-yellow-6);
-    border-color: var(--color-yellow-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-yellow-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-yellow-6);
-    border-color: var(--color-yellow-3);
+    color: var(--color-warning);
+    border-color: var(--color-warning);
   }
 }
 
 .variant-error {
   &.style-default {
-    background-color: var(--color-red-1);
-    color: var(--color-red-9);
-    border-color: var(--color-red-3);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-filled {
-    background-color: var(--color-red-6);
-    color: var(--color-white);
-    border-color: var(--color-red-6);
+    background-color: var(--color-error);
+    color: var(--color-surface);
+    border-color: var(--color-error);
   }
 
   &.style-light {
-    background-color: var(--color-red-0);
-    color: var(--color-red-8);
-    border-color: var(--color-red-2);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-error);
+    border-color: var(--color-border-secondary);
   }
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-red-6);
-    border-color: var(--color-red-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-red-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-red-6);
-    border-color: var(--color-red-3);
+    color: var(--color-error);
+    border-color: var(--color-error);
   }
 }
 

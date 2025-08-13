@@ -46,27 +46,27 @@
 
   // Color variants
   &.color-primary {
-    color: var(--color-blue-8);
+    color: var(--color-primary);
   }
 
   &.color-secondary {
-    color: var(--color-indigo-6);
+    color: var(--color-secondary);
   }
 
   &.color-success {
-    color: var(--color-green-6);
+    color: var(--color-success);
   }
 
   &.color-warning {
-    color: var(--color-yellow-6);
+    color: var(--color-warning);
   }
 
   &.color-error {
-    color: var(--color-red-6);
+    color: var(--color-error);
   }
 
   &.color-muted {
-    color: var(--color-gray-6);
+    color: var(--color-text-muted);
   }
 
   &.color-inherit {

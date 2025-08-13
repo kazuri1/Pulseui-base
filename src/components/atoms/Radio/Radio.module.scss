@@ -10,10 +10,72 @@
   font-family: var(--font-family);
   transition: var(--motion-transition-fast);
 
-  &:hover:not(.state-disabled) {
-    .radioButton {
-      border-color: var(--color-blue-6);
+  &.checked {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(var(--spacing-xs) * 1.5);
+      height: calc(var(--spacing-xs) * 1.5);
+      background-color: var(--color-surface);
+      border-radius: 50%;
     }
+  }
+
+  &.variant-outline {
+    border: var(--border-width-normal) solid var(--color-border-secondary);
+    background-color: transparent;
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-secondary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-secondary);
+    }
+  }
+
+  &.variant-filled {
+    border-color: var(--color-border-secondary);
+    background-color: var(--color-surface-secondary);
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+  }
+
+  &.variant-light {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
+    background-color: var(--color-surface-secondary);
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+  }
+
+  &:focus-visible {
+    outline: var(--border-width-normal) solid var(--color-border-focus);
+    outline-offset: var(--spacing-xs);
   }
 
   &.state-error:hover:not(.state-disabled) {

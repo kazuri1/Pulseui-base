@@ -12,18 +12,18 @@
   gap: var(--spacing-xs);
   min-height: calc(var(--line-height-md) * 2.5);
   padding: var(--spacing-sm);
-  background-color: var(--color-white);
-  border: var(--border-width-thin) solid var(--color-gray-3);
+  background-color: var(--color-surface);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
   border-radius: var(--radius-md);
   font-family: var(--font-family);
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
   transition: none;
 
   &:focus-within {
-    border-color: var(--color-blue-6);
-    box-shadow: 0 0 0 var(--border-width-thin) var(--color-blue-6);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 var(--border-width-thin) var(--color-primary);
     transition: none;
   }
 
@@ -64,7 +64,7 @@
   margin: 0;
 
   &::placeholder {
-    color: var(--color-gray-5);
+    color: var(--color-text-muted);
   }
 
   &:disabled {

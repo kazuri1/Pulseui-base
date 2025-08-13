@@ -6,6 +6,7 @@ import mypic from "../../../assets/mypic.jpg";
 import styles from "./ProfileCard.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface ProfileCardProps extends WithSxProps {
   /** Profile avatar image URL (defaults to mypic.jpg) */
@@ -42,6 +43,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

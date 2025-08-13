@@ -5,6 +5,7 @@ import styles from "./Pill.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface PillProps extends WithSxProps {
   /** Content to display inside the pill */
@@ -29,6 +30,7 @@ export const Pill: React.FC<PillProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const handleClose = () => {
     if (!disabled && onClose) {
       onClose();

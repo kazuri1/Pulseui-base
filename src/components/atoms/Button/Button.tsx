@@ -16,6 +16,7 @@ import {
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface ButtonProps extends WithSxProps {
   /** Button text content */
@@ -58,6 +59,7 @@ export const Button: React.FC<ButtonProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -139,6 +141,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled || state === "disabled"}
       style={sxStyle}
+      data-theme={isDark ? "dark" : "light"}
     >
       {leftIconComponent && (
         <Icon

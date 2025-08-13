@@ -33,11 +33,26 @@
 }
 
 .switchTrack {
-  display: inline-block;
-  background-color: var(--color-border-secondary);
   position: relative;
-  transition: background-color 0.2s ease-in-out;
-  box-sizing: border-box;
+  width: calc(var(--spacing-lg) * 2.5);
+  height: calc(var(--spacing-lg) * 1.25);
+  background-color: var(--color-surface-tertiary);
+  border-radius: var(--radius-full);
+  transition: var(--motion-transition-normal);
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: var(--spacing-xs);
+    left: var(--spacing-xs);
+    width: calc(var(--spacing-lg) * 0.75);
+    height: calc(var(--spacing-lg) * 0.75);
+    background-color: var(--color-surface);
+    border-radius: 50%;
+    transition: var(--motion-transition-normal);
+    box-shadow: var(--shadow-normal);
+  }
 }
 
 .switchThumb {
@@ -108,11 +123,11 @@
 
 // Checked state
 .switchInput:checked + .switchTrack {
-  background-color: var(--color-button-primary);
-}
+  background-color: var(--color-primary);
 
-.switchInput:checked + .switchTrack .switchThumb {
-  transform: translateX(20px);
+  &::after {
+    transform: translateX(calc(var(--spacing-lg) * 1.25));
+  }
 }
 
 // Focus state
@@ -131,8 +146,8 @@
 
 // Disabled state
 .switchInput:disabled + .switchTrack {
-  background-color: var(--color-border-secondary);
   opacity: var(--opacity-50);
+  cursor: not-allowed;
 }
 
 .switchInput:disabled + .switchTrack .switchThumb {

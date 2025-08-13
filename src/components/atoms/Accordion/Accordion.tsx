@@ -4,6 +4,7 @@ import { ExpandMore, ExpandLess } from '../Icon/IconSet';
 import styles from './Accordion.module.scss';
 import type { WithSxProps } from '../../../utils/sxUtils';
 import { mergeSxWithStyles, combineClassNames } from '../../../utils/sxUtils';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 // Context for accordion state
 interface AccordionContextValue {
@@ -39,6 +40,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const [expandedItems, setExpandedItems] = useState<string[]>(defaultExpanded);
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,

@@ -4,6 +4,7 @@ import { Check } from "../Icon/IconSet";
 import styles from "./Checkbox.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface CheckboxProps extends WithSxProps {
   id?: string;
@@ -41,6 +42,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
+    const { isDark } = useTheme();
     const [internalChecked, setInternalChecked] = React.useState(
       defaultChecked || false
     );
@@ -87,6 +89,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className={styles.checkboxInput}
             aria-describedby={errorId}
             aria-invalid={!!error}
+            data-theme={isDark ? "dark" : "light"}
           />
 
           <div

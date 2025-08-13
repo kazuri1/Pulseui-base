@@ -6,10 +6,10 @@
   max-width: 400px;
   margin: 0 auto;
   padding: var(--spacing-xl);
-  background: var(--color-surface-primary);
+  background: var(--color-surface);
   border: var(--border-width-thin) solid var(--color-border-secondary);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--box-shadow-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .header {
@@ -29,14 +29,14 @@
   .signUpLink {
     background: none;
     border: none;
-    color: var(--color-primary-600);
+    color: var(--color-primary);
     cursor: pointer;
     text-decoration: underline;
     font-weight: var(--font-weight-medium);
     transition: color var(--motion-duration-fast) var(--motion-easing-standard);
     
     &:hover {
-      color: var(--color-primary-700);
+      color: var(--color-primary-7);
     }
     
     &:focus {
@@ -82,11 +82,11 @@
   border: none;
   cursor: pointer;
   text-decoration: underline;
-  color: var(--color-primary-600);
+  color: var(--color-primary);
   transition: color var(--motion-duration-fast) var(--motion-easing-standard);
   
   &:hover {
-    color: var(--color-primary-700);
+    color: var(--color-primary-7);
   }
   
   &:focus {

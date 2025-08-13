@@ -6,6 +6,7 @@ import { Image } from "../Image";
 import styles from "./ContentCard.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface ContentCardProps extends WithSxProps {
   /** URL of the featured image */
@@ -45,6 +46,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -70,6 +72,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       clickable={!!onClick}
       sx={sx}
       style={sxStyle}
+      data-theme={isDark ? "dark" : "light"}
     >
       <div className={styles.imageContainer}>
         <Image src={imageUrl} alt={imageAlt} className={styles.featuredImage} />

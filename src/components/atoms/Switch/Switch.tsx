@@ -5,6 +5,7 @@ import styles from "./Switch.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface SwitchProps extends WithSxProps {
   /** Switch label */
@@ -44,6 +45,7 @@ export const Switch: React.FC<SwitchProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const switchId =
     id || name || `switch-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -78,6 +80,7 @@ export const Switch: React.FC<SwitchProps> = ({
             disabled={disabled}
             onChange={handleChange}
             className={styles.switchInput}
+            data-theme={isDark ? "dark" : "light"}
           />
           <span className={styles.switchTrack}>
             <span className={styles.switchThumb} />

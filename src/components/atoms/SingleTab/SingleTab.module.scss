@@ -52,12 +52,12 @@
     border: none;
 
     &:hover:not(:disabled) {
-      background-color: var(--color-gray-0);
+      background-color: var(--color-surface-secondary);
       color: var(--color-text-primary);
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-gray-1);
+      background-color: var(--color-surface-tertiary);
     }
 
     // Default state - no border lines (handled by TabsList when used in Tabs)
@@ -69,33 +69,33 @@
 
     // Selected state with underline - position affects underline location
     &.state-selected {
-      color: var(--color-blue-8);
+      color: var(--color-primary);
       background-color: transparent;
 
       // Top position - underline at bottom
       &.position-top {
-        border-bottom: var(--border-width-normal) solid var(--color-blue-8);
+        border-bottom: var(--border-width-normal) solid var(--color-primary);
         border-radius: 0;
         padding-bottom: calc(var(--spacing-md) - var(--border-width-normal));
       }
 
       // Bottom position - underline at top
       &.position-bottom {
-        border-top: var(--border-width-normal) solid var(--color-blue-8);
+        border-top: var(--border-width-normal) solid var(--color-primary);
         border-radius: 0;
         padding-top: calc(var(--spacing-md) - var(--border-width-normal));
       }
 
       // Left position - underline at right
       &.position-left {
-        border-right: var(--border-width-normal) solid var(--color-blue-8);
+        border-right: var(--border-width-normal) solid var(--color-primary);
         border-radius: 0;
         padding-right: calc(var(--spacing-md) - var(--border-width-normal));
       }
 
       // Right position - underline at left
       &.position-right {
-        border-left: var(--border-width-normal) solid var(--color-blue-8);
+        border-left: var(--border-width-normal) solid var(--color-primary);
         border-radius: 0;
         padding-left: calc(var(--spacing-md) - var(--border-width-normal));
       }
@@ -113,26 +113,26 @@
     border-radius: var(--radius-full);
 
     &:hover:not(:disabled) {
-      background-color: var(--color-gray-0);
+      background-color: var(--color-surface-secondary);
       color: var(--color-text-primary);
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-gray-1);
+      background-color: var(--color-surface-tertiary);
     }
 
     // Selected state with filled background
     &.state-selected {
-      background-color: var(--color-blue-8);
-      color: var(--color-white);
+      background-color: var(--color-primary);
+      color: var(--color-surface);
 
       &:hover:not(:disabled) {
-        background-color: var(--color-blue-9);
+        background-color: var(--color-primary-7);
       }
 
       .leftIcon,
       .rightIcon {
-        color: var(--color-white);
+        color: var(--color-surface);
       }
     }
   }

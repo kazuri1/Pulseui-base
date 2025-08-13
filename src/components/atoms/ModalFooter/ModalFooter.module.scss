@@ -36,24 +36,24 @@
   }
 
   .destructiveButton {
-    background-color: var(--color-red-8) !important;
-    border-color: var(--color-red-8) !important;
-    color: var(--color-white) !important;
+    background-color: var(--color-error) !important;
+    border-color: var(--color-error) !important;
+    color: var(--color-surface) !important;
 
     &:hover:not(:disabled) {
-      background-color: var(--color-red-9) !important;
-      border-color: var(--color-red-9) !important;
+      background-color: var(--color-error) !important;
+      border-color: var(--color-error) !important;
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-red-7) !important;
-      border-color: var(--color-red-7) !important;
+      background-color: var(--color-error) !important;
+      border-color: var(--color-error) !important;
     }
 
     &:disabled {
-      background-color: var(--color-gray-3) !important;
-      border-color: var(--color-gray-3) !important;
-      color: var(--color-gray-5) !important;
+      background-color: var(--color-surface-tertiary) !important;
+      border-color: var(--color-border-secondary) !important;
+      color: var(--color-text-disabled) !important;
     }
   }
 }

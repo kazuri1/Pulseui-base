@@ -40,7 +40,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   sx,
   style,
 }) => {
-  const { themeMode, toggleTheme, isDark, isLight } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
@@ -67,6 +67,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
       className={toggleClasses}
       style={sxStyle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      data-theme={isDark ? "dark" : "light"}
     >
       <Icon
         icon={CurrentIcon}
