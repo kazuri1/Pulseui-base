@@ -16,8 +16,14 @@ export interface RadioProps extends WithSxProps {
   checked?: boolean;
   /** Position of the label relative to the radio button */
   labelPosition?: "right" | "left";
+  /** Radio button variant style */
+  variant?: "default" | "filled" | "outline" | "light";
   /** Radio button state */
   state?: "default" | "disabled" | "error";
+  /** Whether the radio button is disabled */
+  disabled?: boolean;
+  /** Whether the radio button has an error state */
+  error?: boolean;
   /** Change handler */
   onChange?: (checked: boolean) => void;
   /** Unique identifier for the radio button */
@@ -34,7 +40,10 @@ export const Radio: React.FC<RadioProps> = ({
   size = "md",
   checked = false,
   labelPosition = "right",
-  state = "default",
+  variant = "default",
+  state,
+  disabled = false,
+  error = false,
   onChange,
   id,
   name,
@@ -50,20 +59,25 @@ export const Radio: React.FC<RadioProps> = ({
     className
   );
 
+  // Determine state based on boolean props if state is not explicitly set
+  const finalState =
+    state || (disabled ? "disabled" : error ? "error" : "default");
+
   const radioClasses = combineClassNames(
     styles.radio,
     styles[`size-${size}`],
-    styles[`state-${state}`],
+    styles[`variant-${variant}`],
+    styles[`state-${finalState}`],
     labelPosition === "left" && styles.labelLeft,
     sxClassName
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (state === "disabled") return;
+    if (finalState === "disabled") return;
     onChange?.(event.target.checked);
   };
 
-  const isDisabled = state === "disabled";
+  const isDisabled = finalState === "disabled";
 
   return (
     <label className={radioClasses} style={sxStyle}>

@@ -8,6 +8,16 @@
   font-family: var(--font-family);
   flex-wrap: wrap;
   width: 100%;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--motion-transition-normal) ease;
+
+  &:hover {
+    background-color: var(
+      --color-surface-hover,
+      var(--color-surface-secondary)
+    );
+  }
 }
 
 .checkboxLabelGroup {
@@ -30,16 +40,28 @@
 }
 
 .checkbox {
-  display: inline-flex;
+  position: relative;
+  width: calc(var(--spacing-md) * 1.25);
+  height: calc(var(--spacing-md) * 1.25);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  transition: all var(--motion-transition-normal) ease;
+  display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  justify-content: center;
+  flex-shrink: 0;
   cursor: pointer;
   user-select: none;
 
   &:hover:not(.disabled) {
-    .checkboxInput:not(:checked) + .checkboxBox {
-      background-color: var(--color-surface-secondary);
-    }
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-primary);
+  }
+
+  &:active:not(.disabled) {
+    transform: none;
+    box-shadow: none;
   }
 
   &:focus-visible {
@@ -51,58 +73,68 @@
   &.disabled {
     cursor: not-allowed;
     opacity: var(--opacity-50);
+    transform: none;
   }
-}
 
-.checkboxBox {
-  position: relative;
-  width: calc(var(--spacing-md) * 1.25);
-  height: calc(var(--spacing-md) * 1.25);
-  border: var(--border-width-thin) solid var(--color-border-secondary);
-  border-radius: var(--radius-sm);
-  background-color: var(--color-surface);
-  transition: var(--motion-transition-normal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  &.error {
+    border-color: var(--color-error);
 
-  &::after {
-    content: "";
-    position: absolute;
-    width: calc(var(--spacing-xs) * 1.5);
-    height: calc(var(--spacing-xs) * 1.5);
-    background-color: var(--color-surface);
-    border-radius: var(--radius-xs);
-    transform: scale(0);
-    transition: var(--motion-transition-normal);
+    &:hover:not(.disabled) {
+      border-color: var(--color-error);
+    }
   }
-}
 
-.checkboxInput:checked + .checkboxBox {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-
-  &::after {
-    transform: scale(1);
+  // Size variants
+  &.size-sm {
+    width: calc(var(--spacing-sm) * 1.5);
+    height: calc(var(--spacing-sm) * 1.5);
   }
-}
 
-.checkboxInput:indeterminate + .checkboxBox {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-
-  &::after {
-    transform: scale(1);
-    width: calc(var(--spacing-xs) * 2.5);
-    height: calc(var(--spacing-xs) * 0.5);
-    border-radius: var(--radius-xs);
+  &.size-md {
+    width: calc(var(--spacing-md) * 1.25);
+    height: calc(var(--spacing-md) * 1.25);
   }
-}
 
-.checkIcon {
-  color: white;
-  stroke-width: 2;
+  &.size-lg {
+    width: calc(var(--spacing-lg) * 1.25);
+    height: calc(var(--spacing-lg) * 1.25);
+  }
+
+  &.checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-primary-hover, var(--color-primary));
+      border-color: var(--color-primary-hover, var(--color-primary));
+    }
+  }
+
+  // Icon styling
+  svg {
+    color: white !important;
+    stroke-width: 2;
+    width: 60%;
+    height: 60%;
+    fill: white;
+  }
+
+  // Ensure icon is white when checked
+  &.checked svg {
+    color: white !important;
+    fill: white;
+  }
+
+  // Override any inherited colors from parent elements
+  .icon {
+    color: white !important;
+  }
+
+  // Ensure the check icon is always white
+  .icon svg {
+    color: white !important;
+    fill: white;
+  }
 }
 
 .label {
@@ -117,6 +149,11 @@
   margin: 0;
   padding: 0;
   min-height: 20px; // Match checkbox height for perfect alignment
+  transition: color var(--motion-transition-normal) ease;
+
+  &:hover:not(.disabled) {
+    color: var(--color-text-primary-hover, var(--color-primary));
+  }
 
   &.disabled {
     cursor: not-allowed;

@@ -46,6 +46,10 @@
       transform: scale(1.05);
     }
   }
+
+  &.variant-default {
+    background: var(--color-surface-secondary);
+  }
 }
 
 // Size variants

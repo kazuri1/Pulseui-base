@@ -3,6 +3,18 @@
 
 .button {
   @include button-base;
+  transition: all var(--motion-transition-normal) ease;
+  position: relative;
+  overflow: hidden;
+
+  // Enhanced hover effects
+  &:hover:not(:disabled) {
+    // Removed transform and box-shadow
+  }
+
+  &:active:not(:disabled) {
+    // Removed transform and box-shadow
+  }
 
   // Size variants
   &.size-xs {
@@ -40,20 +52,21 @@
     min-height: var(--size-xl);
   }
 
-  // Variant styles
+  // Variant styles with enhanced hover states
   &.variant-filled {
     background-color: var(--color-primary);
     color: var(--color-surface);
     border: var(--border-width-thin) solid var(--color-primary);
 
     &:hover:not(:disabled) {
-      background-color: var(--color-primary-7);
-      border-color: var(--color-primary-7);
+      background-color: var(--color-primary-hover, var(--color-primary-7));
+      border-color: var(--color-primary-hover, var(--color-primary-7));
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-primary-6);
-      border-color: var(--color-primary-6);
+      background-color: var(--color-primary-dark, var(--color-primary-6));
+      border-color: var(--color-primary-dark, var(--color-primary-6));
+      // Removed transform and box-shadow
     }
   }
 
@@ -70,6 +83,7 @@
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
       border-color: var(--color-surface-tertiary);
+      transform: translateY(0);
     }
   }
 
@@ -84,6 +98,7 @@
 
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
+      transform: translateY(0);
     }
   }
 
@@ -94,12 +109,13 @@
 
     &:hover:not(:disabled) {
       background-color: var(--color-surface-secondary);
-      border-color: var(--color-primary-7);
+      border-color: var(--color-primary-hover, var(--color-primary-7));
     }
 
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
-      border-color: var(--color-primary-6);
+      border-color: var(--color-primary-dark, var(--color-primary-6));
+      transform: translateY(0);
     }
   }
 
@@ -116,6 +132,7 @@
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
       border-color: var(--color-border-primary);
+      transform: translateY(0);
     }
   }
 
@@ -132,6 +149,7 @@
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
       border-color: var(--color-border-primary);
+      transform: translateY(0);
     }
   }
 

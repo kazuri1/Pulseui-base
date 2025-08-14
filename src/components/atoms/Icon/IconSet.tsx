@@ -92,6 +92,7 @@ export {
   PlayArrow,
   Pause,
   Stop,
+  BrokenImage,
 } from "@mui/icons-material";
 
 // Status & Feedback

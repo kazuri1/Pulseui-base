@@ -1,5 +1,6 @@
 import React from "react";
-export interface UpdateNotificationProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface UpdateNotificationProps extends WithSxProps {
     /** Notification title */
     title?: string;
     /** Notification message */
@@ -12,7 +13,5 @@ export interface UpdateNotificationProps {
     onSkip?: () => void;
     /** Download button click handler */
     onDownload?: () => void;
-    /** Additional CSS classes */
-    className?: string;
 }
 export declare const UpdateNotification: React.FC<UpdateNotificationProps>;

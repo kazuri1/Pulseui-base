@@ -1,5 +1,6 @@
 import React from "react";
-export interface CheckboxProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface CheckboxProps extends WithSxProps {
     id?: string;
     name?: string;
     checked?: boolean;
@@ -12,6 +13,5 @@ export interface CheckboxProps {
     onChange?: (checked: boolean) => void;
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-    className?: string;
 }
 export declare const Checkbox: React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>>;

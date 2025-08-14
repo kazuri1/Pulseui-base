@@ -84,35 +84,35 @@
 // Variants
 .variant-info {
   &.style-default {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-text-primary);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-blue-0);
+    color: var(--color-blue-9);
+    border-color: var(--color-blue-3);
   }
 
   &.style-filled {
-    background-color: var(--color-primary);
+    background-color: var(--color-info);
     color: var(--color-surface);
-    border-color: var(--color-primary);
+    border-color: var(--color-info);
   }
 
   &.style-light {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-primary);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-blue-0);
+    color: var(--color-blue-8);
+    border-color: var(--color-blue-2);
   }
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-primary);
-    border-color: var(--color-primary);
+    color: var(--color-info);
+    border-color: var(--color-info);
   }
 }
 
 .variant-success {
   &.style-default {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-text-primary);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-green-0);
+    color: var(--color-green-9);
+    border-color: var(--color-green-3);
   }
 
   &.style-filled {
@@ -122,9 +122,9 @@
   }
 
   &.style-light {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-success);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-green-0);
+    color: var(--color-green-8);
+    border-color: var(--color-green-2);
   }
 
   &.style-outline {
@@ -136,9 +136,9 @@
 
 .variant-warning {
   &.style-default {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-text-primary);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-yellow-0);
+    color: var(--color-yellow-9);
+    border-color: var(--color-yellow-3);
   }
 
   &.style-filled {
@@ -148,9 +148,9 @@
   }
 
   &.style-light {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-warning);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-yellow-0);
+    color: var(--color-yellow-8);
+    border-color: var(--color-yellow-2);
   }
 
   &.style-outline {
@@ -162,9 +162,9 @@
 
 .variant-error {
   &.style-default {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-text-primary);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-red-0);
+    color: var(--color-red-9);
+    border-color: var(--color-red-3);
   }
 
   &.style-filled {
@@ -174,9 +174,9 @@
   }
 
   &.style-light {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-error);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-red-0);
+    color: var(--color-red-8);
+    border-color: var(--color-red-2);
   }
 
   &.style-outline {
@@ -315,5 +315,64 @@
 
   .text {
     gap: var(--spacing-xs);
+  }
+}
+
+// Dark mode support
+[data-theme="dark"] {
+  .variant-info {
+    &.style-default {
+      background-color: var(--color-blue-9);
+      color: var(--color-blue-0);
+      border-color: var(--color-blue-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-blue-9);
+      color: var(--color-blue-1);
+      border-color: var(--color-blue-8);
+    }
+  }
+
+  .variant-success {
+    &.style-default {
+      background-color: var(--color-green-9);
+      color: var(--color-green-0);
+      border-color: var(--color-green-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-green-9);
+      color: var(--color-green-1);
+      border-color: var(--color-green-8);
+    }
+  }
+
+  .variant-warning {
+    &.style-default {
+      background-color: var(--color-yellow-9);
+      color: var(--color-yellow-0);
+      border-color: var(--color-yellow-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-yellow-9);
+      color: var(--color-yellow-1);
+      border-color: var(--color-yellow-8);
+    }
+  }
+
+  .variant-error {
+    &.style-default {
+      background-color: var(--color-red-9);
+      color: var(--color-red-0);
+      border-color: var(--color-red-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-red-9);
+      color: var(--color-red-1);
+      border-color: var(--color-red-8);
+    }
   }
 }

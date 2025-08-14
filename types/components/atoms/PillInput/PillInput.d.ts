@@ -1,5 +1,6 @@
 import * as React from "react";
-export interface PillInputProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface PillInputProps extends WithSxProps {
     /** Array of pills/tags */
     pills?: string[];
     /** Placeholder text for the input */
@@ -26,8 +27,6 @@ export interface PillInputProps {
     onPillRemove?: (pill: string, index: number) => void;
     /** Callback when a pill is added */
     onPillAdd?: (pill: string) => void;
-    /** Additional CSS classes */
-    className?: string;
     /** Input name */
     name?: string;
     /** Input id */

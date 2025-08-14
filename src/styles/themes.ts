@@ -7,12 +7,15 @@ import type { Theme } from "./stylesApi";
 // Light Theme (generated from _tokens.scss)
 export const defaultLightTheme: Theme = {
   "colors": {
+    "surface": {
+      "0": "#121212",
+      "1": "#1e1e1e",
+      "2": "#232323",
+      "3": "#2a2a2a",
+      "4": "#2f2f2f",
+      "5": "#353535"
+    },
     "gray": {
-      "0": "#f8f9fa",
-      "1": "#f1f3f5",
-      "2": "#e9ecef",
-      "3": "#dee2e6",
-      "4": "#ced4da",
       "5": "#adb5bd",
       "6": "#868e96",
       "7": "#495057",
@@ -69,14 +72,9 @@ export const defaultLightTheme: Theme = {
     },
     "white": "#ffffff",
     "black": "#000000",
+    "divider": "#e0e0e0",
     "shadow": "rgba(0, 0, 0, 0.1)",
-    "backdrop": "rgba(0, 0, 0, 0.5)",
-    "background": "#141414",
-    "surface": "#1f1f1f",
-    "success": "#69db7c",
-    "warning": "#ffd43b",
-    "error": "#ff8787",
-    "info": "#4dabf7"
+    "backdrop": "rgba(0, 0, 0, 0.5)"
   },
   "spacing": {
     "0": "0px",
@@ -175,17 +173,13 @@ export const defaultLightTheme: Theme = {
 // Dark Theme (generated from light theme with inversions)
 export const defaultDarkTheme: Theme = {
   "colors": {
+    "surface": "#0f172a",
     "gray": {
-      "0": "#212529",
-      "1": "#343a40",
-      "2": "#495057",
-      "3": "#868e96",
-      "4": "#adb5bd",
-      "5": "#ced4da",
-      "6": "#dee2e6",
-      "7": "#e9ecef",
-      "8": "#f1f3f5",
-      "9": "#f8f9fa"
+      "5": "#212529",
+      "6": "#343a40",
+      "7": "#495057",
+      "8": "#868e96",
+      "9": "#adb5bd"
     },
     "blue": {
       "0": "#1864ab",
@@ -237,14 +231,10 @@ export const defaultDarkTheme: Theme = {
     },
     "white": "#ffffff",
     "black": "#000000",
+    "divider": "#e0e0e0",
     "shadow": "rgba(0, 0, 0, 0.1)",
     "backdrop": "rgba(0, 0, 0, 0.5)",
     "background": "#0f172a",
-    "surface": "#0f172a",
-    "success": "#69db7c",
-    "warning": "#ffd43b",
-    "error": "#ff8787",
-    "info": "#4dabf7",
     "surface-secondary": "#1e293b",
     "surface-tertiary": "#334155",
     "text-primary": "#f8fafc",

@@ -1,5 +1,6 @@
 import React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
+import type { WithSxProps } from "../../../utils/sxUtils";
 export interface LeftDrawerItem {
     id: string;
     label: string;
@@ -14,7 +15,7 @@ export interface LeftDrawerSection {
     icon?: SvgIconComponent;
     items: LeftDrawerItem[];
 }
-export interface LeftDrawerProps {
+export interface LeftDrawerProps extends WithSxProps {
     isOpen: boolean;
     onClose: () => void;
     sections: LeftDrawerSection[];
@@ -22,6 +23,5 @@ export interface LeftDrawerProps {
     brandLogo?: React.ReactNode;
     showOverlay?: boolean;
     width?: string;
-    className?: string;
 }
 export declare const LeftDrawer: React.FC<LeftDrawerProps>;

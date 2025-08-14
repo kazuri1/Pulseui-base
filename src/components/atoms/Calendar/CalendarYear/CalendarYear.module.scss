@@ -13,8 +13,15 @@
   max-width: 400px;
 
   &.disabled {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
     opacity: var(--opacity-50);
-    pointer-events: none;
+  }
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-surface-tertiary);
+    color: var(--color-text-primary);
   }
 }
 

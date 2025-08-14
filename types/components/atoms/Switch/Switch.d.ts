@@ -1,25 +1,18 @@
 import React from "react";
 import type { WithSxProps } from "../../../utils/sxUtils";
 export interface SwitchProps extends WithSxProps {
-    /** Switch label */
-    label?: string;
-    /** Whether the field is required */
-    required?: boolean;
-    /** Caption text below the switch */
-    caption?: string;
-    /** Error message to display */
-    error?: string;
-    /** Switch checked state */
-    checked?: boolean;
-    /** Whether the switch is disabled */
-    disabled?: boolean;
-    /** Switch size */
-    size?: "sm" | "md" | "lg";
-    /** Switch name attribute */
-    name?: string;
-    /** Switch id attribute */
     id?: string;
-    /** Callback fired when switch state changes */
+    name?: string;
+    checked?: boolean;
+    defaultChecked?: boolean;
+    disabled?: boolean;
+    required?: boolean;
+    label?: string;
+    error?: string;
+    size?: "sm" | "md" | "lg";
     onChange?: (checked: boolean) => void;
+    onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
-export declare const Switch: React.FC<SwitchProps>;
+export declare const Switch: React.ForwardRefExoticComponent<SwitchProps & React.RefAttributes<HTMLInputElement>>;
+export default Switch;

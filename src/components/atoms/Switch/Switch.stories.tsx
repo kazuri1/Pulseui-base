@@ -1,63 +1,72 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
-import { Switch } from "./Switch";
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Switch } from "./Switch";
 
 const meta: Meta<typeof Switch> = {
-  title: "Components/Switch",
+  title: "Atoms/Switch",
   component: Switch,
   parameters: {
-    layout: "padded",
     docs: {
-      source: {
-        code: `<Switch label="Label" size="md" />`,
+      description: {
+        component: `
+A toggle switch component that allows users to turn options on or off.
+
+## Features
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Sizes**: Three size variants (sm, md, lg)
+- **States**: On, off, disabled, and error states
+- **Controlled/Uncontrolled**: Supports both controlled and uncontrolled usage
+- **Form Integration**: Works seamlessly with HTML forms
+
+## Usage
+\`\`\`tsx
+import { Switch } from '@pulseui/atoms';
+
+<Switch
+  label="Enable notifications"
+  onChange={(checked) => console.log('Enabled:', checked)}
+/>
+\`\`\`
+        `,
       },
     },
   },
-  tags: ["autodocs"],
   argTypes: {
-    label: {
-      control: "text",
-      description: "Switch label",
-    },
-    required: {
-      control: "boolean",
-      description: "Whether the field is required",
-    },
-    caption: {
-      control: "text",
-      description: "Caption text below the switch",
-    },
-    error: {
-      control: "text",
-      description: "Error message to display",
-    },
-    checked: {
-      control: "boolean",
-      description: "Switch checked state",
-    },
-    disabled: {
-      control: "boolean",
-      description: "Whether the switch is disabled",
-    },
     size: {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
-      description: "Switch size",
+      description: "Size of the switch",
+    },
+    checked: {
+      control: { type: "boolean" },
+      description: "Controlled checked state",
+    },
+    defaultChecked: {
+      control: { type: "boolean" },
+      description: "Default checked state for uncontrolled usage",
+    },
+    disabled: {
+      control: { type: "boolean" },
+      description: "Whether the switch is disabled",
+    },
+    required: {
+      control: { type: "boolean" },
+      description: "Whether the switch is required",
+    },
+    error: {
+      control: { type: "text" },
+      description: "Error message to display",
     },
     onChange: {
       action: "changed",
-      description: "Callback fired when switch state changes",
+      description: "Callback when switch state changes",
     },
   },
   args: {
-    label: "Label",
-    required: false,
-    caption: "",
-    error: "",
-    checked: false,
-    disabled: false,
+    label: "Enable notifications",
     size: "md",
+    disabled: false,
+    required: false,
   },
 };
 
@@ -68,113 +77,90 @@ export const Default: Story = {
   args: {},
 };
 
-export const Playground: Story = {
-  render: (args) => {
-    const [isChecked, setIsChecked] = React.useState(args.checked || false);
-
-    return (
-      <Switch
-        {...args}
-        checked={isChecked}
-        onChange={(checked) => {
-          setIsChecked(checked);
-          args.onChange?.(checked);
-        }}
-      />
-    );
-  },
-  args: {
-    label: "Interactive Switch",
-    checked: false,
-    disabled: false,
-    size: "md",
-    required: false,
-    caption: "",
-    error: "",
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Interactive playground with all controls available. Try clicking the switch to see it toggle, or use the Controls panel to change properties.",
-      },
-    },
-  },
-};
-
 export const Checked: Story = {
   args: {
-    checked: true,
-  },
-};
-
-export const WithLabel: Story = {
-  args: {
-    label: "Enable notifications",
-    checked: true,
+    defaultChecked: true,
   },
 };
 
 export const Required: Story = {
   args: {
-    label: "Accept terms",
     required: true,
-    checked: false,
-  },
-};
-
-export const WithCaption: Story = {
-  args: {
-    label: "Auto-save",
-    caption: "Automatically save your work every 5 minutes",
-    checked: true,
-  },
-};
-
-export const WithError: Story = {
-  args: {
-    label: "Enable feature",
-    error: "This feature is currently unavailable",
-    checked: false,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: "Disabled switch",
     disabled: true,
-    checked: false,
   },
 };
 
 export const DisabledChecked: Story = {
   args: {
-    label: "Disabled checked switch",
     disabled: true,
-    checked: true,
+    defaultChecked: true,
   },
 };
 
-export const NoLabel: Story = {
+export const WithError: Story = {
   args: {
-    label: "",
-    checked: true,
+    error: "This setting cannot be enabled",
   },
 };
 
 export const Small: Story = {
   args: {
-    label: "Small switch",
     size: "sm",
-    checked: true,
   },
 };
 
 export const Large: Story = {
   args: {
-    label: "Large switch",
     size: "lg",
+  },
+};
+
+export const NoLabel: Story = {
+  args: {
+    label: undefined,
+  },
+};
+
+export const Controlled: Story = {
+  args: {
     checked: true,
   },
 };
 
+export const MultipleSwitches: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <Switch
+        label="Email notifications"
+        defaultChecked={true}
+        onChange={(checked) => console.log("Email:", checked)}
+      />
+      <Switch
+        label="SMS notifications"
+        onChange={(checked) => console.log("SMS:", checked)}
+      />
+      <Switch
+        label="Push notifications (Disabled)"
+        disabled={true}
+        onChange={(checked) => console.log("Push:", checked)}
+      />
+      <Switch
+        label="Marketing emails (Required)"
+        required={true}
+        onChange={(checked) => console.log("Marketing:", checked)}
+      />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Example of multiple switches in a settings-like layout.",
+      },
+    },
+  },
+};

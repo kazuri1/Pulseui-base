@@ -1,26 +1,88 @@
-import React, { useState } from "react";
 import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
-import { SimpleTopNav } from "./components/atoms/SimpleTopNav/SimpleTopNav";
-import { Button } from "./components/atoms/Button/Button";
-import { Input } from "./components/atoms/Input/Input";
 import { useTheme } from "./contexts/ThemeContext";
-
-// Button variant options
-const buttonVariants = [
-  "filled",
-  "subtle",
-  "light",
-  "outline",
-  "white",
-  "default",
-] as const;
-
-type ButtonVariant = (typeof buttonVariants)[number];
+import { VariantSelector } from "./components/atoms/VariantSelector/VariantSelector";
+import { Button } from "./components/atoms/Button/Button";
+import { Badge } from "./components/atoms/Badge";
+import { Alert } from "./components/atoms/Alert";
+import { Checkbox } from "./components/atoms/Checkbox";
+import { Switch } from "./components/atoms/Switch";
+import { Select } from "./components/atoms/Select";
+import { SimpleTopNav } from "./components/atoms/SimpleTopNav";
+import { Grid, GridCol } from "./components/layouts/Grid";
+import { Text } from "./components/atoms/Text";
+import React from "react";
+import { Input } from "./components/atoms/Input";
+import { Textarea } from "./components/atoms/Textarea";
+import { Pill } from "./components/atoms/Pill";
+import { Card } from "./components/atoms/Card";
+import { Tag } from "./components/atoms/Tag";
+import { Avatar } from "./components/atoms/Avatar";
+import { Modal } from "./components/atoms/Modal";
+import { Pagination } from "./components/atoms/Pagination";
+import { PillInput } from "./components/atoms/PillInput";
+import { Radio } from "./components/atoms/Radio";
+import { Stepper } from "./components/atoms/Stepper";
+import { Kbd } from "./components/atoms/Kbd";
 
 function AppContent() {
   const { themeName, setTheme } = useTheme();
-  const [selectedVariant, setSelectedVariant] =
-    useState<ButtonVariant>("filled");
+  const [checkboxState, setCheckboxState] = React.useState("default");
+  const [inputState, setInputState] = React.useState<
+    "default" | "filled" | "unstyled"
+  >("default");
+  const [textAreaState, setTextAreaState] = React.useState<
+    "default" | "error" | "disabled"
+  >("default");
+  const [pillState, setPillState] = React.useState<
+    "default" | "info" | "success" | "warning" | "error"
+  >("default");
+  const [cardState, setCardState] = React.useState<"default" | "image-overlay">(
+    "default"
+  );
+  const [tagState, setTagState] = React.useState<
+    "default" | "teal" | "selected" | "mint"
+  >("default");
+  const [avatarState, setAvatarState] = React.useState<
+    "primary" | "secondary" | "success" | "warning"
+  >("primary");
+  const [modalState, setModalState] = React.useState<
+    "default" | "large" | "small"
+  >("default");
+  const [paginationState, setPaginationState] = React.useState<
+    "xs" | "sm" | "md" | "lg" | "xl"
+  >("md");
+  const [pillInputState, setPillInputState] = React.useState<
+    "default" | "filled" | "unstyled"
+  >("default");
+
+  const [pillInputSize, setPillInputSize] = React.useState<
+    "sm" | "md" | "lg" | "xl"
+  >("md");
+  const [pillInputPillSize, setPillInputPillSize] = React.useState<
+    "xs" | "sm" | "md" | "lg" | "xl"
+  >("sm");
+  const [pillInputStateValue, setPillInputStateValue] = React.useState<
+    "enabled" | "focus" | "typing" | "filled" | "disabled" | "error"
+  >("enabled");
+  const [pillInputDisabled, setPillInputDisabled] = React.useState(false);
+  const [pillInputReadonly, setPillInputReadonly] = React.useState(false);
+  const [pillInputRequired, setPillInputRequired] = React.useState(false);
+  const [pillInputMaxPills, setPillInputMaxPills] = React.useState(5);
+  const [pillInputPills, setPillInputPills] = React.useState<string[]>([
+    "Sample",
+    "Tag",
+    "Demo",
+  ]);
+
+  const [radioState, setRadioState] = React.useState<
+    "default" | "filled" | "outline" | "light"
+  >("default");
+  const [stepperState, setStepperState] = React.useState<
+    "xs" | "sm" | "md" | "lg" | "xl"
+  >("md");
+  const [kbdState, setKbdState] = React.useState<"sm" | "md" | "lg" | "xl">(
+    "md"
+  );
 
   const navItems = [
     {
@@ -43,13 +105,16 @@ function AppContent() {
 
   return (
     <div
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      style={{
+        minHeight: "100vh",
+        paddingBottom: "100px",
+      }}
     >
-      {/* Top Navigation */}
       <SimpleTopNav
         brandName="PulseUI"
         brandTitle="Component Library"
         items={navItems}
+        sx={{ width: "100%" }}
         versionSelector={{
           version: "1.6.0",
           versions: ["1.5.0", "1.6.0", "1.7.0"],
@@ -59,198 +124,492 @@ function AppContent() {
         }}
       />
 
-      {/* Main Content */}
-      <main
+      {/* Theme Switcher */}
+      <div
         style={{
-          flex: 1,
           display: "flex",
-          flexDirection: "column",
+          gap: "12px",
           alignItems: "center",
-          justifyContent: "center",
-          padding: "24px",
-          gap: "32px",
+          padding: "16px",
+          borderRadius: "8px",
+          border: "1px solid #ddd",
+          margin: "16px",
         }}
       >
-        {/* Theme Switcher */}
-        <div
+        <span style={{ fontSize: "14px", color: "#666" }}>Theme:</span>
+        <button
+          onClick={() => setTheme("default-light")}
           style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            padding: "16px",
-            backgroundColor: "var(--color-surface-secondary)",
-            borderRadius: "8px",
-            border: "1px solid var(--color-border-secondary)",
+            padding: "8px 16px",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: "500",
           }}
         >
-          <span
-            style={{ fontSize: "14px", color: "var(--color-text-secondary)" }}
-          >
-            Theme:
-          </span>
-          <button
-            onClick={() => setTheme("default-light")}
-            style={{
-              padding: "8px 16px",
-              backgroundColor:
-                themeName === "default-light"
-                  ? "var(--color-primary)"
-                  : "var(--color-surface-tertiary)",
-              color:
-                themeName === "default-light"
-                  ? "white"
-                  : "var(--color-text-primary)",
-              border: "1px solid var(--color-border-secondary)",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            ☀️ Light
-          </button>
-          <button
-            onClick={() => setTheme("default-dark")}
-            style={{
-              padding: "8px 16px",
-              backgroundColor:
-                themeName === "default-dark"
-                  ? "var(--color-primary)"
-                  : "var(--color-surface-tertiary)",
-              color:
-                themeName === "default-dark"
-                  ? "white"
-                  : "var(--color-text-primary)",
-              border: "1px solid var(--color-border-secondary)",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            🌙 Dark
-          </button>
-        </div>
-
-        {/* Button Variant Selector */}
-        <div
+          ☀️ Light
+        </button>
+        <button
+          onClick={() => setTheme("default-dark")}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "16px",
-            padding: "24px",
-            backgroundColor: "var(--color-surface-secondary)",
-            borderRadius: "12px",
-            border: "1px solid var(--color-border-secondary)",
-            minWidth: "300px",
+            padding: "8px 16px",
+            backgroundColor:
+              themeName === "default-dark" ? "#007bff" : "#e9ecef",
+            color: themeName === "default-dark" ? "#ffffff" : "#000000",
+            border: "1px solid #ddd",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: "500",
           }}
         >
-          <h3
-            style={{
-              margin: 0,
-              fontSize: "1.2rem",
-              color: "var(--color-text-primary)",
-              textAlign: "center",
-            }}
-          >
-            Button Variant Selector
-          </h3>
+          🌙 Dark
+        </button>
+      </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              width: "100%",
-              maxWidth: "250px",
-            }}
-          >
-            <label
-              style={{
-                fontSize: "14px",
-                color: "var(--color-text-secondary)",
-                fontWeight: "500",
-              }}
-            >
-              Select Variant:
-            </label>
-            <select
-              value={selectedVariant}
-              onChange={(e) =>
-                setSelectedVariant(e.target.value as ButtonVariant)
+      {/* Component Variants */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Component Variants
+        </Text>
+
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="Button Variants"
+              variants={[
+                "filled",
+                "subtle",
+                "light",
+                "outline",
+                "white",
+                "default",
+              ]}
+              defaultVariant="filled"
+              label="Select Button Variant:"
+              onVariantChange={(variant) =>
+                console.log(`Button variant changed to: ${variant}`)
               }
-              style={{
-                padding: "12px",
-                border: "1px solid var(--color-border-secondary)",
-                borderRadius: "6px",
-                backgroundColor: "var(--color-surface)",
-                color: "var(--color-text-primary)",
-                fontSize: "14px",
-                cursor: "pointer",
+            >
+              <Button size="lg">Sample Button</Button>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Badge Variants"
+              variants={[
+                "dot",
+                "filled",
+                "subtle",
+                "light",
+                "outline",
+                "white",
+                "default",
+              ]}
+              defaultVariant="dot"
+              label="Select Badge Variant:"
+              onVariantChange={(variant) =>
+                console.log(`Badge variant changed to: ${variant}`)
+              }
+            >
+              <Badge variant="dot">Dot Badge</Badge>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Alert Variants"
+              variants={["success", "info", "warning", "error"]}
+              defaultVariant="success"
+              label="Select Alert Variant:"
+              onVariantChange={(variant) =>
+                console.log(`Alert variant changed to: ${variant}`)
+              }
+            >
+              <Alert variant="success">
+                <strong>Success!</strong> Your action was completed
+                successfully.
+              </Alert>
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
+      {/* Form Components */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Form Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="Checkbox States"
+              variants={["default", "disabled", "error"]}
+              defaultVariant="default"
+              label="Select Checkbox State:"
+              onVariantChange={(variant) => {
+                setCheckboxState(variant);
+                console.log(`Checkbox state changed to: ${variant}`);
               }}
             >
-              {buttonVariants.map((variant) => (
-                <option key={variant} value={variant}>
-                  {variant.charAt(0).toUpperCase() + variant.slice(1)}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Centered Button */}
-          <div
-            style={{
-              marginTop: "16px",
-              padding: "24px",
-              border: "2px dashed var(--color-border-secondary)",
-              borderRadius: "8px",
-              backgroundColor: "var(--color-surface)",
-              minWidth: "200px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Button
-              variant={selectedVariant}
-              size="lg"
-              onClick={() => console.log(`${selectedVariant} button clicked!`)}
+              <Checkbox
+                label="Sample Checkbox"
+                defaultChecked={true}
+                disabled={checkboxState === "disabled"}
+                error={
+                  checkboxState === "error"
+                    ? "This is an error message"
+                    : undefined
+                }
+                onChange={(checked) => console.log("Checkbox:", checked)}
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Switch Variants"
+              variants={["default", "disabled", "small", "large"]}
+              defaultVariant="default"
+              label="Select Switch Variant:"
+              onVariantChange={(variant) =>
+                console.log(`Switch variant changed to: ${variant}`)
+              }
             >
-              {selectedVariant.charAt(0).toUpperCase() +
-                selectedVariant.slice(1)}{" "}
-              Button
-            </Button>
-          </div>
+              <Switch
+                label="Sample Switch"
+                defaultChecked={false}
+                onChange={(checked) => console.log("Switch:", checked)}
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Select Variants"
+              variants={["default", "disabled", "error", "success"]}
+              defaultVariant="default"
+              label="Select State:"
+              onVariantChange={(variant) =>
+                console.log(`Select state changed to: ${variant}`)
+              }
+            >
+              <Select
+                label="Sample Select"
+                placeholder="Choose an option"
+                options={[
+                  { value: "react", label: "React" },
+                  { value: "vue", label: "Vue.js" },
+                  { value: "angular", label: "Angular" },
+                  { value: "svelte", label: "Svelte" },
+                  { value: "nextjs", label: "Next.js" },
+                ]}
+                onChange={(value) => console.log("Select:", value)}
+              />
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
 
-          {/* Button Info */}
-          <div
-            style={{
-              fontSize: "12px",
-              color: "var(--color-text-secondary)",
-              textAlign: "center",
-              fontStyle: "italic",
-            }}
-          >
-            Current variant: <strong>{selectedVariant}</strong>
-          </div>
-        </div>
-      </main>
+      {/* Additional Components */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Additional Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="Input Component"
+              variants={["default", "filled", "unstyled"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setInputState(variant as "default" | "filled" | "unstyled")
+              }
+            >
+              <Input
+                placeholder="Enter text..."
+                size="md"
+                variant={inputState}
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Textarea Component"
+              variants={["default", "error", "disabled"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setTextAreaState(variant as "default" | "error" | "disabled")
+              }
+            >
+              <Textarea
+                label="Message"
+                placeholder="Enter your message..."
+                rows={3}
+                disabled={textAreaState === "disabled"}
+                error={
+                  textAreaState === "error"
+                    ? "This field has an error"
+                    : undefined
+                }
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Pill Component"
+              variants={["default", "info", "success", "warning", "error"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setPillState(
+                  variant as
+                    | "default"
+                    | "info"
+                    | "success"
+                    | "warning"
+                    | "error"
+                )
+              }
+            >
+              <Pill
+                variant={pillState}
+                size="md"
+                onClose={() => console.log("Pill closed")}
+              >
+                Sample Pill
+              </Pill>
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
 
-      {/* Footer */}
-      <footer
-        style={{
-          padding: "24px",
-          textAlign: "center",
-          borderTop: "1px solid var(--color-border-secondary)",
-          color: "var(--color-text-secondary)",
-          backgroundColor: "var(--color-surface-secondary)",
-        }}
-      >
-        <p style={{ margin: 0, fontSize: "14px" }}>
-          PulseUI Dev Environment - Simple and Clean
-        </p>
-      </footer>
+      {/* Additional Components Section */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text variant="xxl" style={{ marginBottom: "24px" }}>
+          More Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="Card Component"
+              variants={["default", "image-overlay"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setCardState(variant as "default" | "image-overlay")
+              }
+            >
+              <Card
+                title="Sample Card"
+                description="This is a sample card component with some content."
+                buttonText="Learn More"
+                buttonVariant="filled"
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Tag Component"
+              variants={["default", "teal", "selected", "mint"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setTagState(variant as "default" | "teal" | "selected" | "mint")
+              }
+            >
+              <Tag variant={tagState} size="md">
+                Sample Tag
+              </Tag>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Avatar Component"
+              variants={["primary", "secondary", "success", "warning"]}
+              defaultVariant="primary"
+              onVariantChange={(variant) =>
+                setAvatarState(
+                  variant as "primary" | "secondary" | "success" | "warning"
+                )
+              }
+            >
+              <Avatar
+                variant={avatarState}
+                size="md"
+                type="initial"
+                initials="JD"
+              />
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
+      {/* Even More Components Section */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text variant="xxl" style={{ marginBottom: "24px" }}>
+          Even More Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="Modal Component"
+              variants={["default", "large", "small"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setModalState(variant as "default" | "large" | "small")
+              }
+            >
+              <div
+                style={{
+                  padding: "20px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                }}
+              >
+                <Text
+                  variant="md"
+                  weight="semibold"
+                  style={{ marginBottom: "8px" }}
+                >
+                  Modal Preview
+                </Text>
+                <Text variant="sm" color="secondary">
+                  This is a preview of the modal component. Click to open the
+                  actual modal.
+                </Text>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Pagination Component"
+              variants={["xs", "sm", "md", "lg", "xl"]}
+              defaultVariant="md"
+              onVariantChange={(variant) =>
+                setPaginationState(variant as "xs" | "sm" | "md" | "lg" | "xl")
+              }
+            >
+              <Pagination
+                currentPage={1}
+                totalPages={5}
+                onPageChange={(page) => console.log("Page changed to:", page)}
+                size={paginationState}
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="PillInput Component"
+              variants={["default", "filled", "unstyled"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setPillInputState(variant as "default" | "filled" | "unstyled")
+              }
+            >
+              <PillInput
+                placeholder="Add tags..."
+                size={pillInputSize}
+                variant={pillInputState}
+                pills={pillInputPills}
+                pillSize={pillInputPillSize}
+                state={pillInputStateValue}
+                disabled={pillInputDisabled}
+                readonly={pillInputReadonly}
+                required={pillInputRequired}
+                maxPills={pillInputMaxPills}
+                onPillsChange={(pills) => setPillInputPills(pills)}
+                onPillRemove={(pill, index) =>
+                  setPillInputPills(
+                    pillInputPills.filter((_, i) => i !== index)
+                  )
+                }
+                onPillAdd={(pill) =>
+                  setPillInputPills([...pillInputPills, pill])
+                }
+              />
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
+      {/* Three More Components */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text variant="xxl" weight="bold" style={{ marginBottom: "24px" }}>
+          Three More Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="Radio Component"
+              variants={["default", "filled", "outline", "light"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                setRadioState(
+                  variant as "default" | "filled" | "outline" | "light"
+                )
+              }
+            >
+              <div>
+                <Radio
+                  size="md"
+                  label="Option 1"
+                  name="radio-group"
+                  value="option1"
+                  checked={false}
+                  onChange={() => console.log("Option 1 selected")}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Stepper Component"
+              variants={["xs", "sm", "md", "lg", "xl"]}
+              defaultVariant="md"
+              onVariantChange={(variant) =>
+                setStepperState(variant as "xs" | "sm" | "md" | "lg" | "xl")
+              }
+            >
+              <Stepper
+                size={stepperState}
+                steps={[
+                  {
+                    id: "1",
+                    content: "1",
+                    label: "Step 1",
+                    status: "complete",
+                  },
+                  { id: "2", content: "2", label: "Step 2", status: "active" },
+                  { id: "3", content: "3", label: "Step 3", status: "default" },
+                ]}
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Kbd Component"
+              variants={["sm", "md", "lg", "xl"]}
+              defaultVariant="md"
+              onVariantChange={(variant) =>
+                setKbdState(variant as "sm" | "md" | "lg" | "xl")
+              }
+            >
+              <Kbd size={kbdState}>Ctrl + K</Kbd>
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
     </div>
   );
 }

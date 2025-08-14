@@ -1,6 +1,7 @@
 import React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
-export interface ActionButtonProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface ActionButtonProps extends WithSxProps {
     /** Icon to display */
     icon: SvgIconComponent;
     /** Icon size */
@@ -19,7 +20,5 @@ export interface ActionButtonProps {
     type?: "button" | "submit" | "reset";
     /** Click handler */
     onClick?: () => void;
-    /** Additional CSS classes */
-    className?: string;
 }
 export declare const ActionButton: React.FC<ActionButtonProps>;

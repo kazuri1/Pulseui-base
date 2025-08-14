@@ -44,7 +44,7 @@
   }
 
   &.color-secondary {
-    color: var(--color-indigo-6);
+    color: var(--color-text-secondary);
   }
 
   &.color-success {
@@ -86,4 +86,4 @@
     cursor: not-allowed;
     pointer-events: none;
   }
-} 
+}

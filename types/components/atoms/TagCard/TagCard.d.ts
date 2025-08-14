@@ -1,5 +1,6 @@
 import React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
+import type { WithSxProps } from "../../../utils/sxUtils";
 export interface TagItem {
     /** Unique identifier for the tag */
     id: string | number;
@@ -14,7 +15,7 @@ export interface TagItem {
     /** Whether to show the close button */
     closable?: boolean;
 }
-export interface TagCardProps {
+export interface TagCardProps extends WithSxProps {
     /** Title of the card */
     title?: string;
     /** Array of tag items to display */
@@ -25,7 +26,5 @@ export interface TagCardProps {
     closable?: boolean;
     /** Handler for when a tag is closed */
     onTagClose?: (tagId: string | number) => void;
-    /** Additional CSS classes */
-    className?: string;
 }
 export declare const TagCard: React.FC<TagCardProps>;

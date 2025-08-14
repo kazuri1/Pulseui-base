@@ -46,15 +46,15 @@
 
   // Color variants
   &.color-primary {
-    color: var(--color-gray-9);
+    color: var(--color-text-primary);
   }
 
   &.color-secondary {
-    color: var(--color-gray-7);
+    color: var(--color-text-secondary);
   }
 
   &.color-muted {
-    color: var(--color-gray-6);
+    color: var(--color-text-muted);
   }
 
   &.color-success {

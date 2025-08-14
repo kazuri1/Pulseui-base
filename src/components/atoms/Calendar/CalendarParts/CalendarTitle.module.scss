@@ -18,9 +18,34 @@
     outline-offset: var(--border-width-normal);
   }
 
-  &:disabled {
+  &.disabled {
+    background-color: var(--color-surface-secondary);
     cursor: not-allowed;
-    pointer-events: none;
+    opacity: var(--opacity-50);
+
+    .title {
+      color: var(--color-text-secondary);
+    }
+
+    .subtitle {
+      color: var(--color-text-muted);
+    }
+  }
+
+  &:hover:not(.disabled) {
+    .title {
+      color: var(--color-text-primary);
+    }
+
+    .subtitle {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &.today {
+    border-color: var(--color-border-primary);
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-secondary);
   }
 }
 

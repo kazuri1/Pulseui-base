@@ -16,7 +16,6 @@ export interface KbdProps extends WithSxProps {
 export const Kbd: React.FC<KbdProps> = ({
   children,
   size = "md",
-  variant = "default",
   className = "",
   sx,
   style,
@@ -28,11 +27,7 @@ export const Kbd: React.FC<KbdProps> = ({
     className
   );
 
-  const kbdClasses = combineClassNames(
-    styles.kbd,
-    styles[size],
-    sxClassName
-  );
+  const kbdClasses = combineClassNames(styles.kbd, styles[size], sxClassName);
 
   return (
     <kbd className={kbdClasses} style={sxStyle}>

@@ -116,7 +116,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               <Icon
                 icon={Check}
                 size={size === "sm" ? "xs" : size === "lg" ? "sm" : "sm"}
-                color="inherit"
+                sx={{ color: "white" }}
               />
             )}
           </div>
