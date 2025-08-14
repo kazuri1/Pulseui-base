@@ -3,8 +3,11 @@ import type { SvgIconComponent } from "@mui/icons-material";
 import { Button } from "../Button/Button";
 import { Icon } from "../Icon/Icon";
 import styles from "./ActionButton.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
-export interface ActionButtonProps {
+export interface ActionButtonProps extends WithSxProps {
   /** Icon to display */
   icon: SvgIconComponent;
   /** Icon size */
@@ -30,8 +33,6 @@ export interface ActionButtonProps {
   type?: "button" | "submit" | "reset";
   /** Click handler */
   onClick?: () => void;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
@@ -45,7 +46,16 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   type = "button",
   onClick,
   className = "",
+  sx,
+  style,
 }) => {
+  const { isDark } = useTheme();
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   // Map button size to icon size if not explicitly provided
   const getIconSize = () => {
     if (iconSize) return iconSize;
@@ -90,6 +100,11 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   const effectiveIconColor = getIconColor();
   const actualState = disabled ? "disabled" : state;
 
+  const actionButtonClasses = combineClassNames(
+    styles.actionButton,
+    sxClassName
+  );
+
   return (
     <Button
       variant={variant}
@@ -98,7 +113,10 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       disabled={disabled}
       type={type}
       onClick={onClick}
-      className={`${styles.actionButton} ${className}`}
+      className={actionButtonClasses}
+      sx={sx}
+      style={sxStyle}
+      data-theme={isDark ? "dark" : "light"}
     >
       <Icon
         icon={icon}

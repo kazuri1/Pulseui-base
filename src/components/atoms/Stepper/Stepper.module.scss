@@ -12,14 +12,14 @@
 .connector {
   flex: 1;
   height: var(--border-width-thin);
-  background-color: var(--color-gray-3);
+  background-color: var(--color-border-secondary);
   border-radius: var(--radius-xs);
   min-width: var(--spacing-lg);
   max-width: var(--spacing-xxl);
 }
 
 .connectorComplete {
-  background-color: var(--color-blue-6);
+  background-color: var(--color-primary);
 }
 
 // Size variants

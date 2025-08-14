@@ -10,8 +10,11 @@ import {
   Upload,
 } from "../Icon/IconSet";
 import styles from "./FileUpload.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
-export interface FileUploadProps {
+export interface FileUploadProps extends WithSxProps {
   /** Supported file types */
   acceptedFileTypes?: string[];
   /** Maximum file size in bytes */
@@ -30,8 +33,6 @@ export interface FileUploadProps {
   showFileList?: boolean;
   /** Component variant state */
   variant?: "default" | "uploading" | "completed";
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export interface UploadFile {
@@ -53,7 +54,16 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   showFileList = true,
   variant = "default",
   className = "",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const { isDark } = useTheme();
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   const [isUploading, setIsUploading] = useState(false);
@@ -199,8 +209,14 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     .map((type) => type.toUpperCase())
     .join(", ");
 
+  const fileUploadClasses = combineClassNames(
+    styles.fileUpload,
+    styles[variant],
+    sxClassName
+  );
+
   return (
-    <Card className={`${styles.fileUpload} ${styles[variant]} ${className}`}>
+    <Card className={fileUploadClasses} sx={sx} style={sxStyle}>
       <div
         className={styles.header}
         style={{

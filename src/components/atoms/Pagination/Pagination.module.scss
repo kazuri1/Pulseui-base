@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-white);
+  background: var(--color-surface);
   border: var(--border-width-thin) solid var(--color-border-primary);
   border-radius: var(--radius-sm);
   color: var(--color-text-primary);
@@ -56,13 +56,13 @@
   }
 
   &.active {
-    background-color: var(--color-blue-6);
-    color: var(--color-white);
-    border-color: var(--color-blue-6);
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
 
     &:hover:not(:disabled) {
-      background-color: var(--color-blue-7);
-      border-color: var(--color-blue-7);
+      background-color: var(--color-primary-7);
+      border-color: var(--color-primary-7);
     }
   }
 }
@@ -248,4 +248,4 @@
     min-width: var(--spacing-md);
     height: var(--spacing-md);
   }
-} 
+}

@@ -105,7 +105,6 @@ export interface Theme {
         xl: string;
     };
 }
-export declare const defaultTheme: Theme;
 export declare const getSpacingValue: (value: number | Spacing, theme: Theme) => string;
 export declare const getColorValue: (color: Color, theme: Theme) => string;
 export declare const getTypographyValue: (variant: TypographyVariant, theme: Theme) => {

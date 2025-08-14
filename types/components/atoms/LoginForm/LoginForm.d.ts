@@ -1,10 +1,10 @@
 import React from "react";
-export interface LoginFormProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface LoginFormProps extends WithSxProps {
     onSubmit?: (data: LoginFormData) => void;
     onSignUpClick?: () => void;
     onForgotPasswordClick?: () => void;
     onSocialLogin?: (provider: "google" | "twitter" | "github") => void;
-    className?: string;
     title?: string;
     subtitle?: string;
     emailLabel?: string;

@@ -2,6 +2,9 @@ import React from "react";
 import { Icon } from "../Icon";
 import { Check, Close } from "../Icon/IconSet";
 import styles from "./PasswordStrengthMeter.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface PasswordRequirement {
   id: string;
@@ -9,10 +12,9 @@ export interface PasswordRequirement {
   test: (password: string) => boolean;
 }
 
-export interface PasswordStrengthMeterProps {
+export interface PasswordStrengthMeterProps extends WithSxProps {
   password: string;
   requirements?: PasswordRequirement[];
-  className?: string;
 }
 
 const defaultRequirements: PasswordRequirement[] = [
@@ -48,7 +50,16 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
   password,
   requirements = defaultRequirements,
   className = "",
+  sx,
+  style,
 }) => {
+  const { isDark } = useTheme();
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const metRequirements = requirements.filter((req) => req.test(password));
   const allRequirementsMet = metRequirements.length === requirements.length;
   const strengthPercentage =
@@ -63,8 +74,13 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
 
   const strengthLevel = getStrengthLevel(strengthPercentage);
 
+  const strengthMeterClasses = combineClassNames(
+    styles.strengthMeter,
+    sxClassName
+  );
+
   return (
-    <div className={`${styles.strengthMeter} ${className}`}>
+    <div className={strengthMeterClasses} style={sxStyle}>
       {/* Strength Progress Bar */}
       <div className={styles.strengthBar}>
         <div className={styles.strengthBarBackground}>
@@ -98,7 +114,9 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
                 color={isMet ? "success" : "error"}
                 className={styles.icon}
               />
-              <span className={styles.label}>{requirement.label}</span>
+              <span className={styles.requirementLabel}>
+                {requirement.label}
+              </span>
             </div>
           );
         })}

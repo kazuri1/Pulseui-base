@@ -1,29 +1,31 @@
 import React from 'react';
-export interface AccordionProps {
+import type { WithSxProps } from '../../../utils/sxUtils';
+export interface AccordionProps extends WithSxProps {
     children: React.ReactNode;
     allowMultiple?: boolean;
     defaultExpanded?: string[];
     size?: 'sm' | 'md' | 'lg';
-    className?: string;
 }
 export declare const Accordion: React.FC<AccordionProps>;
-export interface AccordionItemProps {
+export interface AccordionItemProps extends WithSxProps {
     id: string;
     children: React.ReactNode;
     disabled?: boolean;
-    className?: string;
 }
 export declare const AccordionItem: React.FC<AccordionItemProps>;
-export interface AccordionHeaderProps {
+export interface AccordionHeaderProps extends WithSxProps {
     children: React.ReactNode;
     itemId: string;
     disabled?: boolean;
+    size?: 'sm' | 'md' | 'lg';
     className?: string;
 }
 export declare const AccordionHeader: React.FC<AccordionHeaderProps>;
-export interface AccordionContentProps {
+export interface AccordionContentProps extends WithSxProps {
     children: React.ReactNode;
     itemId: string;
+    disabled?: boolean;
+    size?: 'sm' | 'md' | 'lg';
     className?: string;
 }
 export declare const AccordionContent: React.FC<AccordionContentProps>;

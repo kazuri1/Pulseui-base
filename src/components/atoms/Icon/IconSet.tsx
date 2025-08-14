@@ -92,6 +92,7 @@ export {
   PlayArrow,
   Pause,
   Stop,
+  BrokenImage,
 } from "@mui/icons-material";
 
 // Status & Feedback
@@ -207,6 +208,7 @@ export {
   Thunderstorm,
   Air,
   WaterDrop,
+  Bedtime, // Dark mode icon
 } from "@mui/icons-material";
 
 // Health & Fitness

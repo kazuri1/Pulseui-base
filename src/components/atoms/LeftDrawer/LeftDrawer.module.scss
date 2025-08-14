@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   box-shadow: var(--shadow-lg);
   border-right: var(--border-width-thin) solid var(--color-border-secondary);
   transform: translateX(-100%);
@@ -48,7 +48,7 @@
   align-items: center;
   padding: var(--spacing-lg);
   border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
-  background-color: var(--color-surface-primary);
+  background-color: var(--color-surface-secondary);
   flex-shrink: 0;
 }
 

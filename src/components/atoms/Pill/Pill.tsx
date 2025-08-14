@@ -5,13 +5,27 @@ import styles from "./Pill.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface PillProps extends WithSxProps {
   /** Content to display inside the pill */
   children: React.ReactNode;
+  /** Pill variant style */
+  variant?:
+    | "default"
+    | "filled"
+    | "light"
+    | "outline"
+    | "white"
+    | "info"
+    | "success"
+    | "warning"
+    | "error"
+    | "disabled"
+    | "muted";
   /** Pill size */
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  /** Whether the pill has a close button */
+  /** Whether the pill has a close button (enabled by default) */
   closable?: boolean;
   /** Close button click handler */
   onClose?: () => void;
@@ -21,14 +35,16 @@ export interface PillProps extends WithSxProps {
 
 export const Pill: React.FC<PillProps> = ({
   children,
+  variant = "default",
   size = "md",
-  closable = false,
-  onClose,
+  closable = true,
+  onClose = () => {},
   className = "",
   disabled = false,
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const handleClose = () => {
     if (!disabled && onClose) {
       onClose();
@@ -43,6 +59,7 @@ export const Pill: React.FC<PillProps> = ({
 
   const pillClasses = combineClassNames(
     styles.pill,
+    styles[`variant-${variant}`],
     styles[`size-${size}`],
     closable && styles.closable,
     disabled && styles.disabled,
@@ -60,7 +77,7 @@ export const Pill: React.FC<PillProps> = ({
           disabled={disabled}
           aria-label="Remove pill"
         >
-          <Icon icon={Close} size={getIconSize(size)} color="muted" />
+          <Icon icon={Close} size={getIconSize(size)} />
         </button>
       )}
     </div>

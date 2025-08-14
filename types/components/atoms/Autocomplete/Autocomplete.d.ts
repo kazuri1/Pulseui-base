@@ -1,10 +1,11 @@
 import * as React from "react";
+import type { WithSxProps } from "../../../utils/sxUtils";
 export interface AutocompleteOption {
     value: string;
     label: string;
     icon?: string;
 }
-export interface AutocompleteProps {
+export interface AutocompleteProps extends WithSxProps {
     /** Array of options to display */
     options: AutocompleteOption[];
     /** Current value */
@@ -33,8 +34,6 @@ export interface AutocompleteProps {
     onChange?: (value: string) => void;
     /** Callback when an option is selected */
     onSelect?: (option: AutocompleteOption) => void;
-    /** Additional CSS classes */
-    className?: string;
     /** Input name */
     name?: string;
     /** Input id */

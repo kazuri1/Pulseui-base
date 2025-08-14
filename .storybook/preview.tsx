@@ -10,13 +10,6 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    themes: {
-      default: "light",
-      list: [
-        { name: "light", class: "light", color: "#ffffff" },
-        { name: "dark", class: "dark", color: "#141414" },
-      ],
-    },
   },
   decorators: [
     (Story) => (
@@ -24,8 +17,6 @@ const preview: Preview = {
         style={{
           padding: "16px",
           backgroundColor: "transparent",
-          color: "var(--color-text-primary)",
-          transition: "background-color 0.3s ease, color 0.3s ease",
         }}
       >
         <Story />

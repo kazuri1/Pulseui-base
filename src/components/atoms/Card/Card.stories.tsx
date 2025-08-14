@@ -1,14 +1,76 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, expect } from "@storybook/test";
 import { Card } from "./Card";
+import { ThemeProvider } from "../../ThemeProvider/ThemeProvider";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
+import { useTheme } from "../../../contexts/ThemeContext";
+
+// Theme-aware wrapper component
+const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <ThemeProvider defaultTheme="default-light">
+      <div
+        style={{
+          padding: "2rem",
+          backgroundColor: "var(--color-surface-50)",
+          minHeight: "100vh",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "2rem",
+            padding: "1rem",
+            backgroundColor: "var(--color-surface-100)",
+            borderRadius: "var(--radius-lg)",
+            border: "1px solid var(--color-border-light)",
+          }}
+        >
+          <div>
+            <h2
+              style={{
+                margin: 0,
+                color: "var(--color-text-primary)",
+                fontSize: "var(--typography-h2-fontSize)",
+              }}
+            >
+              Card Component Stories
+            </h2>
+            <p
+              style={{
+                margin: "0.5rem 0 0 0",
+                color: "var(--color-text-secondary)",
+                fontSize: "var(--typography-bodySmall-fontSize)",
+              }}
+            >
+              Switch themes to see how cards adapt automatically
+            </p>
+          </div>
+          <ThemeToggle showLabel={true} size="md" variant="outline" />
+        </div>
+        {children}
+      </div>
+    </ThemeProvider>
+  );
+};
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
   component: Card,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <ThemeWrapper>
+        <Story />
+      </ThemeWrapper>
+    ),
+  ],
   argTypes: {
     variant: {
       control: { type: "select" },
@@ -354,14 +416,14 @@ export const WithCustomContent: Story = {
             style={{
               fontSize: "24px",
               fontWeight: "bold",
-              color: "var(--color-blue-6)",
+              color: "var(--color-primary-6)",
             }}
           >
             $99.99
           </span>
           <span
             style={{
-              color: "var(--color-gray-6)",
+              color: "var(--color-text-secondary)",
               textDecoration: "line-through",
             }}
           >
@@ -369,7 +431,7 @@ export const WithCustomContent: Story = {
           </span>
         </div>
         <div style={{ marginTop: "8px" }}>
-          <span style={{ color: "var(--color-green-6)", fontSize: "14px" }}>
+          <span style={{ color: "var(--color-success-6)", fontSize: "14px" }}>
             ✓ In Stock
           </span>
         </div>
@@ -391,19 +453,25 @@ export const WithCustomContent: Story = {
         >
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: "18px", fontWeight: "bold" }}>1.2k</div>
-            <div style={{ fontSize: "12px", color: "var(--color-gray-6)" }}>
+            <div
+              style={{ fontSize: "12px", color: "var(--color-text-secondary)" }}
+            >
               Followers
             </div>
           </div>
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: "18px", fontWeight: "bold" }}>348</div>
-            <div style={{ fontSize: "12px", color: "var(--color-gray-6)" }}>
+            <div
+              style={{ fontSize: "12px", color: "var(--color-text-secondary)" }}
+            >
               Following
             </div>
           </div>
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: "18px", fontWeight: "bold" }}>156</div>
-            <div style={{ fontSize: "12px", color: "var(--color-gray-6)" }}>
+            <div
+              style={{ fontSize: "12px", color: "var(--color-text-secondary)" }}
+            >
               Posts
             </div>
           </div>
@@ -425,7 +493,7 @@ export const WithCustomContent: Story = {
             }}
           >
             <span>Design Review</span>
-            <span style={{ color: "var(--color-green-6)" }}>✓ Complete</span>
+            <span style={{ color: "var(--color-success-6)" }}>✓ Complete</span>
           </div>
           <div
             style={{
@@ -435,7 +503,7 @@ export const WithCustomContent: Story = {
             }}
           >
             <span>Frontend Development</span>
-            <span style={{ color: "var(--color-blue-6)" }}>In Progress</span>
+            <span style={{ color: "var(--color-primary-6)" }}>In Progress</span>
           </div>
           <div
             style={{
@@ -445,7 +513,7 @@ export const WithCustomContent: Story = {
             }}
           >
             <span>Backend API</span>
-            <span style={{ color: "var(--color-orange-6)" }}>Pending</span>
+            <span style={{ color: "var(--color-warning-6)" }}>Pending</span>
           </div>
         </div>
       </Card>
@@ -453,3 +521,104 @@ export const WithCustomContent: Story = {
   ),
 };
 
+// New story to showcase theme switching
+export const ThemeShowcase: Story = {
+  render: () => {
+    const ThemeAwareCard = () => {
+      const { isDark, themeMode } = useTheme();
+
+      return (
+        <div
+          style={{
+            padding: "2rem",
+            backgroundColor: "var(--color-surface-50)",
+            borderRadius: "var(--radius-lg)",
+            border: "1px solid var(--color-border-medium)",
+          }}
+        >
+          <h3
+            style={{
+              color: "var(--color-text-primary)",
+              marginBottom: "1rem",
+            }}
+          >
+            Theme-Aware Card Demo
+          </h3>
+          <p
+            style={{
+              color: "var(--color-text-secondary)",
+              marginBottom: "2rem",
+            }}
+          >
+            Current theme: <strong>{themeMode}</strong> (
+            {isDark ? "Dark" : "Light"})
+          </p>
+
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+            <Card
+              title="Light Theme Card"
+              description="This card automatically adapts to the current theme."
+              buttonText="Theme Aware"
+              imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
+              imageAlt="Theme demo"
+            />
+
+            <Card
+              title="Custom Styled Card"
+              description="Using theme variables for custom styling."
+              buttonText="Custom Style"
+              showImage={false}
+              sx={{
+                backgroundColor: "surface",
+                border: "2px solid var(--color-primary-3)",
+                borderRadius: "xl",
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              marginTop: "2rem",
+              padding: "1rem",
+              backgroundColor: "var(--color-surface-100)",
+              borderRadius: "var(--radius-md)",
+              border: "1px solid var(--color-border-light)",
+            }}
+          >
+            <h4
+              style={{
+                color: "var(--color-text-primary)",
+                marginBottom: "0.5rem",
+              }}
+            >
+              Theme Information
+            </h4>
+            <ul
+              style={{
+                color: "var(--color-text-secondary)",
+                fontSize: "var(--typography-bodySmall-fontSize)",
+                margin: 0,
+                paddingLeft: "1.5rem",
+              }}
+            >
+              <li>
+                Background: <code>var(--color-surface-50)</code>
+              </li>
+              <li>
+                Text: <code>var(--color-text-primary)</code>
+              </li>
+              <li>
+                Border: <code>var(--color-border-medium)</code>
+              </li>
+              <li>
+                Primary: <code>var(--color-primary-6)</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      );
+    };
+
+    return <ThemeAwareCard />;
+  },
+};

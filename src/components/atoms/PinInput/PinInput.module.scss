@@ -10,12 +10,12 @@
 .label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
   line-height: var(--line-height-sm);
 }
 
 .required {
-  color: var(--color-red-6);
+  color: var(--color-error);
   margin-left: var(--spacing-xs);
 }
 
@@ -28,36 +28,36 @@
 .digitInput {
   width: 48px;
   height: 48px;
-  border: var(--border-width-thin) solid var(--color-gray-3);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
   border-radius: var(--radius-md);
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   text-align: center;
   font-family: var(--font-family-mono);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
   transition: all 0.2s ease;
   outline: none;
 
   &:focus {
-    border-color: var(--color-blue-5);
-    box-shadow: 0 0 0 var(--border-width-normal) var(--color-blue-1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-surface-secondary);
   }
 
   &:disabled {
-    background-color: var(--color-gray-1);
-    color: var(--color-gray-5);
+    background-color: var(--color-surface-tertiary);
+    color: var(--color-text-disabled);
     cursor: not-allowed;
   }
 
   &.error {
-    border-color: var(--color-red-5);
-    box-shadow: 0 0 0 var(--border-width-normal) var(--color-red-1);
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-surface-secondary);
   }
 
   &.focused {
-    border-color: var(--color-blue-5);
-    box-shadow: 0 0 0 var(--border-width-normal) var(--color-blue-1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 var(--border-width-normal) var(--color-surface-secondary);
   }
 
   // Size variants
@@ -94,7 +94,7 @@
 
 .caption {
   font-size: var(--font-size-xs);
-  color: var(--color-gray-6);
+  color: var(--color-text-muted);
   line-height: var(--line-height-xs);
 }
 

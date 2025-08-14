@@ -1,5 +1,6 @@
 import React from "react";
-export interface FileUploadProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface FileUploadProps extends WithSxProps {
     /** Supported file types */
     acceptedFileTypes?: string[];
     /** Maximum file size in bytes */
@@ -18,8 +19,6 @@ export interface FileUploadProps {
     showFileList?: boolean;
     /** Component variant state */
     variant?: "default" | "uploading" | "completed";
-    /** Additional CSS classes */
-    className?: string;
 }
 export interface UploadFile {
     id: string;

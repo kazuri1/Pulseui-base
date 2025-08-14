@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import styles from "./VersionSelector.module.scss";
 import { Icon } from "../Icon/Icon";
 import { ArrowDropDown } from "../Icon/IconSet";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-export interface VersionSelectorProps {
+export interface VersionSelectorProps extends WithSxProps {
   /** Current version to display */
   version?: string;
   /** Available versions to select from */
   versions?: string[];
   /** Callback when version changes */
   onVersionChange?: (version: string) => void;
-  /** Custom class name */
-  className?: string;
   /** Whether the selector is disabled */
   disabled?: boolean;
 }
@@ -22,7 +22,15 @@ export const VersionSelector: React.FC<VersionSelectorProps> = ({
   onVersionChange,
   className = "",
   disabled = false,
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -47,8 +55,13 @@ export const VersionSelector: React.FC<VersionSelectorProps> = ({
     }
   };
 
+  const versionSelectorClasses = combineClassNames(
+    styles.versionSelector,
+    sxClassName
+  );
+
   return (
-    <div className={`${styles.versionSelector} ${className}`}>
+    <div className={versionSelectorClasses} style={sxStyle}>
       <button
         className={`${styles.versionButton} ${isOpen ? styles.open : ""} ${
           disabled ? styles.disabled : ""

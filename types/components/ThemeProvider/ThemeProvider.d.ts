@@ -1,22 +1,11 @@
-import * as React from "react";
-import type { ThemeConfig, ThemeMode, CustomTheme } from "./types";
-interface ThemeContextType {
-    currentTheme: string;
-    currentMode: ThemeMode;
-    themes: Record<string, ThemeConfig>;
-    setTheme: (themeName: string) => void;
-    setMode: (mode: ThemeMode) => void;
-    addCustomTheme: (name: string, theme: CustomTheme) => void;
-    getThemeValue: (path: string) => string;
-}
-export interface ThemeProviderProps {
+import React from "react";
+import type { WithSxProps } from "../../utils/sxUtils";
+export interface ThemeProviderProps extends WithSxProps {
+    /** Default theme to use */
+    defaultTheme?: "default-light" | "default-dark";
+    /** Whether to persist theme choice in localStorage */
+    persistTheme?: boolean;
+    /** Children components */
     children: React.ReactNode;
-    defaultTheme?: string;
-    defaultMode?: ThemeMode;
-    themes?: Record<string, ThemeConfig>;
-    enableSystemPreference?: boolean;
-    enableAnimation?: boolean;
 }
 export declare const ThemeProvider: React.FC<ThemeProviderProps>;
-export declare const useTheme: () => ThemeContextType;
-export {};

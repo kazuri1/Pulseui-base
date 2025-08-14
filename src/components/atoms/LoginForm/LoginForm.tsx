@@ -8,13 +8,15 @@ import { Card } from "../Card";
 import { Icon } from "../Icon";
 import { GitHub, Twitter, OpenInBrowser } from "../Icon/IconSet";
 import styles from "./LoginForm.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
-export interface LoginFormProps {
+export interface LoginFormProps extends WithSxProps {
   onSubmit?: (data: LoginFormData) => void;
   onSignUpClick?: () => void;
   onForgotPasswordClick?: () => void;
   onSocialLogin?: (provider: "google" | "twitter" | "github") => void;
-  className?: string;
   title?: string;
   subtitle?: string;
   emailLabel?: string;
@@ -40,7 +42,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   onSignUpClick,
   onForgotPasswordClick,
   onSocialLogin,
-  className,
+  className = "",
   title = "Login to your account",
   subtitle = "Don't have an account?",
   emailLabel = "Email",
@@ -53,7 +55,16 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   showRememberMe = true,
   showForgotPassword = true,
   defaultEmail = "",
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const { isDark } = useTheme();
   const [formData, setFormData] = useState<LoginFormData>({
     email: defaultEmail,
     password: "",
@@ -79,8 +90,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     onSocialLogin?.(provider);
   };
 
+  const loginFormClasses = combineClassNames(
+    styles.loginForm,
+    sxClassName
+  );
+
   return (
-    <Card className={`${styles.loginForm} ${className || ""}`}>
+    <Card className={loginFormClasses} sx={sx} style={sxStyle}>
       <div className={styles.header}>
         <Text variant="xxl" className={styles.title}>
           {title}

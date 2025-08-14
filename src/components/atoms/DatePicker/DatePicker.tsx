@@ -4,6 +4,7 @@ import type { DatePickerProps } from "./types";
 import { Calendar } from "../Calendar/Calendar";
 import { Input } from "../Input/Input";
 import { combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export const DatePicker: React.FC<DatePickerProps> = ({
   label = "Date picker",
@@ -28,6 +29,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   onOpenChange,
   onInputChange,
 }) => {
+  const { isDark } = useTheme();
   const [internalValue, setInternalValue] = useState<Date | null>(defaultValue);
   const [internalOpen, setInternalOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -229,6 +231,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           variant="default"
           rightIcon="none"
           className={styles.dateInput}
+          data-theme={isDark ? "dark" : "light"}
         />
       </div>
 

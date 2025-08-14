@@ -1,37 +1,42 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
-import { Checkbox } from "./Checkbox";
-import { Text } from "../Text";
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Checkbox } from "./Checkbox";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Atoms/Checkbox",
   component: Checkbox,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
-        component:
-          "A simple and accessible checkbox component built with PulseUI design system. Features multiple sizes, states, and proper accessibility support.",
+        component: `
+A checkbox component that allows users to select one or more options from a list.
+
+## Features
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Sizes**: Three size variants (sm, md, lg)
+- **States**: Checked, unchecked, disabled, and error states
+- **Controlled/Uncontrolled**: Supports both controlled and uncontrolled usage
+- **Form Integration**: Works seamlessly with HTML forms
+
+## Usage
+\`\`\`tsx
+import { Checkbox } from '@pulseui/atoms';
+
+<Checkbox
+  label="Accept terms and conditions"
+  required
+  onChange={(checked) => console.log('Checked:', checked)}
+/>
+\`\`\`
+        `,
       },
     },
   },
   argTypes: {
-    onChange: { action: "checkbox changed" },
-    onFocus: { action: "focused" },
-    onBlur: { action: "blurred" },
     size: {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
       description: "Size of the checkbox",
-    },
-    disabled: {
-      control: { type: "boolean" },
-      description: "Whether the checkbox is disabled",
-    },
-    required: {
-      control: { type: "boolean" },
-      description: "Whether the checkbox is required",
     },
     checked: {
       control: { type: "boolean" },
@@ -41,166 +46,121 @@ const meta: Meta<typeof Checkbox> = {
       control: { type: "boolean" },
       description: "Default checked state for uncontrolled usage",
     },
+    disabled: {
+      control: { type: "boolean" },
+      description: "Whether the checkbox is disabled",
+    },
+    required: {
+      control: { type: "boolean" },
+      description: "Whether the checkbox is required",
+    },
+    error: {
+      control: { type: "text" },
+      description: "Error message to display",
+    },
+    onChange: {
+      action: "changed",
+      description: "Callback when checkbox state changes",
+    },
   },
-  tags: ["autodocs"],
+  args: {
+    label: "Accept terms and conditions",
+    size: "md",
+    disabled: false,
+    required: false,
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic checkbox
 export const Default: Story = {
+  args: {},
+};
+
+export const Checked: Story = {
   args: {
-    label: "Accept terms and conditions",
+    defaultChecked: true,
   },
 };
 
-// Checkbox with different sizes
-export const Sizes: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "flex-start",
-      }}
-    >
-      <Checkbox size="sm" label="Small checkbox" />
-      <Checkbox size="md" label="Medium checkbox (default)" />
-      <Checkbox size="lg" label="Large checkbox" />
-    </div>
-  ),
-};
-
-// Checkbox states
-export const States: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "flex-start",
-      }}
-    >
-      <Checkbox label="Unchecked checkbox" />
-      <Checkbox label="Checked checkbox" defaultChecked />
-      <Checkbox label="Disabled unchecked" disabled />
-      <Checkbox label="Disabled checked" disabled defaultChecked />
-      <Checkbox label="Required checkbox" required />
-    </div>
-  ),
-};
-
-// Checkbox with error state
-export const WithError: Story = {
+export const Required: Story = {
   args: {
-    label: "Accept terms and conditions",
-    error: "This field is required",
     required: true,
   },
 };
 
-// Controlled checkbox
-export const Controlled: Story = {
-  render: () => {
-    const [checked, setChecked] = useState(false);
-
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          alignItems: "flex-start",
-        }}
-      >
-        <Checkbox
-          label="Controlled checkbox"
-          checked={checked}
-          onChange={setChecked}
-        />
-        <Text variant="sm" color="secondary">
-          Current state: {checked ? "Checked" : "Unchecked"}
-        </Text>
-        <button onClick={() => setChecked(!checked)}>Toggle checkbox</button>
-      </div>
-    );
-  },
-};
-
-// Checkbox group example
-export const CheckboxGroup: Story = {
-  render: () => {
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
-    const options = [
-      {
-        id: "email",
-        label: "Email notifications",
-      },
-      {
-        id: "sms",
-        label: "SMS notifications",
-      },
-      {
-        id: "push",
-        label: "Push notifications",
-      },
-      {
-        id: "marketing",
-        label: "Marketing emails",
-      },
-    ];
-
-    const handleOptionChange = (optionId: string, checked: boolean) => {
-      if (checked) {
-        setSelectedOptions((prev) => [...prev, optionId]);
-      } else {
-        setSelectedOptions((prev) => prev.filter((id) => id !== optionId));
-      }
-    };
-
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "16px",
-          alignItems: "flex-start",
-        }}
-      >
-        <Text variant="lg" weight="semibold">
-          Notification Preferences
-        </Text>
-        {options.map((option) => (
-          <Checkbox
-            key={option.id}
-            id={option.id}
-            label={option.label}
-            checked={selectedOptions.includes(option.id)}
-            onChange={(checked) => handleOptionChange(option.id, checked)}
-          />
-        ))}
-        <Text variant="sm" color="secondary">
-          Selected: {selectedOptions.length} of {options.length}
-        </Text>
-      </div>
-    );
-  },
-};
-
-// Simple example
-export const Simple: Story = {
+export const Disabled: Story = {
   args: {
-    label: "Remember me",
+    disabled: true,
   },
+};
+
+export const DisabledChecked: Story = {
+  args: {
+    disabled: true,
+    defaultChecked: true,
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    error: "You must accept the terms to continue",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "sm",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+  },
+};
+
+export const NoLabel: Story = {
+  args: {
+    label: undefined,
+  },
+};
+
+export const Controlled: Story = {
+  args: {
+    checked: true,
+  },
+};
+
+export const MultipleCheckboxes: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <Checkbox
+        label="Option 1"
+        defaultChecked={true}
+        onChange={(checked) => console.log("Option 1:", checked)}
+      />
+      <Checkbox
+        label="Option 2"
+        onChange={(checked) => console.log("Option 2:", checked)}
+      />
+      <Checkbox
+        label="Option 3 (Disabled)"
+        disabled={true}
+        onChange={(checked) => console.log("Option 3:", checked)}
+      />
+      <Checkbox
+        label="Option 4 (Required)"
+        required={true}
+        onChange={(checked) => console.log("Option 4:", checked)}
+      />
+    </div>
+  ),
   parameters: {
     docs: {
       description: {
-        story:
-          "A simple checkbox with just a label - perfect for basic use cases.",
+        story: "Example of multiple checkboxes in a form-like layout.",
       },
     },
   },

@@ -10,10 +10,87 @@
   font-family: var(--font-family);
   transition: var(--motion-transition-fast);
 
-  &:hover:not(.state-disabled) {
-    .radioButton {
-      border-color: var(--color-blue-6);
+  &.checked {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(var(--spacing-xs) * 1.5);
+      height: calc(var(--spacing-xs) * 1.5);
+      background-color: var(--color-surface);
+      border-radius: 50%;
     }
+  }
+
+  &.variant-default {
+    border: var(--border-width-normal) solid var(--color-border-secondary);
+    background-color: transparent;
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-secondary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-secondary);
+    }
+  }
+
+  &.variant-outline {
+    border: var(--border-width-normal) solid var(--color-border-secondary);
+    background-color: transparent;
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-secondary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-secondary);
+    }
+  }
+
+  &.variant-filled {
+    border-color: var(--color-border-secondary);
+    background-color: var(--color-surface-secondary);
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+  }
+
+  &.variant-light {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-secondary);
+    background-color: var(--color-surface-secondary);
+
+    &:hover:not(.disabled) {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-tertiary);
+    }
+  }
+
+  &:focus-visible {
+    outline: var(--border-width-normal) solid var(--color-border-focus);
+    outline-offset: var(--spacing-xs);
   }
 
   &.state-error:hover:not(.state-disabled) {
@@ -57,15 +134,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--border-width-normal) solid var(--color-gray-4);
+  border: var(--border-width-normal) solid var(--color-border-secondary);
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   transition: var(--motion-transition-fast);
   flex-shrink: 0;
 
   .input:checked + & {
-    border-color: var(--color-blue-6);
-    background-color: var(--color-blue-6);
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
 
     .radioDot {
       opacity: 1;
@@ -74,13 +151,13 @@
   }
 
   .state-error .input:checked + & {
-    border-color: var(--color-red-6) !important;
-    background-color: var(--color-red-6) !important;
+    border-color: var(--color-error) !important;
+    background-color: var(--color-error) !important;
   }
 
   .input:disabled + & {
-    border-color: var(--color-gray-3);
-    background-color: var(--color-gray-1);
+    border-color: var(--color-border-secondary);
+    background-color: var(--color-surface-secondary);
     cursor: not-allowed;
   }
 }
@@ -89,7 +166,7 @@
   width: 50%;
   height: 50%;
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   opacity: 0;
   transform: scale(0);
   transition: var(--motion-transition-fast);
@@ -98,16 +175,16 @@
 .label {
   font-size: inherit;
   line-height: inherit;
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
   cursor: pointer;
 
   .state-disabled & {
-    color: var(--color-gray-5);
+    color: var(--color-text-muted);
     cursor: not-allowed;
   }
 
   .state-error & {
-    color: var(--color-red-7);
+    color: var(--color-error);
   }
 }
 

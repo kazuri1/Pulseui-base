@@ -4,6 +4,9 @@ import { Tag } from "../Tag";
 import { LocalHospital } from "@mui/icons-material";
 import type { SvgIconComponent } from "@mui/icons-material";
 import styles from "./TagCard.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface TagItem {
   /** Unique identifier for the tag */
@@ -20,7 +23,7 @@ export interface TagItem {
   closable?: boolean;
 }
 
-export interface TagCardProps {
+export interface TagCardProps extends WithSxProps {
   /** Title of the card */
   title?: string;
   /** Array of tag items to display */
@@ -31,8 +34,6 @@ export interface TagCardProps {
   closable?: boolean;
   /** Handler for when a tag is closed */
   onTagClose?: (tagId: string | number) => void;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const TagCard: React.FC<TagCardProps> = ({
@@ -42,13 +43,27 @@ export const TagCard: React.FC<TagCardProps> = ({
   closable = false,
   onTagClose,
   className = "",
+  sx,
+  style,
 }) => {
+  const { isDark } = useTheme();
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const handleTagClose = (tagId: string | number) => {
     onTagClose?.(tagId);
   };
 
+  const tagCardClasses = combineClassNames(
+    styles.tagCard,
+    sxClassName
+  );
+
   return (
-    <Card className={`${styles.tagCard} ${className}`}>
+    <Card className={tagCardClasses} sx={sx} style={sxStyle}>
       {title && (
         <div className={styles.cardHeader}>
           <h3 className={styles.cardTitle}>{title}</h3>

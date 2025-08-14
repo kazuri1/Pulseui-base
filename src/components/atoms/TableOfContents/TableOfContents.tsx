@@ -4,6 +4,7 @@ import styles from "./TableOfContents.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface TableOfContentsItem {
   /** Unique identifier for the item */
@@ -60,6 +61,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const [currentActiveId, setCurrentActiveId] = useState<string | undefined>(
     activeId
   );

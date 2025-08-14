@@ -2,6 +2,9 @@ import React, { createContext, useContext, useState } from 'react';
 import { Icon } from '../Icon';
 import { ExpandMore, ExpandLess } from '../Icon/IconSet';
 import styles from './Accordion.module.scss';
+import type { WithSxProps } from '../../../utils/sxUtils';
+import { mergeSxWithStyles, combineClassNames } from '../../../utils/sxUtils';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 // Context for accordion state
 interface AccordionContextValue {
@@ -21,12 +24,11 @@ const useAccordion = () => {
 };
 
 // Main Accordion component
-export interface AccordionProps {
+export interface AccordionProps extends WithSxProps {
   children: React.ReactNode;
   allowMultiple?: boolean;
   defaultExpanded?: string[];
   size?: 'sm' | 'md' | 'lg';
-  className?: string;
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
@@ -35,8 +37,16 @@ export const Accordion: React.FC<AccordionProps> = ({
   defaultExpanded = [],
   size = 'md',
   className = '',
+  sx,
+  style,
 }) => {
+  const { isDark } = useTheme();
   const [expandedItems, setExpandedItems] = useState<string[]>(defaultExpanded);
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
 
   const toggleItem = (itemId: string) => {
     if (allowMultiple) {
@@ -58,9 +68,15 @@ export const Accordion: React.FC<AccordionProps> = ({
     allowMultiple,
   };
 
+  const accordionClasses = combineClassNames(
+    styles.accordion,
+    styles[`size-${size}`],
+    sxClassName
+  );
+
   return (
     <AccordionContext.Provider value={contextValue}>
-      <div className={`${styles.accordion} ${styles[`size-${size}`]} ${className}`}>
+      <div className={accordionClasses} style={sxStyle}>
         {children}
       </div>
     </AccordionContext.Provider>
@@ -68,11 +84,10 @@ export const Accordion: React.FC<AccordionProps> = ({
 };
 
 // AccordionItem component
-export interface AccordionItemProps {
+export interface AccordionItemProps extends WithSxProps {
   id: string;
   children: React.ReactNode;
   disabled?: boolean;
-  className?: string;
 }
 
 export const AccordionItem: React.FC<AccordionItemProps> = ({
@@ -80,9 +95,22 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   children,
   disabled = false,
   className = '',
+  sx,
+  style,
 }) => {
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const itemClasses = combineClassNames(
+    styles.accordionItem,
+    sxClassName
+  );
+
   return (
-    <div className={`${styles.accordionItem} ${className}`}>
+    <div className={itemClasses} style={sxStyle}>
       {React.Children.map(children, child => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child as React.ReactElement<any>, { itemId: id, disabled });
@@ -94,10 +122,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 };
 
 // AccordionHeader component
-export interface AccordionHeaderProps {
+export interface AccordionHeaderProps extends WithSxProps {
   children: React.ReactNode;
   itemId: string;
   disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
@@ -105,10 +134,27 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
   children,
   itemId,
   disabled = false,
+  size = 'md',
   className = '',
+  sx,
+  style,
 }) => {
   const { expandedItems, toggleItem } = useAccordion();
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const isExpanded = expandedItems.includes(itemId);
+
+  const headerClasses = combineClassNames(
+    styles.accordionHeader,
+    styles[`size-${size}`],
+    isExpanded && styles.expanded,
+    disabled && styles.disabled,
+    sxClassName
+  );
 
   const handleClick = () => {
     if (!disabled) {
@@ -118,58 +164,72 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
 
   return (
     <button
-      className={`
-        ${styles.accordionHeader}
-        ${isExpanded ? styles.expanded : ''}
-        ${disabled ? styles.disabled : ''}
-        ${className}
-      `}
+      className={headerClasses}
       onClick={handleClick}
       disabled={disabled}
       aria-expanded={isExpanded}
-      aria-controls={`${itemId}-content`}
+      style={sxStyle}
     >
-      <div className={styles.titleWrapper}>
-        <span className={styles.title}>{children}</span>
+      <div className={styles.headerContent}>
+        <div className={styles.titleWrapper}>
+          <div className={styles.title}>
+            {children}
+          </div>
+        </div>
       </div>
-      <Icon
-        icon={isExpanded ? ExpandLess : ExpandMore}
-        size="sm"
-        className={styles.chevron}
-      />
+      <div className={styles.expandIcon}>
+        <Icon
+          icon={isExpanded ? ExpandLess : ExpandMore}
+          size={size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md'}
+        />
+      </div>
     </button>
   );
 };
 
 // AccordionContent component
-export interface AccordionContentProps {
+export interface AccordionContentProps extends WithSxProps {
   children: React.ReactNode;
   itemId: string;
+  disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
 export const AccordionContent: React.FC<AccordionContentProps> = ({
   children,
   itemId,
+  disabled = false,
+  size = 'md',
   className = '',
+  sx,
+  style,
 }) => {
   const { expandedItems } = useAccordion();
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
   const isExpanded = expandedItems.includes(itemId);
 
-  if (!isExpanded) return null;
+  if (!isExpanded) {
+    return null;
+  }
+
+  const contentClasses = combineClassNames(
+    styles.accordionContent,
+    styles[`size-${size}`],
+    sxClassName
+  );
 
   return (
-          <div
-        id={`${itemId}-content`}
-        className={`${styles.accordionContent} ${className}`}
-        aria-labelledby={itemId}
-      >
-        <div className={styles.contentWrapper}>
-          <div className={styles.contentInner}>
-            {children}
-          </div>
-        </div>
+    <div className={contentClasses} style={sxStyle}>
+      <div className={styles.contentInner}>
+        {children}
       </div>
+    </div>
   );
 };
 

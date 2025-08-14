@@ -5,6 +5,7 @@ import { Close } from "../Icon/IconSet";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface DrawerProps extends WithSxProps {
   /** Drawer content */
@@ -50,6 +51,7 @@ export const Drawer: React.FC<DrawerProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const drawerRef = useRef<HTMLDivElement>(null);
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
@@ -117,6 +119,7 @@ export const Drawer: React.FC<DrawerProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby={title ? `${id}-title` : undefined}
+      data-theme={isDark ? "dark" : "light"}
     >
       <div
         ref={drawerRef}

@@ -20,6 +20,14 @@
     justify-content: flex-end;
   }
 
+  &.disabled {
+    background-color: var(--color-surface-tertiary) !important;
+    border-color: var(--color-border-secondary) !important;
+    color: var(--color-text-muted) !important;
+    cursor: not-allowed;
+    opacity: var(--opacity-50);
+  }
+
   .content {
     width: 100%;
     display: flex;

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "../Card";
 import { Text } from "../Text";
 import { Button } from "../Button";
 import styles from "./UpdateNotification.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
-export interface UpdateNotificationProps {
+export interface UpdateNotificationProps extends WithSxProps {
   /** Notification title */
   title?: string;
   /** Notification message */
@@ -17,8 +20,6 @@ export interface UpdateNotificationProps {
   onSkip?: () => void;
   /** Download button click handler */
   onDownload?: () => void;
-  /** Additional CSS classes */
-  className?: string;
 }
 
 export const UpdateNotification: React.FC<UpdateNotificationProps> = ({
@@ -29,9 +30,23 @@ export const UpdateNotification: React.FC<UpdateNotificationProps> = ({
   onSkip,
   onDownload,
   className = "",
+  sx,
+  style,
 }) => {
+  const { isDark } = useTheme();
+  const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
+    sx,
+    style,
+    className
+  );
+
+  const updateNotificationClasses = combineClassNames(
+    styles.updateNotification,
+    sxClassName
+  );
+
   return (
-    <Card className={`${styles.updateNotification} ${className}`}>
+    <Card className={updateNotificationClasses} sx={sx} style={sxStyle}>
       <div className={styles.content}>
         <div className={styles.textContent}>
           <Text variant="lg" weight="semibold" className={styles.title}>

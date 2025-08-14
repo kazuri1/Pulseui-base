@@ -39,13 +39,13 @@
   min-height: 200px;
   
   &:hover {
-    border-color: var(--color-blue-6);
-    background: var(--color-surface-hover);
+    border-color: var(--color-primary);
+    background: var(--color-surface-tertiary);
   }
   
   &.dragOver {
-    border-color: var(--color-blue-6);
-    background: var(--color-blue-1);
+    border-color: var(--color-primary);
+    background: var(--color-surface-tertiary);
     transform: scale(1.02);
   }
 }

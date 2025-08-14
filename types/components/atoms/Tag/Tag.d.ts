@@ -1,6 +1,7 @@
 import React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
-export interface TagProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface TagProps extends WithSxProps {
     /** The text content of the tag */
     children: React.ReactNode;
     /** Icon to display in the tag */
@@ -13,7 +14,5 @@ export interface TagProps {
     closable?: boolean;
     /** Close button click handler */
     onClose?: () => void;
-    /** Additional CSS classes */
-    className?: string;
 }
 export declare const Tag: React.FC<TagProps>;

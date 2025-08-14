@@ -4,92 +4,24 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+:root {
+  // Light theme colors - now using tokens from _tokens.scss
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+  --color-text-primary: var(--color-on-surface);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-text-muted: var(--color-on-surface-variant);
+  --color-border-primary: var(--color-divider);
+  --color-border-secondary: var(--color-surface-4);
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
+  --color-input-border: var(--color-divider);
+}
+
 .light {
-  // Light mode variables
-  --color-background: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-secondary: #f8f9fa;
-  --color-surface-tertiary: #f1f3f5;
-  --color-text-primary: #212529;
-  --color-text-secondary: #495057;
-  --color-text-muted: #868e96;
-  --color-text-disabled: #adb5bd;
-  --color-border-primary: #dee2e6;
-  --color-border-secondary: #e9ecef;
-  --color-border-focus: #228be6;
-  --color-shadow: rgba(0, 0, 0, 0.1);
-
-  // Component-specific colors
-  --color-button-primary: #228be6;
-  --color-button-primary-hover: #1c7ed6;
-  --color-button-secondary: #f8f9fa;
-  --color-button-secondary-hover: #e9ecef;
-  --color-button-outline: #228be6;
-  --color-button-outline-hover: #1c7ed6;
-  --color-button-text: #495057;
-  --color-button-text-hover: #212529;
-
-  // Input colors
-  --color-input-background: #ffffff;
-  --color-input-border: #dee2e6;
-  --color-input-border-focus: #228be6;
-  --color-input-text: #212529;
-  --color-input-placeholder: #adb5bd;
-
-  // Icon colors
-  --color-icon-primary: #495057;
-  --color-icon-secondary: #868e96;
-  --color-icon-muted: #adb5bd;
-  --color-icon-inherit: currentColor;
-
-  // Status colors
-  --color-success: #40c057;
-  --color-warning: #fab005;
-  --color-error: #fa5252;
-  --color-info: #228be6;
+  // Light theme is now handled by :root in _tokens.scss
 }
 
 .dark {
-  // Dark mode variables
-  --color-background: #141414;
-  --color-surface: #1f1f1f;
-  --color-surface-secondary: #242424;
-  --color-surface-tertiary: #2e2e2e;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #c9c9c9;
-  --color-text-muted: #828282;
-  --color-text-disabled: #696969;
-  --color-border-primary: #424242;
-  --color-border-secondary: #3b3b3b;
-  --color-border-focus: #4dabf7;
-  --color-shadow: rgba(0, 0, 0, 0.3);
-
-  // Component-specific colors
-  --color-button-primary: #4dabf7;
-  --color-button-primary-hover: #74c0fc;
-  --color-button-secondary: #2e2e2e;
-  --color-button-secondary-hover: #3b3b3b;
-  --color-button-outline: #4dabf7;
-  --color-button-outline-hover: #74c0fc;
-  --color-button-text: #c9c9c9;
-  --color-button-text-hover: #ffffff;
-
-  // Input colors
-  --color-input-background: #1f1f1f;
-  --color-input-border: #424242;
-  --color-input-border-focus: #4dabf7;
-  --color-input-text: #ffffff;
-  --color-input-placeholder: #696969;
-
-  // Icon colors
-  --color-icon-primary: #c9c9c9;
-  --color-icon-secondary: #828282;
-  --color-icon-muted: #696969;
-  --color-icon-inherit: currentColor;
-
-  // Status colors
-  --color-success: #69db7c;
-  --color-warning: #ffd43b;
-  --color-error: #ff8787;
-  --color-info: #4dabf7;
+  // Dark theme is now handled by [data-theme="dark"] in _tokens.scss
 }

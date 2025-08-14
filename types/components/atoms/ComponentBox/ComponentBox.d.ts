@@ -1,11 +1,10 @@
 import React from "react";
-export interface ComponentBoxProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface ComponentBoxProps extends WithSxProps {
     /** The component to display in the center */
     children: React.ReactNode;
     /** The title to display below the component */
     title: string;
-    /** Additional CSS classes */
-    className?: string;
     /** Whether to show a border around the component area */
     showBorder?: boolean;
     /** Background color variant for the component area */

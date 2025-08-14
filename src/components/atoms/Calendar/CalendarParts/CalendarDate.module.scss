@@ -277,3 +277,42 @@
     color: var(--color-red-6) !important;
   }
 }
+
+.dateItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--motion-transition-normal);
+  font-weight: var(--font-weight-medium);
+
+  &.disabled {
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+    opacity: var(--opacity-50);
+  }
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-surface-secondary);
+  }
+
+  &.today {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &.selected {
+    background-color: var(--color-surface-secondary);
+  }
+
+  &.in-range {
+    background-color: var(--color-surface-secondary);
+  }
+
+  &.disabled.in-range {
+    color: var(--color-text-muted) !important;
+  }
+}

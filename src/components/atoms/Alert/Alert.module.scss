@@ -84,15 +84,15 @@
 // Variants
 .variant-info {
   &.style-default {
-    background-color: var(--color-blue-1);
+    background-color: var(--color-blue-0);
     color: var(--color-blue-9);
     border-color: var(--color-blue-3);
   }
 
   &.style-filled {
-    background-color: var(--color-blue-6);
-    color: var(--color-white);
-    border-color: var(--color-blue-6);
+    background-color: var(--color-info);
+    color: var(--color-surface);
+    border-color: var(--color-info);
   }
 
   &.style-light {
@@ -103,34 +103,22 @@
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-blue-6);
-    border-color: var(--color-blue-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-blue-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-blue-6);
-    border-color: var(--color-blue-3);
+    color: var(--color-info);
+    border-color: var(--color-info);
   }
 }
 
 .variant-success {
   &.style-default {
-    background-color: var(--color-green-1);
+    background-color: var(--color-green-0);
     color: var(--color-green-9);
     border-color: var(--color-green-3);
   }
 
   &.style-filled {
-    background-color: var(--color-green-6);
-    color: var(--color-white);
-    border-color: var(--color-green-6);
+    background-color: var(--color-success);
+    color: var(--color-surface);
+    border-color: var(--color-success);
   }
 
   &.style-light {
@@ -141,34 +129,22 @@
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-green-6);
-    border-color: var(--color-green-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-green-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-green-6);
-    border-color: var(--color-green-3);
+    color: var(--color-success);
+    border-color: var(--color-success);
   }
 }
 
 .variant-warning {
   &.style-default {
-    background-color: var(--color-yellow-1);
+    background-color: var(--color-yellow-0);
     color: var(--color-yellow-9);
     border-color: var(--color-yellow-3);
   }
 
   &.style-filled {
-    background-color: var(--color-yellow-6);
-    color: var(--color-white);
-    border-color: var(--color-yellow-6);
+    background-color: var(--color-warning);
+    color: var(--color-surface);
+    border-color: var(--color-warning);
   }
 
   &.style-light {
@@ -179,34 +155,22 @@
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-yellow-6);
-    border-color: var(--color-yellow-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-yellow-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-yellow-6);
-    border-color: var(--color-yellow-3);
+    color: var(--color-warning);
+    border-color: var(--color-warning);
   }
 }
 
 .variant-error {
   &.style-default {
-    background-color: var(--color-red-1);
+    background-color: var(--color-red-0);
     color: var(--color-red-9);
     border-color: var(--color-red-3);
   }
 
   &.style-filled {
-    background-color: var(--color-red-6);
-    color: var(--color-white);
-    border-color: var(--color-red-6);
+    background-color: var(--color-error);
+    color: var(--color-surface);
+    border-color: var(--color-error);
   }
 
   &.style-light {
@@ -217,20 +181,8 @@
 
   &.style-outline {
     background-color: transparent;
-    color: var(--color-red-6);
-    border-color: var(--color-red-6);
-  }
-
-  &.style-transparent {
-    background-color: transparent;
-    color: var(--color-red-6);
-    border-color: transparent;
-  }
-
-  &.style-white {
-    background-color: var(--color-white);
-    color: var(--color-red-6);
-    border-color: var(--color-red-3);
+    color: var(--color-error);
+    border-color: var(--color-error);
   }
 }
 
@@ -363,5 +315,64 @@
 
   .text {
     gap: var(--spacing-xs);
+  }
+}
+
+// Dark mode support
+[data-theme="dark"] {
+  .variant-info {
+    &.style-default {
+      background-color: var(--color-blue-9);
+      color: var(--color-blue-0);
+      border-color: var(--color-blue-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-blue-9);
+      color: var(--color-blue-1);
+      border-color: var(--color-blue-8);
+    }
+  }
+
+  .variant-success {
+    &.style-default {
+      background-color: var(--color-green-9);
+      color: var(--color-green-0);
+      border-color: var(--color-green-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-green-9);
+      color: var(--color-green-1);
+      border-color: var(--color-green-8);
+    }
+  }
+
+  .variant-warning {
+    &.style-default {
+      background-color: var(--color-yellow-9);
+      color: var(--color-yellow-0);
+      border-color: var(--color-yellow-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-yellow-9);
+      color: var(--color-yellow-1);
+      border-color: var(--color-yellow-8);
+    }
+  }
+
+  .variant-error {
+    &.style-default {
+      background-color: var(--color-red-9);
+      color: var(--color-red-0);
+      border-color: var(--color-red-7);
+    }
+
+    &.style-light {
+      background-color: var(--color-red-9);
+      color: var(--color-red-1);
+      border-color: var(--color-red-8);
+    }
   }
 }

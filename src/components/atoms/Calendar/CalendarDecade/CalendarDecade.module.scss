@@ -13,8 +13,15 @@
   max-width: 480px;
 
   &.disabled {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
     opacity: var(--opacity-50);
-    pointer-events: none;
+  }
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-surface-tertiary);
+    color: var(--color-text-primary);
   }
 }
 
@@ -156,5 +163,32 @@
 
   .header {
     margin-bottom: var(--spacing-md);
+  }
+}
+
+.decadeItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--motion-transition-normal);
+  font-weight: var(--font-weight-medium);
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+  }
+
+  &.selected {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  &.disabled {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
   }
 }

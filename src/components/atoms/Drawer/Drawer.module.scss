@@ -132,32 +132,20 @@
   .closeButton {
     background: none;
     border: none;
-    padding: var(--spacing-xs);
-    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
     cursor: pointer;
-    color: var(--color-text-secondary);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
     transition: var(--motion-transition-normal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: calc(var(--spacing-xl) * 1); // 32px
-    min-height: calc(var(--spacing-xl) * 1); // 32px
-    will-change: transform, background-color, color;
 
     &:hover:not(:disabled) {
-      background-color: var(--color-gray-1);
+      background-color: var(--color-surface-secondary);
       color: var(--color-text-primary);
-      transform: scale(1.05);
     }
 
-    &:active:not(:disabled) {
-      background-color: var(--color-gray-2);
-      transform: scale(0.95);
-    }
-
-    &:disabled {
-      opacity: var(--opacity-50);
-      cursor: not-allowed;
+    &:focus-visible {
+      outline: var(--border-width-thin) solid var(--color-border-focus);
+      outline-offset: var(--spacing-xs);
     }
   }
 }

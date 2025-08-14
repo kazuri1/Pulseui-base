@@ -2,15 +2,30 @@
 @import "../../../styles/_mixins.scss";
 
 .checkboxContainer {
-  @include flex-column;
-  gap: var(--spacing-xs);
+  @include flex-start;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
   font-family: var(--font-family);
+  flex-wrap: wrap;
+  width: 100%;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--motion-transition-normal) ease;
+
+  &:hover {
+    background-color: var(
+      --color-surface-hover,
+      var(--color-surface-secondary)
+    );
+  }
 }
 
-.checkboxWrapper {
+.checkboxLabelGroup {
   @include flex-start;
   gap: var(--spacing-sm);
   align-items: center;
+  flex-shrink: 0;
+  min-height: 20px; // Ensure consistent height for alignment
 }
 
 .checkboxInput {
@@ -21,81 +36,105 @@
   margin: 0;
   padding: 0;
   pointer-events: none;
+  z-index: -1;
 }
 
 .checkbox {
   position: relative;
-  flex-shrink: 0;
+  width: calc(var(--spacing-md) * 1.25);
+  height: calc(var(--spacing-md) * 1.25);
   border: var(--border-width-thin) solid var(--color-border-secondary);
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  cursor: pointer;
-  @include transition;
-  @include focus-visible;
+  background-color: var(--color-surface);
+  transition: all var(--motion-transition-normal) ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
 
   &:hover:not(.disabled) {
-    border-color: var(--color-border-focus);
-    background: var(--color-surface-secondary);
+    background-color: var(--color-surface-secondary);
+    border-color: var(--color-border-primary);
   }
 
-  &:focus-within {
-    border-color: var(--color-border-focus);
-    box-shadow: 0 0 0 2px var(--color-border-focus);
+  &:active:not(.disabled) {
+    transform: none;
+    box-shadow: none;
   }
 
-  &.checked {
-    background: var(--color-blue-6);
-    border-color: var(--color-blue-6);
-    color: var(--color-white);
-
-    &:hover:not(.disabled) {
-      background: var(--color-blue-7);
-      border-color: var(--color-blue-7);
-    }
+  &:focus-visible {
+    outline: var(--border-width-thin) solid var(--color-border-focus);
+    outline-offset: var(--spacing-xs);
+    border-radius: var(--radius-sm);
   }
 
   &.disabled {
     cursor: not-allowed;
-    opacity: 0.5;
-    background: var(--color-surface-tertiary);
-    border-color: var(--color-border-tertiary);
+    opacity: var(--opacity-50);
+    transform: none;
   }
 
   &.error {
     border-color: var(--color-error);
 
-    &:focus-within {
+    &:hover:not(.disabled) {
       border-color: var(--color-error);
-      box-shadow: 0 0 0 2px var(--color-error);
     }
   }
 
   // Size variants
   &.size-sm {
-    width: 16px;
-    height: 16px;
-    border-radius: var(--radius-xs);
+    width: calc(var(--spacing-sm) * 1.5);
+    height: calc(var(--spacing-sm) * 1.5);
   }
 
   &.size-md {
-    width: 20px;
-    height: 20px;
-    border-radius: var(--radius-sm);
+    width: calc(var(--spacing-md) * 1.25);
+    height: calc(var(--spacing-md) * 1.25);
   }
 
   &.size-lg {
-    width: 24px;
-    height: 24px;
-    border-radius: var(--radius-sm);
+    width: calc(var(--spacing-lg) * 1.25);
+    height: calc(var(--spacing-lg) * 1.25);
   }
-}
 
-.checkIcon {
-  color: white;
-  stroke-width: 2;
+  &.checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-primary-hover, var(--color-primary));
+      border-color: var(--color-primary-hover, var(--color-primary));
+    }
+  }
+
+  // Icon styling
+  svg {
+    color: white !important;
+    stroke-width: 2;
+    width: 60%;
+    height: 60%;
+    fill: white;
+  }
+
+  // Ensure icon is white when checked
+  &.checked svg {
+    color: white !important;
+    fill: white;
+  }
+
+  // Override any inherited colors from parent elements
+  .icon {
+    color: white !important;
+  }
+
+  // Ensure the check icon is always white
+  .icon svg {
+    color: white !important;
+    fill: white;
+  }
 }
 
 .label {
@@ -104,6 +143,17 @@
   font-weight: var(--font-weight-medium);
   line-height: 1.4;
   user-select: none;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin: 0;
+  padding: 0;
+  min-height: 20px; // Match checkbox height for perfect alignment
+  transition: color var(--motion-transition-normal) ease;
+
+  &:hover:not(.disabled) {
+    color: var(--color-text-primary-hover, var(--color-primary));
+  }
 
   &.disabled {
     cursor: not-allowed;
@@ -133,7 +183,7 @@
 }
 
 .errorMessage {
-  margin-left: calc(20px + var(--spacing-sm)); // checkbox width + gap
+  margin-top: var(--spacing-xs);
   color: var(--color-error);
   font-size: var(--font-size-sm);
   line-height: 1.4;
@@ -142,18 +192,15 @@
   &.size-sm {
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
-    margin-left: calc(16px + var(--spacing-sm));
   }
 
   &.size-md {
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
-    margin-left: calc(20px + var(--spacing-sm));
   }
 
   &.size-lg {
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
-    margin-left: calc(24px + var(--spacing-sm));
   }
 }

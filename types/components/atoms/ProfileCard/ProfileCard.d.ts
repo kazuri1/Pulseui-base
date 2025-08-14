@@ -1,5 +1,6 @@
 import React from "react";
-export interface ProfileCardProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface ProfileCardProps extends WithSxProps {
     /** Profile avatar image URL (defaults to mypic.jpg) */
     avatarUrl?: string;
     /** Profile avatar alt text */
@@ -18,7 +19,5 @@ export interface ProfileCardProps {
     followers: number;
     /** Number of following */
     following: number;
-    /** Additional CSS classes */
-    className?: string;
 }
 export declare const ProfileCard: React.FC<ProfileCardProps>;

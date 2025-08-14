@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Image.module.scss";
+import { Icon } from "../Icon";
+import { Image as ImageIcon, BrokenImage } from "../Icon/IconSet";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export type ObjectFit = "fill" | "contain" | "cover" | "none" | "scale-down";
 
@@ -41,6 +44,7 @@ export const Image: React.FC<ImageProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
 

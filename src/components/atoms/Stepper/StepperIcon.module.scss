@@ -13,6 +13,43 @@
   transition: var(--motion-transition-fast);
   user-select: none;
   box-sizing: border-box;
+
+  &.state-completed {
+    background-color: var(--color-success);
+    color: var(--color-surface);
+    border-color: var(--color-success);
+
+    &:hover {
+      background-color: var(--color-success);
+      transform: scale(1.05);
+    }
+  }
+
+  &.state-current {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+
+    &:hover {
+      background-color: var(--color-primary-7);
+      transform: scale(1.05);
+    }
+  }
+
+  &.state-upcoming {
+    background-color: var(--color-surface-secondary);
+    color: var(--color-text-muted);
+    border-color: var(--color-border-secondary);
+
+    &:hover {
+      background-color: var(--color-surface-tertiary);
+      transform: scale(1.05);
+    }
+  }
+
+  &.variant-default {
+    background: var(--color-surface-secondary);
+  }
 }
 
 // Size variants

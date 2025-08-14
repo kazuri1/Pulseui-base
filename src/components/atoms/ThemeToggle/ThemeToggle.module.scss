@@ -1,0 +1,42 @@
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.icon {
+  transition: transform 0.3s ease-in-out;
+
+  .themeToggle:hover & {
+    transform: rotate(15deg);
+  }
+}
+
+.label {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+// Dark theme specific styles
+[data-theme="dark"] .themeToggle {
+  .icon {
+    color: var(--color-text-primary);
+  }
+}
+
+// Light theme specific styles
+[data-theme="light"] .themeToggle {
+  .icon {
+    color: var(--color-text-primary);
+  }
+}
+

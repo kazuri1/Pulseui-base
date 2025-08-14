@@ -11,6 +11,7 @@ import {
   ErrorOutline,
   Close,
 } from "../Icon/IconSet";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface AlertProps extends WithSxProps {
   /** The content to display in the alert */
@@ -50,6 +51,7 @@ export const Alert: React.FC<AlertProps> = ({
   sx,
   style,
 }) => {
+  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

@@ -1,5 +1,6 @@
 import React from "react";
-export interface ComponentDisplayProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface ComponentDisplayProps extends WithSxProps {
     title: string;
     description?: string;
     component: React.ComponentType<any>;

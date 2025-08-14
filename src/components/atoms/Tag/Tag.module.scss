@@ -30,15 +30,15 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: background-color 0.2s ease;
+    transition: var(--motion-transition-normal);
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: var(--color-surface-secondary);
     }
 
     &:focus {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
+      outline: var(--border-width-thin) solid var(--color-border-focus);
+      outline-offset: var(--spacing-xs);
     }
   }
 
@@ -90,7 +90,7 @@
     border-color: var(--color-border-secondary);
 
     .closeButton:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: var(--color-surface-secondary);
     }
   }
 

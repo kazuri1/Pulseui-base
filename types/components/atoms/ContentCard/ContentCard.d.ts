@@ -1,5 +1,6 @@
 import React from "react";
-export interface ContentCardProps {
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface ContentCardProps extends WithSxProps {
     /** URL of the featured image */
     imageUrl: string;
     /** Alt text for the image */
@@ -18,8 +19,6 @@ export interface ContentCardProps {
     authorImageUrl?: string;
     /** Optional click handler for the card */
     onClick?: () => void;
-    /** Additional CSS classes */
-    className?: string;
     /** Size variant of the card */
     size?: "sm" | "md" | "lg";
 }

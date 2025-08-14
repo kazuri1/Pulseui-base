@@ -7,12 +7,24 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  // Gray scale
-  --color-gray-0: #f8f9fa;
-  --color-gray-1: #f1f3f5;
-  --color-gray-2: #e9ecef;
-  --color-gray-3: #dee2e6;
-  --color-gray-4: #ced4da;
+  // New Surface Color System
+  --color-surface-0: #ffffff; // Base surface
+  --color-surface-1: #fafafa; // Surface 1
+  --color-surface-2: #f5f5f5; // Surface 2
+  --color-surface-3: #eeeeee; // Surface 3
+  --color-surface-4: #e0e0e0; // Surface 4
+  --color-surface-5: #d6d6d6; // Surface 5
+  --color-surface-variant: #f0f0f0; // Surface variant
+  --color-on-surface: #212121; // Primary text/icons
+  --color-on-surface-variant: #5f5f5f; // Secondary text
+  --color-divider: #e0e0e0; // Divider/border
+
+  // Gray scale (keeping for backward compatibility)
+  --color-gray-0: var(--color-surface-1);
+  --color-gray-1: var(--color-surface-2);
+  --color-gray-2: var(--color-surface-3);
+  --color-gray-3: var(--color-surface-4);
+  --color-gray-4: var(--color-surface-5);
   --color-gray-5: #adb5bd;
   --color-gray-6: #868e96;
   --color-gray-7: #495057;
@@ -67,41 +79,43 @@
   --color-yellow-8: #f08c00;
   --color-yellow-9: #e67700;
 
-  // Theme-aware colors (will be overridden by ThemeProvider)
-  --color-background: var(--color-white);
-  --color-surface: var(--color-white);
-  --color-surface-secondary: var(--color-gray-0);
-  --color-surface-tertiary: var(--color-gray-1);
-  --color-text-primary: var(--color-gray-9);
-  --color-text-secondary: var(--color-gray-7);
-  --color-text-muted: var(--color-gray-6);
-  --color-text-disabled: var(--color-gray-5);
-  --color-border-primary: var(--color-gray-3);
-  --color-border-secondary: var(--color-gray-2);
+  // Theme-aware colors (using new surface system)
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+  --color-text-primary: var(--color-on-surface);
+  --color-text-primary-hover: var(--color-primary);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-text-muted: var(--color-on-surface-variant);
+  --color-text-disabled: #adb5bd;
+  --color-border-primary: var(--color-divider);
+  --color-border-secondary: var(--color-surface-4);
   --color-border-focus: var(--color-blue-6);
   --color-shadow: rgba(0, 0, 0, 0.1);
 
   // Component-specific theme colors
-  --color-button-primary: var(--color-blue-6);
+  --color-button-primary: var(--color-blue-8);
   --color-button-primary-hover: var(--color-blue-7);
-  --color-button-secondary: var(--color-gray-0);
-  --color-button-secondary-hover: var(--color-gray-1);
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
   --color-button-outline: var(--color-blue-6);
   --color-button-outline-hover: var(--color-blue-7);
-  --color-button-text: var(--color-gray-7);
-  --color-button-text-hover: var(--color-gray-9);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
 
   // Input colors
-  --color-input-background: var(--color-white);
-  --color-input-border: var(--color-gray-3);
+  --color-input-background: var(--color-surface-0);
+  --color-input-border: var(--color-divider);
   --color-input-border-focus: var(--color-blue-6);
-  --color-input-text: var(--color-gray-9);
-  --color-input-placeholder: var(--color-gray-5);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
 
   // Icon colors
-  --color-icon-primary: var(--color-gray-7);
-  --color-icon-secondary: var(--color-gray-6);
-  --color-icon-muted: var(--color-gray-5);
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
   --color-icon-inherit: currentColor;
 
   // Status colors
@@ -109,6 +123,12 @@
   --color-warning: var(--color-yellow-6);
   --color-error: var(--color-red-6);
   --color-info: var(--color-blue-6);
+
+  // Primary colors
+  --color-primary: var(--color-blue-8);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-6);
+  --color-primary-dark: var(--color-blue-9);
 
   // Spacing
   --spacing-xs: 4px;
@@ -143,6 +163,8 @@
   --line-height-lg: 27px;
   --line-height-xl: 30px;
   --line-height-xxl: 36px;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
 
   // Font weights
   --font-weight-normal: 400;
@@ -211,7 +233,15 @@
   --color-overlay-dark: rgba(0, 0, 0, 0.8);
   --color-backdrop: rgba(0, 0, 0, 0.5);
 
-  // Breakpoints
+  // Breakpoints (Industry Standard)
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
+  // Legacy breakpoints (deprecated, kept for backward compatibility)
   --breakpoint-mobile: 480px;
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1024px;
@@ -258,49 +288,100 @@
   --transform-hover: translateY(-1px);
   --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-normal: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+  // Focus and outline tokens
+  --outline-focus: var(--border-width-normal) solid var(--color-border-focus);
+  --outline-offset: 2px;
+
+  // Component sizing tokens
+  --size-dropdown-min-width: 80px;
+  --size-dropdown-min-width-mobile: 70px;
+  --size-dropdown-max-height: 200px;
+  --size-dropdown-option-min-width: 100px;
 }
 
-// Dark mode colors (will be applied by ThemeProvider)
+// Dark theme colors - Using new surface color system
 [data-theme="dark"] {
-  --color-background: #141414;
-  --color-surface: #1f1f1f;
-  --color-surface-secondary: #242424;
-  --color-surface-tertiary: #2e2e2e;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #c9c9c9;
-  --color-text-muted: #828282;
-  --color-text-disabled: #696969;
-  --color-border-primary: #424242;
-  --color-border-secondary: #3b3b3b;
-  --color-border-focus: #4dabf7;
-  --color-shadow: rgba(0, 0, 0, 0.3);
+  // New Surface Color System for Dark Mode
+  --color-surface-0: #121212; // Base surface
+  --color-surface-1: #1e1e1e; // Surface 1
+  --color-surface-2: #232323; // Surface 2
+  --color-surface-3: #2a2a2a; // Surface 3
+  --color-surface-4: #2f2f2f; // Surface 4
+  --color-surface-5: #353535; // Surface 5
+  --color-surface-variant: #2c2c2c; // Surface variant
+  --color-on-surface: #e0e0e0; // Primary text/icons
+  --color-on-surface-variant: #a8a8a8; // Secondary text
+  --color-divider: #3a3a3a; // Divider/border
+
+  // Gray scale (keeping for backward compatibility)
+  --color-gray-0: var(--color-surface-1);
+  --color-gray-1: var(--color-surface-2);
+  --color-gray-2: var(--color-surface-3);
+  --color-gray-3: var(--color-surface-4);
+  --color-gray-4: var(--color-surface-5);
+  --color-gray-5: #adb5bd;
+  --color-gray-6: #868e96;
+  --color-gray-7: #495057;
+  --color-gray-8: #343a40;
+  --color-gray-9: #212529;
+
+  // Theme-aware colors using new surface system
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Text colors using new surface system
+  --color-text-primary: var(--color-on-surface);
+  --color-text-primary-hover: var(--color-primary);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-text-muted: var(--color-on-surface-variant);
+  --color-text-disabled: #adb5bd;
+
+  // Border colors using new surface system
+  --color-border-primary: var(--color-divider);
+  --color-border-secondary: var(--color-surface-4);
+  --color-border-focus: var(--color-blue-6);
+
+  // Primary colors using design system tokens
+  --color-primary: var(--color-blue-6);
+  --color-primary-1: var(--color-blue-9);
+  --color-primary-6: var(--color-blue-6);
+  --color-primary-7: var(--color-blue-5);
 
   // Component-specific colors
-  --color-button-primary: #4dabf7;
-  --color-button-primary-hover: #74c0fc;
-  --color-button-secondary: #2e2e2e;
-  --color-button-secondary-hover: #3b3b3b;
-  --color-button-outline: #4dabf7;
-  --color-button-outline-hover: #74c0fc;
-  --color-button-text: #c9c9c9;
-  --color-button-text-hover: #ffffff;
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-5);
+  --color-button-secondary: var(--color-surface-2);
+  --color-button-secondary-hover: var(--color-surface-3);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-5);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
 
   // Input colors
-  --color-input-background: #1f1f1f;
-  --color-input-border: #424242;
-  --color-input-border-focus: #4dabf7;
-  --color-input-text: #ffffff;
-  --color-input-placeholder: #696969;
+  --color-input-background: var(--color-surface-1);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
 
   // Icon colors
-  --color-icon-primary: #c9c9c9;
-  --color-icon-secondary: #828282;
-  --color-icon-muted: #696969;
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
   --color-icon-inherit: currentColor;
 
-  // Status colors
-  --color-success: #69db7c;
-  --color-warning: #ffd43b;
-  --color-error: #ff8787;
-  --color-info: #4dabf7;
+  // Status colors using design system tokens
+  --color-success: var(--color-green-6);
+  --color-warning: var(--color-yellow-6);
+  --color-error: var(--color-red-6);
+  --color-info: var(--color-blue-6);
+
+  // Shadows
+  --color-shadow: rgba(0, 0, 0, 0.3);
 }

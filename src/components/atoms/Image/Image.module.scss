@@ -51,11 +51,11 @@
 
   // Error state styling
   &.error {
-    background-color: var(--color-gray-1);
+    background-color: var(--color-surface-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-gray-6);
+    color: var(--color-text-muted);
     font-size: var(--font-size-sm);
     min-height: 100px;
     border-radius: inherit; // Inherit border radius for error state

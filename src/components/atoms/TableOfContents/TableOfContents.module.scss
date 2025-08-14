@@ -61,12 +61,12 @@
       }
 
       &.active {
-        background-color: var(--color-button-primary);
-        color: var(--color-white);
+        background-color: var(--color-primary);
+        color: var(--color-surface);
         font-weight: var(--font-weight-medium);
 
         .number {
-          color: var(--color-white);
+          color: var(--color-surface);
         }
       }
 
