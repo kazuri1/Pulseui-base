@@ -23,9 +23,10 @@ import { PillInput } from "./components/atoms/PillInput";
 import { Radio } from "./components/atoms/Radio";
 import { Stepper } from "./components/atoms/Stepper";
 import { Kbd } from "./components/atoms/Kbd";
+import { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
 
 function AppContent() {
-  const { themeName, setTheme } = useTheme();
+  const { themeName } = useTheme();
   const [checkboxState, setCheckboxState] = React.useState("default");
   const [inputState, setInputState] = React.useState<
     "default" | "filled" | "unstyled"
@@ -137,34 +138,10 @@ function AppContent() {
         }}
       >
         <span style={{ fontSize: "14px", color: "#666" }}>Theme:</span>
-        <button
-          onClick={() => setTheme("default-light")}
-          style={{
-            padding: "8px 16px",
-            borderRadius: "6px",
-            cursor: "pointer",
-            fontSize: "14px",
-            fontWeight: "500",
-          }}
-        >
-          ☀️ Light
-        </button>
-        <button
-          onClick={() => setTheme("default-dark")}
-          style={{
-            padding: "8px 16px",
-            backgroundColor:
-              themeName === "default-dark" ? "#007bff" : "#e9ecef",
-            color: themeName === "default-dark" ? "#ffffff" : "#000000",
-            border: "1px solid #ddd",
-            borderRadius: "6px",
-            cursor: "pointer",
-            fontSize: "14px",
-            fontWeight: "500",
-          }}
-        >
-          🌙 Dark
-        </button>
+        <ThemeSwitcher size="md" variant="light" />
+        <span style={{ fontSize: "12px", color: "#999" }}>
+          Click to toggle between light and dark modes
+        </span>
       </div>
 
       {/* Component Variants */}

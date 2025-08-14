@@ -9,6 +9,7 @@ import type { SvgIconComponent } from "@mui/icons-material";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { VersionSelector } from "./VersionSelector";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 export interface SimpleTopNavItem {
   /** Unique identifier for the nav item */
@@ -57,6 +58,8 @@ export interface SimpleTopNavProps extends WithSxProps {
     /** Whether to show the version selector */
     show?: boolean;
   };
+  /** Whether to show the theme switcher */
+  showThemeSwitcher?: boolean;
 }
 
 export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
@@ -71,6 +74,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
   style,
   defaultMobileMenuOpen = false,
   versionSelector = {},
+  showThemeSwitcher = true,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(
     defaultMobileMenuOpen
@@ -182,6 +186,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
                 className={styles.versionSelector}
               />
             )}
+            {showThemeSwitcher && <ThemeSwitcher />}
           </div>
         )}
 
@@ -191,23 +196,35 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
             {showDesktopNav && (
               <div className={styles.desktopNavigation}>
                 {navItems.map((item) => renderNavItem(item))}
+                {showThemeSwitcher && (
+                  <div className={styles.themeSwitcherContainer}>
+                    <ThemeSwitcher size="sm" variant="light" />
+                  </div>
+                )}
               </div>
             )}
 
             {/* Mobile Menu Toggle - Only show on mobile/tablet */}
             {showMobileToggle && (
-              <button
-                className={styles.mobileMenuToggle}
-                onClick={toggleMobileMenu}
-                aria-label="Toggle mobile menu"
-                type="button"
-              >
-                <Icon
-                  icon={isMobileMenuOpen ? Close : Menu}
-                  size="md"
-                  color="inherit"
-                />
-              </button>
+              <div className={styles.mobileControls}>
+                {showThemeSwitcher && (
+                  <div className={styles.themeSwitcherContainer}>
+                    <ThemeSwitcher size="sm" variant="light" />
+                  </div>
+                )}
+                <button
+                  className={styles.mobileMenuToggle}
+                  onClick={toggleMobileMenu}
+                  aria-label="Toggle mobile menu"
+                  type="button"
+                >
+                  <Icon
+                    icon={isMobileMenuOpen ? Close : Menu}
+                    size="md"
+                    color="inherit"
+                  />
+                </button>
+              </div>
             )}
           </>
         )}

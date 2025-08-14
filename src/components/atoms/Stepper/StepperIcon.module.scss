@@ -6,13 +6,25 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-family);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   background: var(--color-surface);
   color: var(--color-text-primary);
   border: var(--border-width-thin) solid var(--color-border-primary);
   transition: var(--motion-transition-fast);
   user-select: none;
   box-sizing: border-box;
+  text-align: center;
+  line-height: 1;
+
+  &:focus {
+    outline: 2px solid var(--color-blue-6);
+    outline-offset: 2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-6);
+    outline-offset: 2px;
+  }
 
   &.state-completed {
     background-color: var(--color-success);
@@ -81,17 +93,38 @@
 
 // Status variants
 .status-default {
-  background: var(--color-gray-1);
+  background: var(--color-surface-3);
   color: var(--color-text-primary);
-  border-color: transparent;
+  border-color: var(--color-border-primary);
+  border-width: var(--border-width-thin);
+
+  &:hover {
+    background: var(--color-surface-4);
+    transform: scale(1.05);
+  }
 }
+
 .status-active {
   background: var(--color-white);
   color: var(--color-text-primary);
   border-color: var(--color-blue-6);
+  border-width: var(--border-width-thin);
+  box-shadow: 0 0 0 2px var(--color-blue-1);
+
+  &:hover {
+    box-shadow: 0 0 0 3px var(--color-blue-2);
+    transform: scale(1.05);
+  }
 }
+
 .status-complete {
   background: var(--color-blue-6);
   color: var(--color-white);
   border-color: var(--color-blue-6);
+  border-width: var(--border-width-thin);
+
+  &:hover {
+    background: var(--color-blue-7);
+    transform: scale(1.05);
+  }
 }

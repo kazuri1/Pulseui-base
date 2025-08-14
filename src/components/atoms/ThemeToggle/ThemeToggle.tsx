@@ -41,6 +41,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   style,
 }) => {
   const { isDark, toggleTheme } = useTheme();
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
@@ -49,7 +50,13 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   );
 
   const handleToggle = () => {
+    setIsAnimating(true);
     toggleTheme();
+
+    // Reset animation state after animation completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 400);
   };
 
   // Get current icon and label
@@ -57,7 +64,11 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   const currentLabel = isDark ? lightLabel : darkLabel;
   const themeName = showThemeName ? `Switch to ${currentLabel}` : currentLabel;
 
-  const toggleClasses = combineClassNames(styles.themeToggle, sxClassName);
+  const toggleClasses = combineClassNames(
+    styles.themeToggle,
+    isAnimating && styles.animating,
+    sxClassName
+  );
 
   return (
     <Button
@@ -68,6 +79,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
       style={sxStyle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       data-theme={isDark ? "dark" : "light"}
+      disabled={isAnimating}
     >
       <Icon
         icon={CurrentIcon}

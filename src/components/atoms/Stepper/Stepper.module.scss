@@ -7,25 +7,30 @@
   gap: var(--spacing-sm);
   font-family: var(--font-family);
   color: var(--color-text-primary);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-0);
+  border: 1px solid var(--color-border-secondary);
 }
 
 .connector {
   flex: 1;
   height: var(--border-width-thin);
-  background-color: var(--color-border-secondary);
+  background-color: var(--color-surface-4);
   border-radius: var(--radius-xs);
   min-width: var(--spacing-lg);
   max-width: var(--spacing-xxl);
 }
 
 .connectorComplete {
-  background-color: var(--color-primary);
+  background-color: var(--color-blue-6);
+  height: var(--border-width-thin);
 }
 
 // Size variants
 .size-xs {
   gap: var(--spacing-xs);
-  
+
   .connector {
     min-width: var(--spacing-md);
     max-width: var(--spacing-xl);
@@ -34,7 +39,7 @@
 
 .size-sm {
   gap: var(--spacing-sm);
-  
+
   .connector {
     min-width: var(--spacing-lg);
     max-width: var(--spacing-xxl);
@@ -43,7 +48,7 @@
 
 .size-md {
   gap: var(--spacing-sm);
-  
+
   .connector {
     min-width: var(--spacing-lg);
     max-width: var(--spacing-xxl);
@@ -52,7 +57,7 @@
 
 .size-lg {
   gap: var(--spacing-md);
-  
+
   .connector {
     min-width: var(--spacing-xl);
     max-width: var(--spacing-2xl);
@@ -61,9 +66,9 @@
 
 .size-xl {
   gap: var(--spacing-lg);
-  
+
   .connector {
     min-width: var(--spacing-xxl);
     max-width: var(--spacing-2xl);
   }
-} 
+}

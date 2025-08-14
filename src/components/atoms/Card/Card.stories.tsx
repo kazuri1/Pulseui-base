@@ -193,7 +193,7 @@ export const ResponsiveLayout: Story = {
 
 export const InteractiveElements: Story = {
   render: () => (
-      <Card
+    <Card
       title="Interactive Card"
       description="This card includes various interactive elements and hover effects."
       buttonText="Primary Action"
@@ -208,19 +208,19 @@ export const InteractiveElements: Story = {
           <Button variant="subtle" size="sm">
             Tertiary
           </Button>
-    </div>
+        </div>
 
         <Text variant="sm" color="muted">
           Hover over buttons and card elements to see interactive states.
         </Text>
-    </div>
+      </div>
     </Card>
   ),
 };
 
 export const AccessibilityDemo: Story = {
   render: () => (
-      <Card
+    <Card
       title="Accessibility Features"
       description="This card demonstrates proper accessibility practices including ARIA labels and keyboard navigation."
       buttonText="Accessible Action"
@@ -241,9 +241,9 @@ export const AccessibilityDemo: Story = {
           >
             Accessible Action
           </Button>
-          </div>
         </div>
-      </Card>
+      </div>
+    </Card>
   ),
   parameters: {
     a11y: {

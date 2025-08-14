@@ -1,0 +1,17 @@
+@import "../../../styles/_tokens.scss";
+@import "../../../styles/_mixins.scss";
+
+.themeSwitcher {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // Smooth transition for icon changes
+  transition: var(--motion-transition-normal);
+
+  // Focus styles for accessibility
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: var(--radius-sm);
+  }
+}

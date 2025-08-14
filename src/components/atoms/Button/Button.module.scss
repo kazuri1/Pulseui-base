@@ -90,14 +90,16 @@
   &.variant-light {
     background-color: transparent;
     color: var(--color-primary);
-    border: none;
+    border: var(--border-width-thin) solid transparent;
 
     &:hover:not(:disabled) {
-      background-color: var(--color-surface-secondary);
+      background-color: var(--color-surface-1);
+      border-color: var(--color-border-secondary);
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-surface-tertiary);
+      background-color: var(--color-surface-2);
+      border-color: var(--color-border-primary);
       transform: translateY(0);
     }
   }
