@@ -4,7 +4,6 @@ import styles from "./Icon.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface IconProps extends WithSxProps {
   /** The MUI icon component to render */
@@ -39,7 +38,6 @@ export const Icon: React.FC<IconProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -60,7 +58,6 @@ export const Icon: React.FC<IconProps> = ({
       className={iconClasses}
       style={sxStyle}
       onClick={clickable && !disabled ? onClick : undefined}
-      data-theme={isDark ? "dark" : "light"}
     />
   );
 };

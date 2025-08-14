@@ -2,8 +2,7 @@
 @import "../../../styles/_mixins.scss";
 
 .selectContainer {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   gap: var(--spacing-xs);
   position: relative;
 }
@@ -14,9 +13,10 @@
   color: var(--color-text-primary);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
+  font-family: var(--font-family);
 
   &.disabled {
-    color: var(--color-text-muted);
+    color: var(--color-text-disabled);
     cursor: not-allowed;
   }
 }
@@ -31,37 +31,34 @@
 }
 
 .selectButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-between;
   width: 100%;
   padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-surface);
-  border: var(--border-width-thin) solid var(--color-border-secondary);
+  background-color: var(--color-input-background);
+  border: var(--border-width-thin) solid var(--color-input-border);
   border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
+  color: var(--color-input-text);
   font-size: inherit;
   line-height: inherit;
   font-family: var(--font-family);
   cursor: pointer;
-  transition: var(--motion-transition-fast);
+  transition: var(--motion-transition-normal);
   text-align: left;
   min-height: var(--size-md);
 
   &:hover:not(:disabled) {
-    border-color: var(--color-border-primary);
-    background-color: var(--color-surface-secondary);
+    border-color: var(--color-input-border-focus);
+    background-color: var(--color-surface-1);
   }
 
-  &:focus {
-    outline: var(--outline-focus);
-    outline-offset: var(--outline-offset);
-    border-color: var(--color-border-focus);
+  &:focus-visible {
+    @include focus-ring;
+    border-color: var(--color-input-border-focus);
   }
 
   &.open {
-    border-color: var(--color-border-focus);
-    background-color: var(--color-surface-secondary);
+    border-color: var(--color-input-border-focus);
+    background-color: var(--color-surface-1);
   }
 
   &.error {
@@ -71,7 +68,7 @@
   &.disabled {
     background-color: var(--color-surface-tertiary);
     border-color: var(--color-border-secondary);
-    color: var(--color-text-muted);
+    color: var(--color-text-disabled);
     cursor: not-allowed;
   }
 }
@@ -86,7 +83,8 @@
 .selectIcon {
   flex-shrink: 0;
   margin-left: var(--spacing-sm);
-  transition: var(--motion-transition-fast);
+  transition: var(--motion-transition-normal);
+  color: var(--color-icon-secondary);
 }
 
 .dropdown {
@@ -102,6 +100,7 @@
   box-shadow: var(--shadow-lg);
   max-height: var(--size-dropdown-max-height);
   overflow-y: auto;
+  min-width: var(--size-dropdown-min-width);
 }
 
 .optionsList {
@@ -113,26 +112,30 @@
 .option {
   padding: var(--spacing-sm) var(--spacing-md);
   cursor: pointer;
-  transition: var(--motion-transition-fast);
+  transition: var(--motion-transition-normal);
   color: var(--color-text-primary);
+  font-family: var(--font-family);
 
   &:hover:not(.disabled) {
-    background-color: var(--color-surface-secondary);
+    background-color: var(--color-surface-1);
   }
 
   &.selected {
     background-color: var(--color-primary);
-    color: var(--color-surface);
+    color: var(--color-white);
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-primary-hover);
+    }
   }
 
   &.focused {
-    background-color: var(--color-surface-secondary);
-    outline: var(--outline-focus);
-    outline-offset: calc(-1 * var(--outline-offset));
+    background-color: var(--color-surface-1);
+    @include focus-ring-inset;
   }
 
   &.disabled {
-    color: var(--color-text-muted);
+    color: var(--color-text-disabled);
     cursor: not-allowed;
     background-color: var(--color-surface-tertiary);
   }
@@ -142,9 +145,10 @@
   font-size: inherit;
   color: var(--color-error);
   margin-top: var(--spacing-xs);
+  font-family: var(--font-family);
 }
 
-// Size variants
+// Size variants using design system tokens
 .size-sm {
   .selectButton {
     padding: var(--spacing-xs) var(--spacing-sm);
@@ -220,8 +224,8 @@
   }
 }
 
-// Responsive design
-@media (max-width: var(--breakpoint-mobile)) {
+// Responsive design using design system breakpoints
+@media (max-width: var(--breakpoint-sm)) {
   .selectButton {
     padding: var(--spacing-sm);
   }
@@ -232,5 +236,37 @@
 
   .dropdown {
     max-height: 200px;
+    min-width: var(--size-dropdown-min-width-mobile);
+  }
+}
+
+// Focus management for better accessibility
+.selectButton:focus-visible {
+  @include focus-ring;
+}
+
+.option:focus-visible {
+  @include focus-ring-inset;
+}
+
+// Enhanced hover states using design system
+.selectButton:hover:not(.disabled) {
+  transform: var(--transform-hover);
+  box-shadow: var(--shadow-normal);
+}
+
+// Animation for dropdown open/close
+.dropdown {
+  animation: dropdownSlide 0.2s var(--motion-easing-ease-out);
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

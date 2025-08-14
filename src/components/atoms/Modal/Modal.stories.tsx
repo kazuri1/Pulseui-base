@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
 import { Modal } from "./Modal";
 import { Button } from "../Button";
 
@@ -8,52 +8,36 @@ const meta: Meta<typeof Modal> = {
   component: Modal,
   parameters: {
     layout: "fullscreen",
-    docs: {
-      description: {
-        component:
-          "A modal component with title, description, content slots, and footer integration.",
-      },
-    },
   },
-  tags: ["autodocs"],
   argTypes: {
     show: {
       control: { type: "boolean" },
-      description: "Whether to show the modal",
     },
     size: {
       control: { type: "select" },
       options: ["xs", "sm", "md", "lg", "xl"],
-      description: "Modal size",
     },
     showTitle: {
       control: { type: "boolean" },
-      description: "Whether to show the title",
     },
     showDescription: {
       control: { type: "boolean" },
-      description: "Whether to show the description",
     },
     showClose: {
       control: { type: "boolean" },
-      description: "Whether to show the close button",
     },
     showFooter: {
       control: { type: "boolean" },
-      description: "Whether to show the footer",
     },
     footerVariant: {
       control: { type: "select" },
       options: ["button-only", "primary", "destructive"],
-      description: "Footer variant",
     },
     closeOnBackdropClick: {
       control: { type: "boolean" },
-      description: "Whether to close on backdrop click",
     },
     closeOnEscape: {
       control: { type: "boolean" },
-      description: "Whether to close on escape key",
     },
   },
 };
@@ -73,13 +57,6 @@ export const BasicModal: Story = {
       </div>
     ),
   },
-  parameters: {
-    docs: {
-      description: {
-        story: "Basic modal with title, description, and content.",
-      },
-    },
-  },
 };
 
 export const ModalWithFooter: Story = {
@@ -97,13 +74,6 @@ export const ModalWithFooter: Story = {
       </div>
     ),
   },
-  parameters: {
-    docs: {
-      description: {
-        story: "Modal with footer showing primary and secondary buttons.",
-      },
-    },
-  },
 };
 
 export const DestructiveModal: Story = {
@@ -119,13 +89,6 @@ export const DestructiveModal: Story = {
         <p>This action cannot be undone. Please confirm your decision.</p>
       </div>
     ),
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Modal with destructive footer variant for dangerous actions.",
-      },
-    },
   },
 };
 
@@ -172,13 +135,6 @@ export const ModalSizes: Story = {
       </div>
     );
   },
-  parameters: {
-    docs: {
-      description: {
-        story: "Demonstrates all modal sizes: xs, sm, md, lg, xl.",
-      },
-    },
-  },
 };
 
 export const ModalWithoutTitle: Story = {
@@ -195,13 +151,6 @@ export const ModalWithoutTitle: Story = {
       </div>
     ),
   },
-  parameters: {
-    docs: {
-      description: {
-        story: "Modal without a title, useful for simple confirmations.",
-      },
-    },
-  },
 };
 
 export const ModalWithoutClose: Story = {
@@ -216,13 +165,6 @@ export const ModalWithoutClose: Story = {
         <p>Use this when you want to force users to make a decision.</p>
       </div>
     ),
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Modal without close button, forcing user interaction.",
-      },
-    },
   },
 };
 
@@ -273,12 +215,5 @@ export const CustomContentModal: Story = {
         </div>
       </div>
     ),
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Modal with custom content including form elements.",
-      },
-    },
   },
 };

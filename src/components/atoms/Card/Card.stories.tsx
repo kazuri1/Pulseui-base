@@ -1,83 +1,34 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
 import { Card } from "./Card";
-import { ThemeProvider } from "../../ThemeProvider/ThemeProvider";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
-import { useTheme } from "../../../contexts/ThemeContext";
-
-// Theme-aware wrapper component
-const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ThemeProvider defaultTheme="default-light">
-      <div
-        style={{
-          padding: "2rem",
-          backgroundColor: "var(--color-surface-50)",
-          minHeight: "100vh",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "2rem",
-            padding: "1rem",
-            backgroundColor: "var(--color-surface-100)",
-            borderRadius: "var(--radius-lg)",
-            border: "1px solid var(--color-border-light)",
-          }}
-        >
-          <div>
-            <h2
-              style={{
-                margin: 0,
-                color: "var(--color-text-primary)",
-                fontSize: "var(--typography-h2-fontSize)",
-              }}
-            >
-              Card Component Stories
-            </h2>
-            <p
-              style={{
-                margin: "0.5rem 0 0 0",
-                color: "var(--color-text-secondary)",
-                fontSize: "var(--typography-bodySmall-fontSize)",
-              }}
-            >
-              Switch themes to see how cards adapt automatically
-            </p>
-          </div>
-          <ThemeToggle showLabel={true} size="md" variant="outline" />
-        </div>
-        {children}
-      </div>
-    </ThemeProvider>
-  );
-};
+import { Text } from "../Text";
+import { Button } from "../Button";
+import { Badge } from "../Badge";
+import { Avatar } from "../Avatar";
+import { Icon } from "../Icon";
+import { Favorite, Message, Share } from "../Icon/IconSet";
 
 const meta: Meta<typeof Card> = {
-  title: "Components/Card",
+  title: "Atoms/Card",
   component: Card,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A flexible card component for displaying content with various layouts and styles.",
+      },
+    },
   },
   tags: ["autodocs"],
-  decorators: [
-    (Story) => (
-      <ThemeWrapper>
-        <Story />
-      </ThemeWrapper>
-    ),
-  ],
   argTypes: {
     variant: {
-      control: { type: "select" },
+      control: "select",
       options: ["default", "image-overlay"],
+      description: "Visual style variant of the card",
     },
     badgeVariant: {
-      control: { type: "select" },
+      control: "select",
       options: [
         "dot",
         "filled",
@@ -87,39 +38,22 @@ const meta: Meta<typeof Card> = {
         "white",
         "default",
       ],
+      description: "Badge style variant",
     },
     buttonVariant: {
-      control: { type: "select" },
+      control: "select",
       options: ["filled", "subtle", "light", "outline", "white", "default"],
+      description: "Button style variant",
     },
     buttonSize: {
-      control: { type: "select" },
+      control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
+      description: "Button size",
     },
     imageFit: {
-      control: { type: "select" },
+      control: "select",
       options: ["fill", "contain", "cover", "none", "scale-down"],
-    },
-    showImage: {
-      control: { type: "boolean" },
-    },
-    showTitle: {
-      control: { type: "boolean" },
-    },
-    showBadge: {
-      control: { type: "boolean" },
-    },
-    showDescription: {
-      control: { type: "boolean" },
-    },
-    showButton: {
-      control: { type: "boolean" },
-    },
-    clickable: {
-      control: { type: "boolean" },
-    },
-    disabled: {
-      control: { type: "boolean" },
+      description: "Image fit mode",
     },
   },
 };
@@ -129,282 +63,60 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: "Card Title",
-    description: "This is a description of the card content.",
-    buttonText: "Learn More",
-    imageSrc:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
-    imageAlt: "Mountain landscape",
+    title: "Default Card",
+    description: "This is a basic card with default styling.",
+    buttonText: "Action",
+    imageSrc: "https://via.placeholder.com/300x200",
+    imageAlt: "Placeholder image",
   },
-};
-
-export const ImageOverlay: Story = {
-  args: {
-    variant: "image-overlay",
-    title: "Beautiful Landscape",
-    description:
-      "A stunning mountain landscape with snow-capped peaks and clear blue skies.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-    imageAlt: "Mountain landscape",
-  },
-};
-
-export const WithBadge: Story = {
-  args: {
-    title: "Card Title",
-    badge: "NEW",
-    badgeVariant: "filled",
-    description: "This card has a badge to highlight important information.",
-    buttonText: "View Details",
-    imageSrc:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
-    imageAlt: "Mountain landscape",
-  },
-};
-
-export const WithoutImage: Story = {
-  args: {
-    title: "Card Without Image",
-    badge: "FEATURED",
-    badgeVariant: "subtle",
-    description: "This card doesn't have an image but still looks great.",
-    buttonText: "Get Started",
-    showImage: false,
-  },
-};
-
-export const ClickableCard: Story = {
-  args: {
-    title: "Clickable Card",
-    description: "This entire card is clickable, not just the button.",
-    buttonText: "Primary Action",
-    imageSrc:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
-    imageAlt: "Mountain landscape",
-    clickable: true,
-    onClick: () => alert("Card clicked!"),
-  },
-};
-
-export const DisabledCard: Story = {
-  args: {
-    title: "Disabled Card",
-    description: "This card is disabled and cannot be interacted with.",
-    buttonText: "Disabled Button",
-    imageSrc:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop",
-    imageAlt: "Mountain landscape",
-    disabled: true,
-  },
-};
-
-export const AllBadgeVariants: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-      <Card
-        title="Dot Badge"
-        badge="DOT"
-        badgeVariant="dot"
-        description="Card with dot badge variant."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-      <Card
-        title="Filled Badge"
-        badge="FILLED"
-        badgeVariant="filled"
-        description="Card with filled badge variant."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-      <Card
-        title="Subtle Badge"
-        badge="SUBTLE"
-        badgeVariant="subtle"
-        description="Card with subtle badge variant."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-      <Card
-        title="Outline Badge"
-        badge="OUTLINE"
-        badgeVariant="outline"
-        description="Card with outline badge variant."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-    </div>
-  ),
-};
-
-export const AllButtonVariants: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-      <Card
-        title="Filled Button"
-        description="Card with filled button variant."
-        buttonText="Filled"
-        buttonVariant="filled"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-      <Card
-        title="Subtle Button"
-        description="Card with subtle button variant."
-        buttonText="Subtle"
-        buttonVariant="subtle"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-      <Card
-        title="Outline Button"
-        description="Card with outline button variant."
-        buttonText="Outline"
-        buttonVariant="outline"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-      <Card
-        title="Light Button"
-        description="Card with light button variant."
-        buttonText="Light"
-        buttonVariant="light"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-      />
-    </div>
-  ),
-};
-
-export const DifferentImageFits: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-      <Card
-        title="Cover Fit"
-        description="Image with cover fit mode."
-        buttonText="View"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        imageFit="cover"
-      />
-      <Card
-        title="Contain Fit"
-        description="Image with contain fit mode."
-        buttonText="View"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        imageFit="contain"
-      />
-      <Card
-        title="Rounded Image"
-        description="Image with border radius."
-        buttonText="View"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        imageRadius={16}
-      />
-    </div>
-  ),
-};
-
-export const BooleanControls: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-      <Card
-        title="Full Card"
-        badge="NEW"
-        description="This card shows all elements."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        showTitle={true}
-        showBadge={true}
-        showDescription={true}
-        showButton={true}
-        showImage={true}
-      />
-      <Card
-        title="No Title"
-        badge="NEW"
-        description="This card hides the title."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        showTitle={false}
-        showBadge={true}
-        showDescription={true}
-        showButton={true}
-        showImage={true}
-      />
-      <Card
-        title="No Badge"
-        description="This card hides the badge."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        showTitle={true}
-        showBadge={false}
-        showDescription={true}
-        showButton={true}
-        showImage={true}
-      />
-      <Card
-        title="No Description"
-        badge="NEW"
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        showTitle={true}
-        showBadge={true}
-        showDescription={false}
-        showButton={true}
-        showImage={true}
-      />
-      <Card
-        title="No Button"
-        badge="NEW"
-        description="This card hides the button."
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        showTitle={true}
-        showBadge={true}
-        showDescription={true}
-        showButton={false}
-        showImage={true}
-      />
-      <Card
-        title="Image Only"
-        badge="NEW"
-        description="This card hides the image."
-        buttonText="Action"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Mountain landscape"
-        showTitle={true}
-        showBadge={true}
-        showDescription={true}
-        showButton={true}
-        showImage={false}
-      />
-    </div>
-  ),
 };
 
 export const WithCustomContent: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-      <Card
-        title="Product Card"
-        badge="SALE"
-        description="High-quality product with custom content."
-        buttonText="Buy Now"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="Product image"
-      >
+  args: {
+    title: "Custom Content Card",
+    description: "This card demonstrates custom content layout.",
+    buttonText: "Learn More",
+    imageSrc: "https://via.placeholder.com/400x250",
+    imageAlt: "Custom content image",
+  },
+  render: (args) => (
+    <Card {...args}>
+      <div style={{ padding: "16px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "12px",
+          }}
+        >
+          <Avatar size="sm" src="https://via.placeholder.com/40" alt="User" />
+          <div style={{ marginLeft: "12px" }}>
+            <Text variant="sm" weight="medium">
+              John Doe
+            </Text>
+            <Text variant="xs" color="muted">
+              Posted 2 hours ago
+            </Text>
+          </div>
+        </div>
+
+        <Text variant="md" style={{ marginBottom: "16px" }}>
+          This card showcases custom content with avatars, badges, and
+          interactive elements.
+        </Text>
+
+        <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+          <Badge variant="filled" size="sm">
+            React
+          </Badge>
+          <Badge variant="subtle" size="sm">
+            TypeScript
+          </Badge>
+          <Badge variant="light" size="sm">
+            Storybook
+          </Badge>
+        </div>
+
         <div
           style={{
             display: "flex",
@@ -412,213 +124,137 @@ export const WithCustomContent: Story = {
             alignItems: "center",
           }}
         >
-          <span
-            style={{
-              fontSize: "24px",
-              fontWeight: "bold",
-              color: "var(--color-primary-6)",
-            }}
-          >
-            $99.99
-          </span>
-          <span
-            style={{
-              color: "var(--color-text-secondary)",
-              textDecoration: "line-through",
-            }}
-          >
-            $129.99
-          </span>
+          <div style={{ display: "flex", gap: "16px" }}>
+            <Button variant="subtle" size="sm" leftIcon="none">
+              <Icon icon={Favorite} size="sm" />
+              Like
+            </Button>
+            <Button variant="subtle" size="sm" leftIcon="none">
+              <Icon icon={Message} size="sm" />
+              Comment
+            </Button>
+            <Button variant="subtle" size="sm" leftIcon="none">
+              <Icon icon={Share} size="sm" />
+              Share
+            </Button>
+          </div>
+          <Button variant="filled" size="sm">
+            {args.buttonText}
+          </Button>
         </div>
-        <div style={{ marginTop: "8px" }}>
-          <span style={{ color: "var(--color-success-6)", fontSize: "14px" }}>
-            ✓ In Stock
-          </span>
-        </div>
-      </Card>
+      </div>
+    </Card>
+  ),
+};
+
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+      <Card
+        variant="default"
+        title="Default Variant"
+        description="Standard card appearance"
+        buttonText="Action"
+        style={{ width: "250px" }}
+      />
 
       <Card
-        title="User Profile"
-        description="User information with custom stats."
-        buttonText="View Profile"
-        imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-        imageAlt="User avatar"
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            justifyContent: "space-around",
-          }}
-        >
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "18px", fontWeight: "bold" }}>1.2k</div>
-            <div
-              style={{ fontSize: "12px", color: "var(--color-text-secondary)" }}
-            >
-              Followers
-            </div>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "18px", fontWeight: "bold" }}>348</div>
-            <div
-              style={{ fontSize: "12px", color: "var(--color-text-secondary)" }}
-            >
-              Following
-            </div>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "18px", fontWeight: "bold" }}>156</div>
-            <div
-              style={{ fontSize: "12px", color: "var(--color-text-secondary)" }}
-            >
-              Posts
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      <Card
-        title="Task List"
-        description="Project tasks with custom progress."
-        buttonText="View All"
-        showImage={false}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span>Design Review</span>
-            <span style={{ color: "var(--color-success-6)" }}>✓ Complete</span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span>Frontend Development</span>
-            <span style={{ color: "var(--color-primary-6)" }}>In Progress</span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span>Backend API</span>
-            <span style={{ color: "var(--color-warning-6)" }}>Pending</span>
-          </div>
-        </div>
-      </Card>
+        variant="image-overlay"
+        title="Image Overlay Variant"
+        description="Card with image overlay styling"
+        buttonText="Action"
+        imageSrc="https://via.placeholder.com/250x150"
+        imageAlt="Overlay variant demo"
+        style={{ width: "250px" }}
+      />
     </div>
   ),
 };
 
-// New story to showcase theme switching
-export const ThemeShowcase: Story = {
-  render: () => {
-    const ThemeAwareCard = () => {
-      const { isDark, themeMode } = useTheme();
+export const ResponsiveLayout: Story = {
+  render: () => (
+    <div style={{ maxWidth: "800px" }}>
+      <Card
+        title="Responsive Card Layout"
+        description="This card demonstrates responsive behavior and adapts to different screen sizes."
+        buttonText="View Details"
+        imageSrc="https://via.placeholder.com/600x300"
+        imageAlt="Responsive layout demo"
+        style={{ width: "100%" }}
+      />
+    </div>
+  ),
+  parameters: {
+    viewport: {
+      defaultViewport: "responsive",
+    },
+  },
+};
 
-      return (
-        <div
-          style={{
-            padding: "2rem",
-            backgroundColor: "var(--color-surface-50)",
-            borderRadius: "var(--radius-lg)",
-            border: "1px solid var(--color-border-medium)",
-          }}
-        >
-          <h3
-            style={{
-              color: "var(--color-text-primary)",
-              marginBottom: "1rem",
-            }}
+export const InteractiveElements: Story = {
+  render: () => (
+      <Card
+      title="Interactive Card"
+      description="This card includes various interactive elements and hover effects."
+      buttonText="Primary Action"
+      imageSrc="https://via.placeholder.com/350x200"
+      imageAlt="Interactive demo"
+    >
+      <div style={{ padding: "16px" }}>
+        <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+          <Button variant="outline" size="sm">
+            Secondary
+          </Button>
+          <Button variant="subtle" size="sm">
+            Tertiary
+          </Button>
+    </div>
+
+        <Text variant="sm" color="muted">
+          Hover over buttons and card elements to see interactive states.
+        </Text>
+    </div>
+    </Card>
+  ),
+};
+
+export const AccessibilityDemo: Story = {
+  render: () => (
+      <Card
+      title="Accessibility Features"
+      description="This card demonstrates proper accessibility practices including ARIA labels and keyboard navigation."
+      buttonText="Accessible Action"
+      imageSrc="https://via.placeholder.com/300x180"
+      imageAlt="Accessibility demonstration"
+    >
+      <div style={{ padding: "16px" }}>
+        <Text variant="sm">
+          This card includes proper semantic HTML, ARIA labels, and keyboard
+          navigation support.
+        </Text>
+
+        <div style={{ marginTop: "16px" }}>
+          <Button
+            variant="filled"
+            size="sm"
+            aria-label="Primary action button for accessibility demo"
           >
-            Theme-Aware Card Demo
-          </h3>
-          <p
-            style={{
-              color: "var(--color-text-secondary)",
-              marginBottom: "2rem",
-            }}
-          >
-            Current theme: <strong>{themeMode}</strong> (
-            {isDark ? "Dark" : "Light"})
-          </p>
-
-          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            <Card
-              title="Light Theme Card"
-              description="This card automatically adapts to the current theme."
-              buttonText="Theme Aware"
-              imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
-              imageAlt="Theme demo"
-            />
-
-            <Card
-              title="Custom Styled Card"
-              description="Using theme variables for custom styling."
-              buttonText="Custom Style"
-              showImage={false}
-              sx={{
-                backgroundColor: "surface",
-                border: "2px solid var(--color-primary-3)",
-                borderRadius: "xl",
-              }}
-            />
-          </div>
-
-          <div
-            style={{
-              marginTop: "2rem",
-              padding: "1rem",
-              backgroundColor: "var(--color-surface-100)",
-              borderRadius: "var(--radius-md)",
-              border: "1px solid var(--color-border-light)",
-            }}
-          >
-            <h4
-              style={{
-                color: "var(--color-text-primary)",
-                marginBottom: "0.5rem",
-              }}
-            >
-              Theme Information
-            </h4>
-            <ul
-              style={{
-                color: "var(--color-text-secondary)",
-                fontSize: "var(--typography-bodySmall-fontSize)",
-                margin: 0,
-                paddingLeft: "1.5rem",
-              }}
-            >
-              <li>
-                Background: <code>var(--color-surface-50)</code>
-              </li>
-              <li>
-                Text: <code>var(--color-text-primary)</code>
-              </li>
-              <li>
-                Border: <code>var(--color-border-medium)</code>
-              </li>
-              <li>
-                Primary: <code>var(--color-primary-6)</code>
-              </li>
-            </ul>
+            Accessible Action
+          </Button>
           </div>
         </div>
-      );
-    };
-
-    return <ThemeAwareCard />;
+      </Card>
+  ),
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          {
+            id: "button-name",
+            enabled: true,
+          },
+        ],
+      },
+    },
   },
 };

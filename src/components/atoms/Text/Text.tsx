@@ -3,7 +3,6 @@ import styles from "./Text.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface TextProps extends WithSxProps {
   /** Text content */
@@ -34,7 +33,6 @@ export const Text: React.FC<TextProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

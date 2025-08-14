@@ -36,6 +36,7 @@
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .title {
@@ -53,7 +54,7 @@
 .authorSection {
   @include flex-start;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
+  margin-top: var(--spacing-md);
   padding-top: var(--spacing-md);
   border-top: var(--border-width-thin) solid var(--color-border-secondary);
 }
@@ -73,7 +74,7 @@
   margin: 0;
 }
 
-// Size variants
+// Size variants with improved padding
 .size-sm {
   .content {
     padding: var(--spacing-md);
@@ -91,7 +92,7 @@
   }
 
   .authorSection {
-    margin-top: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
     padding-top: var(--spacing-sm);
   }
 }
@@ -113,7 +114,7 @@
   }
 
   .authorSection {
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
     padding-top: var(--spacing-md);
   }
 }
@@ -135,12 +136,12 @@
   }
 
   .authorSection {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-lg);
     padding-top: var(--spacing-lg);
   }
 }
 
-// Responsive adjustments
+// Responsive adjustments with consistent padding
 @media (max-width: 768px) {
   .content {
     padding: var(--spacing-md);
@@ -158,7 +159,20 @@
   }
 
   .authorSection {
-    margin-top: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
     padding-top: var(--spacing-sm);
+  }
+}
+
+// Additional responsive breakpoint for very small screens
+@media (max-width: 480px) {
+  .content {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-xs);
+  }
+
+  .authorSection {
+    margin-top: var(--spacing-xs);
+    padding-top: var(--spacing-xs);
   }
 }

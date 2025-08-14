@@ -4,7 +4,6 @@ import { ExpandMore, ExpandLess } from "../Icon/IconSet";
 import styles from "./Select.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface SelectOption {
   value: string;
@@ -52,7 +51,6 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     },
     ref
   ) => {
-    const { isDark } = useTheme();
     const [internalValue, setInternalValue] = useState(defaultValue || "");
     const [isOpen, setIsOpen] = useState(false);
     const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -203,7 +201,6 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             onKeyDown={handleKeyDown}
             onFocus={onFocus}
             onBlur={onBlur}
-            data-theme={isDark ? "dark" : "light"}
           >
             <span className={styles.selectValue}>
               {selectedOption ? selectedOption.label : placeholder}

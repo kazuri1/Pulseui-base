@@ -46,38 +46,48 @@
   border: var(--border-width-thin) solid var(--color-border-secondary);
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
-  transition: all var(--motion-transition-normal) ease;
+  transition: all var(--motion-transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   cursor: pointer;
   user-select: none;
+  transform: scale(1);
+  overflow: hidden;
 
+  // Subtle scale animation on hover
   &:hover:not(.disabled) {
     background-color: var(--color-surface-secondary);
     border-color: var(--color-border-primary);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
+  // Active state animation
   &:active:not(.disabled) {
-    transform: none;
-    box-shadow: none;
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
   }
 
+  // Focus state with subtle glow
   &:focus-visible {
     outline: var(--border-width-thin) solid var(--color-border-focus);
     outline-offset: var(--spacing-xs);
     border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.05);
   }
 
   &.disabled {
     cursor: not-allowed;
     opacity: var(--opacity-50);
-    transform: none;
+    transform: scale(1);
+    transition: opacity var(--motion-transition-normal) ease;
   }
 
   &.error {
     border-color: var(--color-error);
+    animation: shake 0.5s ease-in-out;
 
     &:hover:not(.disabled) {
       border-color: var(--color-error);
@@ -103,26 +113,37 @@
   &.checked {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
+    animation: checkmark 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover:not(.disabled) {
       background-color: var(--color-primary-hover, var(--color-primary));
       border-color: var(--color-primary-hover, var(--color-primary));
     }
+
+    // Icon animation when checked
+    svg {
+      animation: iconPop 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
 
-  // Icon styling
+  // Icon styling with animations
   svg {
     color: white !important;
     stroke-width: 2;
     width: 60%;
     height: 60%;
     fill: white;
+    transition: all var(--motion-transition-normal) ease;
+    transform: scale(0);
+    opacity: 0;
   }
 
   // Ensure icon is white when checked
   &.checked svg {
     color: white !important;
     fill: white;
+    transform: scale(1);
+    opacity: 1;
   }
 
   // Override any inherited colors from parent elements
@@ -203,4 +224,69 @@
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
   }
+}
+
+// Keyframe animations
+@keyframes checkmark {
+  0% {
+    transform: scale(1);
+    background-color: var(--color-surface);
+    border-color: var(--color-border-secondary);
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  100% {
+    transform: scale(1);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+@keyframes iconPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+// Smooth transition for unchecked state
+.checkbox:not(.checked) svg {
+  transition: all var(--motion-transition-normal) ease;
+  transform: scale(0);
+  opacity: 0;
+}
+
+// Enhanced hover effects
+.checkbox:hover:not(.disabled):not(.checked) {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.checkbox:hover:not(.disabled).checked {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
 }

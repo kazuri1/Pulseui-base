@@ -9,69 +9,25 @@ const meta: Meta<typeof LeftDrawer> = {
   component: LeftDrawer,
   parameters: {
     layout: "fullscreen",
-    docs: {
-      description: {
-        component: `
-# LeftDrawer Component
-
-A responsive left-side navigation drawer with accordion-style sections and nested navigation items.
-
-## Features
-
-- **Accordion Navigation**: Collapsible sections with smooth animations
-- **Nested Items**: Support for hierarchical navigation structure
-- **Icon Support**: Optional icons for sections and navigation items
-- **Responsive Design**: Adapts to different screen sizes
-- **Accessibility**: Proper ARIA attributes and keyboard navigation
-- **Brand Header**: Customizable header with logo and brand name
-- **Overlay Support**: Optional backdrop overlay for mobile devices
-
-## Usage
-
-The LeftDrawer is perfect for:
-- Main application navigation
-- Sidebar menus
-- Mobile navigation patterns
-- Complex hierarchical navigation structures
-
-## Props
-
-- \`isOpen\`: Controls drawer visibility
-- \`onClose\`: Callback when drawer should close
-- \`sections\`: Array of navigation sections with accordion behavior
-- \`brandName\`: Optional brand name in header
-- \`brandLogo\`: Optional brand logo component
-- \`showOverlay\`: Whether to show backdrop overlay
-- \`width\`: Customizable drawer width
-        `,
-      },
-    },
   },
-  tags: ["autodocs"],
   argTypes: {
     isOpen: {
       control: { type: "boolean" },
-      description: "Controls whether the drawer is visible",
     },
     onClose: {
       action: "closed",
-      description: "Callback function when drawer should close",
     },
     sections: {
       control: { type: "object" },
-      description: "Array of navigation sections with accordion behavior",
     },
     brandName: {
       control: { type: "text" },
-      description: "Brand name displayed in the drawer header",
     },
     showOverlay: {
       control: { type: "boolean" },
-      description: "Whether to show the backdrop overlay",
     },
     width: {
       control: { type: "text" },
-      description: "Custom width of the drawer",
     },
   },
 };
@@ -160,9 +116,10 @@ const nestedSections = [
 const LeftDrawerWrapper: React.FC<{
   sections: any[];
   brandName?: string;
+  brandLogo?: React.ReactNode;
   showOverlay?: boolean;
   width?: string;
-}> = ({ sections, brandName, showOverlay, width }) => {
+}> = ({ sections, brandName, brandLogo, showOverlay, width }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -187,6 +144,7 @@ const LeftDrawerWrapper: React.FC<{
         onClose={() => setIsOpen(false)}
         sections={sections}
         brandName={brandName}
+        brandLogo={brandLogo}
         showOverlay={showOverlay}
         width={width}
       />
