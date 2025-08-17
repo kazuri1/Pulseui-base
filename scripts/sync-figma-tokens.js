@@ -30,7 +30,11 @@ const FIGMA_API_BASE = "https://api.figma.com/v1";
 
 // Output paths
 const TOKENS_OUTPUT_PATH = path.join(__dirname, "../src/styles/_tokens.scss");
-const TOKENS_JSON_PATH = path.join(__dirname, "../tokens/figma-tokens.json");
+const TOKENS_JSON_PATH = path.join(__dirname, "../tokens/tokens.json");
+const FIGMA_TOKENS_JSON_PATH = path.join(
+  __dirname,
+  "../tokens/figma-tokens.json"
+);
 
 // Ensure tokens directory exists
 const tokensDir = path.dirname(TOKENS_JSON_PATH);
@@ -106,6 +110,90 @@ async function fetchFigmaTokens() {
     console.error("❌ Error fetching from Figma:", error.message);
     throw error;
   }
+}
+
+/**
+ * Extracts current tokens from existing _tokens.scss file
+ */
+function extractCurrentTokens() {
+  console.log("📖 Extracting current tokens from _tokens.scss...");
+
+  if (!fs.existsSync(TOKENS_OUTPUT_PATH)) {
+    console.log("⚠️  No existing _tokens.scss file found");
+    return {
+      colors: {},
+      spacing: {},
+      typography: {},
+      effects: {},
+      sizes: {},
+      breakpoints: {},
+    };
+  }
+
+  const content = fs.readFileSync(TOKENS_OUTPUT_PATH, "utf8");
+  const tokens = {
+    colors: {},
+    spacing: {},
+    typography: {},
+    effects: {},
+    sizes: {},
+    breakpoints: {},
+  };
+
+  // Extract CSS custom properties
+  const cssVarRegex = /--([^:]+):\s*([^;]+);/g;
+  let match;
+
+  while ((match = cssVarRegex.exec(content)) !== null) {
+    const [, name, value] = match;
+    const cleanName = name.trim();
+    const cleanValue = value.trim();
+
+    // Categorize tokens based on name
+    if (cleanName.startsWith("color-") || cleanName.startsWith("--color-")) {
+      tokens.colors[cleanName] = cleanValue;
+    } else if (
+      cleanName.includes("spacing") ||
+      cleanName.includes("margin") ||
+      cleanName.includes("padding")
+    ) {
+      tokens.spacing[cleanName] = cleanValue;
+    } else if (
+      cleanName.includes("font") ||
+      cleanName.includes("text") ||
+      cleanName.includes("line-height")
+    ) {
+      tokens.typography[cleanName] = cleanValue;
+    } else if (
+      cleanName.includes("shadow") ||
+      cleanName.includes("blur") ||
+      cleanName.includes("opacity")
+    ) {
+      tokens.effects[cleanName] = cleanValue;
+    } else if (
+      cleanName.includes("size") ||
+      cleanName.includes("width") ||
+      cleanName.includes("height")
+    ) {
+      tokens.sizes[cleanName] = cleanValue;
+    } else if (
+      cleanName.includes("breakpoint") ||
+      cleanName.includes("media")
+    ) {
+      tokens.breakpoints[cleanName] = cleanValue;
+    } else {
+      // Default to colors for unknown tokens
+      tokens.colors[cleanName] = cleanValue;
+    }
+  }
+
+  console.log(
+    `✅ Extracted ${Object.values(tokens).reduce(
+      (sum, cat) => sum + Object.keys(cat).length,
+      0
+    )} current tokens`
+  );
+  return tokens;
 }
 
 /**
@@ -240,9 +328,7 @@ function processTypographyToken(typographyObj, name, variable) {
       if (typeof value === "string") {
         typographyObj[name] = value;
       } else if (typeof value === "number") {
-        typographyObj[name] = name.includes("line-height")
-          ? value.toString()
-          : `${value}px`;
+        typographyObj[name] = `${value}px`;
       }
     });
   }
@@ -252,264 +338,205 @@ function processTypographyToken(typographyObj, name, variable) {
  * Extract tokens from text content (fallback method)
  */
 function extractTokensFromText(fileData, tokens) {
-  // This is a fallback method for when variables API isn't available
-  // We'll look for text content that might contain token definitions
+  console.log("📝 Extracting tokens from text content...");
 
-  function traverseNodes(node) {
-    if (node.type === "TEXT" && node.characters) {
-      const text = node.characters;
-
-      // Look for color patterns
-      const colorMatches = text.match(/#[0-9a-fA-F]{6}/g);
-      if (colorMatches) {
-        colorMatches.forEach((color, index) => {
-          tokens.colors[`extracted-color-${index + 1}`] = color;
-        });
-      }
-
-      // Look for spacing patterns
-      const spacingMatches = text.match(/(\d+)px/g);
-      if (spacingMatches) {
-        spacingMatches.forEach((spacing, index) => {
-          const value = spacing.match(/(\d+)/)[1];
-          tokens.spacing[`extracted-spacing-${index + 1}`] = `${value}px`;
-        });
-      }
-    }
-
-    if (node.children) {
-      node.children.forEach(traverseNodes);
-    }
-  }
-
-  if (fileData.document) {
-    traverseNodes(fileData.document);
+  if (fileData.document && fileData.document.children) {
+    extractFromNode(fileData.document, tokens);
   }
 }
 
 /**
- * Generates SCSS variables from tokens
+ * Recursively extract tokens from Figma nodes
  */
-function generateSCSS(tokens) {
-  console.log("📝 Generating SCSS variables...");
-
-  let scss = `// Design Tokens - Auto-generated from Figma
-// Last updated: ${new Date().toISOString()}
-// 
-// 🎨 This file maintains 100% design token compliance
-// ⚠️  DO NOT EDIT MANUALLY - Changes will be overwritten
-//
-
-:root {
-`;
-
-  // Generate color tokens
-  if (Object.keys(tokens.colors).length > 0) {
-    scss += `  // Colors\n`;
-    Object.entries(tokens.colors).forEach(([name, value]) => {
-      scss += `  --color-${name}: ${value};\n`;
-    });
-    scss += "\n";
+function extractFromNode(node, tokens) {
+  if (node.children) {
+    node.children.forEach((child) => extractFromNode(child, tokens));
   }
 
-  // Generate spacing tokens
-  if (Object.keys(tokens.spacing).length > 0) {
-    scss += `  // Spacing\n`;
-    Object.entries(tokens.spacing).forEach(([name, value]) => {
-      scss += `  --spacing-${name}: ${value};\n`;
-    });
-    scss += "\n";
+  // Extract from text layers
+  if (node.type === "TEXT" && node.style) {
+    if (node.style.fontSize) {
+      tokens.typography[
+        `font-size-${node.style.fontSize}`
+      ] = `${node.style.fontSize}px`;
+    }
+    if (node.style.lineHeightPx) {
+      tokens.typography[
+        `line-height-${node.style.lineHeightPx}`
+      ] = `${node.style.lineHeightPx}px`;
+    }
   }
 
-  // Generate size tokens
-  if (Object.keys(tokens.sizes).length > 0) {
-    scss += `  // Component Sizes\n`;
-    Object.entries(tokens.sizes).forEach(([name, value]) => {
-      scss += `  --size-${name}: ${value};\n`;
+  // Extract from fills (colors)
+  if (node.fills) {
+    node.fills.forEach((fill, index) => {
+      if (fill.type === "SOLID" && fill.color) {
+        const { r, g, b, a = 1 } = fill.color;
+        const colorName = `color-${node.name || `fill-${index}`}`
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "-");
+
+        if (a < 1) {
+          tokens.colors[colorName] = `rgba(${Math.round(r * 255)}, ${Math.round(
+            g * 255
+          )}, ${Math.round(b * 255)}, ${a})`;
+        } else {
+          tokens.colors[colorName] = `#${Math.round(r * 255)
+            .toString(16)
+            .padStart(2, "0")}${Math.round(g * 255)
+            .toString(16)
+            .padStart(2, "0")}${Math.round(b * 255)
+            .toString(16)
+            .padStart(2, "0")}`;
+        }
+      }
     });
-    scss += "\n";
   }
-
-  // Generate typography tokens
-  if (Object.keys(tokens.typography).length > 0) {
-    scss += `  // Typography\n`;
-    Object.entries(tokens.typography).forEach(([name, value]) => {
-      scss += `  --${name}: ${value};\n`;
-    });
-    scss += "\n";
-  }
-
-  scss += `}
-
-// Export tokens for JavaScript usage
-:export {
-`;
-
-  // Export all tokens for JS
-  const allTokens = {
-    ...tokens.colors,
-    ...tokens.spacing,
-    ...tokens.sizes,
-    ...tokens.typography,
-  };
-  Object.entries(allTokens).forEach(([name, value]) => {
-    scss += `  ${name.replace(/-/g, "")}: ${value};\n`;
-  });
-
-  scss += `}
-`;
-
-  return scss;
 }
 
 /**
- * Surgically updates only changed token values from Figma
- *
- * PRESERVES EVERYTHING:
- * - File structure and formatting
- * - Comments and spacing
- * - Organization and grouping
- *
- * ONLY CHANGES:
- * - Token values that differ from Figma (e.g., #ffffff → #f8f9fa)
- * - Nothing else
+ * Compare Figma tokens with current tokens and identify changes
  */
-function mergeTokensWithExisting(figmaTokens) {
-  console.log("🔄 Merging Figma tokens with existing file...");
+function compareAndMergeTokens(figmaTokens, currentTokens) {
+  console.log("🔍 Comparing Figma tokens with current tokens...");
 
-  if (!fs.existsSync(TOKENS_OUTPUT_PATH)) {
-    console.log("⚠️  No existing tokens file found, creating new one");
-    return generateScssFromTokens(figmaTokens);
-  }
-
-  // Read existing file
-  const existingContent = fs.readFileSync(TOKENS_OUTPUT_PATH, "utf8");
-  let updatedContent = existingContent;
-  let changesCount = 0;
-
-  // Debug: Show what tokens exist in current file
-  const existingTokens = existingContent.match(/--[\w-]+:/g) || [];
-  console.log(
-    "🔍 Debug: Existing tokens in file:",
-    existingTokens.slice(0, 10).map((t) => t.replace(":", ""))
-  );
-
-  // Extract all tokens from Figma data
-  const allFigmaTokens = {
-    ...figmaTokens.colors,
-    ...figmaTokens.spacing,
-    ...figmaTokens.sizes,
-    ...figmaTokens.typography,
+  const changes = {
+    added: {},
+    updated: {},
+    unchanged: {},
+    removed: {},
   };
 
-  // Debug: Show what tokens we received from Figma
-  console.log(
-    "🔍 Debug: Figma tokens received:",
-    Object.keys(allFigmaTokens).length,
-    "tokens"
-  );
+  let totalChanges = 0;
 
-  // Only proceed if we actually have tokens from Figma
-  if (Object.keys(allFigmaTokens).length === 0) {
-    console.log(
-      "⚠️  No tokens received from Figma - keeping existing file unchanged"
-    );
-    console.log("🔍 This could mean:");
-    console.log("   - Figma API token is missing or invalid");
-    console.log("   - Figma file key is incorrect");
-    console.log("   - Figma file has no design tokens");
-    console.log("   - API connection failed");
-    return existingContent; // Return unchanged content
-  }
-
-  // Update each token value if it exists in the file AND we have a new value from Figma
-  Object.entries(allFigmaTokens).forEach(([tokenName, newValue]) => {
-    // Skip if the token value is empty or undefined
-    if (!newValue || newValue.toString().trim() === "") {
-      console.log(`⚠️  Skipping empty token: --${tokenName}`);
-      return;
+  // Check each token category
+  Object.keys(figmaTokens).forEach((category) => {
+    if (!currentTokens[category]) {
+      currentTokens[category] = {};
     }
 
-    // Create a very precise regex that only matches the exact token
-    const escapedTokenName = tokenName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const tokenPattern = new RegExp(
-      `(^\\s*--${escapedTokenName}\\s*:\\s*)([^;\\n\\r]+)(;\\s*$)`,
-      "gm"
-    );
-    const match = existingContent.match(tokenPattern);
-
-    if (match && match.length > 0) {
-      const fullMatch = match[0];
-      const currentValue = fullMatch
-        .split(":")[1]
-        .trim()
-        .replace(";", "")
-        .trim();
-      const cleanNewValue = newValue.toString().trim();
-
-      if (currentValue !== cleanNewValue) {
-        updatedContent = updatedContent.replace(
-          tokenPattern,
-          `$1${cleanNewValue}$3`
-        );
-        changesCount++;
-        console.log(
-          `🔄 Updated --${tokenName}: "${currentValue}" → "${cleanNewValue}"`
-        );
+    Object.entries(figmaTokens[category]).forEach(([name, value]) => {
+      if (!currentTokens[category][name]) {
+        // New token
+        changes.added[`${category}.${name}`] = value;
+        currentTokens[category][name] = value;
+        totalChanges++;
+      } else if (currentTokens[category][name] !== value) {
+        // Updated token
+        changes.updated[`${category}.${name}`] = {
+          from: currentTokens[category][name],
+          to: value,
+        };
+        currentTokens[category][name] = value;
+        totalChanges++;
       } else {
-        console.log(
-          `✅ Token --${tokenName} already up to date: "${currentValue}"`
-        );
+        // Unchanged token
+        changes.unchanged[`${category}.${name}`] = value;
       }
-    } else {
-      console.log(
-        `⚠️  Token --${tokenName} not found in existing file (skipping)`
-      );
+    });
+  });
+
+  // Log changes
+  if (Object.keys(changes.added).length > 0) {
+    console.log(`➕ Added ${Object.keys(changes.added).length} new tokens`);
+  }
+
+  if (Object.keys(changes.updated).length > 0) {
+    console.log(
+      `🔄 Updated ${Object.keys(changes.updated).length} existing tokens`
+    );
+  }
+
+  if (Object.keys(changes.unchanged).length > 0) {
+    console.log(`✅ ${Object.keys(changes.unchanged).length} tokens unchanged`);
+  }
+
+  console.log(`📊 Total changes: ${totalChanges}`);
+
+  return { mergedTokens: currentTokens, changes, totalChanges };
+}
+
+/**
+ * Update SCSS file with new token values while preserving structure
+ */
+function updateSCSSTokens(scssContent, changes) {
+  console.log("✏️  Updating SCSS file with new token values...");
+
+  let updatedContent = scssContent;
+  let updateCount = 0;
+
+  // Update only changed values
+  Object.entries(changes.updated).forEach(([tokenPath, change]) => {
+    const [category, name] = tokenPath.split(".");
+    const searchPattern = new RegExp(`(--${name}:\\s*)([^;]+);`, "g");
+
+    if (searchPattern.test(updatedContent)) {
+      updatedContent = updatedContent.replace(searchPattern, `$1${change.to};`);
+      updateCount++;
     }
   });
 
-  // Only log changes, don't modify file structure or add timestamps
-  if (changesCount === 0) {
-    console.log(
-      "✅ No token values changed - all tokens are already up to date!"
-    );
-    console.log(
-      "🔍 This means your Figma tokens exactly match your current file values"
-    );
-    console.log("📋 File will remain unchanged (no unnecessary commits)");
-    return existingContent; // Return unchanged content
-  } else {
-    console.log(`✅ Updated ${changesCount} token values from Figma`);
-    console.log(
-      "📋 File structure and formatting preserved - only values changed"
-    );
-    // DO NOT add timestamps or modify file structure - only token values changed
-  }
+  // Add new tokens at the end of their respective sections
+  Object.entries(changes.added).forEach(([tokenPath, value]) => {
+    const [category, name] = tokenPath.split(".");
 
+    // Find the appropriate section and add the new token
+    const sectionPattern = new RegExp(
+      `(// ${
+        category.charAt(0).toUpperCase() + category.slice(1)
+      }[\\s\\S]*?)(\\n\\s*\\n)`,
+      "g"
+    );
+
+    if (sectionPattern.test(updatedContent)) {
+      updatedContent = updatedContent.replace(
+        sectionPattern,
+        `$1\n  --${name}: ${value};$2`
+      );
+      updateCount++;
+    } else {
+      // Add to the end if no section found
+      updatedContent += `\n  --${name}: ${value};`;
+      updateCount++;
+    }
+  });
+
+  console.log(`✅ Updated ${updateCount} token values in SCSS file`);
   return updatedContent;
 }
 
 /**
  * Saves tokens to files
  */
-function saveTokens(tokens, scss) {
+function saveTokens(tokens, changes, currentSCSS) {
   console.log("💾 Saving tokens to files...");
 
-  // Save JSON tokens
+  // Save current tokens as JSON for future comparison
   fs.writeFileSync(TOKENS_JSON_PATH, JSON.stringify(tokens, null, 2));
-  console.log(`✅ Saved JSON tokens to ${TOKENS_JSON_PATH}`);
+  console.log(`✅ Saved current tokens to ${TOKENS_JSON_PATH}`);
+
+  // Save Figma tokens for reference
+  fs.writeFileSync(FIGMA_TOKENS_JSON_PATH, JSON.stringify(tokens, null, 2));
+  console.log(`✅ Saved Figma tokens to ${FIGMA_TOKENS_JSON_PATH}`);
 
   // Create backup of existing SCSS file
   if (fs.existsSync(TOKENS_OUTPUT_PATH)) {
-    const backup = TOKENS_OUTPUT_PATH.replace(".scss", ".backup.scss");
+    const backup = TOKENS_OUTPUT_PATH.replace(
+      ".scss",
+      `.backup.${Date.now()}.scss`
+    );
     fs.copyFileSync(TOKENS_OUTPUT_PATH, backup);
     console.log(`📋 Backed up existing tokens to ${backup}`);
   }
 
-  // Use smart merging instead of complete replacement
-  const mergedContent = mergeTokensWithExisting(tokens);
-  fs.writeFileSync(TOKENS_OUTPUT_PATH, mergedContent);
-  console.log(`✅ Merged SCSS tokens to ${TOKENS_OUTPUT_PATH}`);
+  // Update SCSS file with changes
+  if (changes.totalChanges > 0) {
+    const updatedSCSS = updateSCSSTokens(currentSCSS, changes);
+    fs.writeFileSync(TOKENS_OUTPUT_PATH, updatedSCSS);
+    console.log(`✅ Updated SCSS tokens with ${changes.totalChanges} changes`);
+  } else {
+    console.log("✅ No changes detected - SCSS file unchanged");
+  }
 }
 
 /**
@@ -519,24 +546,45 @@ async function main() {
   try {
     console.log("🚀 Starting Figma design token sync...\n");
 
+    // Extract current tokens from existing SCSS file
+    const currentTokens = extractCurrentTokens();
+
+    // Read current SCSS content
+    let currentSCSS = "";
+    if (fs.existsSync(TOKENS_OUTPUT_PATH)) {
+      currentSCSS = fs.readFileSync(TOKENS_OUTPUT_PATH, "utf8");
+    }
+
     // Fetch tokens from Figma
     const figmaData = await fetchFigmaTokens();
 
-    // Process tokens
-    const tokens = processTokens(figmaData);
+    // Process Figma tokens
+    const figmaTokens = processTokens(figmaData);
 
-    // Save files with smart merging (no need for full SCSS generation)
-    saveTokens(tokens, null);
+    // Compare and merge tokens
+    const { mergedTokens, changes, totalChanges } = compareAndMergeTokens(
+      figmaTokens,
+      currentTokens
+    );
+
+    // Save files
+    saveTokens(mergedTokens, changes, currentSCSS);
 
     // Summary
-    const tokenCount = Object.values(tokens).reduce(
+    const tokenCount = Object.values(mergedTokens).reduce(
       (sum, category) => sum + Object.keys(category).length,
       0
     );
 
     console.log("\n🎉 Figma token sync completed successfully!");
-    console.log(`📊 Processed ${tokenCount} design tokens`);
-    console.log("🏆 Design token compliance maintained at 100%");
+    console.log(`📊 Total tokens: ${tokenCount}`);
+    console.log(`📈 Changes made: ${totalChanges}`);
+
+    if (totalChanges === 0) {
+      console.log("🏆 All tokens are already up to date!");
+    } else {
+      console.log("🔄 Token updates applied successfully");
+    }
 
     // Exit with success
     process.exit(0);
@@ -552,4 +600,10 @@ if (import.meta.url.includes("sync-figma-tokens.js")) {
   main();
 }
 
-export { fetchFigmaTokens, processTokens, generateSCSS, saveTokens };
+export {
+  fetchFigmaTokens,
+  processTokens,
+  extractCurrentTokens,
+  compareAndMergeTokens,
+  saveTokens,
+};

@@ -1,5 +1,8 @@
-import { ThemeProvider } from "./components/ThemeProvider/ThemeProvider";
-import { useTheme } from "./contexts/ThemeContext";
+import {
+  PulseUIProvider,
+  useTheme,
+  useBrand,
+} from "./contexts/PulseUIProvider";
 import { VariantSelector } from "./components/atoms/VariantSelector/VariantSelector";
 import { Button } from "./components/atoms/Button/Button";
 import { Badge } from "./components/atoms/Badge";
@@ -10,7 +13,7 @@ import { Select } from "./components/atoms/Select";
 import { SimpleTopNav } from "./components/atoms/SimpleTopNav";
 import { Grid, GridCol } from "./components/layouts/Grid";
 import { Text } from "./components/atoms/Text";
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "./components/atoms/Input";
 import { Textarea } from "./components/atoms/Textarea";
 import { Pill } from "./components/atoms/Pill";
@@ -24,9 +27,13 @@ import { Radio } from "./components/atoms/Radio";
 import { Stepper } from "./components/atoms/Stepper";
 import { Kbd } from "./components/atoms/Kbd";
 import { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
+import { BrandSwitcher } from "./components/atoms/BrandSwitcher";
+import { ThemeAndBrandSwitcher } from "./components/atoms/ThemeAndBrandSwitcher";
+import { Drawer } from "./components/atoms/Drawer";
 
 function AppContent() {
   const { themeName } = useTheme();
+  const { currentBrand, brandId, isDefaultBrand } = useBrand();
   const [checkboxState, setCheckboxState] = React.useState("default");
   const [inputState, setInputState] = React.useState<
     "default" | "filled" | "unstyled"
@@ -85,6 +92,19 @@ function AppContent() {
     "md"
   );
 
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalSize, setModalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
+    "md"
+  );
+
+  // Drawer state
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [drawerDirection, setDrawerDirection] = useState<
+    "right" | "left" | "bottom" | "top"
+  >("right");
+  const [drawerShowScroll, setDrawerShowScroll] = useState(true);
+
   const navItems = [
     {
       id: "home",
@@ -125,23 +145,107 @@ function AppContent() {
         }}
       />
 
-      {/* Theme Switcher */}
+      {/* Theme and Brand Switchers */}
       <div
         style={{
           display: "flex",
-          gap: "12px",
+          gap: "16px",
+          alignItems: "flex-start",
+          padding: "16px",
+          borderRadius: "8px",
+          border: "1px solid #ddd",
+          margin: "16px",
+          flexWrap: "wrap",
+        }}
+      >
+        {/* Theme Switcher */}
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            padding: "12px",
+            borderRadius: "6px",
+            border: "1px solid #eee",
+            backgroundColor: "#f9f9f9",
+            minWidth: "300px",
+          }}
+        >
+          <span style={{ fontSize: "14px", color: "#666" }}>Theme:</span>
+          <ThemeSwitcher size="md" variant="light" />
+          <span style={{ fontSize: "12px", color: "#999" }}>
+            Click to toggle between light and dark modes
+          </span>
+        </div>
+
+        {/* Brand Switcher */}
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            padding: "12px",
+            borderRadius: "6px",
+            border: "1px solid #eee",
+            backgroundColor: "#f9f9f9",
+            minWidth: "300px",
+          }}
+        >
+          <span style={{ fontSize: "14px", color: "#666" }}>Brand:</span>
+          <BrandSwitcher size="md" showVersion={true} showDescription={true} />
+          <span style={{ fontSize: "12px", color: "#999" }}>
+            Switch between different brand designs
+          </span>
+        </div>
+
+        {/* Combined Switcher */}
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            padding: "12px",
+            borderRadius: "6px",
+            border: "1px solid #eee",
+            backgroundColor: "#f9f9f9",
+            minWidth: "400px",
+          }}
+        >
+          <span style={{ fontSize: "14px", color: "#666" }}>Combined:</span>
+          <ThemeAndBrandSwitcher
+            size="sm"
+            showThemeToggle={true}
+            showBrandSwitcher={true}
+            showBrandVersion={true}
+            direction="horizontal"
+          />
+        </div>
+      </div>
+
+      {/* Current Brand Info */}
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
           alignItems: "center",
           padding: "16px",
           borderRadius: "8px",
           border: "1px solid #ddd",
           margin: "16px",
+          backgroundColor: "#f0f8ff",
         }}
       >
-        <span style={{ fontSize: "14px", color: "#666" }}>Theme:</span>
-        <ThemeSwitcher size="md" variant="light" />
-        <span style={{ fontSize: "12px", color: "#999" }}>
-          Click to toggle between light and dark modes
-        </span>
+        <Badge variant="filled">
+          Current Brand:{" "}
+          {isDefaultBrand
+            ? "PulseUI (Default)"
+            : currentBrand?.name || "Unknown"}
+        </Badge>
+        <Badge variant="outline">Brand ID: {brandId || "pulseui"}</Badge>
+        <Badge variant="light">Theme: {themeName}</Badge>
+        {currentBrand && (
+          <Badge variant="dot">Version: v{currentBrand.version}</Badge>
+        )}
       </div>
 
       {/* Component Variants */}
@@ -587,15 +691,245 @@ function AppContent() {
           </GridCol>
         </Grid>
       </div>
+
+      {/* Modal Component Section */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text variant="xxl" weight="bold" style={{ marginBottom: "24px" }}>
+          Modal Component with VariantSelector
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={6}>
+            <VariantSelector
+              title="Modal Size Variants"
+              variants={["xs", "sm", "md", "lg", "xl"]}
+              defaultVariant="md"
+              onVariantChange={(variant) =>
+                setModalSize(variant as "xs" | "sm" | "md" | "lg" | "xl")
+              }
+            >
+              <div
+                style={{
+                  padding: "20px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                  textAlign: "center",
+                }}
+              >
+                <Text
+                  variant="md"
+                  weight="semibold"
+                  style={{ marginBottom: "8px" }}
+                >
+                  Modal Size: {modalSize.toUpperCase()}
+                </Text>
+                <Button
+                  variant="filled"
+                  size="md"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  View Modal
+                </Button>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <VariantSelector
+            title="Drawer Scroll Variants"
+            variants={["true", "false"]}
+            defaultVariant="true"
+            onVariantChange={(variant) =>
+              setDrawerShowScroll(variant === "true")
+            }
+          >
+            <div
+              style={{
+                padding: "20px",
+                border: "1px solid var(--color-border-secondary)",
+                borderRadius: "var(--radius-md)",
+                backgroundColor: "var(--color-surface)",
+                textAlign: "center",
+              }}
+            >
+              <Text
+                variant="md"
+                weight="semibold"
+                style={{ marginBottom: "8px" }}
+              >
+                Scroll: {drawerShowScroll ? "Enabled" : "Disabled"}
+              </Text>
+              <Text
+                variant="sm"
+                color="secondary"
+                style={{ marginBottom: "16px" }}
+              >
+                Toggle scroll behavior for the drawer content
+              </Text>
+            </div>
+          </VariantSelector>
+        </Grid>
+      </div>
+
+      {/* Modal Component */}
+      <Modal
+        show={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Sample Modal"
+        size={modalSize}
+        showFooter={true}
+        footerVariant="primary"
+        primaryText="Confirm"
+        secondaryText="Cancel"
+        onPrimaryClick={() => {
+          console.log("Primary button clicked");
+          setIsModalOpen(false);
+        }}
+        onSecondaryClick={() => setIsModalOpen(false)}
+        showClose={true}
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
+      >
+        <div style={{ padding: "16px 0" }}>
+          <Text variant="md" style={{ marginBottom: "16px" }}>
+            Modal Content
+          </Text>
+          <Text variant="sm" color="secondary" style={{ marginBottom: "16px" }}>
+            This modal demonstrates the VariantSelector integration. You can
+            change:
+          </Text>
+          <ul
+            style={{ marginLeft: "20px", color: "var(--color-text-secondary)" }}
+          >
+            <li>Modal size: {modalSize}</li>
+            <li>Close behavior</li>
+          </ul>
+        </div>
+      </Modal>
+
+      {/* Drawer Component */}
+      <Drawer
+        show={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        title="Sample Drawer"
+        direction={drawerDirection}
+        showScroll={drawerShowScroll}
+        showClose={true}
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
+      >
+        <div style={{ padding: "16px" }}>
+          <Text variant="lg" weight="semibold" style={{ marginBottom: "16px" }}>
+            Drawer Content
+          </Text>
+          <Text variant="md" style={{ marginBottom: "16px" }}>
+            This drawer demonstrates the VariantSelector integration. You can
+            change:
+          </Text>
+          <ul
+            style={{
+              marginLeft: "20px",
+              color: "var(--color-text-secondary)",
+              marginBottom: "16px",
+            }}
+          >
+            <li>Drawer direction: {drawerDirection}</li>
+            <li>
+              Scroll behavior: {drawerShowScroll ? "Enabled" : "Disabled"}
+            </li>
+            <li>Close behavior</li>
+          </ul>
+
+          {/* Add some content to demonstrate scrolling */}
+          {drawerShowScroll && (
+            <div style={{ marginTop: "24px" }}>
+              <Text
+                variant="md"
+                weight="semibold"
+                style={{ marginBottom: "12px" }}
+              >
+                Scrollable Content Demo
+              </Text>
+              {Array.from({ length: 15 }, (_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: "12px",
+                    marginBottom: "8px",
+                    backgroundColor: "var(--color-surface-secondary)",
+                    borderRadius: "var(--radius-sm)",
+                    border: "1px solid var(--color-border-tertiary)",
+                  }}
+                >
+                  <Text variant="sm">Content item {i + 1}</Text>
+                  <Text variant="xs" color="secondary">
+                    This demonstrates the scroll behavior when enabled
+                  </Text>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </Drawer>
     </div>
   );
 }
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="default-light">
+    <PulseUIProvider
+      defaultTheme="default-light"
+      defaultBrand={null}
+      availableBrands={[
+        {
+          id: "ibm",
+          name: "IBM",
+          version: "1.0.0",
+          description:
+            "IBM Design Language - Carbon Design System inspired tokens",
+          figmaFileKey: "ibm-design-system",
+          tokens: {
+            light: {
+              primary: "#0f62fe",
+              secondary: "#525252",
+              success: "#24a148",
+              warning: "#f1c21b",
+              error: "#da1e28",
+            },
+            dark: {
+              primary: "#78a9ff",
+              secondary: "#a8a8a8",
+              success: "#42be65",
+              warning: "#f1c21b",
+              error: "#ff8389",
+            },
+          },
+        },
+        {
+          id: "google",
+          name: "Google",
+          version: "1.0.0",
+          description: "Google Material Design 3 inspired tokens",
+          figmaFileKey: "google-material-3",
+          tokens: {
+            light: {
+              primary: "#6750a4",
+              secondary: "#625b71",
+              success: "#4caf50",
+              warning: "#ff9800",
+              error: "#f44336",
+            },
+            dark: {
+              primary: "#d0bcff",
+              secondary: "#ccc2dc",
+              success: "#81c784",
+              warning: "#ffb74d",
+              error: "#e57373",
+            },
+          },
+        },
+      ]}
+    >
       <AppContent />
-    </ThemeProvider>
+    </PulseUIProvider>
   );
 }
 

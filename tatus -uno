@@ -1,5 +1,0 @@
-[33mee9662b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Themes working, storybook not working due to themes
-[33m24ae903[m Merge branch 'themes'
-[33m39ffe36[m[33m ([m[1;31morigin/themes[m[33m, [m[1;32mthemes[m[33m)[m feat: Add comprehensive component library with new surface color system
-[33m0d883ba[m Update Storybook config, package.json, Card stories, Icon set, and styles API
-[33m6e495b1[m feat: implement comprehensive theme system across all components

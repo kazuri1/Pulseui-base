@@ -9,18 +9,24 @@
 // =============================================================================
 
 // =============================================================================
-// 1. Design Tokens (CSS Custom Properties)
-// =============================================================================
-// Import design tokens first - these define all CSS custom properties
-// that components and mixins will reference
-@use "./tokens" as *;
-
-// =============================================================================
-// 2. SCSS Mixins and Functions
+// 1. SCSS Mixins and Functions (must come first)
 // =============================================================================
 // Import SCSS mixins and utility functions that components can use
 // These mixins reference the CSS custom properties from tokens
 @use "./mixins" as *;
+
+// =============================================================================
+// 2. Design Tokens (CSS Custom Properties)
+// =============================================================================
+// Import design tokens - these define all CSS custom properties
+// that components and mixins will reference
+@use "./tokens" as *;
+
+// =============================================================================
+// 3. Brand-Specific Tokens
+// =============================================================================
+// Import brand-specific token overrides
+@import "./brands/ibm/tokens";
 
 // =============================================================================
 // 3. ALL Component SCSS Modules (Bundled)
@@ -34,6 +40,12 @@
 
 // ThemeProvider Component
 @import "../components/ThemeProvider/ThemeProvider.module.scss";
+
+// BrandSwitcher Component
+@import "../components/atoms/BrandSwitcher/BrandSwitcher.module.scss";
+
+// ThemeAndBrandSwitcher Component
+@import "../components/atoms/ThemeAndBrandSwitcher/ThemeAndBrandSwitcher.module.scss";
 
 // Button Component
 @import "../components/atoms/Button/Button.module.scss";

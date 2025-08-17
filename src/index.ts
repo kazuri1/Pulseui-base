@@ -29,6 +29,9 @@ export type { RadioProps } from "./components/atoms/Radio";
 export { Switch } from "./components/atoms/Switch";
 export type { SwitchProps } from "./components/atoms/Switch";
 
+export { Select } from "./components/atoms/Select";
+export type { SelectProps } from "./components/atoms/Select";
+
 export { Checkbox } from "./components/atoms/Checkbox";
 export type { CheckboxProps } from "./components/atoms/Checkbox";
 
@@ -151,6 +154,9 @@ export type {
 export { ActionButton } from "./components/atoms/ActionButton";
 export type { ActionButtonProps } from "./components/atoms/ActionButton";
 
+export { VariantSelector } from "./components/atoms/VariantSelector";
+export type { VariantSelectorProps } from "./components/atoms/VariantSelector";
+
 export { TableOfContents } from "./components/atoms/TableOfContents";
 export type {
   TableOfContentsProps,
@@ -218,14 +224,47 @@ export type { IconProps } from "./components/atoms/Icon/Icon";
 export { ThemeProvider, useTheme } from "./components/ThemeProvider";
 export type { ThemeProviderProps } from "./components/ThemeProvider";
 
+export { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
+export type { ThemeSwitcherProps } from "./components/atoms/ThemeSwitcher";
+
+export { ThemeToggle } from "./components/atoms/ThemeToggle";
+export type { ThemeToggleProps } from "./components/atoms/ThemeToggle";
+
+// Brand Provider
+export { BrandProvider, useBrand } from "./contexts/BrandContext";
+export type { BrandProviderProps } from "./contexts/BrandContext";
+
+// Combined Provider
+export { PulseUIProvider } from "./contexts/PulseUIProvider";
+export type { PulseUIProviderProps } from "./contexts/PulseUIProvider";
+
+// Brand Components
+export { BrandSwitcher } from "./components/atoms/BrandSwitcher";
+export type { BrandSwitcherProps } from "./components/atoms/BrandSwitcher";
+
+export { ThemeAndBrandSwitcher } from "./components/atoms/ThemeAndBrandSwitcher";
+export type { ThemeAndBrandSwitcherProps } from "./components/atoms/ThemeAndBrandSwitcher";
+
 // Utilities
 export { mergeSxWithStyles, combineClassNames } from "./utils/sxUtils";
 export type { WithSxProps } from "./utils/sxUtils";
+
+// Brand Utilities
+export {
+  defaultBrandLoader,
+  dynamicBrandLoader,
+  loadBrand,
+  loadAllBrands,
+  validateBrand,
+  getBrandTokens,
+} from "./utils/brandLoader";
+export type { BrandConfig, BrandLoader } from "./utils/brandLoader";
 
 export type { SxProps } from "./styles/stylesApi";
 
 // Hooks
 export { useBreakpoint } from "./hooks/useBreakpoint";
+export { useBrandManager } from "./hooks/useBrandManager";
 
 // Re-export commonly used icons
 export {

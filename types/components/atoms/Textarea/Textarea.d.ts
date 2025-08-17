@@ -13,6 +13,8 @@ export interface TextareaProps extends WithSxProps {
     value?: string;
     /** Whether the textarea is disabled */
     disabled?: boolean;
+    /** Error message to display */
+    error?: string;
     /** Textarea name attribute */
     name?: string;
     /** Textarea id attribute */

@@ -1,0 +1,256 @@
+.themeAndBrandSwitcher {
+  display: flex;
+  gap: var(--spacing-lg, 24px);
+  padding: var(--spacing-md, 16px);
+  background-color: var(--color-surface-1, #f8f9fa);
+  border-radius: var(--border-radius-md, 6px);
+  border: 1px solid var(--color-border, #e0e0e0);
+
+  &__theme,
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm, 8px);
+    min-width: 200px;
+  }
+
+  &__themeToggle {
+    align-self: flex-start;
+  }
+
+  &__brandSwitcher {
+    align-self: flex-start;
+  }
+
+  &__themeInfo,
+  &__brandInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm, 8px);
+    padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+    background-color: var(--color-surface-2, #e9ecef);
+    border-radius: var(--border-radius-sm, 4px);
+    border: 1px solid var(--color-border, #dee2e6);
+  }
+
+  &__themeLabel,
+  &__brandLabel {
+    font-weight: 500;
+    color: var(--color-text, #212529);
+    font-size: var(--font-size-sm, 0.875rem);
+  }
+
+  &__brandVersion {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--color-text-secondary, #6c757d);
+    background-color: var(--color-surface-3, #dee2e6);
+    padding: 2px var(--spacing-xs, 4px);
+    border-radius: var(--border-radius-sm, 4px);
+  }
+
+  &__currentState {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs, 4px);
+    margin-left: auto;
+    padding: var(--spacing-sm, 8px);
+    background-color: var(--color-surface-2, #e9ecef);
+    border-radius: var(--border-radius-sm, 4px);
+    border: 1px solid var(--color-border, #dee2e6);
+    min-width: 120px;
+  }
+
+  &__stateItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm, 8px);
+  }
+
+  &__stateLabel {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--color-text-secondary, #6c757d);
+    font-weight: 500;
+  }
+
+  &__stateValue {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--color-text, #212529);
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  // Direction variants
+  &--vertical {
+    flex-direction: column;
+    gap: var(--spacing-md, 16px);
+
+    .themeAndBrandSwitcher__currentState {
+      margin-left: 0;
+      margin-top: var(--spacing-md, 16px);
+    }
+  }
+
+  // Size variants
+  &--sm {
+    padding: var(--spacing-sm, 8px);
+    gap: var(--spacing-md, 16px);
+
+    .themeAndBrandSwitcher__theme,
+    .themeAndBrandSwitcher__brand {
+      min-width: 160px;
+    }
+
+    .themeAndBrandSwitcher__currentState {
+      min-width: 100px;
+    }
+
+    .themeAndBrandSwitcher__themeLabel,
+    .themeAndBrandSwitcher__brandLabel {
+      font-size: var(--font-size-xs, 0.75rem);
+    }
+
+    .themeAndBrandSwitcher__brandVersion {
+      font-size: 0.7rem;
+      padding: 1px var(--spacing-xs, 4px);
+    }
+
+    .themeAndBrandSwitcher__stateLabel,
+    .themeAndBrandSwitcher__stateValue {
+      font-size: 0.7rem;
+    }
+  }
+
+  &--lg {
+    padding: var(--spacing-lg, 24px);
+    gap: var(--spacing-xl, 32px);
+
+    .themeAndBrandSwitcher__theme,
+    .themeAndBrandSwitcher__brand {
+      min-width: 240px;
+    }
+
+    .themeAndBrandSwitcher__currentState {
+      min-width: 140px;
+    }
+
+    .themeAndBrandSwitcher__themeLabel,
+    .themeAndBrandSwitcher__brandLabel {
+      font-size: var(--font-size-md, 1rem);
+    }
+
+    .themeAndBrandSwitcher__brandVersion {
+      font-size: var(--font-size-sm, 0.875rem);
+      padding: 3px var(--spacing-sm, 8px);
+    }
+
+    .themeAndBrandSwitcher__stateLabel,
+    .themeAndBrandSwitcher__stateValue {
+      font-size: var(--font-size-sm, 0.875rem);
+    }
+  }
+
+  // Dark theme support
+  [data-theme="dark"] & {
+    background-color: var(--color-surface-2, #2a2a2a);
+    border-color: var(--color-border, #475569);
+
+    .themeAndBrandSwitcher__themeInfo,
+    .themeAndBrandSwitcher__brandInfo {
+      background-color: var(--color-surface-3, #353535);
+      border-color: var(--color-border, #475569);
+    }
+
+    .themeAndBrandSwitcher__themeLabel,
+    .themeAndBrandSwitcher__brandLabel {
+      color: var(--color-text, #f8fafc);
+    }
+
+    .themeAndBrandSwitcher__brandVersion {
+      color: var(--color-text-secondary, #adb5bd);
+      background-color: var(--color-surface-4, #2f2f2f);
+    }
+
+    .themeAndBrandSwitcher__currentState {
+      background-color: var(--color-surface-3, #353535);
+      border-color: var(--color-border, #475569);
+    }
+
+    .themeAndBrandSwitcher__stateLabel {
+      color: var(--color-text-secondary, #adb5bd);
+    }
+
+    .themeAndBrandSwitcher__stateValue {
+      color: var(--color-text, #f8fafc);
+    }
+  }
+
+  // Brand-specific overrides
+  [data-brand="ibm"] & {
+    background-color: var(--color-surface-1, #f4f4f4);
+    border-color: var(--color-border, #e0e0e0);
+
+    .themeAndBrandSwitcher__themeInfo,
+    .themeAndBrandSwitcher__brandInfo {
+      background-color: var(--color-surface-2, #e0e0e0);
+      border-color: var(--color-border, #c1c1c1);
+    }
+
+    .themeAndBrandSwitcher__themeLabel,
+    .themeAndBrandSwitcher__brandLabel {
+      color: var(--color-text, #161616);
+    }
+
+    .themeAndBrandSwitcher__brandVersion {
+      color: var(--color-text-secondary, #525252);
+      background-color: var(--color-surface-3, #c1c1c1);
+    }
+
+    .themeAndBrandSwitcher__currentState {
+      background-color: var(--color-surface-2, #e0e0e0);
+      border-color: var(--color-border, #c1c1c1);
+    }
+
+    .themeAndBrandSwitcher__stateLabel {
+      color: var(--color-text-secondary, #525252);
+    }
+
+    .themeAndBrandSwitcher__stateValue {
+      color: var(--color-text, #161616);
+    }
+  }
+
+  [data-brand="ibm"][data-theme="dark"] & {
+    background-color: var(--color-surface-1, #262626);
+    border-color: var(--color-border, #525252);
+
+    .themeAndBrandSwitcher__themeInfo,
+    .themeAndBrandSwitcher__brandInfo {
+      background-color: var(--color-surface-2, #393939);
+      border-color: var(--color-border, #525252);
+    }
+
+    .themeAndBrandSwitcher__themeLabel,
+    .themeAndBrandSwitcher__brandLabel {
+      color: var(--color-text, #ffffff);
+    }
+
+    .themeAndBrandSwitcher__brandVersion {
+      color: var(--color-text-secondary, #a8a8a8);
+      background-color: var(--color-surface-3, #525252);
+    }
+
+    .themeAndBrandSwitcher__currentState {
+      background-color: var(--color-surface-2, #393939);
+      border-color: var(--color-border, #525252);
+    }
+
+    .themeAndBrandSwitcher__stateLabel {
+      color: var(--color-text-secondary, #a8a8a8);
+    }
+
+    .themeAndBrandSwitcher__stateValue {
+      color: var(--color-text, #ffffff);
+    }
+  }
+}

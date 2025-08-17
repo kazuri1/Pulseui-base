@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="ibm">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IBM Brand Demo - PulseUI</title>
+
+    <!-- Include PulseUI base styles -->
+    <link rel="stylesheet" href="../../src/styles/pulseui-base.scss" />
+
+    <!-- Include IBM brand tokens -->
+    <link rel="stylesheet" href="_tokens.scss" />
+
+    <style>
+      /* Demo-specific styles */
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: var(
+          --font-family,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Arial,
+          sans-serif
+        );
+        background-color: var(--color-background, #ffffff);
+        color: var(--color-text, #161616);
+      }
+
+      .demo-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .demo-section {
+        margin-bottom: 40px;
+        padding: 24px;
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: var(--radius-md, 6px);
+        background-color: var(--color-surface, #ffffff);
+      }
+
+      .demo-section h2 {
+        margin-top: 0;
+        color: var(--color-primary, #0f62fe);
+        font-size: var(--font-size-xl, 18px);
+        font-weight: var(--font-weight-semibold, 600);
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .demo-item {
+        padding: 16px;
+        border: 1px solid var(--color-border-secondary, #c1c1c1);
+        border-radius: var(--radius-sm, 4px);
+        background-color: var(--color-surface-secondary, #f4f4f4);
+      }
+
+      .demo-item h3 {
+        margin-top: 0;
+        font-size: var(--font-size-md, 14px);
+        font-weight: var(--font-weight-medium, 500);
+      }
+
+      .theme-switcher {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--color-surface, #ffffff);
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: var(--radius-md, 6px);
+        padding: 12px;
+        box-shadow: var(--shadow-normal, 0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      .theme-switcher button {
+        background: var(--color-primary, #0f62fe);
+        color: var(--color-white, #ffffff);
+        border: none;
+        padding: 8px 16px;
+        border-radius: var(--radius-sm, 4px);
+        cursor: pointer;
+        margin: 0 4px;
+        font-size: var(--font-size-sm, 13px);
+      }
+
+      .theme-switcher button:hover {
+        background: var(--color-primary-hover, #0050e6);
+      }
+
+      .brand-switcher {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: var(--color-surface, #ffffff);
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: var(--radius-md, 6px);
+        padding: 12px;
+        box-shadow: var(--shadow-normal, 0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      .brand-switcher select {
+        background: var(--color-surface, #ffffff);
+        color: var(--color-text, #161616);
+        border: 1px solid var(--color-border, #e0e0e0);
+        padding: 8px;
+        border-radius: var(--radius-sm, 4px);
+        font-size: var(--font-size-sm, 13px);
+      }
+
+      /* Component styles using IBM tokens */
+      .pulseui-button {
+        display: inline-block;
+        padding: 12px 24px;
+        border: none;
+        border-radius: var(--radius-md, 6px);
+        font-size: var(--font-size-md, 14px);
+        font-weight: var(--font-weight-medium, 500);
+        cursor: pointer;
+        text-decoration: none;
+        transition: var(--motion-transition-normal, all 100ms ease-out);
+        margin: 8px;
+      }
+
+      .pulseui-button--primary {
+        background-color: var(--color-primary, #0f62fe);
+        color: var(--color-white, #ffffff);
+      }
+
+      .pulseui-button--primary:hover {
+        background-color: var(--color-primary-hover, #0050e6);
+        transform: var(--transform-hover, translateY(-1px));
+        box-shadow: var(--shadow-hover, 0 4px 12px rgba(0, 0, 0, 0.15));
+      }
+
+      .pulseui-button--secondary {
+        background-color: var(--color-surface-secondary, #f4f4f4);
+        color: var(--color-text, #161616);
+        border: 1px solid var(--color-border, #e0e0e0);
+      }
+
+      .pulseui-button--secondary:hover {
+        background-color: var(--color-surface-hover, #e0e0e0);
+      }
+
+      .pulseui-button--outline {
+        background-color: transparent;
+        color: var(--color-primary, #0f62fe);
+        border: 1px solid var(--color-primary, #0f62fe);
+      }
+
+      .pulseui-button--outline:hover {
+        background-color: var(--color-primary, #0f62fe);
+        color: var(--color-white, #ffffff);
+      }
+
+      .pulseui-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: var(--radius-sm, 4px);
+        font-size: var(--font-size-md, 14px);
+        background-color: var(--color-input-background, #ffffff);
+        color: var(--color-input-text, #161616);
+        transition: var(--motion-transition-normal, all 100ms ease-out);
+      }
+
+      .pulseui-input:focus {
+        outline: none;
+        border-color: var(--color-border-focus, #0f62fe);
+        box-shadow: 0 0 0 2px var(--outline-focus, 2px solid #0f62fe);
+      }
+
+      .pulseui-input::placeholder {
+        color: var(--color-text-muted, #8d8d8d);
+      }
+
+      .pulseui-card {
+        padding: 20px;
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: var(--radius-md, 6px);
+        background-color: var(--color-surface, #ffffff);
+        box-shadow: var(--shadow-normal, 0 2px 4px rgba(0, 0, 0, 0.1));
+        transition: var(--motion-transition-normal, all 100ms ease-out);
+      }
+
+      .pulseui-card:hover {
+        box-shadow: var(--shadow-hover, 0 4px 12px rgba(0, 0, 0, 0.15));
+        transform: var(--transform-hover, translateY(-1px));
+      }
+
+      .pulseui-badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: var(--radius-full, 9999px);
+        font-size: var(--font-size-xs, 11px);
+        font-weight: var(--font-weight-medium, 500);
+        margin: 4px;
+      }
+
+      .pulseui-badge--success {
+        background-color: var(--color-success, #24a148);
+        color: var(--color-white, #ffffff);
+      }
+
+      .pulseui-badge--warning {
+        background-color: var(--color-warning, #f1c21b);
+        color: var(--color-black, #000000);
+      }
+
+      .pulseui-badge--error {
+        background-color: var(--color-error, #da1e28);
+        color: var(--color-white, #ffffff);
+      }
+
+      .pulseui-badge--info {
+        background-color: var(--color-info, #0f62fe);
+        color: var(--color-white, #ffffff);
+      }
+
+      .color-palette {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .color-swatch {
+        text-align: center;
+        padding: 16px 8px;
+        border-radius: var(--radius-sm, 4px);
+        border: 1px solid var(--color-border, #e0e0e0);
+      }
+
+      .color-swatch__color {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm, 4px);
+        margin: 0 auto 8px;
+        border: 1px solid var(--color-border, #e0e0e0);
+      }
+
+      .color-swatch__name {
+        font-size: var(--font-size-xs, 11px);
+        font-weight: var(--font-weight-medium, 500);
+        color: var(--color-text, #161616);
+      }
+
+      .color-swatch__value {
+        font-size: var(--font-size-xs, 11px);
+        color: var(--color-text-muted, #8d8d8d);
+        font-family: monospace;
+      }
+
+      .spacing-demo {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .spacing-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .spacing-visual {
+        background-color: var(--color-primary, #0f62fe);
+        border-radius: var(--radius-xs, 2px);
+      }
+
+      .spacing-visual--xs {
+        width: var(--spacing-xs, 2px);
+        height: var(--spacing-xs, 2px);
+      }
+      .spacing-visual--sm {
+        width: var(--spacing-sm, 4px);
+        height: var(--spacing-sm, 4px);
+      }
+      .spacing-visual--md {
+        width: var(--spacing-md, 8px);
+        height: var(--spacing-md, 8px);
+      }
+      .spacing-visual--lg {
+        width: var(--spacing-lg, 16px);
+        height: var(--spacing-lg, 16px);
+      }
+      .spacing-visual--xl {
+        width: var(--spacing-xl, 24px);
+        height: var(--spacing-xl, 24px);
+      }
+
+      .typography-demo {
+        margin-top: 16px;
+      }
+
+      .typography-item {
+        margin-bottom: 16px;
+      }
+
+      .typography-label {
+        font-size: var(--font-size-xs, 11px);
+        color: var(--color-text-muted, #8d8d8d);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+
+      .typography-text--xs {
+        font-size: var(--font-size-xs, 11px);
+      }
+      .typography-text--sm {
+        font-size: var(--font-size-sm, 13px);
+      }
+      .typography-text--md {
+        font-size: var(--font-size-md, 14px);
+      }
+      .typography-text--lg {
+        font-size: var(--font-size-lg, 16px);
+      }
+      .typography-text--xl {
+        font-size: var(--font-size-xl, 18px);
+      }
+      .typography-text--xxl {
+        font-size: var(--font-size-xxl, 20px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Brand Switcher -->
+    <div class="brand-switcher">
+      <label for="brand-select">Brand:</label>
+      <select id="brand-select">
+        <option value="ibm">IBM</option>
+        <option value="pulseui">PulseUI (Default)</option>
+      </select>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+      <button onclick="setTheme('light')">Light</button>
+      <button onclick="setTheme('dark')">Dark</button>
+    </div>
+
+    <div class="demo-container">
+      <h1
+        style="
+          color: var(--color-primary, #0f62fe);
+          font-size: var(--font-size-xxl, 20px);
+        "
+      >
+        IBM Brand Demo - PulseUI
+      </h1>
+
+      <p
+        style="
+          color: var(--color-text-secondary, #525252);
+          font-size: var(--font-size-md, 14px);
+        "
+      >
+        This demo shows how the IBM brand tokens override PulseUI's base design
+        system while maintaining full compatibility.
+      </p>
+
+      <!-- Buttons Section -->
+      <div class="demo-section">
+        <h2>Buttons</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <h3>Primary Button</h3>
+            <button class="pulseui-button pulseui-button--primary">
+              Primary Button
+            </button>
+          </div>
+          <div class="demo-item">
+            <h3>Secondary Button</h3>
+            <button class="pulseui-button pulseui-button--secondary">
+              Secondary Button
+            </button>
+          </div>
+          <div class="demo-item">
+            <h3>Outline Button</h3>
+            <button class="pulseui-button pulseui-button--outline">
+              Outline Button
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inputs Section -->
+      <div class="demo-section">
+        <h2>Inputs</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <h3>Text Input</h3>
+            <input
+              type="text"
+              class="pulseui-input"
+              placeholder="Enter text here..."
+            />
+          </div>
+          <div class="demo-item">
+            <h3>Email Input</h3>
+            <input
+              type="email"
+              class="pulseui-input"
+              placeholder="Enter email..."
+            />
+          </div>
+          <div class="demo-item">
+            <h3>Password Input</h3>
+            <input
+              type="password"
+              class="pulseui-input"
+              placeholder="Enter password..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards Section -->
+      <div class="demo-section">
+        <h2>Cards</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <div class="pulseui-card">
+              <h3>Card Title</h3>
+              <p>
+                This is a card component styled with IBM brand tokens. It
+                includes hover effects and proper spacing.
+              </p>
+            </div>
+          </div>
+          <div class="demo-item">
+            <div class="pulseui-card">
+              <h3>Another Card</h3>
+              <p>
+                Cards automatically use IBM colors, shadows, and border radius
+                values.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badges Section -->
+      <div class="demo-section">
+        <h2>Badges</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <h3>Status Badges</h3>
+            <span class="pulseui-badge pulseui-badge--success">Success</span>
+            <span class="pulseui-badge pulseui-badge--warning">Warning</span>
+            <span class="pulseui-badge pulseui-badge--error">Error</span>
+            <span class="pulseui-badge pulseui-badge--info">Info</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color Palette Section -->
+      <div class="demo-section">
+        <h2>IBM Color Palette</h2>
+        <div class="color-palette">
+          <div class="color-swatch">
+            <div
+              class="color-swatch__color"
+              style="background-color: var(--color-primary, #0f62fe)"
+            ></div>
+            <div class="color-swatch__name">Primary</div>
+            <div class="color-swatch__value">var(--color-primary)</div>
+          </div>
+          <div class="color-swatch">
+            <div
+              class="color-swatch__color"
+              style="background-color: var(--color-success, #24a148)"
+            ></div>
+            <div class="color-swatch__name">Success</div>
+            <div class="color-swatch__value">var(--color-success)</div>
+          </div>
+          <div class="color-swatch">
+            <div
+              class="color-swatch__color"
+              style="background-color: var(--color-warning, #f1c21b)"
+            ></div>
+            <div class="color-swatch__name">Warning</div>
+            <div class="color-swatch__value">var(--color-warning)</div>
+          </div>
+          <div class="color-swatch">
+            <div
+              class="color-swatch__color"
+              style="background-color: var(--color-error, #da1e28)"
+            ></div>
+            <div class="color-swatch__name">Error</div>
+            <div class="color-swatch__value">var(--color-error)</div>
+          </div>
+          <div class="color-swatch">
+            <div
+              class="color-swatch__color"
+              style="
+                background-color: var(--color-surface, #ffffff);
+                border: 1px solid var(--color-border, #e0e0e0);
+              "
+            ></div>
+            <div class="color-swatch__name">Surface</div>
+            <div class="color-swatch__value">var(--color-surface)</div>
+          </div>
+          <div class="color-swatch">
+            <div
+              class="color-swatch__color"
+              style="background-color: var(--color-text, #161616)"
+            ></div>
+            <div class="color-swatch__name">Text</div>
+            <div class="color-swatch__value">var(--color-text)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacing Section -->
+      <div class="demo-section">
+        <h2>IBM Spacing Scale</h2>
+        <div class="spacing-demo">
+          <div class="spacing-item">
+            <div class="spacing-visual spacing-visual--xs"></div>
+            <span>xs: var(--spacing-xs)</span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-visual spacing-visual--sm"></div>
+            <span>sm: var(--spacing-sm)</span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-visual spacing-visual--md"></div>
+            <span>md: var(--spacing-md)</span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-visual spacing-visual--lg"></div>
+            <span>lg: var(--spacing-lg)</span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-visual spacing-visual--xl"></div>
+            <span>xl: var(--spacing-xl)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typography Section -->
+      <div class="demo-section">
+        <h2>IBM Typography Scale</h2>
+        <div class="typography-demo">
+          <div class="typography-item">
+            <div class="typography-label">Extra Small</div>
+            <div class="typography-text--xs">
+              This is extra small text (11px)
+            </div>
+          </div>
+          <div class="typography-item">
+            <div class="typography-label">Small</div>
+            <div class="typography-text--sm">This is small text (13px)</div>
+          </div>
+          <div class="typography-item">
+            <div class="typography-label">Medium</div>
+            <div class="typography-text--md">This is medium text (14px)</div>
+          </div>
+          <div class="typography-item">
+            <div class="typography-label">Large</div>
+            <div class="typography-text--lg">This is large text (16px)</div>
+          </div>
+          <div class="typography-item">
+            <div class="typography-label">Extra Large</div>
+            <div class="typography-text--xl">
+              This is extra large text (18px)
+            </div>
+          </div>
+          <div class="typography-item">
+            <div class="typography-label">2XL</div>
+            <div class="typography-text--xxl">This is 2XL text (20px)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Effects Section -->
+      <div class="demo-section">
+        <h2>IBM Effects & Motion</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <h3>Border Radius</h3>
+            <div
+              style="
+                width: 100px;
+                height: 60px;
+                background-color: var(--color-primary, #0f62fe);
+                border-radius: var(--radius-md, 6px);
+                margin: 16px 0;
+              "
+            ></div>
+            <p>Border radius: var(--radius-md)</p>
+          </div>
+          <div class="demo-item">
+            <h3>Shadows</h3>
+            <div
+              style="
+                width: 100px;
+                height: 60px;
+                background-color: var(--color-surface, #ffffff);
+                border: 1px solid var(--color-border, #e0e0e0);
+                border-radius: var(--radius-sm, 4px);
+                box-shadow: var(--shadow-normal, 0 2px 4px rgba(0, 0, 0, 0.1));
+                margin: 16px 0;
+              "
+            ></div>
+            <p>Shadow: var(--shadow-normal)</p>
+          </div>
+          <div class="demo-item">
+            <h3>Hover Effects</h3>
+            <div
+              style="
+                width: 100px;
+                height: 60px;
+                background-color: var(--color-primary, #0f62fe);
+                border-radius: var(--radius-md, 6px);
+                margin: 16px 0;
+                transition: var(--motion-transition-normal, all 100ms ease-out);
+                cursor: pointer;
+              "
+              onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-hover)'"
+              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-normal)'"
+            ></div>
+            <p>Hover to see effects</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsive Section -->
+      <div class="demo-section">
+        <h2>IBM Responsive Breakpoints</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <h3>Current Breakpoint</h3>
+            <div
+              id="current-breakpoint"
+              style="
+                padding: 16px;
+                background-color: var(--color-surface-secondary, #f4f4f4);
+                border-radius: var(--radius-sm, 4px);
+                text-align: center;
+                font-weight: var(--font-weight-semibold, 600);
+              "
+            >
+              Loading...
+            </div>
+          </div>
+          <div class="demo-item">
+            <h3>Breakpoint Values</h3>
+            <ul style="font-size: var(--font-size-sm, 13px)">
+              <li>xs: var(--breakpoint-xs)</li>
+              <li>sm: var(--breakpoint-sm)</li>
+              <li>md: var(--breakpoint-md)</li>
+              <li>lg: var(--breakpoint-lg)</li>
+              <li>xl: var(--breakpoint-xl)</li>
+              <li>xxl: var(--breakpoint-xxl)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Theme switching functionality
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        console.log(`Theme switched to: ${theme}`);
+      }
+
+      // Brand switching functionality
+      document
+        .getElementById("brand-select")
+        .addEventListener("change", function (e) {
+          const brand = e.target.value;
+          if (brand === "pulseui") {
+            document.documentElement.removeAttribute("data-brand");
+          } else {
+            document.documentElement.setAttribute("data-brand", brand);
+          }
+          console.log(`Brand switched to: ${brand}`);
+        });
+
+      // Breakpoint detection
+      function updateBreakpoint() {
+        const width = window.innerWidth;
+        let breakpoint = "xs";
+
+        if (width >= 1400) breakpoint = "xxl";
+        else if (width >= 1200) breakpoint = "xl";
+        else if (width >= 992) breakpoint = "lg";
+        else if (width >= 768) breakpoint = "md";
+        else if (width >= 576) breakpoint = "sm";
+
+        document.getElementById("current-breakpoint").textContent =
+          breakpoint.toUpperCase();
+        document.getElementById("current-breakpoint").style.backgroundColor =
+          breakpoint === "xs"
+            ? "var(--color-error, #da1e28)"
+            : breakpoint === "sm"
+            ? "var(--color-warning, #f1c21b)"
+            : breakpoint === "md"
+            ? "var(--color-info, #0f62fe)"
+            : breakpoint === "lg"
+            ? "var(--color-success, #24a148)"
+            : "var(--color-primary, #0f62fe)";
+      }
+
+      // Initialize
+      window.addEventListener("load", updateBreakpoint);
+      window.addEventListener("resize", updateBreakpoint);
+
+      // Log current brand and theme
+      console.log("IBM Brand Demo loaded");
+      console.log(
+        "Current brand:",
+        document.documentElement.getAttribute("data-brand") ||
+          "pulseui (default)"
+      );
+      console.log(
+        "Current theme:",
+        document.documentElement.getAttribute("data-theme") || "light (default)"
+      );
+    </script>
+  </body>
+</html>

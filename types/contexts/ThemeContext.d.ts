@@ -10,7 +10,7 @@ interface ThemeContextType {
     isDark: boolean;
     isLight: boolean;
 }
-interface ThemeProviderProps {
+export interface ThemeProviderProps {
     children: ReactNode;
     defaultTheme?: ThemeName;
     persistTheme?: boolean;

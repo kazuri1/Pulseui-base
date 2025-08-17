@@ -1,0 +1,613 @@
+// IBM Brand Tokens - Light Theme
+// Based on IBM Carbon Design System v11
+
+// Font loading optimization for IBM Plex Sans
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/ibmplexsans/v19/zYXgKVElMYYaJe8bpLHnCwDKhd_eFb5N.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/ibmplexsans/v19/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFscQ.woff2")
+    format("woff2");
+}
+
+// Global IBM font application when IBM brand is active
+html[data-brand="ibm"],
+html[data-brand="ibm"] *,
+body[data-brand="ibm"],
+body[data-brand="ibm"] *,
+[data-brand="ibm"],
+[data-brand="ibm"] * {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif !important;
+}
+
+// Force IBM font on all elements when IBM brand is active
+html[data-brand="ibm"] *,
+body[data-brand="ibm"] *,
+[data-brand="ibm"] * {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif !important;
+}
+
+[data-brand="ibm"] {
+  // Typography - IBM Plex Sans
+  --font-family-primary: "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "IBM Plex Sans", "SF Mono", Monaco, "Cascadia Code",
+    "Roboto Mono", Consolas, monospace;
+
+  // Color tokens - IBM Carbon Design System
+  --color-primary: #0062ff; // Authentic IBM Blue
+  --color-primary-hover: #0050e6;
+  --color-primary-active: #002d9c;
+  --color-primary-light: #e5f3ff;
+
+  --color-secondary: #393939;
+  --color-secondary-hover: #525252;
+  --color-secondary-active: #161616;
+
+  --color-success: #24a148;
+  --color-success-hover: #1e7e34;
+  --color-success-active: #0e6027;
+  --color-success-light: #defbe6;
+
+  --color-warning: #f1c21b;
+  --color-warning-hover: #d4a024;
+  --color-warning-active: #b28617;
+  --color-warning-light: #fdf6d3;
+
+  --color-error: #da1e28;
+  --color-error-hover: #a51920;
+  --color-error-active: #750e13;
+  --color-error-light: #ffd7d9;
+
+  --color-info: #0062ff; // Authentic IBM Blue
+  --color-info-hover: #0050e6;
+  --color-info-active: #002d9c;
+  --color-info-light: #e5f3ff;
+
+  // Surface colors - IBM Carbon
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f4f4f4;
+  --color-surface-tertiary: #e0e0e0;
+  --color-background: #ffffff;
+
+  --color-text: #161616;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #8d8d8d;
+  --color-text-disabled: #c1c1c1;
+
+  --color-border: #e0e0e0;
+  --color-border-secondary: #c1c1c1;
+  --color-border-tertiary: #8d8d8d;
+
+  // IBM-specific colors
+  --color-ibm-blue: #0062ff; // Authentic IBM Blue
+  --color-ibm-blue-10: #e5f3ff;
+  --color-ibm-blue-20: #b3d9ff;
+  --color-ibm-blue-30: #80bfff;
+  --color-ibm-blue-40: #4da6ff;
+  --color-ibm-blue-50: #0062ff;
+  --color-ibm-blue-60: #0052cc;
+  --color-ibm-blue-70: #004199;
+  --color-ibm-blue-80: #003166;
+  --color-ibm-blue-90: #002033;
+
+  --color-ibm-gray: #525252;
+  --color-ibm-gray-10: #f4f4f4;
+  --color-ibm-gray-20: #e0e0e0;
+  --color-ibm-gray-30: #c1c1c1;
+  --color-ibm-gray-40: #a8a8a8;
+  --color-ibm-gray-50: #8d8d8d;
+  --color-ibm-gray-60: #6f6f6f;
+  --color-ibm-gray-70: #525252;
+  --color-ibm-gray-80: #393939;
+  --color-ibm-gray-90: #262626;
+  --color-ibm-gray-100: #161616;
+
+  // Apply IBM Plex Sans to all elements within IBM brand
+  font-family: var(--font-family-primary) !important;
+
+  // Force IBM font on all child elements
+  * {
+    font-family: var(--font-family-primary) !important;
+  }
+
+  // Component-specific overrides
+
+  // General font overrides for all PulseUI components
+  .pulseui-button,
+  .pulseui-alert,
+  .pulseui-badge,
+  .pulseui-input,
+  .pulseui-textarea,
+  .pulseui-card,
+  .pulseui-simple-top-nav,
+  .pulseui-text,
+  .pulseui-select,
+  .pulseui-checkbox,
+  .pulseui-switch,
+  .pulseui-radio,
+  .pulseui-pill,
+  .pulseui-tag,
+  .pulseui-avatar,
+  .pulseui-modal,
+  .pulseui-drawer,
+  .pulseui-pagination,
+  .pulseui-stepper,
+  .pulseui-kbd {
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif !important;
+  }
+
+  // IBM Button Styles - More specific to override base styles
+  .pulseui-button,
+  .pulseui-button--primary,
+  .pulseui-button--secondary,
+  .pulseui-button--outline,
+  .pulseui-button--light,
+  .pulseui-button--subtle,
+  .pulseui-button--white,
+  .pulseui-button--default {
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif !important;
+    border-radius: 0 !important; // IBM uses square corners
+    font-weight: 400 !important;
+  }
+
+  .pulseui-button--primary {
+    background-color: var(--color-primary) !important;
+    color: #ffffff !important;
+    border-color: var(--color-primary) !important;
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important; // IBM uses square corners
+
+    &:hover {
+      background-color: var(--color-primary-hover) !important;
+      border-color: var(--color-primary-hover) !important;
+    }
+
+    &:active {
+      background-color: var(--color-primary-active) !important;
+      border-color: var(--color-primary-active) !important;
+    }
+  }
+
+  .pulseui-button--secondary {
+    background-color: var(--color-surface) !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important; // IBM uses square corners
+
+    &:hover {
+      background-color: var(--color-primary) !important;
+      color: #ffffff !important;
+    }
+  }
+
+  .pulseui-alert--success {
+    background-color: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success-active);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-alert--warning {
+    background-color: var(--color-warning-light);
+    border-color: var(--color-warning);
+    color: var(--color-warning-active);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-alert--error {
+    background-color: var(--color-error-light);
+    border-color: var(--color-error);
+    color: var(--color-error-active);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-alert--info {
+    background-color: var(--color-info-light);
+    border-color: var(--color-info);
+    color: var(--color-info-active);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--filled {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--light {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--dot {
+    background-color: var(--color-primary);
+    border-radius: 50%; // Keep dots circular
+  }
+
+  // Input components
+  .pulseui-input {
+    border-color: var(--color-border);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(15, 98, 254, 0.2);
+    }
+
+    &:disabled {
+      background-color: var(--color-surface-secondary);
+      color: var(--color-text-disabled);
+    }
+  }
+
+  .pulseui-textarea {
+    border-color: var(--color-border);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(15, 98, 254, 0.2);
+    }
+  }
+
+  // Card component
+  .pulseui-card {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  // Navigation
+  .pulseui-simple-top-nav {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-family-primary);
+  }
+
+  .pulseui-simple-top-nav__brand {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .pulseui-simple-top-nav__item {
+    color: var(--color-text);
+    font-weight: 400;
+
+    &:hover {
+      background-color: var(--color-surface-secondary);
+    }
+
+    &.active {
+      background-color: var(--color-primary);
+      color: #ffffff;
+    }
+  }
+
+  // Apply IBM Plex Sans to all elements within IBM brand
+  font-family: var(--font-family-primary) !important;
+
+  // Force IBM font on all child elements
+  * {
+    font-family: var(--font-family-primary) !important;
+  }
+}
+
+// IBM Brand Tokens - Dark Theme
+[data-brand="ibm"][data-theme="dark"] {
+  // Typography - IBM Plex Sans (same for dark)
+  --font-family-primary: "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "IBM Plex Sans", "SF Mono", Monaco, "Cascadia Code",
+    "Roboto Mono", Consolas, monospace;
+
+  // Color tokens - IBM Carbon Design System Dark Theme
+  --color-primary: #4da6ff; // Authentic IBM Blue for dark theme
+  --color-primary-hover: #80bfff;
+  --color-primary-active: #b3d9ff;
+  --color-primary-light: #002033;
+
+  --color-secondary: #a8a8a8;
+  --color-secondary-hover: #c6c6c6;
+  --color-secondary-active: #e0e0e0;
+
+  --color-success: #42be65;
+  --color-success-hover: #6fdc8c;
+  --color-success-active: #95de64;
+  --color-success-light: #0e6027;
+
+  --color-warning: #f1c21b;
+  --color-warning-hover: #f4cd3f;
+  --color-warning-active: #f7d663;
+  --color-warning-light: #b28617;
+
+  --color-error: #ff8389;
+  --color-error-hover: #ffa4a9;
+  --color-error-active: #ffc7cc;
+  --color-error-light: #750e13;
+
+  --color-info: #4da6ff; // Authentic IBM Blue for dark theme
+  --color-info-hover: #80bfff;
+  --color-info-active: #b3d9ff;
+  --color-info-light: #002033;
+
+  // Surface colors - IBM Carbon Dark
+  --color-surface: #262626;
+  --color-surface-secondary: #393939;
+  --color-surface-tertiary: #525252;
+  --color-background: #161616;
+
+  --color-text: #ffffff;
+  --color-text-secondary: #a8a8a8;
+  --color-text-tertiary: #6f6f6f;
+  --color-text-disabled: #525252;
+
+  --color-border: #525252;
+  --color-border-secondary: #6f6f6f;
+  --color-border-tertiary: #8d8d8d;
+
+  // IBM-specific colors - Dark Theme
+  --color-ibm-blue: #4da6ff; // Authentic IBM Blue for dark theme
+  --color-ibm-blue-10: #002033;
+  --color-ibm-blue-20: #003166;
+  --color-ibm-blue-30: #004199;
+  --color-ibm-blue-40: #0052cc;
+  --color-ibm-blue-50: #0062ff;
+  --color-ibm-blue-60: #80bfff;
+  --color-ibm-blue-70: #b3d9ff;
+  --color-ibm-blue-80: #e5f3ff;
+  --color-ibm-blue-90: #f0f8ff;
+
+  --color-ibm-gray: #a8a8a8;
+  --color-ibm-gray-10: #161616;
+  --color-ibm-gray-20: #262626;
+  --color-ibm-gray-30: #393939;
+  --color-ibm-gray-40: #525252;
+  --color-ibm-gray-50: #6f6f6f;
+  --color-ibm-gray-60: #8d8d8d;
+  --color-ibm-gray-70: #a8a8a8;
+  --color-ibm-gray-80: #c1c1c1;
+  --color-ibm-gray-90: #e0e0e0;
+  --color-ibm-gray-100: #f4f4f4;
+
+  // Component-specific overrides for dark theme
+
+  // General font overrides for all PulseUI components (dark theme)
+  .pulseui-button,
+  .pulseui-alert,
+  .pulseui-badge,
+  .pulseui-input,
+  .pulseui-textarea,
+  .pulseui-card,
+  .pulseui-simple-top-nav,
+  .pulseui-text,
+  .pulseui-select,
+  .pulseui-checkbox,
+  .pulseui-switch,
+  .pulseui-radio,
+  .pulseui-pill,
+  .pulseui-tag,
+  .pulseui-avatar,
+  .pulseui-modal,
+  .pulseui-drawer,
+  .pulseui-pagination,
+  .pulseui-stepper,
+  .pulseui-kbd {
+    font-family: var(--font-family-primary) !important;
+  }
+
+  .pulseui-button--primary {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+
+    &:hover {
+      background-color: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+    }
+
+    &:active {
+      background-color: var(--color-primary-active);
+      border-color: var(--color-primary-active);
+    }
+  }
+
+  .pulseui-button--secondary {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+
+    &:hover {
+      background-color: var(--color-primary);
+      color: var(--color-background);
+    }
+  }
+
+  .pulseui-alert--success {
+    background-color: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-alert--warning {
+    background-color: var(--color-warning-light);
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-alert--error {
+    background-color: var(--color-error-light);
+    border-color: var(--color-error);
+    color: var(--color-error);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-alert--info {
+    background-color: var(--color-info-light);
+    border-color: var(--color-info);
+    color: var(--color-info);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--filled {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--light {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+  }
+
+  .pulseui-badge--dot {
+    background-color: var(--color-primary);
+    border-radius: 50%; // Keep dots circular
+  }
+
+  // Input components
+  .pulseui-input {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(120, 169, 255, 0.2);
+    }
+
+    &:disabled {
+      background-color: var(--color-surface-secondary);
+      color: var(--color-text-disabled);
+    }
+  }
+
+  .pulseui-textarea {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text);
+    font-family: var(--font-family-primary);
+    font-weight: 400;
+    border-radius: 0; // IBM uses square corners
+
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(120, 169, 255, 0.2);
+    }
+  }
+
+  // Card component
+  .pulseui-card {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    font-family: var(--font-family-primary);
+    border-radius: 0; // IBM uses square corners
+  }
+
+  // Navigation
+  .pulseui-simple-top-nav {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-family-primary);
+  }
+
+  .pulseui-simple-top-nav__brand {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .pulseui-simple-top-nav__item {
+    color: var(--color-text);
+    font-weight: 400;
+
+    &:hover {
+      background-color: var(--color-surface-secondary);
+    }
+
+    &.active {
+      background-color: var(--color-primary);
+      color: var(--color-background);
+    }
+  }
+
+  // Apply IBM Plex Sans to all elements within IBM brand (dark theme)
+  font-family: var(--font-family-primary) !important;
+
+  // Force IBM font on all child elements
+  * {
+    font-family: var(--font-family-primary) !important;
+  }
+}

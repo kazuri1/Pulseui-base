@@ -2,7 +2,6 @@ import React from "react";
 import { Close } from "../Icon/IconSet";
 import { Icon } from "../Icon/index";
 import styles from "./Pill.module.scss";
-import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { useTheme } from "../../../contexts/ThemeContext";
