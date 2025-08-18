@@ -12,7 +12,7 @@ import {
 import styles from "./FileUpload.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface FileUploadProps extends WithSxProps {
   /** Supported file types */
@@ -63,7 +63,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     className
   );
 
-  const { isDark } = useTheme();
+  
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   const [isUploading, setIsUploading] = useState(false);

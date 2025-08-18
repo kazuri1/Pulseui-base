@@ -253,3 +253,9 @@
 .navItemText {
   display: inline-block;
 }
+
+.themeSwitcherContainer {
+  display: flex;
+  align-items: center;
+  margin-left: var(--spacing-sm);
+}

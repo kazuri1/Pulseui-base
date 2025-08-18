@@ -5,7 +5,7 @@ import { Icon } from "../Icon/Icon";
 import styles from "./ActionButton.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface ActionButtonProps extends WithSxProps {
   /** Icon to display */
@@ -49,7 +49,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -116,7 +116,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       className={actionButtonClasses}
       sx={sx}
       style={sxStyle}
-      data-theme={isDark ? "dark" : "light"}
+      
     >
       <Icon
         icon={icon}

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Textarea.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface TextareaProps extends WithSxProps {
   /** Textarea label */
@@ -54,7 +54,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const textareaId =
     id || name || `textarea-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -104,7 +104,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         onFocus={onFocus}
         onBlur={onBlur}
         className={textareaClasses}
-        data-theme={isDark ? "dark" : "light"}
+        
       />
 
       {caption && (

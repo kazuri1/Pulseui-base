@@ -5,7 +5,7 @@ import { Button } from "../Button";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface ModalFooterProps extends WithSxProps {
   /** Footer variant */
@@ -51,7 +51,7 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

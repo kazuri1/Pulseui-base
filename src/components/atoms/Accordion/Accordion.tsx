@@ -1,10 +1,9 @@
-import React, { createContext, useContext, useState } from 'react';
-import { Icon } from '../Icon';
-import { ExpandMore, ExpandLess } from '../Icon/IconSet';
-import styles from './Accordion.module.scss';
-import type { WithSxProps } from '../../../utils/sxUtils';
-import { mergeSxWithStyles, combineClassNames } from '../../../utils/sxUtils';
-import { useTheme } from '../../../contexts/ThemeContext';
+import React, { createContext, useContext, useState } from "react";
+import { Icon } from "../Icon";
+import { ExpandMore, ExpandLess } from "../Icon/IconSet";
+import styles from "./Accordion.module.scss";
+import type { WithSxProps } from "../../../utils/sxUtils";
+import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
 // Context for accordion state
 interface AccordionContextValue {
@@ -18,7 +17,7 @@ const AccordionContext = createContext<AccordionContextValue | null>(null);
 const useAccordion = () => {
   const context = useContext(AccordionContext);
   if (!context) {
-    throw new Error('Accordion components must be used within an Accordion');
+    throw new Error("Accordion components must be used within an Accordion");
   }
   return context;
 };
@@ -28,19 +27,18 @@ export interface AccordionProps extends WithSxProps {
   children: React.ReactNode;
   allowMultiple?: boolean;
   defaultExpanded?: string[];
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
   children,
   allowMultiple = false,
   defaultExpanded = [],
-  size = 'md',
-  className = '',
+  size = "md",
+  className = "",
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
   const [expandedItems, setExpandedItems] = useState<string[]>(defaultExpanded);
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
@@ -50,15 +48,13 @@ export const Accordion: React.FC<AccordionProps> = ({
 
   const toggleItem = (itemId: string) => {
     if (allowMultiple) {
-      setExpandedItems(prev => 
-        prev.includes(itemId) 
-          ? prev.filter(id => id !== itemId)
+      setExpandedItems((prev) =>
+        prev.includes(itemId)
+          ? prev.filter((id) => id !== itemId)
           : [...prev, itemId]
       );
     } else {
-      setExpandedItems(prev => 
-        prev.includes(itemId) ? [] : [itemId]
-      );
+      setExpandedItems((prev) => (prev.includes(itemId) ? [] : [itemId]));
     }
   };
 
@@ -94,7 +90,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   id,
   children,
   disabled = false,
-  className = '',
+  className = "",
   sx,
   style,
 }) => {
@@ -104,16 +100,16 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     className
   );
 
-  const itemClasses = combineClassNames(
-    styles.accordionItem,
-    sxClassName
-  );
+  const itemClasses = combineClassNames(styles.accordionItem, sxClassName);
 
   return (
     <div className={itemClasses} style={sxStyle}>
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<any>, { itemId: id, disabled });
+          return React.cloneElement(child as React.ReactElement<any>, {
+            itemId: id,
+            disabled,
+          });
         }
         return child;
       })}
@@ -126,7 +122,7 @@ export interface AccordionHeaderProps extends WithSxProps {
   children: React.ReactNode;
   itemId: string;
   disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 
@@ -134,8 +130,8 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
   children,
   itemId,
   disabled = false,
-  size = 'md',
-  className = '',
+  size = "md",
+  className = "",
   sx,
   style,
 }) => {
@@ -172,15 +168,13 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
     >
       <div className={styles.headerContent}>
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>
-            {children}
-          </div>
+          <div className={styles.title}>{children}</div>
         </div>
       </div>
       <div className={styles.expandIcon}>
         <Icon
           icon={isExpanded ? ExpandLess : ExpandMore}
-          size={size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md'}
+          size={size === "sm" ? "sm" : size === "lg" ? "lg" : "md"}
         />
       </div>
     </button>
@@ -192,7 +186,7 @@ export interface AccordionContentProps extends WithSxProps {
   children: React.ReactNode;
   itemId: string;
   disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 
@@ -200,8 +194,8 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
   children,
   itemId,
   disabled = false,
-  size = 'md',
-  className = '',
+  size = "md",
+  className = "",
   sx,
   style,
 }) => {
@@ -226,24 +220,27 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
 
   return (
     <div className={contentClasses} style={sxStyle}>
-      <div className={styles.contentInner}>
-        {children}
-      </div>
+      <div className={styles.contentInner}>{children}</div>
     </div>
   );
 };
 
 // Convenience components for common use cases
-export const AccordionList: React.FC<{ items: Array<{ id: string; title: string; content: React.ReactNode; disabled?: boolean }> }> = ({ items }) => (
+export const AccordionList: React.FC<{
+  items: Array<{
+    id: string;
+    title: string;
+    content: React.ReactNode;
+    disabled?: boolean;
+  }>;
+}> = ({ items }) => (
   <>
     {items.map((item) => (
       <AccordionItem key={item.id} id={item.id} disabled={item.disabled}>
         <AccordionHeader itemId={item.id} disabled={item.disabled}>
           {item.title}
         </AccordionHeader>
-        <AccordionContent itemId={item.id}>
-          {item.content}
-        </AccordionContent>
+        <AccordionContent itemId={item.id}>{item.content}</AccordionContent>
       </AccordionItem>
     ))}
   </>

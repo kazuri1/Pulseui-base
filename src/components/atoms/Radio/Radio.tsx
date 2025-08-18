@@ -3,7 +3,7 @@ import styles from "./Radio.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface RadioProps extends WithSxProps {
   /** Radio button label text */
@@ -52,7 +52,7 @@ export const Radio: React.FC<RadioProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -90,7 +90,7 @@ export const Radio: React.FC<RadioProps> = ({
         name={name}
         value={value}
         className={styles.input}
-        data-theme={isDark ? "dark" : "light"}
+        
       />
       <span className={styles.radioButton}>
         <span className={styles.radioDot} />

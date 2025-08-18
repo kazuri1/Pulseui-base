@@ -47,6 +47,7 @@ export type { AnimationProps } from "./components/Animation";
 
 // Navigation Components
 export { SimpleTopNav, VersionSelector } from "./components/atoms/SimpleTopNav";
+export { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
 export type {
   SimpleTopNavProps,
   SimpleTopNavItem,
@@ -219,16 +220,6 @@ export type { DatePickerProps } from "./components/atoms/DatePicker";
 // Icon Component
 export { Icon } from "./components/atoms/Icon/Icon";
 export type { IconProps } from "./components/atoms/Icon/Icon";
-
-// Theme Provider
-export { ThemeProvider, useTheme } from "./components/ThemeProvider";
-export type { ThemeProviderProps } from "./components/ThemeProvider";
-
-export { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
-export type { ThemeSwitcherProps } from "./components/atoms/ThemeSwitcher";
-
-export { ThemeToggle } from "./components/atoms/ThemeToggle";
-export type { ThemeToggleProps } from "./components/atoms/ThemeToggle";
 
 // Utilities
 export { mergeSxWithStyles, combineClassNames } from "./utils/sxUtils";

@@ -11,7 +11,6 @@ import {
   ErrorOutline,
   Close,
 } from "../Icon/IconSet";
-import { useTheme } from "../../../contexts/ThemeContext";
 
 export interface AlertProps extends WithSxProps {
   /** The content to display in the alert */
@@ -21,7 +20,13 @@ export interface AlertProps extends WithSxProps {
   /** Visual variant of the alert */
   variant?: "info" | "success" | "warning" | "error";
   /** Style variant of the alert */
-  styleVariant?: "default" | "filled" | "light" | "outline" | "transparent" | "white";
+  styleVariant?:
+    | "default"
+    | "filled"
+    | "light"
+    | "outline"
+    | "transparent"
+    | "white";
   /** Size of the alert */
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   /** Whether to show the close button */
@@ -51,7 +56,6 @@ export const Alert: React.FC<AlertProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

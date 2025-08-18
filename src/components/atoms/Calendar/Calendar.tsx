@@ -5,7 +5,7 @@ import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { CalendarDate, type CalendarDateProps } from "./CalendarParts";
 import { CalendarTitle } from "./CalendarParts";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface CalendarProps extends WithSxProps {
   /** The date to display (defaults to current date) */
@@ -90,7 +90,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const [currentDate, setCurrentDate] = useState(date);
   const [currentYear, setCurrentYear] = useState(date.getFullYear());
 
@@ -502,7 +502,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <div className={calendarClasses} style={sxStyle} id={id} data-theme={isDark ? "dark" : "light"}>
+    <div className={calendarClasses} style={sxStyle} id={id} >
       {/* Header */}
       <div className={styles.header}>
         {showNavigation && (

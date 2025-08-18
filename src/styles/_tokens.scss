@@ -384,4 +384,20 @@
 
   // Shadows
   --color-shadow: rgba(0, 0, 0, 0.3);
+
+  // Additional variables needed by ThemeSwitcher
+  --color-text: var(--color-on-surface);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-text-tertiary: var(--color-on-surface-variant);
+  --color-primary-hover: var(--color-blue-5);
+  --color-primary-active: var(--color-blue-4);
+  --color-border: var(--color-divider);
+  --color-border-tertiary: var(--color-surface-4);
+  --color-secondary: var(--color-gray-6);
+  --color-secondary-hover: var(--color-gray-5);
+  --color-secondary-active: var(--color-gray-7);
+  --color-success: var(--color-green-6);
+  --color-warning: var(--color-yellow-6);
+  --color-error: var(--color-red-6);
+  --color-info: var(--color-blue-6);
 }

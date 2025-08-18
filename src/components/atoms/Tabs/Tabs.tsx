@@ -3,7 +3,7 @@ import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import styles from "./Tabs.module.scss";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface TabsContextValue {
   value: string | null;
@@ -78,7 +78,7 @@ export const Tabs: React.FC<TabsProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const [internalValue, setInternalValue] = React.useState<string | null>(
     value ?? defaultValue ?? null
   );
@@ -132,7 +132,7 @@ export const Tabs: React.FC<TabsProps> = ({
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div className={containerClasses} style={sxStyle} data-theme={isDark ? "dark" : "light"}>
+      <div className={containerClasses} style={sxStyle} >
         {children}
       </div>
     </TabsContext.Provider>

@@ -6,7 +6,7 @@ import styles from "./TextInput.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface TextInputProps extends WithSxProps {
   /** Input label */
@@ -70,7 +70,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const inputId =
     id || name || `text-input-${Math.random().toString(36).substr(2, 9)}`;
 

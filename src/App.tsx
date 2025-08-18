@@ -1,4 +1,3 @@
-import { useTheme, ThemeProvider } from "./contexts/ThemeContext";
 import { VariantSelector } from "./components/atoms/VariantSelector/VariantSelector";
 import { Button } from "./components/atoms/Button/Button";
 import { Badge } from "./components/atoms/Badge";
@@ -22,12 +21,10 @@ import { PillInput } from "./components/atoms/PillInput";
 import { Radio } from "./components/atoms/Radio";
 import { Stepper } from "./components/atoms/Stepper";
 import { Kbd } from "./components/atoms/Kbd";
-import { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
 
 import { Drawer } from "./components/atoms/Drawer";
 
 function AppContent() {
-  const { themeName } = useTheme();
   const [checkboxState, setCheckboxState] = React.useState("default");
   const [inputState, setInputState] = React.useState<
     "default" | "filled" | "unstyled"
@@ -166,7 +163,7 @@ function AppContent() {
           }}
         >
           <span style={{ fontSize: "14px", color: "#666" }}>Theme:</span>
-          <ThemeSwitcher size="md" variant="light" />
+
           <span style={{ fontSize: "12px", color: "#999" }}>
             Click to toggle between light and dark modes
           </span>
@@ -799,11 +796,7 @@ function AppContent() {
 }
 
 function App() {
-  return (
-    <ThemeProvider defaultTheme="default-light">
-      <AppContent />
-    </ThemeProvider>
-  );
+  return <AppContent />;
 }
 
 export default App;

@@ -5,7 +5,7 @@ import { Pill } from "../Pill/Pill";
 import styles from "./PillInput.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface PillInputProps extends WithSxProps {
   /** Array of pills/tags */

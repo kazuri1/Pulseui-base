@@ -3,7 +3,7 @@ import styles from "./ComponentBox.module.scss";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface ComponentBoxProps extends WithSxProps {
   /** The component to display in the center */
@@ -28,7 +28,7 @@ export const ComponentBox: React.FC<ComponentBoxProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

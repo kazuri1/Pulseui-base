@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import styles from "./PinInput.module.scss";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface PinInputProps extends WithSxProps {
   /** Input label */
@@ -56,7 +56,7 @@ export const PinInput: React.FC<PinInputProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -170,7 +170,7 @@ export const PinInput: React.FC<PinInputProps> = ({
               focusedIndex === index ? styles.focused : ""
             } ${error ? styles.error : ""}`}
             autoComplete="one-time-code"
-            data-theme={isDark ? "dark" : "light"}
+            
           />
         ))}
       </div>

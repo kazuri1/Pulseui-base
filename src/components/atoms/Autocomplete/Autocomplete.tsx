@@ -6,7 +6,7 @@ import { ArrowDropDown } from "../Icon/IconSet";
 import styles from "./Autocomplete.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface AutocompleteOption {
   value: string;
@@ -80,7 +80,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
       className
     );
 
-    const { isDark } = useTheme();
+    
     const [inputValue, setInputValue] = React.useState(value);
     const [isOpen, setIsOpen] = React.useState(false);
     const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
@@ -239,7 +239,7 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
             onFocus={handleFocus}
             onBlur={handleBlur}
             className={styles.input}
-            data-theme={isDark ? "dark" : "light"}
+            
           />
           {showArrow && (
             <button

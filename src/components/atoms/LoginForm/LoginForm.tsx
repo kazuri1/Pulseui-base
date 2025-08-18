@@ -10,7 +10,7 @@ import { GitHub, Twitter, OpenInBrowser } from "../Icon/IconSet";
 import styles from "./LoginForm.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface LoginFormProps extends WithSxProps {
   onSubmit?: (data: LoginFormData) => void;
@@ -64,7 +64,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     className
   );
 
-  const { isDark } = useTheme();
+  
   const [formData, setFormData] = useState<LoginFormData>({
     email: defaultEmail,
     password: "",

@@ -22,7 +22,7 @@ import type { SvgIconComponent } from "@mui/icons-material";
 import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface SingleTabProps extends WithSxProps {
   /** Tab text content */
@@ -61,7 +61,7 @@ export const SingleTab: React.FC<SingleTabProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -157,7 +157,7 @@ export const SingleTab: React.FC<SingleTabProps> = ({
       onClick={onClick}
       disabled={disabled || state === "disabled"}
       style={sxStyle}
-      data-theme={isDark ? "dark" : "light"}
+      
     >
       {leftIconComponent && (
         <Icon

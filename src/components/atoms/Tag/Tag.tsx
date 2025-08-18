@@ -6,7 +6,7 @@ import type { SvgIconComponent } from "@mui/icons-material";
 import styles from "./Tag.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface TagProps extends WithSxProps {
   /** The text content of the tag */
@@ -34,7 +34,7 @@ export const Tag: React.FC<TagProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

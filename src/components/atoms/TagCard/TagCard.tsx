@@ -6,7 +6,7 @@ import type { SvgIconComponent } from "@mui/icons-material";
 import styles from "./TagCard.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface TagItem {
   /** Unique identifier for the tag */
@@ -46,7 +46,7 @@ export const TagCard: React.FC<TagCardProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,

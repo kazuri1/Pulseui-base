@@ -5,7 +5,7 @@ import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { Icon } from "../Icon";
 import { ArrowBack, ArrowForward, MoreHoriz } from "../Icon/IconSet";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface PaginationProps extends WithSxProps {
   /** Current page number (1-based) */
@@ -57,7 +57,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   sx,
   style,
 }) => {
-  const { isDark } = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -165,7 +165,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   const pageNumbers = getPageNumbers();
 
   return (
-    <nav className={paginationClasses} style={sxStyle} id={id} role="navigation" aria-label="Pagination" data-theme={isDark ? "dark" : "light"}>
+    <nav className={paginationClasses} style={sxStyle} id={id} role="navigation" aria-label="Pagination" >
       <div className={styles.container}>
         {showFirstLast && (
           <button

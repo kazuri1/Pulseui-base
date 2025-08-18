@@ -7,7 +7,7 @@ import { Icon } from "../Icon/Icon";
 import { Menu, Close, Home, Person, Store, Email } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 import { VersionSelector } from "./VersionSelector";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 
@@ -80,7 +80,6 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
     defaultMobileMenuOpen
   );
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
-  const { isDark } = useTheme();
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
@@ -166,11 +165,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
 
   return (
     <>
-      <nav
-        className={navClasses}
-        style={sxStyle}
-        data-theme={isDark ? "dark" : "light"}
-      >
+      <nav className={navClasses} style={sxStyle}>
         {showBrand && (
           <div className={styles.brand}>
             {brandLogo && <div className={styles.brandLogo}>{brandLogo}</div>}
@@ -186,7 +181,6 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
                 className={styles.versionSelector}
               />
             )}
-            {showThemeSwitcher && <ThemeSwitcher />}
           </div>
         )}
 
@@ -236,7 +230,6 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
           className={`${styles.mobileNavigation} ${
             isMobileMenuOpen ? styles.open : ""
           }`}
-          data-theme={isDark ? "dark" : "light"}
         >
           <div className={styles.mobileNavContent}>
             <div className={styles.mobileNavHeader}>

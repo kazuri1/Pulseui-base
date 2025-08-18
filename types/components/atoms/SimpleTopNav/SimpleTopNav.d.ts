@@ -48,7 +48,5 @@ export interface SimpleTopNavProps extends WithSxProps {
         /** Whether to show the version selector */
         show?: boolean;
     };
-    /** Whether to show the theme switcher */
-    showThemeSwitcher?: boolean;
 }
 export declare const SimpleTopNav: React.FC<SimpleTopNavProps>;

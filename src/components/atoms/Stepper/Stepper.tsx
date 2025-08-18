@@ -3,7 +3,7 @@ import styles from "./Stepper.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { StepperItem, type StepperItemProps } from "./StepperItem";
-import { useTheme } from "../../../contexts/ThemeContext";
+
 
 export interface StepperStep {
   /** Unique identifier for the step */
@@ -44,7 +44,7 @@ export const Stepper: React.FC<StepperProps> = ({
   sx,
   style,
 }) => {
-  const {} = useTheme();
+  
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
