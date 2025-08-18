@@ -1,5 +1,4 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .text {
   margin: 0;
@@ -86,25 +85,41 @@
     font-weight: var(--font-weight-bold);
   }
 
-  // Truncation using mixins
+  // Truncation styles
   &.truncate {
-    @include text-truncate;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  // Multi-line truncation using mixins
+  // Multi-line truncation styles
   &.lines-1 {
-    @include text-truncate;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &.lines-2 {
-    @include text-multiline-truncate(2);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &.lines-3 {
-    @include text-multiline-truncate(3);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &.lines-4 {
-    @include text-multiline-truncate(4);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

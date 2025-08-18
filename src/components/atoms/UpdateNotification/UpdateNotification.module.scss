@@ -1,5 +1,4 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .updateNotification {
   max-width: 800px;
@@ -9,14 +8,14 @@
 }
 
 .content {
-  @include flex-between;
+  display: flex; align-items: center; justify-content: space-between;
   align-items: center;
   gap: var(--spacing-lg);
   padding: var(--spacing-lg);
 }
 
 .textContent {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-xs);
   flex: 1;
 }
@@ -36,7 +35,7 @@
 }
 
 .actions {
-  @include flex-between;
+  display: flex; align-items: center; justify-content: space-between;
   gap: var(--spacing-sm);
   flex-shrink: 0;
 }
@@ -55,7 +54,7 @@
 // Responsive adjustments
 @media (max-width: 600px) {
   .content {
-    @include flex-column;
+    display: flex; flex-direction: column;
     align-items: stretch;
     gap: var(--spacing-md);
   }

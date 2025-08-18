@@ -1,14 +1,13 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .componentBox {
-  @include flex-column;
+  display: flex; flex-direction: column;
   align-items: center;
   width: 300px;
 }
 
 .componentArea {
-  @include flex-center;
+  display: flex; align-items: center; justify-content: center;
   width: 100%;
   min-height: 200px;
   background-color: var(--color-surface-secondary);

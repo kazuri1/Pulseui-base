@@ -1,11 +1,10 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .tag {
   cursor: default;
 
   .tagContent {
-    @include flex-between;
+    display: flex; align-items: center; justify-content: space-between;
     align-items: center;
     gap: var(--spacing-xs);
     width: 100%;

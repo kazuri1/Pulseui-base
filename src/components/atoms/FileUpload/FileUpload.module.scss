@@ -1,8 +1,7 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .fileUpload {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-lg);
   padding: var(--spacing-xl);
   max-width: 600px;
@@ -10,7 +9,7 @@
 }
 
 .header {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-xs);
   text-align: center;
 }
@@ -26,7 +25,7 @@
 }
 
 .dropZone {
-  @include flex-column;
+  display: flex; flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-md);
@@ -75,7 +74,7 @@
 }
 
 .uploadList {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-md);
   border-top: var(--border-width-thin) solid var(--color-border-secondary);
   padding-top: var(--spacing-lg);
@@ -87,7 +86,7 @@
 }
 
 .uploadItem {
-  @include flex-between;
+  display: flex; align-items: center; justify-content: space-between;
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
@@ -97,7 +96,7 @@
 }
 
 .fileInfo {
-  @include flex-start;
+  display: flex; align-items: center; justify-content: flex-start;
   gap: var(--spacing-sm);
   flex: 1;
   min-width: 0;
@@ -109,7 +108,7 @@
 }
 
 .fileDetails {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-xs);
   flex: 1;
   min-width: 0;
@@ -124,7 +123,7 @@
 }
 
 .progressContainer {
-  @include flex-between;
+  display: flex; align-items: center; justify-content: space-between;
   align-items: center;
   gap: var(--spacing-sm);
 }

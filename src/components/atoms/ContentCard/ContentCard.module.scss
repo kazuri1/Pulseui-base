@@ -1,8 +1,7 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .contentCard {
-  @include flex-column;
+  display: flex; flex-direction: column;
   overflow: hidden;
   cursor: pointer;
 }
@@ -26,7 +25,7 @@
 }
 
 .content {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-md);
   padding: var(--spacing-lg);
   flex: 1;
@@ -52,7 +51,7 @@
 }
 
 .authorSection {
-  @include flex-start;
+  display: flex; align-items: center; justify-content: flex-start;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
   padding-top: var(--spacing-md);
@@ -60,7 +59,7 @@
 }
 
 .authorInfo {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-xs);
 }
 

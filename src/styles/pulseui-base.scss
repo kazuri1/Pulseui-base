@@ -3,30 +3,16 @@
 // =============================================================================
 // This file bundles ALL Pulse UI styles in the correct order:
 // 1. Design tokens (CSS custom properties)
-// 2. SCSS mixins and functions
-// 3. ALL Component SCSS modules (bundled for customer use)
-// 4. Global styles and utilities
+// 2. ALL Component SCSS modules (bundled for customer use)
+// 3. Global styles and utilities
 // =============================================================================
 
 // =============================================================================
-// 1. SCSS Mixins and Functions (must come first)
-// =============================================================================
-// Import SCSS mixins and utility functions that components can use
-// These mixins reference the CSS custom properties from tokens
-@use "./mixins" as *;
-
-// =============================================================================
-// 2. Design Tokens (CSS Custom Properties)
+// 1. Design Tokens (CSS Custom Properties)
 // =============================================================================
 // Import design tokens - these define all CSS custom properties
-// that components and mixins will reference
+// that components will reference directly
 @use "./tokens" as *;
-
-// =============================================================================
-// 3. Brand-Specific Tokens
-// =============================================================================
-// Import brand-specific token overrides
-@import "./brands/ibm/tokens";
 
 // =============================================================================
 // 3. ALL Component SCSS Modules (Bundled)
@@ -40,12 +26,6 @@
 
 // ThemeProvider Component
 @import "../components/ThemeProvider/ThemeProvider.module.scss";
-
-// BrandSwitcher Component
-@import "../components/atoms/BrandSwitcher/BrandSwitcher.module.scss";
-
-// ThemeAndBrandSwitcher Component
-@import "../components/atoms/ThemeAndBrandSwitcher/ThemeAndBrandSwitcher.module.scss";
 
 // Button Component
 @import "../components/atoms/Button/Button.module.scss";

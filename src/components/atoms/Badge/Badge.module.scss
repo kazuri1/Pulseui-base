@@ -1,5 +1,4 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .badge {
   display: inline-flex;
@@ -222,12 +221,23 @@
 // State styles
 .state-hover {
   &:not(.disabled) {
-    @include interactive-hover;
+    // Interactive hover (was @include interactive-hover)
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+    &:hover:not(:disabled) {
+      transform: var(--transform-hover);
+      box-shadow: var(--shadow-hover);
+    }
   }
 }
 
 .state-disabled {
-  @include disabled;
+  // Disabled state (was @include disabled)
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 // Content styling
@@ -244,7 +254,10 @@
 .left,
 .right {
   flex-shrink: 0;
-  @include flex-center;
+  // Flex center (was @include flex-center)
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
 

@@ -1,8 +1,4 @@
-import {
-  PulseUIProvider,
-  useTheme,
-  useBrand,
-} from "./contexts/PulseUIProvider";
+import { useTheme, ThemeProvider } from "./contexts/ThemeContext";
 import { VariantSelector } from "./components/atoms/VariantSelector/VariantSelector";
 import { Button } from "./components/atoms/Button/Button";
 import { Badge } from "./components/atoms/Badge";
@@ -27,13 +23,11 @@ import { Radio } from "./components/atoms/Radio";
 import { Stepper } from "./components/atoms/Stepper";
 import { Kbd } from "./components/atoms/Kbd";
 import { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
-import { BrandSwitcher } from "./components/atoms/BrandSwitcher";
-import { ThemeAndBrandSwitcher } from "./components/atoms/ThemeAndBrandSwitcher";
+
 import { Drawer } from "./components/atoms/Drawer";
 
 function AppContent() {
   const { themeName } = useTheme();
-  const { currentBrand, brandId, isDefaultBrand } = useBrand();
   const [checkboxState, setCheckboxState] = React.useState("default");
   const [inputState, setInputState] = React.useState<
     "default" | "filled" | "unstyled"
@@ -177,75 +171,6 @@ function AppContent() {
             Click to toggle between light and dark modes
           </span>
         </div>
-
-        {/* Brand Switcher */}
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            padding: "12px",
-            borderRadius: "6px",
-            border: "1px solid #eee",
-            backgroundColor: "#f9f9f9",
-            minWidth: "300px",
-          }}
-        >
-          <span style={{ fontSize: "14px", color: "#666" }}>Brand:</span>
-          <BrandSwitcher size="md" showVersion={true} showDescription={true} />
-          <span style={{ fontSize: "12px", color: "#999" }}>
-            Switch between different brand designs
-          </span>
-        </div>
-
-        {/* Combined Switcher */}
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            padding: "12px",
-            borderRadius: "6px",
-            border: "1px solid #eee",
-            backgroundColor: "#f9f9f9",
-            minWidth: "400px",
-          }}
-        >
-          <span style={{ fontSize: "14px", color: "#666" }}>Combined:</span>
-          <ThemeAndBrandSwitcher
-            size="sm"
-            showThemeToggle={true}
-            showBrandSwitcher={true}
-            showBrandVersion={true}
-            direction="horizontal"
-          />
-        </div>
-      </div>
-
-      {/* Current Brand Info */}
-      <div
-        style={{
-          display: "flex",
-          gap: "16px",
-          alignItems: "center",
-          padding: "16px",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
-          margin: "16px",
-          backgroundColor: "#f0f8ff",
-        }}
-      >
-        <Badge variant="filled">
-          Current Brand:{" "}
-          {isDefaultBrand
-            ? "PulseUI (Default)"
-            : currentBrand?.name || "Unknown"}
-        </Badge>
-        <Badge variant="outline">Brand ID: {brandId || "pulseui"}</Badge>
-        <Badge variant="light">Theme: {themeName}</Badge>
-        {currentBrand && (
-          <Badge variant="dot">Version: v{currentBrand.version}</Badge>
-        )}
       </div>
 
       {/* Component Variants */}
@@ -277,7 +202,7 @@ function AppContent() {
                 console.log(`Button variant changed to: ${variant}`)
               }
             >
-              <Button size="lg">Sample Button</Button>
+              <Button size="md">Button</Button>
             </VariantSelector>
           </GridCol>
           <GridCol span={4}>
@@ -343,7 +268,7 @@ function AppContent() {
               }}
             >
               <Checkbox
-                label="Sample Checkbox"
+                label="Checkbox"
                 defaultChecked={true}
                 disabled={checkboxState === "disabled"}
                 error={
@@ -366,7 +291,7 @@ function AppContent() {
               }
             >
               <Switch
-                label="Sample Switch"
+                label="Switch"
                 defaultChecked={false}
                 onChange={(checked) => console.log("Switch:", checked)}
               />
@@ -875,61 +800,9 @@ function AppContent() {
 
 function App() {
   return (
-    <PulseUIProvider
-      defaultTheme="default-light"
-      defaultBrand={null}
-      availableBrands={[
-        {
-          id: "ibm",
-          name: "IBM",
-          version: "1.0.0",
-          description:
-            "IBM Design Language - Carbon Design System inspired tokens",
-          figmaFileKey: "ibm-design-system",
-          tokens: {
-            light: {
-              primary: "#0f62fe",
-              secondary: "#525252",
-              success: "#24a148",
-              warning: "#f1c21b",
-              error: "#da1e28",
-            },
-            dark: {
-              primary: "#78a9ff",
-              secondary: "#a8a8a8",
-              success: "#42be65",
-              warning: "#f1c21b",
-              error: "#ff8389",
-            },
-          },
-        },
-        {
-          id: "google",
-          name: "Google",
-          version: "1.0.0",
-          description: "Google Material Design 3 inspired tokens",
-          figmaFileKey: "google-material-3",
-          tokens: {
-            light: {
-              primary: "#6750a4",
-              secondary: "#625b71",
-              success: "#4caf50",
-              warning: "#ff9800",
-              error: "#f44336",
-            },
-            dark: {
-              primary: "#d0bcff",
-              secondary: "#ccc2dc",
-              success: "#81c784",
-              warning: "#ffb74d",
-              error: "#e57373",
-            },
-          },
-        },
-      ]}
-    >
+    <ThemeProvider defaultTheme="default-light">
       <AppContent />
-    </PulseUIProvider>
+    </ThemeProvider>
   );
 }
 

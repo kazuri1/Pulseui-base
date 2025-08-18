@@ -1,5 +1,4 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .themeSwitcher {
   display: inline-flex;
@@ -11,7 +10,7 @@
 
   // Focus styles for accessibility
   &:focus-visible {
-    @include focus-ring;
+    outline: 2px solid var(--color-border-focus); outline-offset: 2px;
     border-radius: var(--radius-sm);
   }
 }

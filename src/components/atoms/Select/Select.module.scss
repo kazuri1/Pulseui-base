@@ -1,8 +1,8 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .selectContainer {
-  @include flex-column;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-xs);
   position: relative;
 }
@@ -31,7 +31,9 @@
 }
 
 .selectButton {
-  @include flex-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: var(--color-input-background);
@@ -52,7 +54,8 @@
   }
 
   &:focus-visible {
-    @include focus-ring;
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
     border-color: var(--color-input-border-focus);
   }
 
@@ -131,7 +134,8 @@
 
   &.focused {
     background-color: var(--color-surface-1);
-    @include focus-ring-inset;
+    /* Focus ring inset (was @include focus-ring-inset) */
+    box-shadow: inset 0 0 0 2px var(--color-border-focus);
   }
 
   &.disabled {
@@ -242,11 +246,13 @@
 
 // Focus management for better accessibility
 .selectButton:focus-visible {
-  @include focus-ring;
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
 }
 
 .option:focus-visible {
-  @include focus-ring-inset;
+  /* Focus ring inset (was @include focus-ring-inset) */
+  box-shadow: inset 0 0 0 2px var(--color-border-focus);
 }
 
 // Enhanced hover states using design system

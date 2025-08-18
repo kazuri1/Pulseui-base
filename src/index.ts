@@ -230,41 +230,14 @@ export type { ThemeSwitcherProps } from "./components/atoms/ThemeSwitcher";
 export { ThemeToggle } from "./components/atoms/ThemeToggle";
 export type { ThemeToggleProps } from "./components/atoms/ThemeToggle";
 
-// Brand Provider
-export { BrandProvider, useBrand } from "./contexts/BrandContext";
-export type { BrandProviderProps } from "./contexts/BrandContext";
-
-// Combined Provider
-export { PulseUIProvider } from "./contexts/PulseUIProvider";
-export type { PulseUIProviderProps } from "./contexts/PulseUIProvider";
-
-// Brand Components
-export { BrandSwitcher } from "./components/atoms/BrandSwitcher";
-export type { BrandSwitcherProps } from "./components/atoms/BrandSwitcher";
-
-export { ThemeAndBrandSwitcher } from "./components/atoms/ThemeAndBrandSwitcher";
-export type { ThemeAndBrandSwitcherProps } from "./components/atoms/ThemeAndBrandSwitcher";
-
 // Utilities
 export { mergeSxWithStyles, combineClassNames } from "./utils/sxUtils";
 export type { WithSxProps } from "./utils/sxUtils";
-
-// Brand Utilities
-export {
-  defaultBrandLoader,
-  dynamicBrandLoader,
-  loadBrand,
-  loadAllBrands,
-  validateBrand,
-  getBrandTokens,
-} from "./utils/brandLoader";
-export type { BrandConfig, BrandLoader } from "./utils/brandLoader";
 
 export type { SxProps } from "./styles/stylesApi";
 
 // Hooks
 export { useBreakpoint } from "./hooks/useBreakpoint";
-export { useBrandManager } from "./hooks/useBrandManager";
 
 // Re-export commonly used icons
 export {

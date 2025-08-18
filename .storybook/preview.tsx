@@ -1,13 +1,5 @@
 import React from "react";
 import type { Preview } from "@storybook/react";
-import { ThemeProvider } from "../src/components/ThemeProvider";
-
-// Mock theme context for Storybook only
-const MockThemeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  return <div style={{ padding: "20px" }}>{children}</div>;
-};
 
 const preview: Preview = {
   parameters: {
@@ -21,9 +13,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <MockThemeProvider>
+      <div style={{ padding: "20px" }}>
         <Story />
-      </MockThemeProvider>
+      </div>
     ),
   ],
 };

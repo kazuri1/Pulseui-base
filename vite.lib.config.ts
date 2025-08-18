@@ -24,6 +24,7 @@ export default defineConfig({
       },
     },
     outDir: "dist",
+    emptyOutDir: false,
     sourcemap: true,
     minify: false,
     target: "es2015",

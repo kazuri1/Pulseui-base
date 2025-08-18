@@ -1,8 +1,21 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .avatar {
-  @include avatar-base;
+  // Avatar base styles (was @include avatar-base)
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-surface-secondary);
+  border: 2px solid transparent;
+  box-sizing: border-box;
 }
 
 // Size variants
@@ -112,8 +125,24 @@
 
 // Interactive styles
 .interactive {
-  @include interactive-scale;
-  @include focus-visible;
+  // Interactive scale (was @include interactive-scale)
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+  &:hover:not(:disabled) {
+    transform: scale(1.05);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  // Focus visible (was @include focus-visible)
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
 
   &:hover {
     box-shadow: 0 2px 8px var(--color-shadow);
@@ -122,5 +151,7 @@
 
 // Focus styles for accessibility
 .avatar:focus-visible {
-  @include focus-ring;
+  // Focus ring (was @include focus-ring)
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
 }

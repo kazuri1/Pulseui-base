@@ -1,20 +1,46 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .button {
-  @include button-base;
-  transition: all var(--motion-transition-normal) ease;
+  // Layout (was @include flex-center)
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Typography
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+
+  // Interactive
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
   position: relative;
+  white-space: nowrap;
+
+  // Focus (was @include focus-visible)
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+
+  // Disabled (was @include disabled)
+  &:disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Transitions (was @include transition)
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
+
+  // Border radius (was @include border-radius)
+  border-radius: var(--radius-md);
+
+  // Button-specific overrides
+  transition: all var(--motion-transition-normal) ease;
   overflow: hidden;
-
-  // Enhanced hover effects
-  &:hover:not(:disabled) {
-    // Removed transform and box-shadow
-  }
-
-  &:active:not(:disabled) {
-    // Removed transform and box-shadow
-  }
 
   // Size variants
   &.size-xs {
@@ -66,7 +92,6 @@
     &:active:not(:disabled) {
       background-color: var(--color-primary-dark, var(--color-primary-6));
       border-color: var(--color-primary-dark, var(--color-primary-6));
-      // Removed transform and box-shadow
     }
   }
 
@@ -158,19 +183,34 @@
   // State styles
   &.state-hover {
     &:not(:disabled) {
-      @include interactive-hover;
+      // Interactive hover (was @include interactive-hover)
+      cursor: pointer;
+      user-select: none;
+      transition: all var(--motion-duration-normal)
+        var(--motion-easing-ease-out);
+
+      &:hover:not(:disabled) {
+        transform: var(--transform-hover);
+        box-shadow: var(--shadow-hover);
+      }
     }
   }
 
   &.state-disabled {
-    @include disabled;
+    // Disabled state (was @include disabled)
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
   }
 
   // Icon styles
   .left,
   .right {
     flex-shrink: 0;
-    @include flex-center;
+    // Flex center (was @include flex-center)
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .left {

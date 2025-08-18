@@ -1,8 +1,7 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .checkboxContainer {
-  @include flex-start;
+  display: flex; align-items: center; justify-content: flex-start;
   gap: var(--spacing-sm);
   align-items: flex-start;
   font-family: var(--font-family);
@@ -21,7 +20,7 @@
 }
 
 .checkboxLabelGroup {
-  @include flex-start;
+  display: flex; align-items: center; justify-content: flex-start;
   gap: var(--spacing-sm);
   align-items: center;
   flex-shrink: 0;

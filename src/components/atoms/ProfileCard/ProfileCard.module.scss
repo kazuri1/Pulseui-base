@@ -1,8 +1,7 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .profileCard {
-  @include flex-column;
+  display: flex; flex-direction: column;
   align-items: center;
   text-align: center;
   padding: var(--spacing-xl);
@@ -27,7 +26,7 @@
 }
 
 .profileInfo {
-  @include flex-column;
+  display: flex; flex-direction: column;
   gap: var(--spacing-sm);
   width: 100%;
 }
@@ -60,7 +59,7 @@
 }
 
 .statsContainer {
-  @include flex-between;
+  display: flex; align-items: center; justify-content: space-between;
   width: 100%;
   padding-top: var(--spacing-lg);
   border-top: var(--border-width-thin) solid var(--color-border-secondary);
@@ -68,7 +67,7 @@
 }
 
 .statItem {
-  @include flex-column;
+  display: flex; flex-direction: column;
   align-items: center;
   gap: var(--spacing-xs);
   flex: 1;

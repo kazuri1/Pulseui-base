@@ -1,5 +1,4 @@
 @import "../../../styles/_tokens.scss";
-@import "../../../styles/_mixins.scss";
 
 .componentDisplay {
   width: 100%;
@@ -40,12 +39,15 @@
 }
 
 .metadata {
-  @include flex-column;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
 }
 
 .metadataItem {
-  @include flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: var(--spacing-md);
 }
 
@@ -60,13 +62,18 @@
 }
 
 .metadataLink {
-  @include flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
   color: var(--color-text-primary);
   text-decoration: none;
   font-size: var(--font-size-md);
   font-family: var(--font-family);
-  @include interactive;
+  /* Interactive (was @include interactive) */
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
   border-radius: var(--radius-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
 
@@ -76,7 +83,8 @@
   }
 
   &:focus-visible {
-    @include focus-ring;
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
     border-radius: var(--radius-sm);
   }
 
@@ -86,7 +94,9 @@
 }
 
 .packageInfo {
-  @include flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
   color: var(--color-text-primary);
   font-size: var(--font-size-md);
@@ -98,7 +108,10 @@
   text-decoration: none;
   font-size: var(--font-size-md);
   font-family: var(--font-family);
-  @include interactive;
+  /* Interactive (was @include interactive) */
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
   border-radius: var(--radius-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
 
@@ -108,7 +121,8 @@
   }
 
   &:focus-visible {
-    @include focus-ring;
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
     border-radius: var(--radius-sm);
   }
 
@@ -421,7 +435,8 @@
   }
 
   &:focus-visible {
-    @include focus-ring;
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
   }
 }
 
