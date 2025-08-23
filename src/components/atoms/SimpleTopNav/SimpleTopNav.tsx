@@ -10,6 +10,8 @@ import { useBreakpoint } from "../../../hooks/useBreakpoint";
 
 import { VersionSelector } from "./VersionSelector";
 import { ThemeSwitcher } from "../ThemeSwitcher";
+import { BrandLogo } from "../BrandLogo";
+import { BrandSwitcher } from "../BrandSwitcher";
 
 export interface SimpleTopNavItem {
   /** Unique identifier for the nav item */
@@ -27,12 +29,18 @@ export interface SimpleTopNavItem {
 }
 
 export interface SimpleTopNavProps extends WithSxProps {
-  /** Brand name to display */
+  /** Brand name to display (deprecated - use BrandLogo component) */
   brandName?: string;
-  /** Brand title/role to display */
+  /** Brand title/role to display (deprecated - use BrandLogo component) */
   brandTitle?: string;
-  /** Brand logo/icon (optional) */
+  /** Brand logo/icon (optional - deprecated, use BrandLogo component) */
   brandLogo?: React.ReactNode;
+  /** Whether to use the new dynamic brand logo */
+  useDynamicBrandLogo?: boolean;
+  /** Size of the brand logo */
+  brandLogoSize?: "sm" | "md" | "lg" | "xl";
+  /** Whether to show text with the brand logo */
+  showBrandText?: boolean;
   /** Navigation items */
   items?: SimpleTopNavItem[];
   /** Whether to show the brand section */
@@ -58,14 +66,48 @@ export interface SimpleTopNavProps extends WithSxProps {
     /** Whether to show the version selector */
     show?: boolean;
   };
+  /** Brand switcher configuration */
+  brandSwitcher?: {
+    /** Whether to show the brand switcher */
+    show?: boolean;
+    /** Size of the brand switcher */
+    size?: "sm" | "md" | "lg";
+    /** Whether to show brand descriptions */
+    showDescription?: boolean;
+  };
   /** Whether to show the theme switcher */
   showThemeSwitcher?: boolean;
+  /** Children to render inside the navigation */
+  children?: React.ReactNode;
+  /** Custom content to render before the brand section */
+  beforeBrand?: React.ReactNode;
+  /** Custom content to render after the brand section but before navigation */
+  afterBrand?: React.ReactNode;
+  /** Custom content to render before the navigation items */
+  beforeNavigation?: React.ReactNode;
+  /** Custom content to render after the navigation items */
+  afterNavigation?: React.ReactNode;
+  /** Custom content to render in the center area (between brand and navigation) */
+  centerContent?: React.ReactNode;
+  /** Custom content to render in the mobile navigation header */
+  mobileHeaderContent?: React.ReactNode;
+  /** Custom content to render at the bottom of mobile navigation */
+  mobileFooterContent?: React.ReactNode;
+  /** Whether to show the center content area */
+  showCenterContent?: boolean;
+  /** Whether to show the mobile header content */
+  showMobileHeaderContent?: boolean;
+  /** Whether to show the mobile footer content */
+  showMobileFooterContent?: boolean;
 }
 
 export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
   brandName = "VIGNESH VISHNUMOORTHY",
   brandTitle = "PRODUCT DESIGNER + ENGINEER",
   brandLogo,
+  useDynamicBrandLogo = true,
+  brandLogoSize = "md",
+  showBrandText = true,
   items = [],
   showBrand = true,
   showNavigation = true,
@@ -74,7 +116,19 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
   style,
   defaultMobileMenuOpen = false,
   versionSelector = {},
+  brandSwitcher = {},
   showThemeSwitcher = true,
+  children,
+  beforeBrand,
+  afterBrand,
+  beforeNavigation,
+  afterNavigation,
+  centerContent,
+  mobileHeaderContent,
+  mobileFooterContent,
+  showCenterContent = false,
+  showMobileHeaderContent = false,
+  showMobileFooterContent = false,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(
     defaultMobileMenuOpen
@@ -166,13 +220,37 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
   return (
     <>
       <nav className={navClasses} style={sxStyle}>
+        {/* Before Brand Content */}
+        {beforeBrand && <div className={styles.beforeBrand}>{beforeBrand}</div>}
+
+        {/* Brand Section */}
         {showBrand && (
           <div className={styles.brand}>
-            {brandLogo && <div className={styles.brandLogo}>{brandLogo}</div>}
-            <div className={styles.brandInfo}>
-              <h1 className={styles.brandName}>{brandName}</h1>
-              {brandTitle && <p className={styles.brandTitle}>{brandTitle}</p>}
-            </div>
+            {useDynamicBrandLogo ? (
+              <BrandLogo
+                size={brandLogoSize}
+                showText={showBrandText}
+                className={styles.brandLogoComponent}
+              />
+            ) : (
+              <>
+                {brandLogo && (
+                  <div className={styles.brandLogo}>{brandLogo}</div>
+                )}
+                <div className={styles.brandInfo}>
+                  <h1 className={styles.brandName}>{brandName}</h1>
+                  {brandTitle && (
+                    <p
+                      className={`${styles.brandTitle} ${
+                        isMobile ? styles.hiddenOnMobile : ""
+                      }`}
+                    >
+                      {brandTitle}
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
             {versionSelector.show && (
               <VersionSelector
                 version={versionSelector.version}
@@ -181,11 +259,36 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
                 className={styles.versionSelector}
               />
             )}
+            {brandSwitcher.show && (
+              <BrandSwitcher
+                size={brandSwitcher.size || "sm"}
+                showDescription={brandSwitcher.showDescription || false}
+                label=""
+                className={styles.brandSwitcher}
+              />
+            )}
           </div>
         )}
 
+        {/* After Brand Content */}
+        {afterBrand && <div className={styles.afterBrand}>{afterBrand}</div>}
+
+        {/* Center Content Area */}
+        {showCenterContent && centerContent && (
+          <div className={styles.centerContent}>{centerContent}</div>
+        )}
+
+        {/* Children Content */}
+        {children && <div className={styles.childrenContent}>{children}</div>}
+
+        {/* Navigation Section */}
         {showNavigation && (
           <>
+            {/* Before Navigation Content */}
+            {beforeNavigation && (
+              <div className={styles.beforeNavigation}>{beforeNavigation}</div>
+            )}
+
             {/* Desktop Navigation - Only show on desktop */}
             {showDesktopNav && (
               <div className={styles.desktopNavigation}>
@@ -201,7 +304,8 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
             {/* Mobile Menu Toggle - Only show on mobile/tablet */}
             {showMobileToggle && (
               <div className={styles.mobileControls}>
-                {showThemeSwitcher && (
+                {/* Hide theme switcher on mobile */}
+                {showThemeSwitcher && !isMobile && (
                   <div className={styles.themeSwitcherContainer}>
                     <ThemeSwitcher size="sm" variant="light" />
                   </div>
@@ -220,6 +324,11 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
                 </button>
               </div>
             )}
+
+            {/* After Navigation Content */}
+            {afterNavigation && (
+              <div className={styles.afterNavigation}>{afterNavigation}</div>
+            )}
           </>
         )}
       </nav>
@@ -233,7 +342,21 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
         >
           <div className={styles.mobileNavContent}>
             <div className={styles.mobileNavHeader}>
-              <h2 className={styles.mobileNavTitle}>Navigation</h2>
+              <div className={styles.mobileNavHeaderLeft}>
+                <h2 className={styles.mobileNavTitle}>Navigation</h2>
+                {/* Show theme switcher in mobile menu header */}
+                {showThemeSwitcher && (
+                  <div className={styles.mobileThemeSwitcher}>
+                    <ThemeSwitcher size="sm" variant="light" />
+                  </div>
+                )}
+                {/* Custom mobile header content */}
+                {showMobileHeaderContent && mobileHeaderContent && (
+                  <div className={styles.mobileHeaderCustomContent}>
+                    {mobileHeaderContent}
+                  </div>
+                )}
+              </div>
               <button
                 className={styles.mobileNavCloseButton}
                 onClick={toggleMobileMenu}
@@ -246,6 +369,12 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
             <div className={styles.mobileNavItems}>
               {navItems.map((item) => renderNavItem(item, true))}
             </div>
+            {/* Custom mobile footer content */}
+            {showMobileFooterContent && mobileFooterContent && (
+              <div className={styles.mobileFooterContent}>
+                {mobileFooterContent}
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, expect } from "@storybook/test";
 import { Radio } from "./Radio";
 import { useState } from "react";
+import React from "react";
 
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
@@ -186,4 +187,3 @@ export const DifferentSizesWithStates: Story = {
     </div>
   ),
 };
-

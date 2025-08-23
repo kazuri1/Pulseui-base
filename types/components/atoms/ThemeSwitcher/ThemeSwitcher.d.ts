@@ -1,13 +1,12 @@
 import React from "react";
-export interface ThemeSwitcherProps {
-    /** Button size */
-    size?: "xs" | "sm" | "md" | "lg" | "xl";
-    /** Button variant */
-    variant?: "filled" | "subtle" | "light" | "outline" | "white" | "default";
-    /** Custom className */
-    className?: string;
-    /** Custom styles */
-    style?: React.CSSProperties;
+import type { WithSxProps } from "../../../utils/sxUtils";
+export interface ThemeSwitcherProps extends WithSxProps {
+    /** Size of the theme switcher */
+    size?: "sm" | "md" | "lg";
+    /** Variant style */
+    variant?: "light" | "dark" | "default";
+    /** Custom label for accessibility */
+    label?: string;
 }
 export declare const ThemeSwitcher: React.FC<ThemeSwitcherProps>;
 export default ThemeSwitcher;

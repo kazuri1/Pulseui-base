@@ -5,7 +5,6 @@ import styles from "./Pill.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
-
 export interface PillProps extends WithSxProps {
   /** Content to display inside the pill */
   children: React.ReactNode;
@@ -30,6 +29,16 @@ export interface PillProps extends WithSxProps {
   onClose?: () => void;
   /** Disabled state */
   disabled?: boolean;
+  /** Accessibility label for the pill */
+  ariaLabel?: string;
+  /** Whether the pill is selected */
+  ariaSelected?: boolean;
+  /** Whether the pill is pressed/active */
+  ariaPressed?: boolean;
+  /** Describes the pill's purpose */
+  ariaDescribedBy?: string;
+  /** Tab index for keyboard navigation */
+  tabIndex?: number;
 }
 
 export const Pill: React.FC<PillProps> = ({
@@ -40,13 +49,27 @@ export const Pill: React.FC<PillProps> = ({
   onClose = () => {},
   className = "",
   disabled = false,
+  ariaLabel,
+  ariaSelected,
+  ariaPressed,
+  ariaDescribedBy,
+  tabIndex,
   sx,
   style,
 }) => {
-  
   const handleClose = () => {
     if (!disabled && onClose) {
       onClose();
+    }
+  };
+
+  // Handle keyboard events for accessibility
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      if (closable && !disabled) {
+        handleClose();
+      }
     }
   };
 
@@ -66,7 +89,18 @@ export const Pill: React.FC<PillProps> = ({
   );
 
   return (
-    <div className={pillClasses} style={sxStyle}>
+    <div
+      className={pillClasses}
+      style={sxStyle}
+      role="button"
+      tabIndex={closable && !disabled ? tabIndex ?? 0 : undefined}
+      onKeyDown={handleKeyDown}
+      aria-label={ariaLabel}
+      aria-selected={ariaSelected}
+      aria-pressed={ariaPressed}
+      aria-describedby={ariaDescribedBy}
+      aria-disabled={disabled}
+    >
       <span className={styles.content}>{children}</span>
       {closable && (
         <button
@@ -74,9 +108,10 @@ export const Pill: React.FC<PillProps> = ({
           onClick={handleClose}
           className={styles.closeButton}
           disabled={disabled}
-          aria-label="Remove pill"
+          aria-label={ariaLabel ? `${ariaLabel} - Remove` : "Remove pill"}
+          aria-describedby={ariaDescribedBy}
         >
-          <Icon icon={Close} size={getIconSize(size)} />
+          <Icon icon={Close} size={getIconSize(size)} aria-hidden="true" />
         </button>
       )}
     </div>

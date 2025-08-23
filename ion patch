@@ -1,0 +1,10 @@
+[33m7d9f168[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Update styles and theme system, remove deprecated brand management files
+[33m892e4aa[m Update component styles and theme system, remove deprecated brand management files
+[33m9d4ad63[m feat: Implement complete IBM brand system with authentic Carbon Design System colors and IBM Plex Sans typography
+[33m6d8bbf3[m Latest commit
+[33mee9662b[m Themes working, storybook not working due to themes
+[33m24ae903[m Merge branch 'themes'
+[33m39ffe36[m feat: Add comprehensive component library with new surface color system
+[33m0d883ba[m Update Storybook config, package.json, Card stories, Icon set, and styles API
+[33m6e495b1[m feat: implement comprehensive theme system across all components
+[33m945d083[m feat: implement CSS-based theme system connected to design system

@@ -15,3 +15,4 @@ export interface BrandSwitcherProps extends WithSxProps {
     size?: "sm" | "md" | "lg";
 }
 export declare const BrandSwitcher: React.FC<BrandSwitcherProps>;
+export default BrandSwitcher;

@@ -72,7 +72,12 @@ describe("Drawer", () => {
 
   it("does not call onClose when escape key is pressed and closeOnEscape is false", () => {
     render(
-      <Drawer show={true} title="Test Drawer" onClose={mockOnClose} closeOnEscape={false}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        onClose={mockOnClose}
+        closeOnEscape={false}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -85,7 +90,12 @@ describe("Drawer", () => {
 
   it("does not call onClose when backdrop is clicked and closeOnBackdropClick is false", () => {
     render(
-      <Drawer show={true} title="Test Drawer" onClose={mockOnClose} closeOnBackdropClick={false}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        onClose={mockOnClose}
+        closeOnBackdropClick={false}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -98,7 +108,12 @@ describe("Drawer", () => {
 
   it("renders title when showTitle is true", () => {
     render(
-      <Drawer show={true} title="Test Drawer" showTitle={true} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        showTitle={true}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -108,7 +123,12 @@ describe("Drawer", () => {
 
   it("does not render title when showTitle is false", () => {
     render(
-      <Drawer show={true} title="Test Drawer" showTitle={false} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        showTitle={false}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -118,7 +138,12 @@ describe("Drawer", () => {
 
   it("renders close button when showClose is true", () => {
     render(
-      <Drawer show={true} title="Test Drawer" showClose={true} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        showClose={true}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -128,7 +153,12 @@ describe("Drawer", () => {
 
   it("does not render close button when showClose is false", () => {
     render(
-      <Drawer show={true} title="Test Drawer" showClose={false} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        showClose={false}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -138,7 +168,12 @@ describe("Drawer", () => {
 
   it("applies correct direction class", () => {
     const { container } = render(
-      <Drawer show={true} title="Test Drawer" direction="left" onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        direction="left"
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -149,7 +184,12 @@ describe("Drawer", () => {
 
   it("applies scrollable class when showScroll is true", () => {
     const { container } = render(
-      <Drawer show={true} title="Test Drawer" showScroll={true} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        showScroll={true}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -160,7 +200,12 @@ describe("Drawer", () => {
 
   it("does not apply scrollable class when showScroll is false", () => {
     const { container } = render(
-      <Drawer show={true} title="Test Drawer" showScroll={false} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        showScroll={false}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -171,7 +216,12 @@ describe("Drawer", () => {
 
   it("applies disabled class when disabled is true", () => {
     const { container } = render(
-      <Drawer show={true} title="Test Drawer" disabled={true} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        disabled={true}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -182,7 +232,12 @@ describe("Drawer", () => {
 
   it("does not call onClose when disabled", () => {
     render(
-      <Drawer show={true} title="Test Drawer" disabled={true} onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        disabled={true}
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -195,7 +250,12 @@ describe("Drawer", () => {
 
   it("renders with correct accessibility attributes", () => {
     render(
-      <Drawer show={true} title="Test Drawer" id="test-drawer" onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        id="test-drawer"
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );
@@ -207,7 +267,12 @@ describe("Drawer", () => {
 
   it("renders title with correct id when id is provided", () => {
     render(
-      <Drawer show={true} title="Test Drawer" id="test-drawer" onClose={mockOnClose}>
+      <Drawer
+        show={true}
+        title="Test Drawer"
+        id="test-drawer"
+        onClose={mockOnClose}
+      >
         <div>Drawer content</div>
       </Drawer>
     );

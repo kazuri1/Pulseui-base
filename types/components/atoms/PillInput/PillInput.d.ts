@@ -31,5 +31,27 @@ export interface PillInputProps extends WithSxProps {
     name?: string;
     /** Input id */
     id?: string;
+    /** Label for the input */
+    label?: string;
+    /** Whether to show the label */
+    showLabel?: boolean;
+    /** Helper text below the input */
+    helperText?: string;
+    /** Error message */
+    error?: string;
+    /** Accessibility label (overrides label for screen readers) */
+    ariaLabel?: string;
+    /** Describes the input's purpose */
+    ariaDescribedBy?: string;
+    /** Controls the ID of the element this input controls */
+    ariaControls?: string;
+    /** Whether the input has a popup */
+    ariaHasPopup?: boolean;
+    /** Whether the input is expanded/collapsed */
+    ariaExpanded?: boolean;
+    /** Whether the input is pressed/active */
+    ariaPressed?: boolean;
+    /** Tab index for keyboard navigation */
+    tabIndex?: number;
 }
 export declare const PillInput: React.ForwardRefExoticComponent<PillInputProps & React.RefAttributes<HTMLInputElement>>;

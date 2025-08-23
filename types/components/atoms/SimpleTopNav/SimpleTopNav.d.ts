@@ -48,5 +48,29 @@ export interface SimpleTopNavProps extends WithSxProps {
         /** Whether to show the version selector */
         show?: boolean;
     };
+    /** Whether to show the theme switcher */
+    showThemeSwitcher?: boolean;
+    /** Children to render inside the navigation */
+    children?: React.ReactNode;
+    /** Custom content to render before the brand section */
+    beforeBrand?: React.ReactNode;
+    /** Custom content to render after the brand section but before navigation */
+    afterBrand?: React.ReactNode;
+    /** Custom content to render before the navigation items */
+    beforeNavigation?: React.ReactNode;
+    /** Custom content to render after the navigation items */
+    afterNavigation?: React.ReactNode;
+    /** Custom content to render in the center area (between brand and navigation) */
+    centerContent?: React.ReactNode;
+    /** Custom content to render in the mobile navigation header */
+    mobileHeaderContent?: React.ReactNode;
+    /** Custom content to render at the bottom of mobile navigation */
+    mobileFooterContent?: React.ReactNode;
+    /** Whether to show the center content area */
+    showCenterContent?: boolean;
+    /** Whether to show the mobile header content */
+    showMobileHeaderContent?: boolean;
+    /** Whether to show the mobile footer content */
+    showMobileFooterContent?: boolean;
 }
 export declare const SimpleTopNav: React.FC<SimpleTopNavProps>;

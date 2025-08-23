@@ -6,27 +6,11 @@
   border: var(--border-width-thin) solid var(--color-border-secondary);
   overflow: hidden;
   transition: var(--motion-transition-normal);
-  box-shadow: var(--shadow-normal);
   max-width: calc(var(--spacing-xl) * 12.5);
   width: 100%;
 
-  &:hover:not(.disabled) {
-    box-shadow: var(--shadow-hover);
-    transform: var(--transform-hover);
-  }
-
   &.clickable {
     cursor: pointer;
-
-    &:hover:not(.disabled) {
-      box-shadow: var(--shadow-hover);
-      transform: var(--transform-hover);
-    }
-
-    &:active:not(.disabled) {
-      transform: translateY(0);
-      box-shadow: var(--shadow-normal);
-    }
   }
 
   &.disabled {
@@ -39,13 +23,7 @@
   &.imageOverlay {
     border-radius: 0;
     border: none;
-    box-shadow: var(--shadow-normal);
     max-width: calc(var(--spacing-xl) * 10);
-
-    &:hover:not(.disabled) {
-      box-shadow: var(--shadow-hover);
-      transform: var(--transform-hover);
-    }
 
     .imageContainer {
       border-radius: 0;

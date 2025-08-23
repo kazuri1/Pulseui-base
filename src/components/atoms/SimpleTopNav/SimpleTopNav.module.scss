@@ -21,6 +21,13 @@
   align-items: center;
   gap: var(--spacing-md);
   flex-shrink: 0;
+  justify-content: flex-start;
+  padding: 0;
+
+  // Adjust layout on mobile
+  @media (max-width: var(--breakpoint-mobile)) {
+    gap: var(--spacing-sm);
+  }
 }
 
 .brandLogo {
@@ -34,16 +41,46 @@
   justify-content: center;
 }
 
+.brandLogoComponent {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  
+  // Adjust for mobile
+  @media (max-width: var(--breakpoint-mobile)) {
+    gap: var(--spacing-xs);
+  }
+}
+
 .brandInfo {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: var(--spacing-lg);
+
+  // Adjust layout on mobile when title is hidden
+  @media (max-width: var(--breakpoint-mobile)) {
+    gap: var(--spacing-sm);
+  }
 }
 
 .versionSelector {
   margin-left: var(--spacing-lg);
   flex-shrink: 0;
+}
+
+.brandSwitcher {
+  margin-left: var(--spacing-md);
+  flex-shrink: 0;
+  min-width: 120px;
+  
+  // Adjust for mobile
+  @media (max-width: var(--breakpoint-mobile)) {
+    margin-left: var(--spacing-sm);
+    min-width: 100px;
+  }
 }
 
 .brandName {
@@ -54,6 +91,15 @@
   line-height: var(--line-height-lg);
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Adjust font size on mobile for better readability
+  @media (max-width: var(--breakpoint-mobile)) {
+    font-size: var(--font-size-md);
+    letter-spacing: 0.3px;
+  }
 }
 
 .brandTitle {
@@ -64,6 +110,54 @@
   line-height: var(--line-height-sm);
   letter-spacing: 0.3px;
   text-transform: uppercase;
+}
+
+// Mobile-specific styles for brand title
+@media (max-width: 480px) {
+  .brandTitle {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+// Alternative approach using smaller breakpoint
+@media (max-width: 600px) {
+  .brandTitle {
+    display: none !important;
+  }
+}
+
+// Even more specific selector
+.simpleTopNav .brand .brandInfo .brandTitle {
+  @media (max-width: 480px) {
+    display: none !important;
+  }
+}
+
+// Utility class for hiding on mobile
+.hiddenOnMobile {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+// Mobile controls layout optimization
+.mobileControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  // Adjust layout when theme switcher is hidden on mobile
+  @media (max-width: 480px) {
+    gap: var(--spacing-xs);
+  }
 }
 
 // Desktop Navigation
@@ -145,7 +239,7 @@
   margin: 0;
   cursor: pointer;
   text-decoration: none;
-  font-family: inherit;
+  font-family: var(--font-family);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-muted);
@@ -173,18 +267,20 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  // Mobile nav item styles
+  // Mobile nav item styles - using design system fonts
   &.mobileNavItem {
     padding: var(--spacing-md) 0;
     border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
     width: 100%;
     justify-content: flex-start;
-    font-size: var(--font-size-lg);
-    text-transform: none;
-    letter-spacing: normal;
-    color: var(
-      --color-text-primary
-    ); // Ensure text is visible on white background
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: var(--line-height-md);
+    color: var(--color-text-primary);
+    transition: all var(--motion-duration-normal) var(--motion-easing-ease-out);
 
     &:last-child {
       border-bottom: none;
@@ -193,12 +289,19 @@
     &:hover {
       color: var(--color-primary);
       background-color: var(--color-surface-secondary);
-    }
-
-    &:hover {
-      background-color: var(--color-surface-secondary);
       padding-left: var(--spacing-sm);
       border-radius: var(--radius-sm);
+    }
+
+    &:focus-visible {
+      outline: var(--border-width-thin) solid var(--color-border-focus);
+      outline-offset: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+    }
+
+    &.active {
+      color: var(--color-primary);
+      font-weight: var(--font-weight-semibold);
     }
   }
 }
@@ -217,11 +320,29 @@
   border-bottom: var(--border-width-thin) solid var(--color-border-secondary);
 }
 
+.mobileNavHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+}
+
+.mobileThemeSwitcher {
+  display: flex;
+  align-items: center;
+  margin-left: var(--spacing-sm);
+}
+
 .mobileNavTitle {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
   margin: 0;
+  flex-shrink: 0;
+  font-family: var(--font-family);
+  line-height: var(--line-height-lg);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .mobileNavCloseButton {
@@ -258,4 +379,93 @@
   display: flex;
   align-items: center;
   margin-left: var(--spacing-sm);
+}
+
+// Content Injection Slots
+.beforeBrand {
+  display: flex;
+  align-items: center;
+  margin-right: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.afterBrand {
+  display: flex;
+  align-items: center;
+  margin-left: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.centerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 0 var(--spacing-lg);
+  min-width: 0; // Allow content to shrink
+}
+
+.childrenContent {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 var(--spacing-lg);
+  min-width: 0; // Allow content to shrink
+}
+
+.beforeNavigation {
+  display: flex;
+  align-items: center;
+  margin-right: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.afterNavigation {
+  display: flex;
+  align-items: center;
+  margin-left: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.mobileHeaderCustomContent {
+  display: flex;
+  align-items: center;
+  margin-left: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.mobileFooterContent {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-width-thin) solid var(--color-border-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+// Responsive adjustments for content slots
+@media (max-width: var(--breakpoint-mobile)) {
+  .beforeBrand,
+  .afterBrand,
+  .beforeNavigation,
+  .afterNavigation {
+    margin-left: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+  }
+
+  .centerContent,
+  .childrenContent {
+    margin: 0 var(--spacing-sm);
+  }
+
+  .mobileHeaderCustomContent {
+    margin-left: var(--spacing-sm);
+  }
+}
+
+@media (max-width: var(--breakpoint-tablet)) {
+  .centerContent,
+  .childrenContent {
+    display: none; // Hide center content on smaller screens to prevent layout issues
+  }
 }

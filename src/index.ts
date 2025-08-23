@@ -41,6 +41,9 @@ export type { AlertProps } from "./components/atoms/Alert";
 export { Pagination } from "./components/atoms/Pagination";
 export type { PaginationProps } from "./components/atoms/Pagination";
 
+export { Carousel } from "./components/atoms/Carousel";
+export type { CarouselProps } from "./components/atoms/Carousel";
+
 // Animation Component
 export { Animation } from "./components/Animation";
 export type { AnimationProps } from "./components/Animation";
@@ -48,6 +51,12 @@ export type { AnimationProps } from "./components/Animation";
 // Navigation Components
 export { SimpleTopNav, VersionSelector } from "./components/atoms/SimpleTopNav";
 export { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
+export { BrandSwitcher } from "./components/atoms/BrandSwitcher";
+export type { BrandSwitcherProps } from "./components/atoms/BrandSwitcher";
+export { BrandLogo } from "./components/atoms/BrandLogo";
+export type { BrandLogoProps } from "./components/atoms/BrandLogo";
+export { ThemeAndBrandSwitcher } from "./components/atoms/ThemeAndBrandSwitcher";
+export type { ThemeAndBrandSwitcherProps } from "./components/atoms/ThemeAndBrandSwitcher";
 export type {
   SimpleTopNavProps,
   SimpleTopNavItem,

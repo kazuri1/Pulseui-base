@@ -66,6 +66,20 @@ export interface CardProps extends WithSxProps {
   clickable?: boolean;
   /** Whether the card is disabled */
   disabled?: boolean;
+  /** Accessibility label for the card */
+  ariaLabel?: string;
+  /** Whether the card is expanded/collapsed */
+  ariaExpanded?: boolean;
+  /** Controls the ID of the element this card controls */
+  ariaControls?: string;
+  /** Describes the card's purpose */
+  ariaDescribedBy?: string;
+  /** Whether the card has a popup */
+  ariaHasPopup?: boolean;
+  /** Whether the card is pressed/active */
+  ariaPressed?: boolean;
+  /** Tab index for keyboard navigation */
+  tabIndex?: number;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -92,6 +106,13 @@ export const Card: React.FC<CardProps> = ({
   clickable = false,
   disabled = false,
   className = "",
+  ariaLabel,
+  ariaExpanded,
+  ariaControls,
+  ariaDescribedBy,
+  ariaHasPopup,
+  ariaPressed,
+  tabIndex,
   sx,
   style,
 }) => {
@@ -121,23 +142,45 @@ export const Card: React.FC<CardProps> = ({
     }
   };
 
+  // Handle keyboard events for accessibility
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (clickable && !disabled) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleCardClick();
+      }
+    }
+  };
+
   // For image-overlay variant, set image radius to 0
   const finalImageRadius = variant === "image-overlay" ? 0 : imageRadius;
+
+  // Generate unique ID for the card if it's clickable
+  const cardId = React.useId();
 
   return (
     <div
       className={cardClasses}
       onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
       style={sxStyle}
       role={clickable ? "button" : undefined}
-      tabIndex={clickable ? 0 : undefined}
+      tabIndex={clickable ? tabIndex ?? 0 : undefined}
+      aria-label={ariaLabel}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      aria-describedby={ariaDescribedBy}
+      aria-haspopup={ariaHasPopup}
+      aria-pressed={ariaPressed}
+      aria-disabled={disabled}
+      id={cardId}
     >
       {/* Image Section */}
       {showImage && imageSrc && (
         <div className={styles.imageContainer}>
           <Image
             src={imageSrc}
-            alt={imageAlt}
+            alt={imageAlt || (title ? `${title} image` : "Card image")}
             fit={imageFit}
             radius={finalImageRadius}
             width="100%"
@@ -199,6 +242,7 @@ export const Card: React.FC<CardProps> = ({
                 size={buttonSize}
                 onClick={handleButtonClick}
                 disabled={disabled}
+                aria-describedby={cardId}
               >
                 {buttonText}
               </Button>

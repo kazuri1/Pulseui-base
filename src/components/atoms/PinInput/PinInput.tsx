@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import styles from "./PinInput.module.scss";
 
-
 export interface PinInputProps extends WithSxProps {
   /** Input label */
   label?: string;
@@ -34,6 +33,18 @@ export interface PinInputProps extends WithSxProps {
   size?: "sm" | "md" | "lg" | "xl";
   /** Whether the input is readonly */
   readonly?: boolean;
+  /** Placeholder character to show in empty inputs */
+  placeholder?: string;
+  /** Accessibility label for the PIN input */
+  ariaLabel?: string;
+  /** Whether to show the label */
+  showLabel?: boolean;
+  /** Helper text below the input */
+  helperText?: string;
+  /** Describes the input's purpose */
+  ariaDescribedBy?: string;
+  /** Tab index for keyboard navigation */
+  tabIndex?: number;
 }
 
 export const PinInput: React.FC<PinInputProps> = ({
@@ -53,10 +64,15 @@ export const PinInput: React.FC<PinInputProps> = ({
   mask = true,
   size = "md",
   readonly = false,
+  placeholder = "0",
+  ariaLabel,
+  showLabel = true,
+  helperText,
+  ariaDescribedBy,
+  tabIndex,
   sx,
   style,
 }) => {
-  
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -135,16 +151,36 @@ export const PinInput: React.FC<PinInputProps> = ({
     return mask && char ? "•" : char;
   };
 
+  const getPlaceholder = (index: number) => {
+    const char = value[index] || "";
+    return char ? "" : placeholder;
+  };
+
+  // Generate unique IDs for accessibility
+  const inputId = id || React.useId();
+  const helperTextId = helperText ? `${inputId}-helper` : undefined;
+  const errorId = error ? `${inputId}-error` : undefined;
+  const describedBy = [ariaDescribedBy, helperTextId, errorId]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <div className={`${styles.pinInput} ${className}`} style={style}>
-      {label && (
-        <label className={styles.label}>
+      {showLabel && label && (
+        <label htmlFor={`${inputId}-0`} className={styles.label}>
           {label}
           {required && <span className={styles.required}>*</span>}
         </label>
       )}
 
-      <div className={styles.inputContainer}>
+      <div
+        className={styles.inputContainer}
+        role="group"
+        aria-label={
+          ariaLabel || `${label || "PIN input"} with ${length} digits`
+        }
+        aria-describedby={describedBy || undefined}
+      >
         {Array.from({ length }, (_, index) => (
           <input
             key={index}
@@ -156,6 +192,7 @@ export const PinInput: React.FC<PinInputProps> = ({
             pattern="[0-9]*"
             maxLength={1}
             value={getDisplayValue(index)}
+            placeholder={getPlaceholder(index)}
             onChange={(e) => handleInputChange(index, e.target.value)}
             onKeyDown={(e) => handleKeyDown(index, e)}
             onFocus={(e) => handleFocus(index, e)}
@@ -165,28 +202,51 @@ export const PinInput: React.FC<PinInputProps> = ({
             readOnly={readonly}
             required={required}
             name={name ? `${name}-${index}` : undefined}
-            id={id ? `${id}-${index}` : undefined}
+            id={`${inputId}-${index}`}
             className={`${styles.digitInput} ${styles[size]} ${
               focusedIndex === index ? styles.focused : ""
             } ${error ? styles.error : ""}`}
             autoComplete="one-time-code"
-            
+            aria-label={`PIN digit ${index + 1} of ${length}`}
+            aria-describedby={describedBy || undefined}
+            aria-invalid={!!error}
+            aria-required={required}
+            tabIndex={tabIndex}
           />
         ))}
       </div>
 
+      {/* Helper Text */}
+      {helperText && (
+        <div id={helperTextId} className={styles.helperText}>
+          {helperText}
+        </div>
+      )}
+
+      {/* Caption and Error */}
       {(caption || error) && (
         <div className={styles.footer}>
           {caption && !error && (
             <span className={styles.caption}>{caption}</span>
           )}
           {error && (
-            <div className={styles.errorMessage}>
+            <div
+              id={errorId}
+              className={styles.errorMessage}
+              role="alert"
+              aria-live="polite"
+            >
               <span>{error}</span>
             </div>
           )}
         </div>
       )}
+
+      {/* Screen reader instructions */}
+      <div className="sr-only" aria-live="polite">
+        Enter your {length}-digit PIN. Use number keys to input digits,
+        backspace to delete, and arrow keys to navigate between fields.
+      </div>
     </div>
   );
 };

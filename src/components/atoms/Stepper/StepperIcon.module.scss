@@ -104,26 +104,26 @@
 }
 
 .status-active {
-  background: var(--color-white);
+  background: var(--color-surface);
   color: var(--color-text-primary);
-  border-color: var(--color-blue-6);
-  border-width: var(--border-width-thin);
-  box-shadow: 0 0 0 2px var(--color-blue-1);
+  border-color: var(--color-primary);
+  border-width: var(--border-width-medium);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
 
   &:hover {
-    box-shadow: 0 0 0 3px var(--color-blue-2);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
     transform: scale(1.05);
   }
 }
 
 .status-complete {
-  background: var(--color-blue-6);
-  color: var(--color-white);
-  border-color: var(--color-blue-6);
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
   border-width: var(--border-width-thin);
 
   &:hover {
-    background: var(--color-blue-7);
+    background: var(--color-primary-hover);
     transform: scale(1.05);
   }
 }

@@ -25,7 +25,7 @@ const meta: Meta<typeof SimpleTopNav> = {
         component: `
 # SimpleTopNav Component
 
-A responsive top navigation component that automatically adapts to different screen sizes using the \`useBreakpoint\` hook.
+A responsive top navigation component that automatically adapts to different screen sizes using the \`useBreakpoint\` hook, with extensive content injection capabilities for maximum flexibility.
 
 ## Features
 
@@ -34,6 +34,21 @@ A responsive top navigation component that automatically adapts to different scr
 - **Icon Support**: Optional icons for navigation items
 - **Hook-based Responsiveness**: Uses \`useBreakpoint\` hook for breakpoint detection
 - **Accessibility**: Proper ARIA labels and keyboard navigation
+- **Content Injection**: Multiple content slots for custom content placement
+- **Children Support**: Direct children rendering for maximum flexibility
+
+## Content Injection Slots
+
+The component provides several strategic content injection points:
+
+- **\`beforeBrand\`**: Content before the brand section (e.g., environment badges, status indicators)
+- **\`afterBrand\`**: Content after the brand section (e.g., team info, version badges)
+- **\`centerContent\`**: Centered content area (e.g., search bars, breadcrumbs)
+- **\`children\`**: Direct children content with flexible positioning
+- **\`beforeNavigation\`**: Content before navigation items (e.g., section labels, quick actions)
+- **\`afterNavigation\`**: Content after navigation items (e.g., action buttons, user menu)
+- **\`mobileHeaderContent\`**: Custom content in mobile navigation header
+- **\`mobileFooterContent\`**: Custom content at bottom of mobile navigation
 
 ## Mobile Navigation
 
@@ -43,11 +58,36 @@ The mobile navigation includes:
 - Smooth animations and transitions
 - Touch-friendly navigation items
 - Automatic menu closing when items are clicked
+- Custom header and footer content support
 
 ## Breakpoints
 
-- **Desktop**: Shows full horizontal navigation
+- **Desktop**: Shows full horizontal navigation with all content slots
 - **Tablet/Mobile**: Shows hamburger menu toggle and mobile drawer
+- **Responsive Content**: Center content and children automatically hide on smaller screens
+
+## Usage Examples
+
+\`\`\`tsx
+// Basic usage with children
+<SimpleTopNav brandName="My App">
+  <SearchBar />
+</SimpleTopNav>
+
+// With content slots
+<SimpleTopNav
+  beforeBrand={<Badge>BETA</Badge>}
+  centerContent={<SearchBar />}
+  afterNavigation={<UserMenu />}
+/>
+
+// Complex layout
+<SimpleTopNav
+  beforeBrand={<EnvironmentBadge />}
+  children={<StatusIndicator />}
+  afterNavigation={<ActionButtons />}
+/>
+\`\`\`
         `,
       },
     },
@@ -74,6 +114,50 @@ The mobile navigation includes:
       control: { type: "boolean" },
       description:
         "Whether the mobile menu should be open by default (useful for testing)",
+    },
+    children: {
+      control: { type: "text" },
+      description: "Children content to render in the navigation",
+    },
+    beforeBrand: {
+      control: { type: "text" },
+      description: "Content to render before the brand section",
+    },
+    afterBrand: {
+      control: { type: "text" },
+      description: "Content to render after the brand section",
+    },
+    centerContent: {
+      control: { type: "text" },
+      description: "Content to render in the center area",
+    },
+    beforeNavigation: {
+      control: { type: "text" },
+      description: "Content to render before navigation items",
+    },
+    afterNavigation: {
+      control: { type: "text" },
+      description: "Content to render after navigation items",
+    },
+    mobileHeaderContent: {
+      control: { type: "text" },
+      description: "Custom content for mobile navigation header",
+    },
+    mobileFooterContent: {
+      control: { type: "text" },
+      description: "Custom content for mobile navigation footer",
+    },
+    showCenterContent: {
+      control: { type: "boolean" },
+      description: "Whether to show the center content area",
+    },
+    showMobileHeaderContent: {
+      control: { type: "boolean" },
+      description: "Whether to show custom mobile header content",
+    },
+    showMobileFooterContent: {
+      control: { type: "boolean" },
+      description: "Whether to show custom mobile footer content",
     },
   },
 };
@@ -520,7 +604,8 @@ export const WithVersionSelector: Story = {
       show: true,
       version: "v8.2.4",
       versions: ["v8.2.4", "v8.2.3", "v8.2.2", "v8.1.0"],
-      onVersionChange: (version: string) => console.log(`Version changed to: ${version}`),
+      onVersionChange: (version: string) =>
+        console.log(`Version changed to: ${version}`),
     },
     items: [
       { id: "home", label: "HOME", icon: Home, active: true },
@@ -532,7 +617,382 @@ export const WithVersionSelector: Story = {
   parameters: {
     docs: {
       description: {
-        story: "SimpleTopNav with version selector positioned adjacent to the brand. The version selector allows users to switch between different versions of the design system.",
+        story:
+          "SimpleTopNav with version selector positioned adjacent to the brand. The version selector allows users to switch between different versions of the design system.",
+      },
+    },
+  },
+};
+
+// New stories demonstrating content injection capabilities
+export const WithChildren: Story = {
+  args: {
+    brandName: "PULSEUI",
+    brandTitle: "DESIGN SYSTEM",
+    children: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-md)",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-secondary)",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "var(--font-size-sm)",
+            color: "var(--color-text-muted)",
+          }}
+        >
+          Status: Online
+        </span>
+        <div
+          style={{
+            width: "8px",
+            height: "8px",
+            borderRadius: "50%",
+            backgroundColor: "var(--color-success)",
+          }}
+        />
+      </div>
+    ),
+    items: [
+      { id: "home", label: "HOME", icon: Home, active: true },
+      { id: "docs", label: "DOCS", icon: Book },
+      { id: "components", label: "COMPONENTS", icon: Store },
+      { id: "about", label: "ABOUT", icon: Person },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "SimpleTopNav with children content injected in the center area. This demonstrates how you can add custom content like status indicators, search bars, or other components directly into the navigation.",
+      },
+    },
+  },
+};
+
+export const WithContentSlots: Story = {
+  args: {
+    brandName: "PULSEUI",
+    brandTitle: "DESIGN SYSTEM",
+    beforeBrand: (
+      <div
+        style={{
+          padding: "var(--spacing-xs) var(--spacing-sm)",
+          backgroundColor: "var(--color-primary)",
+          color: "white",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "var(--font-size-xs)",
+          fontWeight: "var(--font-weight-semibold)",
+        }}
+      >
+        BETA
+      </div>
+    ),
+    afterBrand: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-xs)",
+          padding: "var(--spacing-xs) var(--spacing-sm)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "var(--font-size-xs)",
+        }}
+      >
+        <span>👥</span>
+        <span>Team</span>
+      </div>
+    ),
+    beforeNavigation: (
+      <div
+        style={{
+          padding: "var(--spacing-xs) var(--spacing-sm)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "var(--font-size-xs)",
+          color: "var(--color-text-muted)",
+        }}
+      >
+        Quick Actions
+      </div>
+    ),
+    afterNavigation: (
+      <button
+        style={{
+          padding: "var(--spacing-xs) var(--spacing-sm)",
+          backgroundColor: "var(--color-primary)",
+          color: "white",
+          border: "none",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "var(--font-size-xs)",
+          cursor: "pointer",
+        }}
+      >
+        Get Started
+      </button>
+    ),
+    items: [
+      { id: "home", label: "HOME", icon: Home, active: true },
+      { id: "docs", label: "DOCS", icon: Book },
+      { id: "components", label: "COMPONENTS", icon: Store },
+      { id: "about", label: "ABOUT", icon: Person },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "SimpleTopNav demonstrating all content injection slots: beforeBrand, afterBrand, beforeNavigation, and afterNavigation. This shows how you can add badges, buttons, and other content in strategic positions around the navigation.",
+      },
+    },
+  },
+};
+
+export const WithCenterContent: Story = {
+  args: {
+    brandName: "PULSEUI",
+    brandTitle: "DESIGN SYSTEM",
+    showCenterContent: true,
+    centerContent: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-sm)",
+          padding: "var(--spacing-sm) var(--spacing-md)",
+          backgroundColor: "var(--color-surface-secondary)",
+          borderRadius: "var(--radius-md)",
+          border: "1px solid var(--color-border-secondary)",
+          minWidth: "300px",
+        }}
+      >
+        <span style={{ color: "var(--color-text-muted)" }}>🔍</span>
+        <input
+          type="text"
+          placeholder="Search components..."
+          style={{
+            border: "none",
+            background: "transparent",
+            outline: "none",
+            flex: 1,
+            fontSize: "var(--font-size-sm)",
+            color: "var(--color-text-primary)",
+          }}
+        />
+      </div>
+    ),
+    items: [
+      { id: "home", label: "HOME", icon: Home, active: true },
+      { id: "docs", label: "DOCS", icon: Book },
+      { id: "components", label: "COMPONENTS", icon: Store },
+      { id: "about", label: "ABOUT", icon: Person },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "SimpleTopNav with center content area enabled, showing a search bar. The center content area is perfect for search functionality, breadcrumbs, or other centered content that needs to be prominent.",
+      },
+    },
+  },
+};
+
+export const WithMobileCustomContent: Story = {
+  args: {
+    brandName: "PULSEUI",
+    brandTitle: "DESIGN SYSTEM",
+    showMobileHeaderContent: true,
+    mobileHeaderContent: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-xs)",
+          padding: "var(--spacing-xs) var(--spacing-sm)",
+          backgroundColor: "var(--color-primary)",
+          color: "white",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "var(--font-size-xs)",
+          fontWeight: "var(--font-weight-semibold)",
+        }}
+      >
+        NEW
+      </div>
+    ),
+    showMobileFooterContent: true,
+    mobileFooterContent: (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--spacing-sm)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-sm)",
+            padding: "var(--spacing-sm)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-sm)",
+          }}
+        >
+          <span>📱</span>
+          <span style={{ fontSize: "var(--font-size-sm)" }}>
+            Mobile App Available
+          </span>
+        </div>
+        <button
+          style={{
+            width: "100%",
+            padding: "var(--spacing-sm)",
+            backgroundColor: "var(--color-primary)",
+            color: "white",
+            border: "none",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--font-size-sm)",
+            cursor: "pointer",
+          }}
+        >
+          Download App
+        </button>
+      </div>
+    ),
+    items: [
+      { id: "home", label: "HOME", icon: Home, active: true },
+      { id: "docs", label: "DOCS", icon: Book },
+      { id: "components", label: "COMPONENTS", icon: Store },
+      { id: "about", label: "ABOUT", icon: Person },
+    ],
+    defaultMobileMenuOpen: true,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+    docs: {
+      description: {
+        story:
+          "SimpleTopNav with custom mobile header and footer content. The mobile header content appears next to the navigation title, while the footer content appears at the bottom of the mobile menu, perfect for additional actions or information.",
+      },
+    },
+  },
+};
+
+export const ComplexLayout: Story = {
+  args: {
+    brandName: "PULSEUI",
+    brandTitle: "DESIGN SYSTEM",
+    beforeBrand: (
+      <div
+        style={{
+          padding: "var(--spacing-xs) var(--spacing-sm)",
+          backgroundColor: "var(--color-warning)",
+          color: "white",
+          borderRadius: "var(--radius-sm)",
+          fontSize: "var(--font-size-xs)",
+          fontWeight: "var(--font-weight-semibold)",
+        }}
+      >
+        DEV
+      </div>
+    ),
+    children: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-md)",
+          flex: 1,
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-xs)",
+            padding: "var(--spacing-xs) var(--spacing-sm)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--font-size-xs)",
+          }}
+        >
+          <span>📊</span>
+          <span>Analytics</span>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "var(--spacing-xs)",
+            padding: "var(--spacing-xs) var(--spacing-sm)",
+            backgroundColor: "var(--color-surface-secondary)",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--font-size-xs)",
+          }}
+        >
+          <span>⚡</span>
+          <span>Performance</span>
+        </div>
+      </div>
+    ),
+    afterNavigation: (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--spacing-sm)",
+        }}
+      >
+        <button
+          style={{
+            padding: "var(--spacing-xs) var(--spacing-sm)",
+            backgroundColor: "var(--color-surface-secondary)",
+            border: "1px solid var(--color-border-secondary)",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--font-size-xs)",
+            cursor: "pointer",
+          }}
+        >
+          Help
+        </button>
+        <button
+          style={{
+            padding: "var(--spacing-xs) var(--spacing-sm)",
+            backgroundColor: "var(--color-primary)",
+            color: "white",
+            border: "none",
+            borderRadius: "var(--radius-sm)",
+            fontSize: "var(--font-size-xs)",
+            cursor: "pointer",
+          }}
+        >
+          Upgrade
+        </button>
+      </div>
+    ),
+    items: [
+      { id: "home", label: "HOME", icon: Home, active: true },
+      { id: "docs", label: "DOCS", icon: Book },
+      { id: "components", label: "COMPONENTS", icon: Store },
+      { id: "about", label: "ABOUT", icon: Person },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Complex layout demonstrating multiple content injection slots working together. This shows how you can create rich, feature-packed navigation bars with various content types positioned strategically throughout the navigation.",
       },
     },
   },

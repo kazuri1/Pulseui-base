@@ -1,6 +1,6 @@
 {
   "name": "pulseui-base",
-  "version": "1.6.1",
+  "version": "1.10.0",
   "description": "⚡ Ultra-lightweight React component library with design tokens, multi-brand theming, and TypeScript support. Zero heavy dependencies - perfect for production apps.",
   "type": "module",
   "main": "dist/index.js",
@@ -58,7 +58,10 @@
     "test": "echo 'No tests configured - use npm run build to verify compilation'",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
-    "sync-tokens": "node scripts/sync-figma-tokens.js"
+    "sync-tokens": "node scripts/sync-figma-tokens.js",
+    "test-figma": "node scripts/test-figma-sync.js",
+    "debug-figma": "node scripts/debug-figma-access.js",
+    "explore-figma": "node scripts/explore-figma-file.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -88,9 +91,9 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
     "eslint": "^9.0.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sass": "^1.89.2",
@@ -122,5 +125,8 @@
   "bugs": {
     "url": "https://github.com/kazuri1/Pulseui/issues"
   },
-  "homepage": "https://github.com/kazuri1/Pulseui#readme"
+  "homepage": "https://github.com/kazuri1/Pulseui#readme",
+  "dependencies": {
+    "pulseui-base": "^1.10.0"
+  }
 }

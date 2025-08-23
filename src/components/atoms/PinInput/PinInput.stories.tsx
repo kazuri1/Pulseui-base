@@ -4,22 +4,51 @@ import { useState } from "react";
 import { PinInput } from "./PinInput";
 
 const meta: Meta<typeof PinInput> = {
-  title: "Components/PinInput",
+  title: "Components/Atoms/PinInput",
   component: PinInput,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A PinInput component for secure PIN entry with accessibility features, placeholder support (default: '0'), keyboard navigation, and screen reader compatibility. Perfect for security verification flows.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
-    label: { control: "text" },
-    value: { control: "text" },
-    disabled: { control: "boolean" },
-    required: { control: "boolean" },
-    mask: { control: "boolean" },
-    length: { control: "number" },
-    size: { control: "select", options: ["sm", "md", "lg", "xl"] },
-    caption: { control: "text" },
-    error: { control: "text" },
+    label: { control: "text", description: "Label for the PIN input" },
+    value: { control: "text", description: "Current PIN value" },
+    disabled: {
+      control: "boolean",
+      description: "Whether the input is disabled",
+    },
+    required: {
+      control: "boolean",
+      description: "Whether the input is required",
+    },
+    mask: {
+      control: "boolean",
+      description: "Whether to mask the PIN with dots",
+    },
+    length: { control: "number", description: "Number of PIN digits" },
+    size: {
+      control: "select",
+      options: ["sm", "md", "lg", "xl"],
+      description: "Size of the input fields",
+    },
+    caption: { control: "text", description: "Caption text below the input" },
+    error: { control: "text", description: "Error message to display" },
+    placeholder: {
+      control: "text",
+      description: "Placeholder character for empty inputs",
+    },
+    showLabel: { control: "boolean", description: "Whether to show the label" },
+    helperText: { control: "text", description: "Helper text below the input" },
+    ariaLabel: {
+      control: "text",
+      description: "Accessibility label for screen readers",
+    },
   },
 };
 
@@ -32,7 +61,10 @@ export const Default: Story = {
     return <PinInput {...args} value={value} onChange={setValue} />;
   },
   args: {
-    label: "PIN Code",
+    label: "Security PIN",
+    placeholder: "0",
+    helperText:
+      "Enter your 4-digit PIN. Placeholder shows '0' in empty fields.",
   },
 };
 
@@ -44,6 +76,8 @@ export const WithLabel: Story = {
   args: {
     label: "Security PIN",
     required: true,
+    placeholder: "0",
+    helperText: "This field is required",
   },
 };
 
@@ -66,7 +100,33 @@ export const WithError: Story = {
   },
   args: {
     label: "PIN Code",
-    error: "Invalid PIN code",
+    placeholder: "0",
+    error: "Invalid PIN code. Please try again.",
+    helperText: "Enter the correct 4-digit PIN",
+  },
+};
+
+export const AccessibilityFocused: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+    return <PinInput {...args} value={value} onChange={setValue} />;
+  },
+  args: {
+    label: "Accessible PIN Input",
+    placeholder: "0",
+    required: true,
+    helperText:
+      "Fully accessible with keyboard navigation, screen reader support, and ARIA labels",
+    ariaLabel: "Enter your security PIN for account access",
+    length: 4,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This PIN input demonstrates all accessibility features including keyboard navigation, proper ARIA labels, screen reader instructions, and placeholder support.",
+      },
+    },
   },
 };
 
@@ -75,6 +135,80 @@ export const Disabled: Story = {
     label: "PIN Code",
     disabled: true,
     value: "1234",
+    placeholder: "0",
+    helperText: "This PIN input is disabled",
+  },
+};
+
+export const PlaceholderExamples: Story = {
+  render: () => {
+    const [value1, setValue1] = useState("");
+    const [value2, setValue2] = useState("");
+    const [value3, setValue3] = useState("");
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          width: "400px",
+        }}
+      >
+        <div>
+          <h3
+            style={{ marginBottom: "8px", fontSize: "16px", fontWeight: "600" }}
+          >
+            Default Placeholder: "0"
+          </h3>
+          <PinInput
+            label="Security PIN"
+            value={value1}
+            onChange={setValue1}
+            placeholder="0"
+            helperText="Default placeholder shows '0' in empty fields"
+          />
+        </div>
+
+        <div>
+          <h3
+            style={{ marginBottom: "8px", fontSize: "16px", fontWeight: "600" }}
+          >
+            Custom Placeholder: "X"
+          </h3>
+          <PinInput
+            label="Security PIN"
+            value={value2}
+            onChange={setValue2}
+            placeholder="X"
+            helperText="Custom placeholder shows 'X' in empty fields"
+          />
+        </div>
+
+        <div>
+          <h3
+            style={{ marginBottom: "8px", fontSize: "16px", fontWeight: "600" }}
+          >
+            No Placeholder
+          </h3>
+          <PinInput
+            label="Security PIN"
+            value={value3}
+            onChange={setValue3}
+            placeholder=""
+            helperText="No placeholder - empty fields remain blank"
+          />
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Examples of different placeholder options. The default placeholder is '0' as requested.",
+      },
+    },
   },
 };
 
@@ -297,4 +431,3 @@ export const MaskedVsUnmasked: Story = {
     );
   },
 };
-

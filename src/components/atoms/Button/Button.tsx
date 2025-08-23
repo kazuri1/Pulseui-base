@@ -40,6 +40,32 @@ export interface ButtonProps extends WithSxProps {
   disabled?: boolean;
   /** Button type */
   type?: "button" | "submit" | "reset";
+  /** Accessibility label (overrides children for screen readers) */
+  ariaLabel?: string;
+  /** Whether the button is pressed/active */
+  ariaPressed?: boolean;
+  /** Whether the button expands/collapses content */
+  ariaExpanded?: boolean;
+  /** Controls the ID of the element this button controls */
+  ariaControls?: string;
+  /** Describes the button's purpose */
+  ariaDescribedBy?: string;
+  /** Whether the button has a popup */
+  ariaHasPopup?: boolean;
+  /** Form ID this button is associated with */
+  form?: string;
+  /** Form action URL */
+  formAction?: string;
+  /** Form encoding type */
+  formEncType?: string;
+  /** Form method */
+  formMethod?: "get" | "post";
+  /** Form target */
+  formTarget?: string;
+  /** Form validation */
+  formNoValidate?: boolean;
+  /** Tab index for keyboard navigation */
+  tabIndex?: number;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -55,6 +81,19 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
   disabled = false,
   type = "button",
+  ariaLabel,
+  ariaPressed,
+  ariaExpanded,
+  ariaControls,
+  ariaDescribedBy,
+  ariaHasPopup,
+  form,
+  formAction,
+  formEncType,
+  formMethod,
+  formTarget,
+  formNoValidate,
+  tabIndex,
   sx,
   style,
 }) => {
@@ -132,13 +171,38 @@ export const Button: React.FC<ButtonProps> = ({
 
   const iconSize = getIconSize(size);
 
+  // Handle keyboard events for accessibility
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      if (onClick && !disabled && state !== "disabled") {
+        onClick();
+      }
+    }
+  };
+
   return (
     <button
       type={type}
       className={buttonClasses}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       disabled={disabled || state === "disabled"}
       style={sxStyle}
+      aria-label={ariaLabel}
+      aria-pressed={ariaPressed}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      aria-describedby={ariaDescribedBy}
+      aria-haspopup={ariaHasPopup}
+      form={form}
+      formAction={formAction}
+      formEncType={formEncType}
+      formMethod={formMethod}
+      formTarget={formTarget}
+      formNoValidate={formNoValidate}
+      tabIndex={tabIndex}
+      role={type === "button" ? undefined : type}
     >
       {leftIconComponent && (
         <Icon
@@ -146,15 +210,17 @@ export const Button: React.FC<ButtonProps> = ({
           size={iconSize}
           color="inherit"
           className={styles.left}
+          aria-hidden="true"
         />
       )}
-      {children}
+      <span className={styles.content}>{children}</span>
       {rightIconComponent && (
         <Icon
           icon={rightIconComponent}
           size={iconSize}
           color="inherit"
           className={styles.right}
+          aria-hidden="true"
         />
       )}
     </button>

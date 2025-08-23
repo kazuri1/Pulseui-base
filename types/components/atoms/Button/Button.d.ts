@@ -24,5 +24,31 @@ export interface ButtonProps extends WithSxProps {
     disabled?: boolean;
     /** Button type */
     type?: "button" | "submit" | "reset";
+    /** Accessibility label (overrides children for screen readers) */
+    ariaLabel?: string;
+    /** Whether the button is pressed/active */
+    ariaPressed?: boolean;
+    /** Whether the button expands/collapses content */
+    ariaExpanded?: boolean;
+    /** Controls the ID of the element this button controls */
+    ariaControls?: string;
+    /** Describes the button's purpose */
+    ariaDescribedBy?: string;
+    /** Whether the button has a popup */
+    ariaHasPopup?: boolean;
+    /** Form ID this button is associated with */
+    form?: string;
+    /** Form action URL */
+    formAction?: string;
+    /** Form encoding type */
+    formEncType?: string;
+    /** Form method */
+    formMethod?: "get" | "post";
+    /** Form target */
+    formTarget?: string;
+    /** Form validation */
+    formNoValidate?: boolean;
+    /** Tab index for keyboard navigation */
+    tabIndex?: number;
 }
 export declare const Button: React.FC<ButtonProps>;

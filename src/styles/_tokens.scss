@@ -173,7 +173,7 @@
   --font-weight-bold: 700;
 
   // Font family
-  --font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
 
   // Icon sizes
@@ -400,4 +400,535 @@
   --color-warning: var(--color-yellow-6);
   --color-error: var(--color-red-6);
   --color-info: var(--color-blue-6);
+}
+
+// =============================================================================
+// Multi-Brand Theme System (Highest Priority - Overrides All Above)
+// =============================================================================
+// These brand styles must come LAST to ensure they override all base design tokens
+// Each brand has COMPLETE color system matching the default theme's extensiveness
+
+// =============================================================================
+// MEDASH BRAND - Medical & Healthcare Theme (Light Mode)
+// =============================================================================
+[data-brand="medash"][data-mode="light"] {
+  // Primary brand colors (blue-green medical theme)
+  --color-blue-0: #e0f4ff;
+  --color-blue-1: #b3e5ff;
+  --color-blue-2: #80d4ff;
+  --color-blue-3: #4dc3ff;
+  --color-blue-4: #1ab2ff;
+  --color-blue-5: #0099e6;
+  --color-blue-6: #0080b3;
+  --color-blue-7: #006680;
+  --color-blue-8: #004d4d;
+  --color-blue-9: #003333;
+
+  // Surface colors with medical blue-green tint
+  --color-surface-0: #f8fcff;
+  --color-surface-1: #f0f9ff;
+  --color-surface-2: #e6f4ff;
+  --color-surface-3: #d6efff;
+  --color-surface-4: #c2e8ff;
+  --color-surface-5: #a8deff;
+  --color-surface-variant: #e8f5ff;
+
+  // Text colors with medical blue tone
+  --color-on-surface: #1a4d66;
+  --color-on-surface-variant: #4d7a99;
+  --color-text-primary: #1a4d66;
+  --color-text-secondary: #4d7a99;
+  --color-text-muted: #7aa3cc;
+  --color-text-disabled: #b3d6ff;
+
+  // Border colors
+  --color-divider: #c2e8ff;
+  --color-border-primary: #c2e8ff;
+  --color-border-secondary: #a8deff;
+  --color-border-focus: #0080b3;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: var(--color-blue-6);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-5);
+  --color-primary-dark: var(--color-blue-8);
+
+  // Button colors
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors
+  --color-input-background: var(--color-surface-0);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors (enhanced for medical)
+  --color-success: #00b894;
+  --color-warning: #fdcb6e;
+  --color-error: #e84393;
+  --color-info: var(--color-blue-6);
+
+  // Shadow with medical tint
+  --color-shadow: rgba(26, 77, 102, 0.12);
+}
+
+// =============================================================================
+// MEDASH BRAND - Medical & Healthcare Theme (Dark Mode)
+// =============================================================================
+[data-brand="medash"][data-mode="dark"] {
+  // Primary brand colors for dark mode (brighter for dark backgrounds)
+  --color-blue-0: #004d66;
+  --color-blue-1: #006680;
+  --color-blue-2: #008099;
+  --color-blue-3: #0099b3;
+  --color-blue-4: #00b3cc;
+  --color-blue-5: #00cce6;
+  --color-blue-6: #00e6ff;
+  --color-blue-7: #33ebff;
+  --color-blue-8: #66f0ff;
+  --color-blue-9: #99f5ff;
+
+  // Surface colors for dark medical theme
+  --color-surface-0: #0a1a20;
+  --color-surface-1: #142b33;
+  --color-surface-2: #1e3d47;
+  --color-surface-3: #28505a;
+  --color-surface-4: #32626e;
+  --color-surface-5: #3c7581;
+  --color-surface-variant: #1a3640;
+
+  // Text colors for dark medical theme
+  --color-on-surface: #e6f4ff;
+  --color-on-surface-variant: #b3d6ff;
+  --color-text-primary: #e6f4ff;
+  --color-text-secondary: #b3d6ff;
+  --color-text-muted: #80ccff;
+  --color-text-disabled: #4d99cc;
+
+  // Border colors for dark mode
+  --color-divider: #28505a;
+  --color-border-primary: #28505a;
+  --color-border-secondary: #32626e;
+  --color-border-focus: #00e6ff;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: var(--color-blue-6);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-5);
+  --color-primary-dark: var(--color-blue-8);
+
+  // Complete button colors for dark mode
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-surface-2);
+  --color-button-secondary-hover: var(--color-surface-3);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors for dark mode
+  --color-input-background: var(--color-surface-1);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors for dark mode
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors for dark mode
+  --color-success: #00d4aa;
+  --color-warning: #ffd93d;
+  --color-error: #ff6b9d;
+  --color-info: var(--color-blue-6);
+
+  // Shadow for dark mode
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  // Additional dark mode specific colors
+  --color-text: var(--color-on-surface);
+  --color-text-tertiary: var(--color-text-muted);
+  --color-primary-active: var(--color-blue-8);
+  --color-border: var(--color-divider);
+  --color-border-tertiary: var(--color-surface-4);
+}
+
+// =============================================================================
+// FITCORE BRAND - Fitness & Wellness Theme (Light Mode)
+// =============================================================================
+[data-brand="fitcore"][data-mode="light"] {
+  // Primary brand colors (orange-green fitness theme)
+  --color-blue-0: #fff4e6;
+  --color-blue-1: #ffe8cc;
+  --color-blue-2: #ffd8a8;
+  --color-blue-3: #ffc078;
+  --color-blue-4: #ffa94d;
+  --color-blue-5: #ff9500;
+  --color-blue-6: #e6850e;
+  --color-blue-7: #cc751c;
+  --color-blue-8: #b3652a;
+  --color-blue-9: #995538;
+
+  // Surface colors with fitness orange tint
+  --color-surface-0: #fffcf8;
+  --color-surface-1: #fff8f0;
+  --color-surface-2: #fff2e6;
+  --color-surface-3: #ffe8d6;
+  --color-surface-4: #ffdcc2;
+  --color-surface-5: #ffcca8;
+  --color-surface-variant: #fff5e8;
+
+  // Text colors with fitness brown tone
+  --color-on-surface: #8b4513;
+  --color-on-surface-variant: #a0522d;
+  --color-text-primary: #8b4513;
+  --color-text-secondary: #a0522d;
+  --color-text-muted: #cd853f;
+  --color-text-disabled: #deb887;
+
+  // Border colors
+  --color-divider: #ffdcc2;
+  --color-border-primary: #ffdcc2;
+  --color-border-secondary: #ffcca8;
+  --color-border-focus: #e6850e;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: var(--color-blue-6);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-5);
+  --color-primary-dark: var(--color-blue-8);
+
+  // Button colors
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors
+  --color-input-background: var(--color-surface-0);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors (enhanced for fitness)
+  --color-success: #00b894;
+  --color-warning: #fdcb6e;
+  --color-error: #e84393;
+  --color-info: var(--color-blue-6);
+
+  // Shadow with fitness tint
+  --color-shadow: rgba(139, 69, 19, 0.12);
+}
+
+// =============================================================================
+// FITCORE BRAND - Fitness & Wellness Theme (Dark Mode)
+// =============================================================================
+[data-brand="fitcore"][data-mode="dark"] {
+  // Primary brand colors for dark mode (brighter orange for dark backgrounds)
+  --color-blue-0: #662900;
+  --color-blue-1: #803300;
+  --color-blue-2: #993d00;
+  --color-blue-3: #b34700;
+  --color-blue-4: #cc5200;
+  --color-blue-5: #e65c00;
+  --color-blue-6: #ff6600;
+  --color-blue-7: #ff8533;
+  --color-blue-8: #ffa366;
+  --color-blue-9: #ffc299;
+
+  // Surface colors for dark fitness theme
+  --color-surface-0: #1a0f0a;
+  --color-surface-1: #2d1f14;
+  --color-surface-2: #40301e;
+  --color-surface-3: #534028;
+  --color-surface-4: #665032;
+  --color-surface-5: #79603c;
+  --color-surface-variant: #332416;
+
+  // Text colors for dark fitness theme
+  --color-on-surface: #fff5e8;
+  --color-on-surface-variant: #ffcca8;
+  --color-text-primary: #fff5e8;
+  --color-text-secondary: #ffcca8;
+  --color-text-muted: #ffb380;
+  --color-text-disabled: #cc8f5c;
+
+  // Border colors for dark mode
+  --color-divider: #534028;
+  --color-border-primary: #534028;
+  --color-border-secondary: #665032;
+  --color-border-focus: #ff6600;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: var(--color-blue-6);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-5);
+  --color-primary-dark: var(--color-blue-8);
+
+  // Complete button colors for dark mode
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-surface-2);
+  --color-button-secondary-hover: var(--color-surface-3);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors for dark mode
+  --color-input-background: var(--color-surface-1);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors for dark mode
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors for dark mode
+  --color-success: #00d4aa;
+  --color-warning: #ffd93d;
+  --color-error: #ff6b9d;
+  --color-info: var(--color-blue-6);
+
+  // Shadow for dark mode
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  // Additional dark mode specific colors
+  --color-text: var(--color-on-surface);
+  --color-text-tertiary: var(--color-text-muted);
+  --color-primary-active: var(--color-blue-8);
+  --color-border: var(--color-divider);
+  --color-border-tertiary: var(--color-surface-4);
+}
+
+// =============================================================================
+// LABSYNC BRAND - Laboratory & Research Theme (Light Mode)
+// =============================================================================
+[data-brand="labsync"][data-mode="light"] {
+  // Primary brand colors (purple-cyan lab theme)
+  --color-blue-0: #f3f0ff;
+  --color-blue-1: #e5dbff;
+  --color-blue-2: #d0bfff;
+  --color-blue-3: #b197fc;
+  --color-blue-4: #9775fa;
+  --color-blue-5: #7950f2;
+  --color-blue-6: #7048e8;
+  --color-blue-7: #6741d9;
+  --color-blue-8: #5f3dc4;
+  --color-blue-9: #4c6ef5;
+
+  // Surface colors with lab purple tint
+  --color-surface-0: #fdfcff;
+  --color-surface-1: #f8f6ff;
+  --color-surface-2: #f0edff;
+  --color-surface-3: #e8e0ff;
+  --color-surface-4: #ddd0ff;
+  --color-surface-5: #d0baff;
+  --color-surface-variant: #f5f2ff;
+
+  // Text colors with lab purple tone
+  --color-on-surface: #4a148c;
+  --color-on-surface-variant: #6a1b9a;
+  --color-text-primary: #4a148c;
+  --color-text-secondary: #6a1b9a;
+  --color-text-muted: #8e24aa;
+  --color-text-disabled: #ba68c8;
+
+  // Border colors
+  --color-divider: #ddd0ff;
+  --color-border-primary: #ddd0ff;
+  --color-border-secondary: #d0baff;
+  --color-border-focus: #7048e8;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: var(--color-blue-6);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-5);
+  --color-primary-dark: var(--color-blue-8);
+
+  // Button colors
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors
+  --color-input-background: var(--color-surface-0);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors (enhanced for lab)
+  --color-success: #00b894;
+  --color-warning: #fdcb6e;
+  --color-error: #e84393;
+  --color-info: var(--color-blue-6);
+
+  // Shadow with lab tint
+  --color-shadow: rgba(74, 20, 140, 0.12);
+}
+
+// =============================================================================
+// LABSYNC BRAND - Laboratory & Research Theme (Dark Mode)
+// =============================================================================
+[data-brand="labsync"][data-mode="dark"] {
+  // Primary brand colors for dark mode (brighter purple for dark backgrounds)
+  --color-blue-0: #2e1065;
+  --color-blue-1: #3d1a87;
+  --color-blue-2: #4c24a9;
+  --color-blue-3: #5b2ecb;
+  --color-blue-4: #6a38ed;
+  --color-blue-5: #7c4dff;
+  --color-blue-6: #9c66ff;
+  --color-blue-7: #b47fff;
+  --color-blue-8: #cc99ff;
+  --color-blue-9: #e4b2ff;
+
+  // Surface colors for dark lab theme
+  --color-surface-0: #1a0d1a;
+  --color-surface-1: #2d1a2d;
+  --color-surface-2: #402640;
+  --color-surface-3: #533353;
+  --color-surface-4: #664066;
+  --color-surface-5: #794d79;
+  --color-surface-variant: #331a33;
+
+  // Text colors for dark lab theme
+  --color-on-surface: #f5f2ff;
+  --color-on-surface-variant: #d0baff;
+  --color-text-primary: #f5f2ff;
+  --color-text-secondary: #d0baff;
+  --color-text-muted: #b99dff;
+  --color-text-disabled: #9970cc;
+
+  // Border colors for dark mode
+  --color-divider: #533353;
+  --color-border-primary: #533353;
+  --color-border-secondary: #664066;
+  --color-border-focus: #9c66ff;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: var(--color-blue-6);
+  --color-primary-hover: var(--color-blue-7);
+  --color-primary-light: var(--color-blue-5);
+  --color-primary-dark: var(--color-blue-8);
+
+  // Complete button colors for dark mode
+  --color-button-primary: var(--color-blue-6);
+  --color-button-primary-hover: var(--color-blue-7);
+  --color-button-secondary: var(--color-surface-2);
+  --color-button-secondary-hover: var(--color-surface-3);
+  --color-button-outline: var(--color-blue-6);
+  --color-button-outline-hover: var(--color-blue-7);
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors for dark mode
+  --color-input-background: var(--color-surface-1);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: var(--color-blue-6);
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors for dark mode
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors for dark mode
+  --color-success: #00d4aa;
+  --color-warning: #ffd93d;
+  --color-error: #ff6b9d;
+  --color-info: var(--color-blue-6);
+
+  // Shadow for dark mode
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  // Additional dark mode specific colors
+  --color-text: var(--color-on-surface);
+  --color-text-tertiary: var(--color-text-muted);
+  --color-primary-active: var(--color-blue-8);
+  --color-border: var(--color-divider);
+  --color-border-tertiary: var(--color-surface-4);
 }

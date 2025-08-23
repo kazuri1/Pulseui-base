@@ -27,7 +27,6 @@
   }
 
   &.variant-default {
-    border: var(--border-width-normal) solid var(--color-border-secondary);
     background-color: transparent;
 
     &:hover:not(.disabled) {

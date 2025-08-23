@@ -1,10 +1,24 @@
 @import "../../../styles/_tokens.scss";
 
+// Screen reader only class
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(o, o, o, o);
+  white-space: nowrap;
+  border: 0;
+}
+
 .pinInput {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
   font-family: var(--font-family);
+  width: 100%;
 }
 
 .label {
@@ -15,8 +29,16 @@
 }
 
 .required {
-  color: var(--color-error);
+  color: var(--color-red-6);
   margin-left: var(--spacing-xs);
+}
+
+// Helper text styles
+.helperText {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-xs);
+  margin-top: var(--spacing-xs);
 }
 
 .inputContainer {
@@ -36,28 +58,45 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
-  transition: all 0.2s ease;
+  transition: var(--motion-transition-normal);
   outline: none;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
 
   &:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 var(--border-width-normal) var(--color-surface-secondary);
+    box-shadow: 0 0 0 var(--border-width-thin) var(--color-primary);
+    outline: var(--outline-focus);
+    outline-offset: var(--outline-offset);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus);
+    outline-offset: var(--outline-offset);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-border-primary);
   }
 
   &:disabled {
-    background-color: var(--color-surface-tertiary);
+    background-color: var(--color-surface-2);
     color: var(--color-text-disabled);
     cursor: not-allowed;
+    opacity: var(--opacity-50);
   }
 
   &.error {
-    border-color: var(--color-error);
-    box-shadow: 0 0 0 var(--border-width-normal) var(--color-surface-secondary);
+    border-color: var(--color-red-6);
+    box-shadow: 0 0 0 var(--border-width-thin) var(--color-red-6);
   }
 
   &.focused {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 var(--border-width-normal) var(--color-surface-secondary);
+    box-shadow: 0 0 0 var(--border-width-thin) var(--color-primary);
   }
 
   // Size variants

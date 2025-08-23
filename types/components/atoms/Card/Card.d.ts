@@ -45,5 +45,19 @@ export interface CardProps extends WithSxProps {
     clickable?: boolean;
     /** Whether the card is disabled */
     disabled?: boolean;
+    /** Accessibility label for the card */
+    ariaLabel?: string;
+    /** Whether the card is expanded/collapsed */
+    ariaExpanded?: boolean;
+    /** Controls the ID of the element this card controls */
+    ariaControls?: string;
+    /** Describes the card's purpose */
+    ariaDescribedBy?: string;
+    /** Whether the card has a popup */
+    ariaHasPopup?: boolean;
+    /** Whether the card is pressed/active */
+    ariaPressed?: boolean;
+    /** Tab index for keyboard navigation */
+    tabIndex?: number;
 }
 export declare const Card: React.FC<CardProps>;

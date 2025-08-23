@@ -42,5 +42,45 @@ export interface InputProps extends WithSxProps {
     name?: string;
     /** Input id */
     id?: string;
+    /** Label for the input */
+    label?: string;
+    /** Helper text below the input */
+    helperText?: string;
+    /** Error message */
+    error?: string;
+    /** Whether to show the label */
+    showLabel?: boolean;
+    /** Accessibility label (overrides label for screen readers) */
+    ariaLabel?: string;
+    /** Describes the input's purpose */
+    ariaDescribedBy?: string;
+    /** Controls the ID of the element this input controls */
+    ariaControls?: string;
+    /** Whether the input has a popup */
+    ariaHasPopup?: boolean;
+    /** Whether the input is expanded/collapsed */
+    ariaExpanded?: boolean;
+    /** Whether the input is pressed/active */
+    ariaPressed?: boolean;
+    /** Tab index for keyboard navigation */
+    tabIndex?: number;
+    /** Auto-complete attribute */
+    autoComplete?: string;
+    /** Auto-focus attribute */
+    autoFocus?: boolean;
+    /** Input mode for mobile keyboards */
+    inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
+    /** Pattern for validation */
+    pattern?: string;
+    /** Minimum length */
+    minLength?: number;
+    /** Maximum length */
+    maxLength?: number;
+    /** Step value for number inputs */
+    step?: number;
+    /** Minimum value for number inputs */
+    min?: number;
+    /** Maximum value for number inputs */
+    max?: number;
 }
 export declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>>;

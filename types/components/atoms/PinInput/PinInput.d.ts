@@ -31,5 +31,17 @@ export interface PinInputProps extends WithSxProps {
     size?: "sm" | "md" | "lg" | "xl";
     /** Whether the input is readonly */
     readonly?: boolean;
+    /** Placeholder character to show in empty inputs */
+    placeholder?: string;
+    /** Accessibility label for the PIN input */
+    ariaLabel?: string;
+    /** Whether to show the label */
+    showLabel?: boolean;
+    /** Helper text below the input */
+    helperText?: string;
+    /** Describes the input's purpose */
+    ariaDescribedBy?: string;
+    /** Tab index for keyboard navigation */
+    tabIndex?: number;
 }
 export declare const PinInput: React.FC<PinInputProps>;

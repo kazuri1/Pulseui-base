@@ -38,9 +38,11 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
     const root = document.documentElement;
     if (newTheme) {
       root.setAttribute("data-theme", "dark");
+      root.setAttribute("data-mode", "dark");
       localStorage.setItem("pulseui-theme", "dark");
     } else {
       root.setAttribute("data-theme", "light");
+      root.setAttribute("data-mode", "light");
       localStorage.setItem("pulseui-theme", "light");
     }
   };
@@ -50,8 +52,10 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
     const root = document.documentElement;
     if (isDark) {
       root.setAttribute("data-theme", "dark");
+      root.setAttribute("data-mode", "dark");
     } else {
       root.setAttribute("data-theme", "light");
+      root.setAttribute("data-mode", "light");
     }
   }, [isDark]);
 

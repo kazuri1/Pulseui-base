@@ -1,30 +1,129 @@
-import { VariantSelector } from "./components/atoms/VariantSelector/VariantSelector";
-import { Button } from "./components/atoms/Button/Button";
-import { Badge } from "./components/atoms/Badge";
-import { Alert } from "./components/atoms/Alert";
-import { Checkbox } from "./components/atoms/Checkbox";
-import { Switch } from "./components/atoms/Switch";
-import { Select } from "./components/atoms/Select";
-import { SimpleTopNav } from "./components/atoms/SimpleTopNav";
-import { Grid, GridCol } from "./components/layouts/Grid";
-import { Text } from "./components/atoms/Text";
 import React, { useState } from "react";
-import { Input } from "./components/atoms/Input";
-import { Textarea } from "./components/atoms/Textarea";
-import { Pill } from "./components/atoms/Pill";
-import { Card } from "./components/atoms/Card";
-import { Tag } from "./components/atoms/Tag";
-import { Avatar } from "./components/atoms/Avatar";
-import { Modal } from "./components/atoms/Modal";
-import { Pagination } from "./components/atoms/Pagination";
-import { PillInput } from "./components/atoms/PillInput";
-import { Radio } from "./components/atoms/Radio";
-import { Stepper } from "./components/atoms/Stepper";
-import { Kbd } from "./components/atoms/Kbd";
+import {
+  // Core Components
+  Button,
+  TextInput,
+  PasswordInput,
+  Input,
+  Textarea,
+  PinInput,
+  PillInput,
+  Autocomplete,
+  Radio,
+  Switch,
+  Select,
+  Checkbox,
+  Alert,
+  Pagination,
+  Carousel,
 
-import { Drawer } from "./components/atoms/Drawer";
+  // Animation Component
+  Animation,
+
+  // Navigation Components
+  SimpleTopNav,
+  VersionSelector,
+  ThemeSwitcher,
+  BrandSwitcher,
+  ThemeAndBrandSwitcher,
+  LeftDrawer,
+  Drawer,
+  Modal,
+  ModalFooter,
+  ComponentDisplay,
+  ComponentBox,
+  LoginForm,
+
+  // Stepper Components
+  StepperIcon,
+  StepperItem,
+  Stepper,
+
+  // Display Components
+  Text,
+  Badge,
+  Card,
+  ContentCard,
+  Avatar,
+  Image,
+  Pill,
+  FileUpload,
+  ProfileCard,
+  UpdateNotification,
+  Kbd,
+  Tag,
+
+  // Accordion Components
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionContent,
+  AccordionList,
+
+  // Action Components
+  ActionButton,
+  VariantSelector,
+  TableOfContents,
+
+  // Tabs Components
+  Tabs,
+  TabsList,
+  TabsTab,
+  TabsPanel,
+  useTabs,
+  SingleTab,
+
+  // Layout Components
+  Container,
+  Grid,
+  GridCol,
+  Group,
+  Stack,
+
+  // Calendar Components
+  Calendar,
+  CalendarDate,
+  CalendarTitle,
+  CalendarYear,
+  CalendarDecade,
+  DatePicker,
+
+  // Icon Component
+  Icon,
+
+  // Utilities
+  mergeSxWithStyles,
+  combineClassNames,
+
+  // Hooks
+  useBreakpoint,
+
+  // Icons
+  InfoOutlined,
+  CheckCircle,
+  Warning,
+  ErrorOutline,
+  Close,
+  ArrowBack,
+  ArrowForward,
+  MoreHoriz,
+} from "./index";
 
 function AppContent() {
+  // Initialize brand and theme on component mount
+  React.useEffect(() => {
+    const root = document.documentElement;
+
+    // Initialize brand
+    const savedBrand = localStorage.getItem("pulseui-brand") || "default";
+    root.setAttribute("data-brand", savedBrand);
+
+    // Initialize theme and mode
+    const savedTheme = localStorage.getItem("pulseui-theme") || "light";
+    root.setAttribute("data-theme", savedTheme);
+    root.setAttribute("data-mode", savedTheme);
+  }, []);
+
   const [checkboxState, setCheckboxState] = React.useState("default");
   const [inputState, setInputState] = React.useState<
     "default" | "filled" | "unstyled"
@@ -104,9 +203,9 @@ function AppContent() {
       onClick: () => console.log("Home clicked"),
     },
     {
-      id: "about",
-      label: "About",
-      onClick: () => console.log("About clicked"),
+      id: "components",
+      label: "Components",
+      onClick: () => console.log("Component clicked"),
     },
     {
       id: "contact",
@@ -123,6 +222,9 @@ function AppContent() {
       }}
     >
       <SimpleTopNav
+        useDynamicBrandLogo={true}
+        brandLogoSize="md"
+        showBrandText={false}
         brandName="PulseUI"
         brandTitle="Component Library"
         items={navItems}
@@ -134,41 +236,12 @@ function AppContent() {
             console.log("Version changed to:", version),
           show: true,
         }}
-      />
-
-      {/* Theme and Brand Switchers */}
-      <div
-        style={{
-          display: "flex",
-          gap: "16px",
-          alignItems: "flex-start",
-          padding: "16px",
-          borderRadius: "8px",
-          border: "1px solid #ddd",
-          margin: "16px",
-          flexWrap: "wrap",
+        brandSwitcher={{
+          show: true,
+          size: "sm",
+          showDescription: false,
         }}
-      >
-        {/* Theme Switcher */}
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            padding: "12px",
-            borderRadius: "6px",
-            border: "1px solid #eee",
-            backgroundColor: "#f9f9f9",
-            minWidth: "300px",
-          }}
-        >
-          <span style={{ fontSize: "14px", color: "#666" }}>Theme:</span>
-
-          <span style={{ fontSize: "12px", color: "#999" }}>
-            Click to toggle between light and dark modes
-          </span>
-        </div>
-      </div>
+      />
 
       {/* Component Variants */}
       <div style={{ marginTop: "48px", padding: "0 16px" }}>
@@ -614,13 +687,149 @@ function AppContent() {
         </Grid>
       </div>
 
+      {/* New Components Section - Including Fixed PinInput */}
+      <div style={{ marginTop: "48px", padding: "0 16px" }}>
+        <Text variant="xxl" weight="bold" style={{ marginBottom: "24px" }}>
+          New Components & Fixed PinInput
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={4}>
+            <VariantSelector
+              title="PinInput Component (Fixed)"
+              variants={["default", "error", "disabled"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                console.log(`PinInput variant changed to: ${variant}`)
+              }
+            >
+              <PinInput
+                label="Security PIN"
+                placeholder="0"
+                helperText="Fixed PinInput with '0' placeholder and accessibility features"
+                length={4}
+                required={true}
+              />
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Carousel Component"
+              variants={["default", "compact", "imageOnly"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                console.log(`Carousel variant changed to: ${variant}`)
+              }
+            >
+              <Carousel
+                ariaLabel="Sample carousel"
+                enableKeyboard={true}
+                autoPlay={0}
+                useCards={true}
+                imageOnly={false}
+                size="display"
+                compact={false}
+              >
+                <div
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "var(--color-surface-secondary)",
+                    borderRadius: "var(--radius-md)",
+                  }}
+                >
+                  <Text variant="md" weight="semibold">
+                    Slide 1
+                  </Text>
+                  <Text variant="sm" color="secondary">
+                    Carousel content
+                  </Text>
+                </div>
+                <div
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "var(--color-surface-secondary)",
+                    borderRadius: "var(--radius-md)",
+                  }}
+                >
+                  <Text variant="md" weight="semibold">
+                    Slide 2
+                  </Text>
+                  <Text variant="sm" color="secondary">
+                    More content
+                  </Text>
+                </div>
+                <div
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "var(--color-surface-secondary)",
+                    borderRadius: "var(--radius-md)",
+                  }}
+                >
+                  <Text variant="md" weight="semibold">
+                    Slide 3
+                  </Text>
+                  <Text variant="sm" color="secondary">
+                    Final slide
+                  </Text>
+                </div>
+              </Carousel>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={4}>
+            <VariantSelector
+              title="Accordion Component"
+              variants={["default", "bordered", "separated"]}
+              defaultVariant="default"
+              onVariantChange={(variant) =>
+                console.log(`Accordion variant changed to: ${variant}`)
+              }
+            >
+              <Accordion size="display" allowMultiple={false}>
+                <AccordionItem id="item-1">
+                  <AccordionHeader itemId="item-1">
+                    What is PulseUI?
+                  </AccordionHeader>
+                  <AccordionContent itemId="item-1">
+                    <Text variant="sm">
+                      PulseUI is a comprehensive design system and component
+                      library built with React and TypeScript.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem id="item-2">
+                  <AccordionHeader itemId="item-2">
+                    How to customize themes?
+                  </AccordionHeader>
+                  <AccordionContent itemId="item-2">
+                    <Text variant="sm">
+                      Use the brand switcher in the navigation to switch between
+                      different themes like MedDash, FitCore, and LabSync.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem id="item-3">
+                  <AccordionHeader itemId="item-3">
+                    Documentation
+                  </AccordionHeader>
+                  <AccordionContent itemId="item-3">
+                    <Text variant="sm">
+                      All components include comprehensive Storybook
+                      documentation with examples and props.
+                    </Text>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
       {/* Modal Component Section */}
       <div style={{ marginTop: "48px", padding: "0 16px" }}>
         <Text variant="xxl" weight="bold" style={{ marginBottom: "24px" }}>
           Modal Component with VariantSelector
         </Text>
         <Grid gutter="24px">
-          <GridCol span={6}>
+          <GridCol span={4}>
             <VariantSelector
               title="Modal Size Variants"
               variants={["xs", "sm", "md", "lg", "xl"]}
@@ -655,39 +864,50 @@ function AppContent() {
               </div>
             </VariantSelector>
           </GridCol>
-          <VariantSelector
-            title="Drawer Scroll Variants"
-            variants={["true", "false"]}
-            defaultVariant="true"
-            onVariantChange={(variant) =>
-              setDrawerShowScroll(variant === "true")
-            }
-          >
-            <div
-              style={{
-                padding: "20px",
-                border: "1px solid var(--color-border-secondary)",
-                borderRadius: "var(--radius-md)",
-                backgroundColor: "var(--color-surface)",
-                textAlign: "center",
-              }}
+          <GridCol span={4}>
+            <VariantSelector
+              title="Drawer Scroll Variants"
+              variants={["Right", "Left", "Top", "Bottom"]}
+              defaultVariant="Right"
+              onVariantChange={(variant) =>
+                setDrawerDirection(
+                  variant as "right" | "left" | "top" | "bottom"
+                )
+              }
             >
-              <Text
-                variant="md"
-                weight="semibold"
-                style={{ marginBottom: "8px" }}
+              <div
+                style={{
+                  padding: "20px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                  textAlign: "center",
+                }}
               >
-                Scroll: {drawerShowScroll ? "Enabled" : "Disabled"}
-              </Text>
-              <Text
-                variant="sm"
-                color="secondary"
-                style={{ marginBottom: "16px" }}
-              >
-                Toggle scroll behavior for the drawer content
-              </Text>
-            </div>
-          </VariantSelector>
+                <Text
+                  variant="md"
+                  weight="semibold"
+                  style={{ marginBottom: "8px" }}
+                >
+                  Scroll: {drawerShowScroll ? "Enabled" : "Disabled"}
+                </Text>
+                <Text
+                  variant="sm"
+                  color="secondary"
+                  style={{ marginBottom: "16px" }}
+                >
+                  Toggle scroll behavior for the drawer content
+                </Text>
+                <Button
+                  variant="filled"
+                  size="md"
+                  onClick={() => setIsDrawerOpen(true)}
+                >
+                  View Drawer
+                </Button>
+              </div>
+            </VariantSelector>
+          </GridCol>
         </Grid>
       </div>
 

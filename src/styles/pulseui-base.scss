@@ -152,6 +152,144 @@
 // This allows users to override tokens after importing the base styles
 
 // =============================================================================
+// 6. Multi-Brand Theme System (Highest Priority)
+// =============================================================================
+// Brand-specific theme overrides that should take precedence over all other styles
+// These are loaded last to ensure they override the base design tokens
+
+// MedDash Brand (Light) - Medical & Healthcare Theme
+[data-brand="medash"][data-mode="light"] {
+  --color-primary-50: #e7f5ffff;
+  --color-primary-100: #d0ebffff;
+  --color-primary-200: #a5d8ffff;
+  --color-primary-300: #74c0fcff;
+  --color-primary-400: #4dabf7ff;
+  --color-primary-500: #339af0ff;
+  --color-primary-600: #228be6ff;
+  --color-primary-700: #1c7ed6ff;
+  --color-primary-800: #1971c2ff;
+  --color-primary-900: #1864abff;
+
+  /* MedDash-specific surface colors with blue-green tint */
+  --color-surface-50: #f0f8ffff;
+  --color-surface-100: #e6f3ffff;
+  --color-surface-200: #d1e7ffff;
+  --color-surface-300: #b3d9ffff;
+  --color-surface-400: #8cc5ffff;
+  --color-surface-500: #66b3ffff;
+  --color-surface-600: #4da6ffff;
+  --color-surface-700: #3399ffff;
+  --color-surface-800: #1a8cffff;
+  --color-surface-900: #0080ffff;
+
+  /* MedDash-specific text colors */
+  --color-text-primary: #1a365dff;
+  --color-text-secondary: #2d5a8aff;
+  --color-text-muted: #4a90e2ff;
+  --color-text-disabled: #7fb3e6ff;
+
+  /* MedDash-specific border colors */
+  --color-border-primary: #b3d9ffff;
+  --color-border-secondary: #8cc5ffff;
+  --color-border-focus: #1971c2ff;
+
+  /* Override base surface colors */
+  --color-background: var(--color-surface-50);
+  --color-surface: var(--color-surface-50);
+  --color-surface-hover: var(--color-surface-100);
+  --color-surface-secondary: var(--color-surface-100);
+  --color-surface-tertiary: var(--color-surface-200);
+}
+
+// FitCore Brand (Light) - Fitness & Wellness Theme
+[data-brand="fitcore"][data-mode="light"] {
+  --color-primary-50: #fff4e6ff;
+  --color-primary-100: #ffe8ccff;
+  --color-primary-200: #ffd8a8ff;
+  --color-primary-300: #ffc078ff;
+  --color-primary-400: #ffa94dff;
+  --color-primary-500: #fd7e14ff;
+  --color-primary-600: #f76707ff;
+  --color-primary-700: #e8590cff;
+  --color-primary-800: #d63384ff;
+  --color-primary-900: #c2255cff;
+
+  /* FitCore-specific surface colors with orange-green tint */
+  --color-surface-50: #fff8f0ff;
+  --color-surface-100: #fff0e6ff;
+  --color-surface-200: #ffe8d6ff;
+  --color-surface-300: #ffdcc0ff;
+  --color-surface-400: #ffcca6ff;
+  --color-surface-500: #ffb88cff;
+  --color-surface-600: #ffa472ff;
+  --color-surface-700: #ff9058ff;
+  --color-surface-800: #ff7c3eff;
+  --color-surface-900: #ff6824ff;
+
+  /* FitCore-specific text colors */
+  --color-text-primary: #8b4513ff;
+  --color-text-secondary: #a0522dff;
+  --color-text-muted: #cd853fff;
+  --color-text-disabled: #deb887ff;
+
+  /* FitCore-specific border colors */
+  --color-border-primary: #ffdcc0ff;
+  --color-border-secondary: #ffcca6ff;
+  --color-border-focus: #fd7e14ff;
+
+  /* Override base surface colors */
+  --color-background: var(--color-surface-50);
+  --color-surface: var(--color-surface-50);
+  --color-surface-hover: var(--color-surface-100);
+  --color-surface-secondary: var(--color-surface-100);
+  --color-surface-tertiary: var(--color-surface-200);
+}
+
+// LabSync Brand (Light) - Laboratory & Research Theme
+[data-brand="labsync"][data-mode="light"] {
+  --color-primary-50: #f3f0ffff;
+  --color-primary-100: #e5dbffff;
+  --color-primary-200: #d0bfffff;
+  --color-primary-300: #b197fcff;
+  --color-primary-400: #9775faff;
+  --color-primary-500: #7950f2ff;
+  --color-primary-600: #7048e8ff;
+  --color-primary-700: #6741d9ff;
+  --color-primary-800: #5f3dc4ff;
+  --color-primary-900: #4c6ef5ff;
+
+  /* LabSync-specific surface colors with purple-cyan tint */
+  --color-surface-50: #f8f0ffff;
+  --color-surface-100: #f0e6ffff;
+  --color-surface-200: #e8d6ffff;
+  --color-surface-300: #e0c6ffff;
+  --color-surface-400: #d8b6ffff;
+  --color-surface-500: #d0a6ffff;
+  --color-surface-600: #c896ffff;
+  --color-surface-700: #c086ffff;
+  --color-surface-800: #b876ffff;
+  --color-surface-900: #b066ffff;
+
+  /* LabSync-specific text colors */
+  --color-text-primary: #4a148cff;
+  --color-text-secondary: #6a1b9aff;
+  --color-text-muted: #8e24aaff;
+  --color-text-disabled: #ba68c8ff;
+
+  /* LabSync-specific border colors */
+  --color-border-primary: #e0c6ffff;
+  --color-border-secondary: #d8b6ffff;
+  --color-border-focus: #7950f2ff;
+
+  /* Override base surface colors */
+  --color-background: var(--color-surface-50);
+  --color-surface: var(--color-surface-50);
+  --color-surface-hover: var(--color-surface-100);
+  --color-surface-secondary: var(--color-surface-100);
+  --color-surface-tertiary: var(--color-surface-200);
+}
+
+// =============================================================================
 // Usage Instructions:
 // =============================================================================
 //

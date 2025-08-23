@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import styles from "./Drawer.module.scss";
 import { Icon } from "../Icon";
 import { Close } from "../Icon/IconSet";
-import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 

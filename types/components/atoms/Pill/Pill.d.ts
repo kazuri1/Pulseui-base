@@ -13,5 +13,15 @@ export interface PillProps extends WithSxProps {
     onClose?: () => void;
     /** Disabled state */
     disabled?: boolean;
+    /** Accessibility label for the pill */
+    ariaLabel?: string;
+    /** Whether the pill is selected */
+    ariaSelected?: boolean;
+    /** Whether the pill is pressed/active */
+    ariaPressed?: boolean;
+    /** Describes the pill's purpose */
+    ariaDescribedBy?: string;
+    /** Tab index for keyboard navigation */
+    tabIndex?: number;
 }
 export declare const Pill: React.FC<PillProps>;
