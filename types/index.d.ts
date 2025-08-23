@@ -34,6 +34,8 @@ export { SimpleTopNav, VersionSelector } from "./components/atoms/SimpleTopNav";
 export { ThemeSwitcher } from "./components/atoms/ThemeSwitcher";
 export { BrandSwitcher } from "./components/atoms/BrandSwitcher";
 export type { BrandSwitcherProps } from "./components/atoms/BrandSwitcher";
+export { BrandLogo } from "./components/atoms/BrandLogo";
+export type { BrandLogoProps } from "./components/atoms/BrandLogo";
 export { ThemeAndBrandSwitcher } from "./components/atoms/ThemeAndBrandSwitcher";
 export type { ThemeAndBrandSwitcherProps } from "./components/atoms/ThemeAndBrandSwitcher";
 export type { SimpleTopNavProps, SimpleTopNavItem, VersionSelectorProps, } from "./components/atoms/SimpleTopNav";

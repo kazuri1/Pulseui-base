@@ -4,7 +4,7 @@ export interface AccordionProps extends WithSxProps {
     children: React.ReactNode;
     allowMultiple?: boolean;
     defaultExpanded?: string[];
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "display";
 }
 export declare const Accordion: React.FC<AccordionProps>;
 export interface AccordionItemProps extends WithSxProps {

@@ -17,6 +17,8 @@ export interface CarouselProps {
     imageOnly?: boolean;
     /** Whether to use compact spacing between slides */
     compact?: boolean;
+    /** Size of the carousel for different display contexts */
+    size?: "sm" | "md" | "lg" | "xl" | "display";
     /** Accessibility label for the carousel */
     ariaLabel?: string;
     /** Whether to enable keyboard navigation */

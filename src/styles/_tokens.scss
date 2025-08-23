@@ -173,8 +173,7 @@
   --font-weight-bold: 700;
 
   // Font family
-  --font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  --font-family: "Satoshi", sans-serif;
 
   // Icon sizes
   --icon-size-xs: 12px;
@@ -412,6 +411,7 @@
 // MEDASH BRAND - Medical & Healthcare Theme (Light Mode)
 // =============================================================================
 [data-brand="medash"][data-mode="light"] {
+  --font-family: "Roboto", sans-serif;
   // Primary brand colors (blue-green medical theme)
   --color-blue-0: #e0f4ff;
   --color-blue-1: #b3e5ff;
@@ -496,6 +496,8 @@
 // MEDASH BRAND - Medical & Healthcare Theme (Dark Mode)
 // =============================================================================
 [data-brand="medash"][data-mode="dark"] {
+  --font-family: "Roboto", sans-serif;
+
   // Primary brand colors for dark mode (brighter for dark backgrounds)
   --color-blue-0: #004d66;
   --color-blue-1: #006680;
@@ -587,6 +589,7 @@
 // FITCORE BRAND - Fitness & Wellness Theme (Light Mode)
 // =============================================================================
 [data-brand="fitcore"][data-mode="light"] {
+  --font-family: "Poppins", sans-serif;
   // Primary brand colors (orange-green fitness theme)
   --color-blue-0: #fff4e6;
   --color-blue-1: #ffe8cc;
@@ -671,6 +674,8 @@
 // FITCORE BRAND - Fitness & Wellness Theme (Dark Mode)
 // =============================================================================
 [data-brand="fitcore"][data-mode="dark"] {
+  --font-family: "Poppins", sans-serif;
+
   // Primary brand colors for dark mode (brighter orange for dark backgrounds)
   --color-blue-0: #662900;
   --color-blue-1: #803300;
@@ -762,6 +767,8 @@
 // LABSYNC BRAND - Laboratory & Research Theme (Light Mode)
 // =============================================================================
 [data-brand="labsync"][data-mode="light"] {
+  --font-family: "IBM Plex Sans", sans-serif;
+
   // Primary brand colors (purple-cyan lab theme)
   --color-blue-0: #f3f0ff;
   --color-blue-1: #e5dbff;
@@ -846,6 +853,8 @@
 // LABSYNC BRAND - Laboratory & Research Theme (Dark Mode)
 // =============================================================================
 [data-brand="labsync"][data-mode="dark"] {
+  --font-family: "IBM Plex Sans", sans-serif;
+
   // Primary brand colors for dark mode (brighter purple for dark backgrounds)
   --color-blue-0: #2e1065;
   --color-blue-1: #3d1a87;

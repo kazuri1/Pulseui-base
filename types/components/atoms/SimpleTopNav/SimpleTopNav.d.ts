@@ -17,12 +17,18 @@ export interface SimpleTopNavItem {
     icon?: SvgIconComponent;
 }
 export interface SimpleTopNavProps extends WithSxProps {
-    /** Brand name to display */
+    /** Brand name to display (deprecated - use BrandLogo component) */
     brandName?: string;
-    /** Brand title/role to display */
+    /** Brand title/role to display (deprecated - use BrandLogo component) */
     brandTitle?: string;
-    /** Brand logo/icon (optional) */
+    /** Brand logo/icon (optional - deprecated, use BrandLogo component) */
     brandLogo?: React.ReactNode;
+    /** Whether to use the new dynamic brand logo */
+    useDynamicBrandLogo?: boolean;
+    /** Size of the brand logo */
+    brandLogoSize?: "sm" | "md" | "lg" | "xl";
+    /** Whether to show text with the brand logo */
+    showBrandText?: boolean;
     /** Navigation items */
     items?: SimpleTopNavItem[];
     /** Whether to show the brand section */
@@ -47,6 +53,15 @@ export interface SimpleTopNavProps extends WithSxProps {
         onVersionChange?: (version: string) => void;
         /** Whether to show the version selector */
         show?: boolean;
+    };
+    /** Brand switcher configuration */
+    brandSwitcher?: {
+        /** Whether to show the brand switcher */
+        show?: boolean;
+        /** Size of the brand switcher */
+        size?: "sm" | "md" | "lg";
+        /** Whether to show brand descriptions */
+        showDescription?: boolean;
     };
     /** Whether to show the theme switcher */
     showThemeSwitcher?: boolean;

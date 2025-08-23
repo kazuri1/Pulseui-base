@@ -11,141 +11,141 @@ export declare const IconUsageExamples: () => import("react/jsx-runtime").JSX.El
 export declare const ButtonWithIcons: () => import("react/jsx-runtime").JSX.Element;
 export declare const IconCategories: {
     navigation: {
-        menu: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        menu: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        close: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        close: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        back: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        back: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        forward: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        forward: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        expand: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        expand: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        collapse: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        collapse: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     actions: {
-        add: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        add: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        edit: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        edit: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        delete: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        delete: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        save: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        save: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        refresh: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        refresh: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        sync: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        sync: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     files: {
-        upload: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        upload: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        download: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        download: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        save: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        save: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        print: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        print: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        share: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        share: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     search: {
-        search: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        search: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        filter: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        filter: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        sort: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        sort: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        clear: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        clear: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     communication: {
-        email: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        email: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        phone: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        phone: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        message: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        message: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        chat: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        chat: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        notifications: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        notifications: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     user: {
-        person: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        person: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        account: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        account: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        settings: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        settings: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        security: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        security: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        lock: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        lock: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     status: {
-        success: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        success: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        error: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        error: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        warning: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        warning: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        info: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        info: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        help: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        help: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
     layout: {
-        home: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        home: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        dashboard: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        dashboard: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        list: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        list: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        grid: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        grid: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
-        menu: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material").SvgIconTypeMap<{}, "svg">> & {
+        menu: import("@mui/material/OverridableComponent").OverridableComponent<import("@mui/material/SvgIcon").SvgIconTypeMap<{}, "svg">> & {
             muiName: string;
         };
     };
