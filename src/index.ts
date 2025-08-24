@@ -206,6 +206,9 @@ export type { GroupProps } from "./components/layouts/Group";
 export { Stack } from "./components/layouts/Stack";
 export type { StackProps } from "./components/layouts/Stack";
 
+export { Layout } from "./components/layouts/Layout";
+export type { LayoutProps } from "./components/layouts/Layout";
+
 // Calendar Components
 export { Calendar } from "./components/atoms/Calendar/Calendar";
 export type { CalendarProps } from "./components/atoms/Calendar/Calendar";

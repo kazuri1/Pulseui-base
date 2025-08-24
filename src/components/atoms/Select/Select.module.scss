@@ -124,8 +124,8 @@
   }
 
   &.selected {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--color-surface-1);
+    color: var(--color-on-primary);
 
     &:hover:not(.disabled) {
       background-color: var(--color-primary-hover);
@@ -135,7 +135,6 @@
   &.focused {
     background-color: var(--color-surface-1);
     /* Focus ring inset (was @include focus-ring-inset) */
-    box-shadow: inset 0 0 0 2px var(--color-border-focus);
   }
 
   &.disabled {

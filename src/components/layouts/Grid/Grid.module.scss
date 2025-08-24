@@ -8,6 +8,9 @@
   );
   gap: var(--grid-gutter, var(--spacing-md));
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 
   // Align items
   &.align-stretch {

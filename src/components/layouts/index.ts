@@ -18,3 +18,5 @@ export { Stack } from "./Stack";
 export type { StackProps, StackAlign, StackJustify } from "./Stack";
 export { Group } from "./Group";
 export type { GroupProps, GroupAlign, GroupJustify } from "./Group";
+export { Layout } from "./Layout";
+export type { LayoutProps } from "./Layout";

@@ -11,11 +11,25 @@
   min-height: 60px;
   font-family: var(--font-family);
   width: 100%;
+  max-width: 100vw;
   box-sizing: border-box;
   position: relative;
   z-index: 1000;
+  overflow-x: visible;
 }
+.version-display {
+  background-color: var(--color-surface-1);
+  padding: var(--spacing-sm) var(--spacing-sm);
+  border-radius: var(--spacing-xl);
+  font-family: var(--font-family);
+  align-items: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-white);
 
+  margin-left: -12px;
+  line-height: var(--line-height-sm);
+}
 .brand {
   display: flex;
   align-items: center;
@@ -46,7 +60,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  
+
   // Adjust for mobile
   @media (max-width: var(--breakpoint-mobile)) {
     gap: var(--spacing-xs);
@@ -75,11 +89,12 @@
   margin-left: var(--spacing-md);
   flex-shrink: 0;
   min-width: 120px;
-  
+
   // Adjust for mobile
   @media (max-width: var(--breakpoint-mobile)) {
     margin-left: var(--spacing-sm);
     min-width: 100px;
+    height: 100%;
   }
 }
 

@@ -490,6 +490,14 @@
 
   // Shadow with medical tint
   --color-shadow: rgba(26, 77, 102, 0.12);
+
+  // MEDASH-specific border radius overrides (medical precision)
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-full: 9999px;
 }
 
 // =============================================================================
@@ -583,6 +591,14 @@
   --color-primary-active: var(--color-blue-8);
   --color-border: var(--color-divider);
   --color-border-tertiary: var(--color-surface-4);
+
+  // MEDASH-specific border radius overrides (medical precision)
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-full: 9999px;
 }
 
 // =============================================================================
@@ -668,6 +684,14 @@
 
   // Shadow with fitness tint
   --color-shadow: rgba(139, 69, 19, 0.12);
+
+  // FITCORE-specific border radius overrides (friendly fitness feel)
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
 }
 
 // =============================================================================
@@ -768,6 +792,7 @@
 // =============================================================================
 [data-brand="labsync"][data-mode="light"] {
   --font-family: "IBM Plex Sans", sans-serif;
+  border-radius: var(--radius-full);
 
   // Primary brand colors (purple-cyan lab theme)
   --color-blue-0: #f3f0ff;

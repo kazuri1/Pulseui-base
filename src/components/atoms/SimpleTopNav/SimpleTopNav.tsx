@@ -252,12 +252,13 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
               </>
             )}
             {versionSelector.show && (
-              <VersionSelector
-                version={versionSelector.version}
-                versions={versionSelector.versions}
-                onVersionChange={versionSelector.onVersionChange}
-                className={styles.versionSelector}
-              />
+              // <VersionSelector
+              //   version={versionSelector.version}
+              //   versions={versionSelector.versions}
+              //   onVersionChange={versionSelector.onVersionChange}
+              //   className={styles.versionSelector}
+              // />
+              <div className="version-display">v1.6</div>
             )}
             {brandSwitcher.show && (
               <BrandSwitcher
