@@ -1,4 +1,4 @@
-# PulseUI - Modern React Component Library
+# PulseUI - Token Powered Multi-Brand & Multi Theme React Component Library 
 
 ⚡ **Ultra-lightweight React component library** with design tokens, multi-brand theming, and TypeScript support. Zero heavy dependencies - perfect for production apps.
 
