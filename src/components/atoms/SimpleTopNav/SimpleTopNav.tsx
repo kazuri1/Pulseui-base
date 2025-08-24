@@ -8,7 +8,6 @@ import { Menu, Close, Home, Person, Store, Email } from "../Icon/IconSet";
 import type { SvgIconComponent } from "@mui/icons-material";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
 
-import { VersionSelector } from "./VersionSelector";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { BrandLogo } from "../BrandLogo";
 import { BrandSwitcher } from "../BrandSwitcher";

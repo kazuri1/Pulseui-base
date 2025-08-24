@@ -17,7 +17,6 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
   variant = "default",
   label,
   className = "",
-  sx,
   style,
 }) => {
   const [isDark, setIsDark] = React.useState(() => {
@@ -77,7 +76,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
       icon={isDark ? WbSunny : Bedtime}
       aria-label={displayLabel}
       className={className}
-      sx={sx}
+      sx={{ alignItems: "center", justifyContent: "center" }}
       style={style}
     />
   );

@@ -18,7 +18,7 @@
   overflow-x: visible;
 }
 .version-display {
-  background-color: var(--color-surface-1);
+  background-color: var(--color-surface-2);
   padding: var(--spacing-sm) var(--spacing-sm);
   border-radius: var(--spacing-xl);
   font-family: var(--font-family);
@@ -364,6 +364,9 @@
   background: none;
   border: none;
   padding: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   color: var(--color-text-muted);
   border-radius: var(--radius-sm);

@@ -26,7 +26,6 @@ export const ThemeAndBrandSwitcher: React.FC<ThemeAndBrandSwitcherProps> = ({
   direction = "horizontal",
   gap = "md",
   className = "",
-  sx,
   style,
 }) => {
   const gapSize = {

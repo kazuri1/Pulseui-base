@@ -221,6 +221,7 @@ export const Button: React.FC<ButtonProps> = ({
           color="inherit"
           className={styles.right}
           aria-hidden="true"
+          sx={{ paddingBottom: 0, marginBottom: 0 }}
         />
       )}
     </button>

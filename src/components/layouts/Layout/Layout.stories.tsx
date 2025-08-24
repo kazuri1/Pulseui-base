@@ -5,6 +5,7 @@ import { Button } from "../../atoms/Button";
 import { Grid, GridCol } from "../Grid";
 import { Card } from "../../atoms/Card";
 import type { SimpleTopNavItem } from "../../atoms/SimpleTopNav/SimpleTopNav";
+import React from "react";
 
 const meta = {
   title: "Layouts/Layout",
