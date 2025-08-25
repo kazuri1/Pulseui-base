@@ -1,4 +1,5 @@
 import React from "react";
+import { useBreakpoint } from "../../../hooks/useBreakpoint";
 import styles from "./Layout.module.scss";
 import { SimpleTopNav } from "../../atoms/SimpleTopNav/SimpleTopNav";
 import type { SimpleTopNavItem } from "../../atoms/SimpleTopNav/SimpleTopNav";
@@ -162,7 +163,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <SimpleTopNav
           {...defaultTopNavConfig}
           items={finalNavItems}
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", position: "sticky", top: 0 }}
         />
       )}
 

@@ -78,7 +78,7 @@ function AppContent() {
           show: true,
         },
         brandSwitcher: {
-          show: true,
+          show: currentPage === "components",
           size: "sm",
           showDescription: false,
         },

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 import {
   // Core Components
@@ -94,15 +94,28 @@ export function ComponentsPage() {
     "Demo",
   ]);
 
+  const { isMobile, isTablet } = useBreakpoint();
+  let span = 4; // default 3 cols
+  if (isMobile) span = 12; // 1 col
+  else if (isTablet) span = 6;
+
   const [radioState, setRadioState] = React.useState<
     "default" | "filled" | "outline" | "light"
   >("default");
-  const [stepperState, setStepperState] = React.useState<
+  const [stepperState, setStepperState] = useState<
     "xs" | "sm" | "md" | "lg" | "xl"
-  >("md");
+  >(
+    isMobile ? "xs" : "md" // ✅ default state respects mobile
+  );
   const [kbdState, setKbdState] = React.useState<"sm" | "md" | "lg" | "xl">(
     "md"
   );
+  useEffect(() => {
+    setStepperState(isMobile ? "xs" : "md");
+  }, [isMobile]);
+  useEffect(() => {
+    setPaginationState(isMobile ? "xs" : "md");
+  }, [isMobile]);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -116,11 +129,6 @@ export function ComponentsPage() {
     "right" | "left" | "bottom" | "top"
   >("right");
   const [drawerShowScroll, setDrawerShowScroll] = useState(true);
-
-  const { isMobile, isTablet, isDesktop } = useBreakpoint();
-  let span = 4; // default 3 cols
-  if (isMobile) span = 12; // 1 col
-  else if (isTablet) span = 6;
 
   return (
     <>
@@ -568,7 +576,7 @@ export function ComponentsPage() {
             <VariantSelector
               title="Stepper Component"
               variants={["xs", "sm", "md", "lg", "xl"]}
-              defaultVariant="md"
+              defaultVariant={stepperState}
               onVariantChange={(variant) =>
                 setStepperState(variant as "xs" | "sm" | "md" | "lg" | "xl")
               }
