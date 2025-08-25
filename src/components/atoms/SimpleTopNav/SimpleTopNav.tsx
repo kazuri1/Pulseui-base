@@ -101,8 +101,6 @@ export interface SimpleTopNavProps extends WithSxProps {
 }
 
 export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
-  brandName = "VIGNESH VISHNUMOORTHY",
-  brandTitle = "PRODUCT DESIGNER + ENGINEER",
   brandLogo,
   useDynamicBrandLogo = true,
   brandLogoSize = "md",
@@ -236,18 +234,6 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
                 {brandLogo && (
                   <div className={styles.brandLogo}>{brandLogo}</div>
                 )}
-                <div className={styles.brandInfo}>
-                  <h1 className={styles.brandName}>{brandName}</h1>
-                  {brandTitle && (
-                    <p
-                      className={`${styles.brandTitle} ${
-                        isMobile ? styles.hiddenOnMobile : ""
-                      }`}
-                    >
-                      {brandTitle}
-                    </p>
-                  )}
-                </div>
               </>
             )}
             {versionSelector.show && (

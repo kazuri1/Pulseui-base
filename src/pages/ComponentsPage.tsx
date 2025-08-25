@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 import {
   // Core Components
   Button,
@@ -116,6 +117,11 @@ export function ComponentsPage() {
   >("right");
   const [drawerShowScroll, setDrawerShowScroll] = useState(true);
 
+  const { isMobile, isTablet, isDesktop } = useBreakpoint();
+  let span = 4; // default 3 cols
+  if (isMobile) span = 12; // 1 col
+  else if (isTablet) span = 6;
+
   return (
     <>
       {/* Component Variants */}
@@ -139,7 +145,7 @@ export function ComponentsPage() {
         </Text>
 
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Button Variants"
               variants={[
@@ -159,7 +165,7 @@ export function ComponentsPage() {
               <Button size="md">Button</Button>
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Badge Variants"
               variants={[
@@ -180,7 +186,7 @@ export function ComponentsPage() {
               <Badge variant="dot">Dot Badge</Badge>
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Alert Variants"
               variants={["success", "info", "warning", "error"]}
@@ -210,7 +216,7 @@ export function ComponentsPage() {
           Form Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Checkbox States"
               variants={["default", "disabled", "error"]}
@@ -234,7 +240,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Switch Variants"
               variants={["default", "disabled", "small", "large"]}
@@ -251,7 +257,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Select Variants"
               variants={["default", "disabled", "error", "success"]}
@@ -289,7 +295,7 @@ export function ComponentsPage() {
           Input Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Input Component"
               variants={["default", "filled", "unstyled"]}
@@ -305,7 +311,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Textarea Component"
               variants={["default", "error", "disabled"]}
@@ -327,7 +333,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Pill Component"
               variants={["default", "info", "success", "warning", "error"]}
@@ -366,7 +372,7 @@ export function ComponentsPage() {
           Display Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Card Component"
               variants={["default", "image-overlay"]}
@@ -383,7 +389,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Tag Component"
               variants={["default", "teal", "selected", "mint"]}
@@ -397,7 +403,7 @@ export function ComponentsPage() {
               </Tag>
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Avatar Component"
               variants={["primary", "secondary", "success", "warning"]}
@@ -430,7 +436,7 @@ export function ComponentsPage() {
           Interactive Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Modal Component"
               variants={["default", "large", "small"]}
@@ -472,7 +478,7 @@ export function ComponentsPage() {
               </div>
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Pagination Component"
               variants={["xs", "sm", "md", "lg", "xl"]}
@@ -489,7 +495,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="PillInput Component"
               variants={["default", "filled", "unstyled"]}
@@ -535,7 +541,7 @@ export function ComponentsPage() {
           Advanced Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Radio Component"
               variants={["default", "filled", "outline", "light"]}
@@ -558,7 +564,7 @@ export function ComponentsPage() {
               </div>
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Stepper Component"
               variants={["xs", "sm", "md", "lg", "xl"]}
@@ -582,7 +588,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Kbd Component"
               variants={["sm", "md", "lg", "xl"]}
@@ -608,7 +614,7 @@ export function ComponentsPage() {
           Special Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="PinInput Component"
               variants={["default", "error", "disabled"]}
@@ -626,7 +632,7 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Carousel Component"
               variants={["default", "compact", "imageOnly"]}
@@ -675,7 +681,7 @@ export function ComponentsPage() {
               </Carousel>
             </VariantSelector>
           </GridCol>
-          <GridCol span={4}>
+          <GridCol span={span}>
             <VariantSelector
               title="Accordion Component"
               variants={["default", "bordered", "separated"]}
@@ -724,7 +730,7 @@ export function ComponentsPage() {
           Overlay Components
         </Text>
         <Grid gutter="24px">
-          <GridCol span={6}>
+          <GridCol span={span}>
             <VariantSelector
               title="Drawer Direction"
               variants={["Right", "Left", "Top", "Bottom"]}
