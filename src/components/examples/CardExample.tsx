@@ -2,12 +2,12 @@ import React from "react";
 import { Card } from "../atoms/Card";
 
 export const CardExample: React.FC = () => {
-  const handleCardClick = (cardName: string) => {
-    console.log(`${cardName} card clicked!`);
+  const handleCardClick = () => {
+    // console.log(`${cardName} card clicked!`);
   };
 
-  const handleButtonClick = (buttonName: string) => {
-    console.log(`${buttonName} button clicked!`);
+  const handleButtonClick = () => {
+    // console.log(`${buttonName} button clicked!`);
   };
 
   return (

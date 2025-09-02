@@ -1,4 +1,4 @@
-@import "../../../styles/_tokens.scss";
+@use "../../../styles/_tokens.scss" as *;
 
 .fileUpload {
   display: flex; flex-direction: column;

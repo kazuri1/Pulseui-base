@@ -56,7 +56,7 @@ export const ButtonVariants: Story = {
     defaultVariant: "filled",
     label: "Select Button Variant:",
     children: (
-      <Button size="lg" onClick={() => console.log("Button clicked!")}>
+      <Button size="lg" onClick={() => {}}>
         Sample Button
       </Button>
     ),
@@ -98,7 +98,7 @@ export const CustomStyling: Story = {
     label: "Choose Style:",
     showVariantInfo: false,
     children: (
-      <Button size="lg" onClick={() => console.log("Custom button clicked!")}>
+      <Button size="lg" onClick={() => {}}>
         Custom Button
       </Button>
     ),
@@ -119,7 +119,7 @@ export const MultipleComponents: Story = {
         defaultVariant="filled"
         label="Button Style:"
       >
-        <Button size="md" onClick={() => console.log("Button clicked!")}>
+        <Button size="md" onClick={() => {}}>
           Action Button
         </Button>
       </VariantSelector>

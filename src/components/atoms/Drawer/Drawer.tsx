@@ -113,8 +113,8 @@ export const Drawer: React.FC<DrawerProps> = ({
       className={backdropClasses}
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}
-      role="dialog"
-      aria-modal="true"
+      role="presentation"
+      tabIndex={-1}
       aria-labelledby={title ? `${id}-title` : undefined}
     >
       <div
@@ -123,6 +123,8 @@ export const Drawer: React.FC<DrawerProps> = ({
         style={sxStyle}
         id={id}
         tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
       >
         {/* Header */}
         {(showTitle && title) || showClose ? (

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { useState } from "react";
 import { PinInput } from "./PinInput";
 
@@ -56,7 +56,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function DefaultStory(args) {
     const [value, setValue] = useState("");
     return <PinInput {...args} value={value} onChange={setValue} />;
   },
@@ -69,7 +69,7 @@ export const Default: Story = {
 };
 
 export const WithLabel: Story = {
-  render: (args) => {
+  render: function WithLabelStory(args) {
     const [value, setValue] = useState("");
     return <PinInput {...args} value={value} onChange={setValue} />;
   },
@@ -82,7 +82,7 @@ export const WithLabel: Story = {
 };
 
 export const WithCaption: Story = {
-  render: (args) => {
+  render: function WithCaptionStory(args) {
     const [value, setValue] = useState("");
     return <PinInput {...args} value={value} onChange={setValue} />;
   },
@@ -94,7 +94,7 @@ export const WithCaption: Story = {
 };
 
 export const WithError: Story = {
-  render: (args) => {
+  render: function WithErrorStory(args) {
     const [value, setValue] = useState("");
     return <PinInput {...args} value={value} onChange={setValue} />;
   },
@@ -107,7 +107,7 @@ export const WithError: Story = {
 };
 
 export const AccessibilityFocused: Story = {
-  render: (args) => {
+  render: function AccessibilityFocusedStory(args) {
     const [value, setValue] = useState("");
     return <PinInput {...args} value={value} onChange={setValue} />;
   },
@@ -142,12 +142,13 @@ export const Disabled: Story = {
 
 export const PlaceholderExamples: Story = {
   render: () => {
-    const [value1, setValue1] = useState("");
-    const [value2, setValue2] = useState("");
-    const [value3, setValue3] = useState("");
+    const PinInputExample = () => {
+      const [value1, setValue1] = useState("");
+      const [value2, setValue2] = useState("");
+      const [value3, setValue3] = useState("");
 
-    return (
-      <div
+      return (
+        <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -201,6 +202,8 @@ export const PlaceholderExamples: Story = {
         </div>
       </div>
     );
+    };
+    return <PinInputExample />;
   },
   parameters: {
     docs: {
@@ -214,8 +217,11 @@ export const PlaceholderExamples: Story = {
 
 export const Unmasked: Story = {
   render: (args) => {
-    const [value, setValue] = useState("");
-    return <PinInput {...args} value={value} onChange={setValue} />;
+    const UnmaskedPinInputExample = () => {
+      const [value, setValue] = useState("");
+      return <PinInput {...args} value={value} onChange={setValue} />;
+    };
+    return <UnmaskedPinInputExample />;
   },
   args: {
     label: "PIN Code (Visible)",
@@ -225,24 +231,27 @@ export const Unmasked: Story = {
 
 export const SixDigit: Story = {
   render: (args) => {
-    const [value, setValue] = useState("");
-    return <PinInput {...args} value={value} onChange={setValue} />;
+    const SixDigitPinInputExample = () => {
+      const [value, setValue] = useState("");
+      return <PinInput {...args} value={value} onChange={setValue} />;
+    };
+    return <SixDigitPinInputExample />;
   },
   args: {
     label: "6-Digit Code",
-    length: 6,
   },
 };
 
 export const AllSizes: Story = {
   render: () => {
-    const [smallValue, setSmallValue] = useState("");
-    const [mediumValue, setMediumValue] = useState("");
-    const [largeValue, setLargeValue] = useState("");
-    const [xlValue, setXlValue] = useState("");
+    const AllSizesExample = () => {
+      const [smallValue, setSmallValue] = useState("");
+      const [mediumValue, setMediumValue] = useState("");
+      const [largeValue, setLargeValue] = useState("");
+      const [xlValue, setXlValue] = useState("");
 
-    return (
-      <div
+      return (
+        <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -307,18 +316,21 @@ export const AllSizes: Story = {
         </div>
       </div>
     );
+    };
+    return <AllSizesExample />;
   },
 };
 
 export const DifferentLengths: Story = {
   render: () => {
-    const [threeDigit, setThreeDigit] = useState("");
-    const [fourDigit, setFourDigit] = useState("");
-    const [sixDigit, setSixDigit] = useState("");
-    const [eightDigit, setEightDigit] = useState("");
+    const DifferentLengthsExample = () => {
+      const [threeDigit, setThreeDigit] = useState("");
+      const [fourDigit, setFourDigit] = useState("");
+      const [sixDigit, setSixDigit] = useState("");
+      const [eightDigit, setEightDigit] = useState("");
 
-    return (
-      <div
+      return (
+        <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -383,16 +395,19 @@ export const DifferentLengths: Story = {
         </div>
       </div>
     );
+    };
+    return <DifferentLengthsExample />;
   },
 };
 
 export const MaskedVsUnmasked: Story = {
   render: () => {
-    const [maskedValue, setMaskedValue] = useState("");
-    const [unmaskedValue, setUnmaskedValue] = useState("");
+    const MaskedVsUnmaskedExample = () => {
+      const [maskedValue, setMaskedValue] = useState("");
+      const [unmaskedValue, setUnmaskedValue] = useState("");
 
-    return (
-      <div
+      return (
+        <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -429,5 +444,7 @@ export const MaskedVsUnmasked: Story = {
         </div>
       </div>
     );
+    };
+    return <MaskedVsUnmaskedExample />;
   },
 };

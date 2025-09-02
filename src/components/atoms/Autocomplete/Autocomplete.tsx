@@ -264,10 +264,18 @@ export const Autocomplete = React.forwardRef<HTMLInputElement, AutocompleteProps
               {visibleOptions.map((option, index) => (
                 <div
                   key={option.value}
+                  role="option"
+                  tabIndex={0}
+                  aria-selected={index === highlightedIndex}
                   className={`${styles.option} ${
                     index === highlightedIndex ? styles.highlighted : ""
                   }`}
                   onClick={() => handleOptionClick(option)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleOptionClick(option);
+                    }
+                  }}
                   onMouseEnter={() => setHighlightedIndex(index)}
                 >
                   {option.icon && (

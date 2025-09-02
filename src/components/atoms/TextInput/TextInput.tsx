@@ -3,7 +3,7 @@ import { Input } from "../Input";
 import { Icon } from "../Icon";
 import { InfoOutlined } from "../Icon/IconSet";
 import styles from "./TextInput.module.scss";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 

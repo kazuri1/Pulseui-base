@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Avatar } from "./Avatar";
 import {
   Person,
@@ -63,7 +63,7 @@ export const AllTypes: Story = {
       <Avatar type="icon" icon={Person} variant="secondary" />
       <Avatar
         type="image"
-        src="https://via.placeholder.com/40x40/4dabf7/ffffff?text=JD"
+        src="https://placehold.co/40x40/4dabf7/ffffff?text=JD"
         alt="John Doe"
         initials="JD"
         variant="muted"
@@ -159,28 +159,28 @@ export const ImageAvatars: Story = {
     <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
       <Avatar
         type="image"
-        src="https://via.placeholder.com/40x40/4dabf7/ffffff?text=JD"
+        src="https://placehold.co/40x40/4dabf7/ffffff?text=JD"
         alt="John Doe"
         initials="JD"
         variant="primary"
       />
       <Avatar
         type="image"
-        src="https://via.placeholder.com/40x40/69db7c/ffffff?text=JS"
+        src="https://placehold.co/40x40/69db7c/ffffff?text=JS"
         alt="Jane Smith"
         initials="JS"
         variant="success"
       />
       <Avatar
         type="image"
-        src="https://via.placeholder.com/40x40/ff8787/ffffff?text=MB"
+        src="https://placehold.co/40x40/ff8787/ffffff?text=MB"
         alt="Mike Brown"
         initials="MB"
         variant="error"
       />
       <Avatar
         type="image"
-        src="https://via.placeholder.com/40x40/ffd43b/ffffff?text=AL"
+        src="https://placehold.co/40x40/ffd43b/ffffff?text=AL"
         alt="Alice Lee"
         initials="AL"
         variant="warning"
@@ -218,7 +218,7 @@ export const InteractiveAvatars: Story = {
       />
       <Avatar
         type="image"
-        src="https://via.placeholder.com/40x40/4dabf7/ffffff?text=JD"
+        src="https://placehold.co/40x40/4dabf7/ffffff?text=JD"
         alt="John Doe"
         initials="JD"
         variant="success"

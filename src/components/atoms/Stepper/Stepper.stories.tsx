@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Stepper } from "./Stepper";
 
 const meta: Meta<typeof Stepper> = {
@@ -142,7 +142,7 @@ export const WithIcons: Story = {
       { id: "1", content: "👤", label: "User Profile", status: "complete" },
       { id: "2", content: "⚙️", label: "Settings", status: "active" },
       { id: "3", content: "💳", label: "Payment", status: "default" },
-      { id: "4", content: "✅", label: "Confirmation", status: "default" },
+      { id: "4", content: "", label: "Confirmation", status: "default" },
     ],
   },
 };

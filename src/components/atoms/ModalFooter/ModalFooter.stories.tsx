@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { ModalFooter } from "./ModalFooter";
 import { Button } from "../Button";
 
@@ -79,8 +79,8 @@ export const PrimaryVariant: Story = {
     variant: "primary",
     primaryText: "Save",
     secondaryText: "Cancel",
-    onPrimaryClick: () => console.log("Primary button clicked"),
-    onSecondaryClick: () => console.log("Secondary button clicked"),
+    onPrimaryClick: () => {},
+    onSecondaryClick: () => {},
   },
   parameters: {
     docs: {
@@ -97,8 +97,8 @@ export const DestructiveVariant: Story = {
     variant: "destructive",
     primaryText: "Delete",
     secondaryText: "Cancel",
-    onPrimaryClick: () => console.log("Delete button clicked"),
-    onSecondaryClick: () => console.log("Cancel button clicked"),
+    onPrimaryClick: () => {},
+    onSecondaryClick: () => {},
   },
   parameters: {
     docs: {
@@ -117,8 +117,8 @@ export const DisabledButtons: Story = {
     secondaryText: "Cancel",
     primaryDisabled: true,
     secondaryDisabled: false,
-    onPrimaryClick: () => console.log("Primary button clicked"),
-    onSecondaryClick: () => console.log("Secondary button clicked"),
+    onPrimaryClick: () => {},
+    onSecondaryClick: () => {},
   },
   parameters: {
     docs: {
@@ -142,8 +142,8 @@ export const CustomButtonProps: Story = {
       size: "lg",
       variant: "outline",
     },
-    onPrimaryClick: () => console.log("Confirm button clicked"),
-    onSecondaryClick: () => console.log("Back button clicked"),
+    onPrimaryClick: () => {},
+    onSecondaryClick: () => {},
   },
   parameters: {
     docs: {

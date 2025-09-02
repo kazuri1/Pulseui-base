@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CalendarTitle.module.scss";
-import type { SxProps } from "../../../../styles/stylesApi";
+// import type { SxProps } from "../../../../styles/stylesApi";
 import type { WithSxProps } from "../../../../utils/sxUtils";
 import {
   mergeSxWithStyles,

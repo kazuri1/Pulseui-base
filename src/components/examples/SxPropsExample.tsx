@@ -14,12 +14,7 @@ import type { SxProps } from "../../styles/stylesApi";
 
 export const SxPropsExample: React.FC = () => {
   // Example sx props
-  const customSx: SxProps = {
-    backgroundColor: "surface",
-    padding: "lg",
-    borderRadius: "md",
-    boxShadow: "md",
-  };
+  
 
   const buttonSx: SxProps = {
     backgroundColor: "primary",

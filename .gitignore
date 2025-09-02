@@ -30,3 +30,4 @@ storybook-static
 src/styles/_tokens.backup.scss
 tokens/
 token-report.md
+.env

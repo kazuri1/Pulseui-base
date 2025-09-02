@@ -156,6 +156,13 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         key={item.id}
         className={itemClasses}
         onClick={() => handleItemClick(item)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            handleItemClick(item);
+          }
+        }}
+        role="link"
+        tabIndex={0}
       >
         {showNumbers && <span className={styles.number}>{index + 1}</span>}
 

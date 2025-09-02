@@ -49,10 +49,10 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       sx,
       style,
     },
-    ref
-  ) => {
+    ) => {
     const [internalValue, setInternalValue] = useState(defaultValue || "");
     const [isOpen, setIsOpen] = useState(false);
+    const listboxId = React.useId();
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -187,6 +187,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             role="combobox"
             aria-expanded={isOpen}
             aria-haspopup="listbox"
+            aria-controls={listboxId}
             aria-describedby={errorId}
             aria-invalid={!!error}
             disabled={disabled}
@@ -218,6 +219,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
               <ul
                 className={styles.optionsList}
                 role="listbox"
+                id={listboxId}
                 aria-label={label || "Options"}
               >
                 {options.map((option, index) => (
@@ -233,6 +235,12 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                       ${index === focusedIndex ? styles.focused : ""}
                     `}
                     onClick={() => handleSelect(option)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleSelect(option);
+                      }
+                    }}
+                    tabIndex={0} // Make it focusable
                   >
                     {option.label}
                   </li>

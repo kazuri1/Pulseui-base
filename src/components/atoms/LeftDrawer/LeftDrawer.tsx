@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Icon } from "../Icon/Icon";
-import { Menu, Close, ExpandMore, ExpandLess } from "../Icon/IconSet";
+import { Close, ExpandMore, ExpandLess } from "../Icon/IconSet";
 import { useBreakpoint } from "../../../hooks/useBreakpoint";
 import styles from "./LeftDrawer.module.scss";
 import type { SvgIconComponent } from "@mui/icons-material";
 import type { WithSxProps } from "../../../utils/sxUtils";
-import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+import { mergeSxWithStyles } from "../../../utils/sxUtils";
 
 
 export interface LeftDrawerItem {
@@ -157,7 +157,17 @@ export const LeftDrawer: React.FC<LeftDrawerProps> = ({
     <>
       {/* Overlay */}
       {showOverlay && isOpen && (
-        <div className={styles.overlay} onClick={onClose} />
+        <div
+          className={styles.overlay}
+          onClick={onClose}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              onClose?.();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+        />
       )}
 
       {/* Drawer */}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Autocomplete } from "./Autocomplete";
 
 const meta: Meta<typeof Autocomplete> = {
@@ -72,7 +72,11 @@ const countryOptions = [
 ];
 
 // Interactive component wrapper
-const AutocompleteWrapper = (props: any) => {
+interface AutocompleteWrapperProps extends AutocompleteProps {
+  value?: string; // Make value optional as it's managed by useState
+}
+
+const AutocompleteWrapper = (props: AutocompleteWrapperProps) => {
   const [value, setValue] = useState(props.value || "");
 
   return (
@@ -81,7 +85,7 @@ const AutocompleteWrapper = (props: any) => {
       value={value}
       onChange={setValue}
       onSelect={(option) => {
-        console.log("Selected:", option);
+        // console.log("Selected:", option);
         setValue(option.value);
       }}
     />

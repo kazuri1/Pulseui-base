@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { useState } from "react";
 import { PasswordInput } from "./PasswordInput";
 
@@ -27,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function DefaultStory(args) {
     const [value, setValue] = useState("");
     return <PasswordInput {...args} value={value} onChange={setValue} />;
   },
@@ -38,7 +38,7 @@ export const Default: Story = {
 };
 
 export const WithLabel: Story = {
-  render: (args) => {
+  render: function WithLabelStory(args) {
     const [value, setValue] = useState("");
     return <PasswordInput {...args} value={value} onChange={setValue} />;
   },
@@ -50,7 +50,7 @@ export const WithLabel: Story = {
 };
 
 export const WithCaption: Story = {
-  render: (args) => {
+  render: function WithCaptionStory(args) {
     const [value, setValue] = useState("");
     return <PasswordInput {...args} value={value} onChange={setValue} />;
   },
@@ -62,7 +62,7 @@ export const WithCaption: Story = {
 };
 
 export const WithError: Story = {
-  render: (args) => {
+  render: function WithErrorStory(args) {
     const [value, setValue] = useState("");
     return <PasswordInput {...args} value={value} onChange={setValue} />;
   },
@@ -83,7 +83,7 @@ export const Disabled: Story = {
 };
 
 export const WithoutToggle: Story = {
-  render: (args) => {
+  render: function WithoutToggleStory(args) {
     const [value, setValue] = useState("");
     return <PasswordInput {...args} value={value} onChange={setValue} />;
   },
@@ -95,7 +95,7 @@ export const WithoutToggle: Story = {
 };
 
 export const ControlledVisibility: Story = {
-  render: () => {
+  render: function ControlledVisibilityStory() {
     const [value, setValue] = useState("");
     const [isVisible, setIsVisible] = useState(false);
 
@@ -119,7 +119,7 @@ export const ControlledVisibility: Story = {
 };
 
 export const AllStates: Story = {
-  render: () => {
+  render: function AllStatesStory() {
     const [value, setValue] = useState("");
 
     return (
@@ -174,7 +174,7 @@ export const AllStates: Story = {
 };
 
 export const WithStrengthMeter: Story = {
-  render: (args) => {
+  render: function WithStrengthMeterStory(args) {
     const [value, setValue] = useState("");
     return <PasswordInput {...args} value={value} onChange={setValue} />;
   },
@@ -186,7 +186,7 @@ export const WithStrengthMeter: Story = {
 };
 
 export const StrengthMeterExamples: Story = {
-  render: () => {
+  render: function StrengthMeterExamplesStory() {
     const [weakPassword, setWeakPassword] = useState("abc");
     const [mediumPassword, setMediumPassword] = useState("abc123");
     const [strongPassword, setStrongPassword] = useState("Abc123!@#");

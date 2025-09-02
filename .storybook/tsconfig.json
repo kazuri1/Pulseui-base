@@ -1,18 +1,11 @@
 {
-  "extends": "../tsconfig.app.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "module": "Node16",
+    "moduleResolution": "Node16"
   },
-  "include": ["**/*"]
+  "include": [
+    "**/*",
+    "../src"
+  ]
 }

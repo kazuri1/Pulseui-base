@@ -1,7 +1,7 @@
 import React from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
 import styles from "./Icon.module.scss";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 

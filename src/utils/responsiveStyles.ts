@@ -81,7 +81,7 @@ export const responsiveTokens = {
 // Generate responsive CSS classes
 export const generateResponsiveClasses = (
   baseClass: string,
-  responsiveProps: Record<string, any>
+  responsiveProps: Record<string, unknown>
 ) => {
   const classes: string[] = [baseClass];
 

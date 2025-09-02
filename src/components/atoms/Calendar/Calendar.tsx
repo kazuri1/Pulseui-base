@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import styles from "./Calendar.module.scss";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { CalendarDate, type CalendarDateProps } from "./CalendarParts";
@@ -16,8 +16,7 @@ export interface CalendarProps extends WithSxProps {
   onDateSelect?: (date: Date) => void;
   /** Callback when a year is selected */
   onYearSelect?: (year: number) => void;
-  /** Callback when a decade is selected */
-  onDecadeSelect?: (decadeStart: number, decadeEnd: number) => void;
+  
   /** Callback when month/year changes */
   onMonthChange?: (date: Date) => void;
   /** Callback when decade changes */
@@ -63,14 +62,10 @@ export const Calendar: React.FC<CalendarProps> = ({
   view = "month",
   onDateSelect,
   onYearSelect,
-  onDecadeSelect,
   onMonthChange,
-  onDecadeChange,
   onCenturyChange,
   onViewChange,
   selectedDate,
-  selectedYear,
-  selectedDecadeStart,
   rangeStart,
   rangeEnd,
   size = "md",
@@ -78,7 +73,6 @@ export const Calendar: React.FC<CalendarProps> = ({
   showDayLabels = true,
   disabled = false,
   dayLabels = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-  showOutsideDates = true,
   connected = false,
   showIndicators = true,
   getDateIndicator = (date: Date) => {
@@ -117,7 +111,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     // First day of the month
     const firstDay = new Date(year, month, 1);
     // Last day of the month
-    const lastDay = new Date(year, month + 1, 0);
+    
 
     // Start of the calendar (including previous month's dates)
     const startDate = new Date(firstDay);
@@ -291,21 +285,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   // Enhanced year click handler for better connected navigation
-  const handleYearClick = (year: number) => {
-    if (disabled) return;
-
-    if (connected && onViewChange) {
-      // Switch to month view for the selected year
-      const newDate = new Date(year, 0, 1);
-      setCurrentDate(newDate);
-      setCurrentYear(year);
-      onViewChange("month");
-    }
-
-    if (onYearSelect) {
-      onYearSelect(year);
-    }
-  };
+  
 
   // Enhanced month click handler for better connected navigation
   const handleMonthClick = (month: number) => {
@@ -334,27 +314,9 @@ export const Calendar: React.FC<CalendarProps> = ({
     setCurrentYear(currentYear + 1);
   };
 
-  const handlePreviousDecade = () => {
-    if (disabled) return;
+  
 
-    const newYear = currentYear - 10;
-    setCurrentYear(newYear);
-
-    if (onDecadeChange) {
-      onDecadeChange(newYear);
-    }
-  };
-
-  const handleNextDecade = () => {
-    if (disabled) return;
-
-    const newYear = currentYear + 10;
-    setCurrentYear(newYear);
-
-    if (onDecadeChange) {
-      onDecadeChange(newYear);
-    }
-  };
+  
 
   // Enhanced decade view handler for better connected navigation
   const handleYearInDecadeClick = (year: number) => {
@@ -401,17 +363,9 @@ export const Calendar: React.FC<CalendarProps> = ({
     });
   };
 
-  const formatDecadeRange = (year: number) => {
-    const decadeStart = Math.floor(year / 10) * 10;
-    const decadeEnd = decadeStart + 9;
-    return `${decadeStart}-${decadeEnd}`;
-  };
+  
 
-  const formatCenturyRange = (year: number) => {
-    const centuryStart = Math.floor(year / 100) * 100;
-    const centuryEnd = centuryStart + 99;
-    return `${centuryStart}-${centuryEnd}`;
-  };
+  
 
   // Navigation handlers based on view
   const handlePrevious = () => {

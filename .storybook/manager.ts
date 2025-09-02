@@ -1,8 +1,13 @@
 import { addons } from "@storybook/manager-api";
-import { themes } from "@storybook/theming";
+import theme from './theme.tsx';
 
 addons.setConfig({
-  theme: themes.light,
+  theme: {
+    ...theme,
+    brandTitle: 'PulseUI',
+    brandUrl: '/',
+    brandImage: './pulseuibaselight.png',
+  },
   toolbar: {
     "storybook/background": { hidden: true },
     "storybook/outline": { hidden: true },

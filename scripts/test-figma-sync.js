@@ -73,7 +73,7 @@ async function testFigmaConnection() {
   }
 
   try {
-    console.log("✅ Environment variables found");
+    console.log(" Environment variables found");
     console.log(`📁 File Key: ${FIGMA_FILE_KEY.substring(0, 8)}...`);
     console.log(`🔑 Token: ${FIGMA_API_TOKEN.substring(0, 8)}...\n`);
 
@@ -83,7 +83,7 @@ async function testFigmaConnection() {
     const fileResponse = await makeRequest(fileUrl);
 
     if (fileResponse.status === 200) {
-      console.log("✅ File metadata fetched successfully");
+      console.log(" File metadata fetched successfully");
       console.log(`📄 File name: ${fileResponse.data.name}`);
       console.log(
         `👤 Last modified by: ${
@@ -109,7 +109,7 @@ async function testFigmaConnection() {
       const variables = variablesResponse.data.meta?.variables || {};
       const variableCount = Object.keys(variables).length;
 
-      console.log("✅ Design tokens fetched successfully");
+      console.log(" Design tokens fetched successfully");
       console.log(`🎨 Found ${variableCount} design tokens`);
 
       if (variableCount > 0) {

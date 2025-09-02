@@ -85,7 +85,17 @@ export const VersionSelector: React.FC<VersionSelectorProps> = ({
 
       {isOpen && (
         <>
-          <div className={styles.backdrop} onClick={() => setIsOpen(false)} />
+          <div
+            className={styles.backdrop}
+            onClick={() => setIsOpen(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setIsOpen(false);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+          />
           <div className={styles.dropdown} role="listbox">
             {versions.map((ver) => (
               <button

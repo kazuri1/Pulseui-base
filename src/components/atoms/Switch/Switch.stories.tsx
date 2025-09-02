@@ -24,7 +24,7 @@ import { Switch } from '@pulseui/atoms';
 
 <Switch
   label="Enable notifications"
-  onChange={(checked) => console.log('Enabled:', checked)}
+  onChange={() => {}}
 />
 \`\`\`
         `,
@@ -138,21 +138,21 @@ export const MultipleSwitches: Story = {
       <Switch
         label="Email notifications"
         defaultChecked={true}
-        onChange={(checked) => console.log("Email:", checked)}
+        onChange={() => {}}
       />
       <Switch
         label="SMS notifications"
-        onChange={(checked) => console.log("SMS:", checked)}
+        onChange={() => {}}
       />
       <Switch
         label="Push notifications (Disabled)"
         disabled={true}
-        onChange={(checked) => console.log("Push:", checked)}
+        onChange={() => {}}
       />
       <Switch
         label="Marketing emails (Required)"
         required={true}
-        onChange={(checked) => console.log("Marketing:", checked)}
+        onChange={() => {}}
       />
     </div>
   ),

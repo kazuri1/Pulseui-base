@@ -106,10 +106,13 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     <div className={itemClasses} style={sxStyle}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<any>, {
-            itemId: id,
-            disabled,
-          });
+          return React.cloneElement(
+            child as React.ReactElement<{ itemId: string; disabled: boolean }>,
+            {
+              itemId: id,
+              disabled,
+            }
+          );
         }
         return child;
       })}
@@ -193,7 +196,6 @@ export interface AccordionContentProps extends WithSxProps {
 export const AccordionContent: React.FC<AccordionContentProps> = ({
   children,
   itemId,
-  disabled = false,
   size = "md",
   className = "",
   sx,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, expect } from "@storybook/test";
 import { LeftDrawer } from "./LeftDrawer";
-import { ExpandMore, ExpandLess } from "../Icon/IconSet";
+
 
 const meta: Meta<typeof LeftDrawer> = {
   title: "Atoms/LeftDrawer",
@@ -113,8 +113,20 @@ const nestedSections = [
 ];
 
 // Interactive wrapper component for stories
+interface DrawerItem {
+  id: string;
+  label: string;
+  children?: DrawerItem[];
+}
+
+interface DrawerSection {
+  id: string;
+  title: string;
+  items: DrawerItem[];
+}
+
 const LeftDrawerWrapper: React.FC<{
-  sections: any[];
+  sections: DrawerSection[];
   brandName?: string;
   brandLogo?: React.ReactNode;
   showOverlay?: boolean;

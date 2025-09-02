@@ -267,12 +267,12 @@ function generateComplianceReport(allIssues, totalFiles, availableTokens) {
 
   if (allIssues.length === 0) {
     console.log("🎉 100% DESIGN TOKEN COMPLIANCE ACHIEVED!");
-    console.log(`✅ ${totalFiles} files checked`);
-    console.log("✅ Zero hardcoded values found");
-    console.log("✅ All components use design tokens");
+    console.log(` ${totalFiles} files checked`);
+    console.log(" Zero hardcoded values found");
+    console.log(" All components use design tokens");
   } else {
     console.log(`📁 Files checked: ${totalFiles}`);
-    console.log(`✅ Clean files: ${cleanFiles}`);
+    console.log(` Clean files: ${cleanFiles}`);
     console.log(`⚠️  Files with issues: ${issueFiles}`);
     console.log(`❌ Errors: ${errorCount}`);
     console.log(`⚠️  Warnings: ${warningCount}`);

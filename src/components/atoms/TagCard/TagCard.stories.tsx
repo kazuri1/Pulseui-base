@@ -134,12 +134,13 @@ export const NoTitle: Story = {
 
 export const InteractiveExample: Story = {
   render: () => {
-    const [tags, setTags] = React.useState([
-      { id: 1, text: "React", variant: "default" as const },
-      { id: 2, text: "TypeScript", variant: "mint" as const },
-      { id: 3, text: "Design Systems", variant: "teal" as const },
-      { id: 4, text: "UI/UX", variant: "selected" as const },
-    ]);
+    const InteractiveTagCardExample = () => {
+      const [tags, setTags] = React.useState([
+        { id: 1, text: "React", variant: "default" as const },
+        { id: 2, text: "TypeScript", variant: "mint" as const },
+        { id: 3, text: "Design Systems", variant: "teal" as const },
+        { id: 4, text: "UI/UX", variant: "selected" as const },
+      ]);
 
     const handleTagClose = (tagId: string | number) => {
       setTags(tags.filter(tag => tag.id !== tagId));
@@ -154,5 +155,7 @@ export const InteractiveExample: Story = {
         onTagClose={handleTagClose}
       />
     );
+    };
+    return <InteractiveTagCardExample />;
   },
 };

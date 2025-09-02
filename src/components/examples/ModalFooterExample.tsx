@@ -9,12 +9,12 @@ export const ModalFooterExample: React.FC = () => {
   >("primary");
 
   const handlePrimaryClick = () => {
-    console.log("Primary action clicked");
+    // console.log("Primary action clicked");
     setShowModal(false);
   };
 
   const handleSecondaryClick = () => {
-    console.log("Secondary action clicked");
+    // console.log("Secondary action clicked");
     setShowModal(false);
   };
 

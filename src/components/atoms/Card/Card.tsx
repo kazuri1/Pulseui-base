@@ -4,9 +4,8 @@ import { Badge } from "../Badge";
 import { Button } from "../Button";
 import { Image } from "../Image";
 import { Text } from "../Text";
-import type { SxProps } from "../../../styles/stylesApi";
-import type { WithSxProps } from "../../../utils/sxUtils";
-import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
+// import type { SxProps } from "../../../styles/stylesApi";
+import { mergeSxWithStyles, combineClassNames, type WithSxProps } from "../../../utils/sxUtils";
 
 export interface CardProps extends WithSxProps {
   /** Card title */

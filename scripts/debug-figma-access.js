@@ -75,7 +75,7 @@ async function debugFigmaAccess() {
     return;
   }
 
-  console.log("✅ Environment variables found");
+  console.log(" Environment variables found");
   console.log(`📁 File Key: ${FIGMA_FILE_KEY}`);
   console.log(`🔑 Token: ${FIGMA_API_TOKEN.substring(0, 12)}...`);
   console.log("");
@@ -87,7 +87,7 @@ async function debugFigmaAccess() {
     const meResponse = await makeRequest(meUrl);
 
     if (meResponse.status === 200) {
-      console.log("✅ Basic API access working");
+      console.log(" Basic API access working");
       console.log(`👤 Logged in as: ${meResponse.data.email}`);
       console.log(`🆔 User ID: ${meResponse.data.id}`);
       console.log(
@@ -107,7 +107,7 @@ async function debugFigmaAccess() {
     const fileResponse = await makeRequest(fileUrl);
 
     if (fileResponse.status === 200) {
-      console.log("✅ File access successful!");
+      console.log(" File access successful!");
       console.log(`📄 File name: ${fileResponse.data.name}`);
       console.log(`👤 Owner: ${fileResponse.data.owner?.name || "Unknown"}`);
       console.log(
@@ -153,7 +153,7 @@ async function debugFigmaAccess() {
         const variables = variablesResponse.data.meta?.variables || {};
         const variableCount = Object.keys(variables).length;
 
-        console.log("✅ Design tokens accessible");
+        console.log(" Design tokens accessible");
         console.log(`🎨 Found ${variableCount} design tokens`);
 
         if (variableCount > 0) {

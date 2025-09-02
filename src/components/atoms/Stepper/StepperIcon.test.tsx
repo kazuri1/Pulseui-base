@@ -137,7 +137,7 @@ describe("StepperIcon", () => {
     const sizes = ["xs", "sm", "md", "lg", "xl"];
     
     sizes.forEach((size) => {
-      const { rerender } = render(<StepperIcon size={size as any}>1</StepperIcon>);
+      const { rerender } = render(<StepperIcon size={size}>1</StepperIcon>);
       expect(screen.getByText("1")).toHaveClass(`size-${size}`);
       rerender(<></>);
     });
@@ -147,7 +147,7 @@ describe("StepperIcon", () => {
     const radii = ["xs", "sm", "md", "lg", "xl"];
     
     radii.forEach((radius) => {
-      const { rerender } = render(<StepperIcon radius={radius as any}>1</StepperIcon>);
+      const { rerender } = render(<StepperIcon radius={radius}>1</StepperIcon>);
       expect(screen.getByText("1")).toHaveStyle({
         borderRadius: `var(--radius-${radius})`,
       });

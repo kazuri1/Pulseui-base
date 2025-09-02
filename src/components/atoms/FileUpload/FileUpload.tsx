@@ -7,7 +7,7 @@ import {
   CloudUpload,
   FileUpload as FileIcon,
   Close,
-  Upload,
+
 } from "../Icon/IconSet";
 import styles from "./FileUpload.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
@@ -46,7 +46,7 @@ export interface UploadFile {
 export const FileUpload: React.FC<FileUploadProps> = ({
   acceptedFileTypes = ["jpg", "png", "pdf", "mp4", "gif"],
   maxFileSize = 100 * 1024 * 1024, // 100MB
-  maxFiles = 5,
+  
   multiple = true,
   onUpload,
   uploadText = "Upload Your Files",
@@ -66,7 +66,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
-  const [isUploading, setIsUploading] = useState(false);
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getFileIcon = (fileName: string) => {
@@ -94,16 +94,16 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + sizes[i];
   };
 
-  const validateFile = (file: File): string | null => {
+  const validateFile = useCallback((file: File): string | null => {
     const extension = file.name.split(".").pop()?.toLowerCase();
     if (!acceptedFileTypes.includes(extension || "")) {
       return `File type ${extension} is not supported`;
     }
     if (file.size > maxFileSize) {
-      return `File size exceeds ${formatFileSize(maxFileSize)}`;
+      return `File size exceeds limit of ${formatBytes(maxFileSize)}`;
     }
     return null;
-  };
+  }, [acceptedFileTypes, maxFileSize]);
 
   const handleFiles = useCallback(
     (files: FileList) => {
@@ -120,7 +120,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       });
 
       if (errors.length > 0) {
-        console.warn("File validation errors:", errors);
+        // console.warn("File validation errors:", errors);
       }
 
       if (validFiles.length > 0) {
@@ -145,7 +145,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         }
       }
     },
-    [acceptedFileTypes, maxFileSize, onUpload]
+    [onUpload, validateFile]
   );
 
   const simulateUpload = (fileId: string) => {

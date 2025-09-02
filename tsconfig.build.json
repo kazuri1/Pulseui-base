@@ -1,21 +1,10 @@
 {
-  "extends": "./tsconfig.app.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "noEmit": false,
-    "outDir": "types",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "bundler",
-    "module": "ESNext",
-    "target": "ES2022",
-    "jsx": "react-jsx",
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "strict": false,
-    "verbatimModuleSyntax": false
+    "declarationMap": true,
+    "outDir": "dist",
+    "noEmit": false
   },
   "include": ["src"],
   "exclude": [

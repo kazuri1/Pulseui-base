@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Image.module.scss";
-import { Icon } from "../Icon";
-import { Image as ImageIcon, BrokenImage } from "../Icon/IconSet";
-import type { SxProps } from "../../../styles/stylesApi";
+
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 

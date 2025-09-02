@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Image } from "./Image";
 
 const meta: Meta<typeof Image> = {
@@ -196,8 +196,8 @@ export const WithErrorHandling: Story = {
     alt: "Image that will fail to load",
     width: 300,
     height: 200,
-    onError: (event) => {
-      console.log("Image failed to load:", event);
+    onError: () => {
+      // console.log("Image failed to load:", event);
     },
   },
 };

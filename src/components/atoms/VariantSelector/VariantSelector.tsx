@@ -1,5 +1,5 @@
 import React, { cloneElement, useState } from "react";
-import type { ReactElement } from "react";
+
 import styles from "./VariantSelector.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { combineClassNames } from "../../../utils/sxUtils";
@@ -12,7 +12,7 @@ export interface VariantSelectorProps extends WithSxProps {
   /** Default selected variant */
   defaultVariant?: string;
   /** Component to render with variants */
-  children: ReactElement;
+  children: React.ReactElement<{ variant?: string }>;
   /** Callback when variant changes */
   onVariantChange?: (variant: string) => void;
   /** Label for the variant selector */
@@ -32,7 +32,6 @@ export const VariantSelector: React.FC<VariantSelectorProps> = ({
   label = "Select Variant:",
   showVariantInfo = true,
   className = "",
-  sx,
   style,
 }) => {
   const [selectedVariant, setSelectedVariant] = useState<string>(
@@ -48,7 +47,7 @@ export const VariantSelector: React.FC<VariantSelectorProps> = ({
   const componentWithVariant = cloneElement(children, {
     variant: selectedVariant,
     // Preserve other props like size, don't override them
-  } as any);
+  });
 
   const containerClasses = combineClassNames(styles.variantSelector, className);
 

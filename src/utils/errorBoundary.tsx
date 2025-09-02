@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<
 
     // Log error to console in development
     if (process.env.NODE_ENV === "development") {
-      console.error("ErrorBoundary caught an error:", error, errorInfo);
+      // // console.error("Error caught by ErrorBoundary:", error, errorInfo);
     }
 
     // Call custom error handler
@@ -132,7 +132,7 @@ export const useErrorHandler = () => {
     setError(error);
 
     if (process.env.NODE_ENV === "development") {
-      console.error("useErrorHandler caught an error:", error);
+      // console.error("useErrorHandler caught an error:", error);
     }
   }, []);
 

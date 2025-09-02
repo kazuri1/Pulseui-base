@@ -2,10 +2,8 @@ import React from "react";
 import { Image } from "../atoms/Image";
 
 export const ImageExample: React.FC = () => {
-  const handleImageError = (
-    event: React.SyntheticEvent<HTMLImageElement, Event>
-  ) => {
-    console.log("Image failed to load:", event);
+  const handleImageError = () => {
+    // console.log("Image failed to load:", event);
   };
 
   return (

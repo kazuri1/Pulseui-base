@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { PillInput } from "./PillInput";
 
 const meta: Meta<typeof PillInput> = {
@@ -80,7 +80,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Interactive component wrapper
-const PillInputWrapper = (props: any) => {
+import { PillInputProps } from "./PillInput";
+
+const PillInputWrapper = (props: PillInputProps) => {
   const [pills, setPills] = useState<string[]>(props.pills || []);
 
   return (
@@ -88,10 +90,8 @@ const PillInputWrapper = (props: any) => {
       {...props}
       pills={pills}
       onPillsChange={setPills}
-      onPillAdd={(pill) => console.log("Added pill:", pill)}
-      onPillRemove={(pill, index) =>
-        console.log("Removed pill:", pill, "at index:", index)
-      }
+      onPillAdd={() => {}}
+      onPillRemove={() => {}}
     />
   );
 };

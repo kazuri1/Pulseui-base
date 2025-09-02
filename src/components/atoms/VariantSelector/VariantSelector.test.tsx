@@ -4,7 +4,7 @@ import { VariantSelector } from "./VariantSelector";
 import { Button } from "../Button/Button";
 
 // Mock component for testing
-const MockComponent = ({ variant, ...props }: any) => (
+const MockComponent = ({ variant, ...props }: { variant?: string; onClick?: () => void }) => (
   <div data-testid="mock-component" data-variant={variant} {...props}>
     Mock Component
   </div>

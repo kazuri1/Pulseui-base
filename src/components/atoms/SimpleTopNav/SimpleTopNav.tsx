@@ -11,7 +11,7 @@ import { useBreakpoint } from "../../../hooks/useBreakpoint";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { BrandLogo } from "../BrandLogo";
 import { BrandSwitcher } from "../BrandSwitcher";
-import { useLocation } from "react-router-dom";
+
 
 export interface SimpleTopNavItem {
   /** Unique identifier for the nav item */

@@ -248,7 +248,7 @@ function main() {
 
     // Write themes.ts file
     fs.writeFileSync(THEMES_TS_PATH, themesContent, "utf8");
-    console.log("✅ themes.ts generated successfully!");
+    console.log(" themes.ts generated successfully!");
     console.log(`📁 Location: ${THEMES_TS_PATH}`);
 
     // Log stats

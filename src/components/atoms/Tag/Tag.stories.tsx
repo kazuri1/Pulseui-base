@@ -136,11 +136,12 @@ export const WithoutCloseButton: Story = {
 
 export const InteractiveExample: Story = {
   render: () => {
-    const [tags, setTags] = React.useState([
-      { id: 1, text: "Diagnosis", variant: "default" as const },
-      { id: 2, text: "Treatment", variant: "mint" as const },
-      { id: 3, text: "Follow-up", variant: "teal" as const },
-    ]);
+    const InteractiveTagExample = () => {
+      const [tags, setTags] = React.useState([
+        { id: 1, text: "Diagnosis", variant: "default" as const },
+        { id: 2, text: "Treatment", variant: "mint" as const },
+        { id: 3, text: "Follow-up", variant: "teal" as const },
+      ]);
 
     const handleRemove = (id: number) => {
       setTags(tags.filter(tag => tag.id !== id));
@@ -160,5 +161,7 @@ export const InteractiveExample: Story = {
         ))}
       </div>
     );
+    };
+    return <InteractiveTagExample />;
   },
 };

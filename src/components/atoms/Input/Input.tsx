@@ -15,7 +15,7 @@ import {
   VisibilityOff,
 } from "../Icon/IconSet";
 import styles from "./Input.module.scss";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
@@ -148,11 +148,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       ariaDescribedBy,
       ariaControls,
       ariaHasPopup,
-      ariaExpanded,
-      ariaPressed,
       tabIndex,
       autoComplete,
-      autoFocus,
       inputMode,
       pattern,
       minLength,
@@ -179,7 +176,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const actualState = disabled ? "disabled" : state;
 
     // Generate unique IDs for accessibility
-    const inputId = id || React.useId();
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = error ? `${inputId}-error` : undefined;
     const describedBy = [ariaDescribedBy, helperTextId, errorId]
@@ -309,13 +307,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           aria-describedby={describedBy || undefined}
           aria-controls={ariaControls}
           aria-haspopup={ariaHasPopup}
-          aria-expanded={ariaExpanded}
-          aria-pressed={ariaPressed}
           aria-invalid={!!error}
           aria-required={required}
           tabIndex={tabIndex}
           autoComplete={autoComplete}
-          autoFocus={autoFocus}
           inputMode={inputMode}
           pattern={pattern}
           minLength={minLength}

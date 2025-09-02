@@ -1,17 +1,7 @@
 {
-  "extends": "./tsconfig.app.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "types": ["jest", "@testing-library/jest-dom", "node"],
-    "verbatimModuleSyntax": false,
-    "allowImportingTsExtensions": false,
-    "noEmit": false,
-    "moduleResolution": "node",
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "types": ["vitest/globals", "vitest/import-meta"]
   },
   "include": ["src/**/*", "src/scss-modules.d.ts", "src/types/jest-dom.d.ts"],
   "exclude": ["node_modules"]

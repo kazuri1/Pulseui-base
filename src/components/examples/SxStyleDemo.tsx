@@ -7,7 +7,7 @@ import { Accordion, AccordionItem, AccordionHeader, AccordionContent } from "../
 import { Checkbox } from "../atoms/Checkbox";
 import { Tag } from "../atoms/Tag";
 import { Icon } from "../atoms/Icon";
-import { Add, Star } from "../atoms/Icon/IconSet";
+import { Star } from "../atoms/Icon/IconSet";
 
 export const SxStyleDemo: React.FC = () => {
   return (
