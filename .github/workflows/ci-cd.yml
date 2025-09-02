@@ -90,7 +90,7 @@ jobs:
         run: |
           echo "📊 Token sync completed successfully!"
           echo "🎯 Changes committed to ${{ github.ref }} branch"
-          echo "✅ Figma tokens are now live in your design system"
+          echo " Figma tokens are now live in your design system"
 
       - name: 📢 Notify on Success
         if: steps.token-changes.outputs.no_changes == 'false'
@@ -102,7 +102,7 @@ jobs:
       - name: 📢 Notify No Changes
         if: steps.token-changes.outputs.no_changes == 'true'
         run: |
-          echo "✅ Design tokens are already up to date"
+          echo " Design tokens are already up to date"
           echo "🏆 No changes needed - everything matches"
 
   # Job 2: Build Library
@@ -136,4 +136,4 @@ jobs:
           echo "🏗️  Build completed successfully!"
           echo "📦 Library built to dist/ directory"
           echo "📚 Storybook built to storybook-static/ directory"
-          echo "✅ Ready for manual deployment"
+          echo " Ready for manual deployment"

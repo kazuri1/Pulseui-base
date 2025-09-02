@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Calendar } from ".";
 
 const meta: Meta<typeof Calendar> = {
@@ -78,7 +78,7 @@ export const AllSizes: Story = {
 };
 
 export const Interactive: Story = {
-  render: () => {
+  render: function InteractiveStory() {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(
       undefined
     );
@@ -99,7 +99,7 @@ export const Interactive: Story = {
 };
 
 export const RangeSelection: Story = {
-  render: () => {
+  render: function RangeSelectionStory() {
     const [rangeStart, setRangeStart] = useState<Date | undefined>(undefined);
     const [rangeEnd, setRangeEnd] = useState<Date | undefined>(undefined);
 
@@ -163,7 +163,7 @@ export const CustomDayLabels: Story = {
 };
 
 export const CurrentMonth: Story = {
-  render: () => {
+  render: function CurrentMonthStory() {
     const [currentDate, setCurrentDate] = useState(new Date());
 
     return (
@@ -211,7 +211,7 @@ export const DifferentMonths: Story = {
 };
 
 export const WithTodayIndicator: Story = {
-  render: () => {
+  render: function WithTodayIndicatorStory() {
     const today = new Date();
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(
       undefined
@@ -284,20 +284,16 @@ export const AllViews: Story = {
 };
 
 export const InteractiveViews: Story = {
-  render: () => {
+  render: function InteractiveViewsStory() {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(
       undefined
     );
     const [selectedYear, setSelectedYear] = useState<number | undefined>(
       undefined
     );
-    const [selectedDecadeStart, setSelectedDecadeStart] = useState<
-      number | undefined
-    >(undefined);
 
-    const handleDecadeSelect = (decadeStart: number, decadeEnd: number) => {
-      setSelectedDecadeStart(decadeStart);
-    };
+
+
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
@@ -364,7 +360,7 @@ export const InteractiveViews: Story = {
 };
 
 export const ViewSwitching: Story = {
-  render: () => {
+  render: function ViewSwitchingStory() {
     const [currentView, setCurrentView] = useState<"month" | "year" | "decade">(
       "month"
     );
@@ -374,17 +370,13 @@ export const ViewSwitching: Story = {
     const [selectedYear, setSelectedYear] = useState<number | undefined>(
       undefined
     );
-    const [selectedDecadeStart, setSelectedDecadeStart] = useState<
-      number | undefined
-    >(undefined);
 
-    const handleDecadeSelect = (decadeStart: number, decadeEnd: number) => {
-      setSelectedDecadeStart(decadeStart);
-    };
+
+
 
     const handleViewChange = (view: "month" | "year" | "decade") => {
       setCurrentView(view);
-      console.log(`View changed to: ${view}`);
+      // console.log(`View changed to: ${view}`);
     };
 
     return (
@@ -508,7 +500,7 @@ export const ViewSwitching: Story = {
 };
 
 export const ConnectedNavigation: Story = {
-  render: () => {
+  render: function ConnectedNavigationStory() {
     const [currentView, setCurrentView] = useState<"month" | "year" | "decade">(
       "month"
     );
@@ -518,13 +510,9 @@ export const ConnectedNavigation: Story = {
     const [selectedYear, setSelectedYear] = useState<number | undefined>(
       undefined
     );
-    const [selectedDecadeStart, setSelectedDecadeStart] = useState<
-      number | undefined
-    >(undefined);
 
-    const handleDecadeSelect = (decadeStart: number, decadeEnd: number) => {
-      setSelectedDecadeStart(decadeStart);
-    };
+
+
 
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -576,7 +564,7 @@ export const ConnectedNavigation: Story = {
 };
 
 export const WithIndicators: Story = {
-  render: () => {
+  render: function WithIndicatorsStory() {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(
       undefined
     );
@@ -616,7 +604,7 @@ export const WithIndicators: Story = {
 };
 
 export const CustomIndicators: Story = {
-  render: () => {
+  render: function CustomIndicatorsStory() {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(
       undefined
     );
@@ -653,7 +641,7 @@ export const CustomIndicators: Story = {
 };
 
 export const FullyConnectedNavigation: Story = {
-  render: () => {
+  render: function FullyConnectedNavigationStory() {
     const [currentView, setCurrentView] = useState<"month" | "year" | "decade">(
       "month"
     );
@@ -666,17 +654,17 @@ export const FullyConnectedNavigation: Story = {
 
     const handleViewChange = (view: "month" | "year" | "decade") => {
       setCurrentView(view);
-      console.log(`View changed to: ${view}`);
+      // console.log(`View changed to: ${view}`);
     };
 
     const handleDateSelect = (date: Date) => {
       setSelectedDate(date);
-      console.log(`Date selected: ${date.toDateString()}`);
+      // console.log(`Date selected: ${date.toDateString()}`);
     };
 
     const handleYearSelect = (year: number) => {
       setSelectedYear(year);
-      console.log(`Year selected: ${year}`);
+      // console.log(`Year selected: ${year}`);
     };
 
     return (
@@ -894,7 +882,7 @@ export const FullyConnectedNavigation: Story = {
 };
 
 export const ConnectedCalendarExample: Story = {
-  render: () => {
+  render: function ConnectedCalendarExampleStory() {
     const [currentView, setCurrentView] = useState<"month" | "year" | "decade">(
       "month"
     );
@@ -910,24 +898,24 @@ export const ConnectedCalendarExample: Story = {
 
     const handleViewChange = (view: "month" | "year" | "decade") => {
       setCurrentView(view);
-      console.log(`Calendar view changed to: ${view}`);
+      // console.log(`Calendar view changed to: ${view}`);
     };
 
     const handleDateSelect = (date: Date) => {
       setSelectedDate(date);
-      console.log(`Date selected: ${date.toDateString()}`);
+      // console.log(`Date selected: ${date.toDateString()}`);
     };
 
     const handleYearSelect = (year: number) => {
       setSelectedYear(year);
-      console.log(`Year selected: ${year}`);
+      // console.log(`Year selected: ${year}`);
     };
 
     const handleMonthSelect = (date: Date) => {
       setSelectedMonth(date.getMonth());
-      console.log(
-        `Month selected: ${date.getMonth() + 1} (${date.toDateString()})`
-      );
+      // console.log(
+//         `Month selected: ${date.getMonth() + 1} (${date.toDateString()})`
+//       );
     };
 
     const resetSelection = () => {

@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import type { CSSProperties } from "react";
 import { defaultTheme } from "./themes";
 
@@ -200,7 +200,7 @@ export interface SxProps {
   userSelect?: CSSProperties["userSelect"];
 
   // Custom properties
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Theme interface
@@ -334,7 +334,7 @@ export const processSxProps = (
         "typography",
       ].includes(key)
     ) {
-      (styles as any)[key] = (sx as any)[key];
+      (styles as Record<string, unknown>)[key] = (sx as Record<string, unknown>)[key];
     }
   });
 

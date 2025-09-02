@@ -12,15 +12,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   placeholder = "Pick a date",
   value: controlledValue,
   defaultValue = null,
-  minDate,
-  maxDate,
   disabled = false,
   open: controlledOpen,
-  highlightWeekends = true,
-  dateFormat = "MM/dd/yyyy",
-  showOnFocus = true,
-  closeOnSelect = true,
-  showToday = true,
   className = "",
   name,
   error = false,
@@ -119,27 +112,27 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   // Handle date selection
   const handleDateSelect = useCallback(
     (date: Date) => {
-      console.log("Date selected:", date);
-      console.log("Current isOpen state:", isOpen);
+      // console.log("Date selected:", date);
+      // console.log("Current isOpen state:", isOpen);
 
       updateValue(date);
 
       // Always close calendar when date is selected
-      console.log("Closing calendar...");
+      // console.log("Closing calendar...");
       if (controlledOpen === undefined) {
         setInternalOpen(false);
-        console.log("Set internalOpen to false");
+        // console.log("Set internalOpen to false");
       }
       onOpenChange?.(false);
-      console.log("Called onOpenChange(false)");
+      // console.log("Called onOpenChange(false)");
 
       inputRef.current?.focus();
     },
-    [updateValue, controlledOpen, onOpenChange, isOpen]
+    [updateValue, controlledOpen, onOpenChange]
   );
 
   // Handle month change
-  const handleMonthChange = useCallback((date: Date) => {
+  const handleMonthChange = useCallback(() => {
     // This will be handled by the Calendar component
   }, []);
 
@@ -245,7 +238,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             date={currentValue || new Date()}
             selectedDate={currentValue || undefined}
             onDateSelect={(date) => {
-              console.log("Calendar onDateSelect called with:", date);
+              // console.log("Calendar onDateSelect called with:", date);
               handleDateSelect(date);
             }}
             onMonthChange={handleMonthChange}

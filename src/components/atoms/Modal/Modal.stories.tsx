@@ -93,7 +93,7 @@ export const DestructiveModal: Story = {
 };
 
 export const ModalSizes: Story = {
-  render: () => {
+  render: function ModalSizesStory() {
     const [currentSize, setCurrentSize] = useState<
       "xs" | "sm" | "md" | "lg" | "xl"
     >("md");

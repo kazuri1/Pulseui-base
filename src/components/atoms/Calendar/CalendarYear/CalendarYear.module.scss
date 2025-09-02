@@ -1,4 +1,4 @@
-@import "../../../../styles/_tokens.scss";
+@use "../../../../styles/_tokens.scss" as *;
 
 .calendarYear {
   display: flex;

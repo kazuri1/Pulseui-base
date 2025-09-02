@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { KeyboardEvent } from "react";
-import { Input } from "../Input/Input";
+
 import { Pill } from "../Pill/Pill";
 import styles from "./PillInput.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
@@ -66,7 +66,6 @@ export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
     {
       pills = [],
       placeholder = "0",
-      variant = "default",
       size = "md",
       pillSize = "sm",
       state = "enabled",
@@ -88,8 +87,6 @@ export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
       ariaDescribedBy,
       ariaControls,
       ariaHasPopup,
-      ariaExpanded,
-      ariaPressed,
       tabIndex,
       sx,
       style,
@@ -106,7 +103,8 @@ export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
     const [isFocused, setIsFocused] = React.useState(false);
 
     // Generate unique IDs for accessibility
-    const inputId = id || React.useId();
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = error ? `${inputId}-error` : undefined;
     const pillsContainerId = `${inputId}-pills`;
@@ -253,8 +251,6 @@ export const PillInput = React.forwardRef<HTMLInputElement, PillInputProps>(
               aria-describedby={describedBy || undefined}
               aria-controls={ariaControls}
               aria-haspopup={ariaHasPopup}
-              aria-expanded={ariaExpanded}
-              aria-pressed={ariaPressed}
               aria-invalid={!!error}
               aria-required={required}
               aria-multiline="false"

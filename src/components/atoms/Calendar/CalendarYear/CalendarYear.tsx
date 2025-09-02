@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import styles from "./CalendarYear.module.scss";
-import type { SxProps } from "../../../../styles/stylesApi";
+// import type { SxProps } from "../../../../styles/stylesApi";
 import type { WithSxProps } from "../../../../utils/sxUtils";
 import {
   mergeSxWithStyles,
@@ -119,17 +119,9 @@ export const CalendarYear: React.FC<CalendarYearProps> = ({
     return `${decadeStart}-${decadeEnd}`;
   };
 
-  const getYearVariant = (yearData: (typeof decadeData)[0]) => {
-    if (yearData.isCurrentYear) return "holiday";
-    if (yearData.isSelected) return "default";
-    return "default";
-  };
+  
 
-  const getYearActive = (yearData: (typeof decadeData)[0]) => {
-    if (yearData.isSelected) return "selected";
-    if (yearData.isCurrentYear) return "initial";
-    return "off";
-  };
+  
 
   return (
     <div className={calendarClasses} style={sxStyle} id={id}>

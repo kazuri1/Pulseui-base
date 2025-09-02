@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Pagination } from "./Pagination";
 
 const meta: Meta<typeof Pagination> = {
@@ -75,7 +75,7 @@ export const AllSizes: Story = {
 };
 
 export const Interactive: Story = {
-  render: () => {
+  render: function InteractiveStory() {
     const [currentPage, setCurrentPage] = useState(1);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>

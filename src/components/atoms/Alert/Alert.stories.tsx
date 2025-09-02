@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Alert } from "./Alert";
 
 const meta: Meta<typeof Alert> = {
@@ -182,7 +182,7 @@ export const AllSizes: Story = {
 };
 
 export const WithCloseButton: Story = {
-  render: () => {
+  render: function WithCloseButtonStory() {
     const [visible, setVisible] = useState(true);
 
     if (!visible) {
@@ -208,7 +208,7 @@ export const WithCloseButton: Story = {
 };
 
 export const Interactive: Story = {
-  render: () => {
+  render: function InteractiveStory() {
     const [alerts, setAlerts] = useState([
       {
         id: 1,

@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { ActionButton } from "./ActionButton";
 import {
   Add,
@@ -238,12 +238,12 @@ export const Disabled: Story = {
 export const WithClickHandler: Story = {
   args: {
     icon: Add,
-    onClick: () => console.log("Action button clicked!"),
+    onClick: () => {},
   },
   parameters: {
     docs: {
       source: {
-        code: `<ActionButton icon={Add} onClick={() => console.log("Clicked!")} />`,
+        code: `<ActionButton icon={Add} onClick={() => {}} />`,
       },
     },
   },

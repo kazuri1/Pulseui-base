@@ -1,4 +1,3 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card } from "./Card";
 import { Text } from "../Text";
@@ -66,7 +65,7 @@ export const Default: Story = {
     title: "Default Card",
     description: "This is a basic card with default styling.",
     buttonText: "Action",
-    imageSrc: "https://via.placeholder.com/300x200",
+    imageSrc: "https://placehold.co/300x200",
     imageAlt: "Placeholder image",
   },
 };
@@ -76,7 +75,7 @@ export const WithCustomContent: Story = {
     title: "Custom Content Card",
     description: "This card demonstrates custom content layout.",
     buttonText: "Learn More",
-    imageSrc: "https://via.placeholder.com/400x250",
+    imageSrc: "https://placehold.co/400x250",
     imageAlt: "Custom content image",
   },
   render: (args) => (
@@ -89,7 +88,7 @@ export const WithCustomContent: Story = {
             marginBottom: "12px",
           }}
         >
-          <Avatar size="sm" src="https://via.placeholder.com/40" alt="User" />
+          <Avatar size="sm" src="https://placehold.co/40" alt="User" />
           <div style={{ marginLeft: "12px" }}>
             <Text variant="sm" weight="medium">
               John Doe
@@ -163,7 +162,7 @@ export const Variants: Story = {
         title="Image Overlay Variant"
         description="Card with image overlay styling"
         buttonText="Action"
-        imageSrc="https://via.placeholder.com/250x150"
+        imageSrc="https://placehold.co/250x150"
         imageAlt="Overlay variant demo"
         style={{ width: "250px" }}
       />
@@ -178,7 +177,7 @@ export const ResponsiveLayout: Story = {
         title="Responsive Card Layout"
         description="This card demonstrates responsive behavior and adapts to different screen sizes."
         buttonText="View Details"
-        imageSrc="https://via.placeholder.com/600x300"
+        imageSrc="https://placehold.co/600x300"
         imageAlt="Responsive layout demo"
         style={{ width: "100%" }}
       />
@@ -197,7 +196,7 @@ export const InteractiveElements: Story = {
       title="Interactive Card"
       description="This card includes various interactive elements and hover effects."
       buttonText="Primary Action"
-      imageSrc="https://via.placeholder.com/350x200"
+      imageSrc="https://placehold.co/350x200"
       imageAlt="Interactive demo"
     >
       <div style={{ padding: "16px" }}>
@@ -224,7 +223,7 @@ export const AccessibilityDemo: Story = {
       title="Accessibility Features"
       description="This card demonstrates proper accessibility practices including ARIA labels and keyboard navigation."
       buttonText="Accessible Action"
-      imageSrc="https://via.placeholder.com/300x180"
+      imageSrc="https://placehold.co/300x180"
       imageAlt="Accessibility demonstration"
     >
       <div style={{ padding: "16px" }}>

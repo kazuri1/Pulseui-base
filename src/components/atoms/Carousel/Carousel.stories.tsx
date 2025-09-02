@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Carousel } from "./Carousel";
-import { Card } from "../Card/Card";
+
 import { Text } from "../Text/Text";
 import { Badge } from "../Badge/Badge";
 

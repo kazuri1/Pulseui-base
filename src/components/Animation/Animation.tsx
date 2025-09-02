@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Animation.module.scss";
 import type { AnimationProps, AnimationType, EasingFunction } from "./types";
 
@@ -23,12 +23,12 @@ export const Animation: React.FC<AnimationProps> = ({
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   // Animation timing values
-  const durationMap = {
+  const durationMap = useMemo(() => ({
     fast: "150ms",
     normal: "300ms",
     slow: "500ms",
     slower: "700ms",
-  };
+  }), []);
 
   const easingMap: Record<EasingFunction, string> = {
     "ease-in": "cubic-bezier(0.4, 0, 1, 1)",
@@ -79,7 +79,7 @@ export const Animation: React.FC<AnimationProps> = ({
 
       return () => clearTimeout(timer);
     }
-  }, [isVisible, duration, delay, onAnimationStart, onAnimationEnd]);
+  }, [isVisible, duration, delay, onAnimationStart, onAnimationEnd, durationMap]);
 
   // Generate animation classes
   const animationClasses = [

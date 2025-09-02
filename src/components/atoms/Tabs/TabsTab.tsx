@@ -1,5 +1,5 @@
 import React from "react";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 import { useTabs } from "./Tabs";
@@ -18,7 +18,6 @@ export interface TabsTabProps
 
 export const TabsTab: React.FC<TabsTabProps> = ({
   value,
-  keepMounted,
   variant = "default",
   position = "top",
   leftIcon = false,
@@ -35,13 +34,11 @@ export const TabsTab: React.FC<TabsTabProps> = ({
     value: activeValue,
     onChange,
     id,
-    keepMounted: parentKeepMounted,
     orientation,
-    placement,
     borderPosition,
   } = useTabs();
   const isActive = activeValue === value;
-  const shouldKeepMounted = keepMounted ?? parentKeepMounted;
+  
 
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,

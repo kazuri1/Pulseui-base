@@ -81,7 +81,7 @@ async function exploreFigmaFile() {
     }
 
     const fileData = fileResponse.data;
-    console.log("✅ File data fetched successfully");
+    console.log(" File data fetched successfully");
     console.log(`📄 File name: ${fileData.name}`);
     console.log(`👤 Owner: ${fileData.owner?.name || "Unknown"}`);
     console.log(
@@ -100,7 +100,7 @@ async function exploreFigmaFile() {
       const variableCount = Object.keys(variables).length;
 
       if (variableCount > 0) {
-        console.log(`✅ Found ${variableCount} design tokens`);
+        console.log(` Found ${variableCount} design tokens`);
         console.log("📋 Sample tokens:");
         const sampleTokens = Object.entries(variables).slice(0, 10);
         sampleTokens.forEach(([key, value]) => {
@@ -128,7 +128,7 @@ async function exploreFigmaFile() {
       const styleCount = Object.keys(styles).length;
 
       if (styleCount > 0) {
-        console.log(`✅ Found ${styleCount} styles`);
+        console.log(` Found ${styleCount} styles`);
         console.log("📋 Sample styles:");
         const sampleStyles = Object.entries(styles).slice(0, 10);
         sampleStyles.forEach(([key, value]) => {
@@ -153,7 +153,7 @@ async function exploreFigmaFile() {
       const componentCount = Object.keys(components).length;
 
       if (componentCount > 0) {
-        console.log(`✅ Found ${componentCount} components`);
+        console.log(` Found ${componentCount} components`);
         console.log("📋 Sample components:");
         const sampleComponents = Object.entries(components).slice(0, 10);
         sampleComponents.forEach(([key, value]) => {
@@ -170,14 +170,14 @@ async function exploreFigmaFile() {
 
     // Summary and recommendations
     console.log("📊 Summary:");
-    console.log("✅ File access: Working");
-    console.log("✅ File structure: Accessible");
+    console.log(" File access: Working");
+    console.log(" File structure: Accessible");
 
     if (
       variablesResponse.status === 200 &&
       Object.keys(variablesResponse.data.meta?.variables || {}).length > 0
     ) {
-      console.log("✅ Design tokens: Available");
+      console.log(" Design tokens: Available");
       console.log("🚀 Ready to sync design tokens!");
     } else {
       console.log("❌ Design tokens: Not available");

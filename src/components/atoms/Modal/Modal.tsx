@@ -3,7 +3,7 @@ import styles from "./Modal.module.scss";
 import { ModalFooter } from "./ModalFooter";
 import { Icon } from "../Icon";
 import { Close } from "../Icon/IconSet";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
@@ -146,8 +146,8 @@ export const Modal: React.FC<ModalProps> = ({
       className={backdropClasses}
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}
-      role="dialog"
-      aria-modal="true"
+      role="presentation"
+      tabIndex={-1}
       aria-labelledby={title ? `${id}-title` : undefined}
       aria-describedby={description ? `${id}-description` : undefined}
     >
@@ -157,6 +157,8 @@ export const Modal: React.FC<ModalProps> = ({
         style={sxStyle}
         id={id}
         tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
         
       >
         {/* Header */}

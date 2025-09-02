@@ -70,7 +70,6 @@ export const PinInput: React.FC<PinInputProps> = ({
   helperText,
   ariaDescribedBy,
   tabIndex,
-  sx,
   style,
 }) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -157,7 +156,8 @@ export const PinInput: React.FC<PinInputProps> = ({
   };
 
   // Generate unique IDs for accessibility
-  const inputId = id || React.useId();
+  const generatedId = React.useId();
+  const inputId = id || generatedId;
   const helperTextId = helperText ? `${inputId}-helper` : undefined;
   const errorId = error ? `${inputId}-error` : undefined;
   const describedBy = [ariaDescribedBy, helperTextId, errorId]

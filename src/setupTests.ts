@@ -1,4 +1,4 @@
-/// <reference types="@testing-library/jest-dom" />
+import "@testing-library/jest-dom";
 import "@testing-library/jest-dom";
 
 // Mock window.matchMedia for responsive testing
@@ -28,7 +28,7 @@ global.IntersectionObserver = class IntersectionObserver {
   takeRecords() {
     return [];
   }
-} as any;
+} as IntersectionObserver;
 
 // Mock ResizeObserver for components that use it
 global.ResizeObserver = class ResizeObserver {

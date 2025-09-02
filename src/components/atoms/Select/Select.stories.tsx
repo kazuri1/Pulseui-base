@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Select } from "./Select";
-import type { SelectOption } from "./Select";
+
 
 const meta: Meta<typeof Select> = {
   title: "Atoms/Select",
@@ -32,7 +32,7 @@ const options = [
 <Select
   label="Choose an option"
   options={options}
-  onChange={(value) => console.log('Selected:', value)}
+  onChange(() => {})
 />
 \`\`\`
         `,
@@ -203,7 +203,6 @@ export const MultipleSelects: Story = {
           { value: "de", label: "Germany" },
         ]}
         placeholder="Select your country"
-        onChange={(value) => console.log("Country:", value)}
       />
       <Select
         label="Language"
@@ -214,7 +213,6 @@ export const MultipleSelects: Story = {
           { value: "de", label: "German" },
         ]}
         placeholder="Select your language"
-        onChange={(value) => console.log("Language:", value)}
       />
       <Select
         label="Theme"
@@ -224,7 +222,6 @@ export const MultipleSelects: Story = {
           { value: "auto", label: "Auto" },
         ]}
         placeholder="Choose theme"
-        onChange={(value) => console.log("Theme:", value)}
       />
     </div>
   ),

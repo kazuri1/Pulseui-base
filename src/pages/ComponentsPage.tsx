@@ -56,18 +56,14 @@ export function ComponentsPage() {
   const [pillState, setPillState] = React.useState<
     "default" | "info" | "success" | "warning" | "error"
   >("default");
-  const [cardState, setCardState] = React.useState<"default" | "image-overlay">(
-    "default"
-  );
+  
   const [tagState, setTagState] = React.useState<
     "default" | "teal" | "selected" | "mint"
   >("default");
   const [avatarState, setAvatarState] = React.useState<
     "primary" | "secondary" | "success" | "warning"
   >("primary");
-  const [modalState, setModalState] = React.useState<
-    "default" | "large" | "small"
-  >("default");
+  
   const [paginationState, setPaginationState] = React.useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >("md");
@@ -75,19 +71,22 @@ export function ComponentsPage() {
     "default" | "filled" | "unstyled"
   >("default");
 
-  const [pillInputSize, setPillInputSize] = React.useState<
-    "sm" | "md" | "lg" | "xl"
-  >("md");
-  const [pillInputPillSize, setPillInputPillSize] = React.useState<
-    "xs" | "sm" | "md" | "lg" | "xl"
-  >("sm");
-  const [pillInputStateValue, setPillInputStateValue] = React.useState<
-    "enabled" | "focus" | "typing" | "filled" | "disabled" | "error"
-  >("enabled");
-  const [pillInputDisabled, setPillInputDisabled] = React.useState(false);
-  const [pillInputReadonly, setPillInputReadonly] = React.useState(false);
-  const [pillInputRequired, setPillInputRequired] = React.useState(false);
-  const [pillInputMaxPills, setPillInputMaxPills] = React.useState(5);
+  // Missing state declarations - adding them
+  const [cardState, setCardState] = React.useState<"default" | "image-overlay">("default");
+  const [modalState, setModalState] = React.useState<"default" | "large" | "small">("default");
+  const [radioState, setRadioState] = React.useState<"default" | "filled" | "outline" | "light">("default");
+  
+  // Missing pill input related states
+  const [pillInputSize] = React.useState<"sm" | "md" | "lg" | "xl">("md");
+  const [pillInputPillSize] = React.useState<"xs" | "sm" | "md" | "lg" | "xl">("sm");
+  const [pillInputStateValue] = React.useState<"enabled" | "disabled" | "error" | "focus" | "typing">("enabled");
+  const [pillInputDisabled] = React.useState(false);
+  const [pillInputReadonly] = React.useState(false);
+  const [pillInputRequired] = React.useState(false);
+  const [pillInputMaxPills] = React.useState<number | undefined>(undefined);
+  const [drawerShowScroll] = React.useState(true);
+
+  
   const [pillInputPills, setPillInputPills] = React.useState<string[]>([
     "Sample",
     "Tag",
@@ -99,13 +98,11 @@ export function ComponentsPage() {
   if (isMobile) span = 12; // 1 col
   else if (isTablet) span = 6;
 
-  const [radioState, setRadioState] = React.useState<
-    "default" | "filled" | "outline" | "light"
-  >("default");
+  
   const [stepperState, setStepperState] = useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >(
-    isMobile ? "xs" : "md" // ✅ default state respects mobile
+    isMobile ? "xs" : "md" //  default state respects mobile
   );
   const [kbdState, setKbdState] = React.useState<"sm" | "md" | "lg" | "xl">(
     "md"
@@ -119,21 +116,19 @@ export function ComponentsPage() {
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSize, setModalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
-    "md"
-  );
+  
 
   // Drawer state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [drawerDirection, setDrawerDirection] = useState<
     "right" | "left" | "bottom" | "top"
   >("right");
-  const [drawerShowScroll, setDrawerShowScroll] = useState(true);
+  
 
   return (
-    <>
+    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       {/* Component Variants */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text as="h1" variant="xxl" weight="bold" sx={{ marginBottom: "24px" }}>
           PulseUI Components
         </Text>
@@ -166,9 +161,7 @@ export function ComponentsPage() {
               ]}
               defaultVariant="filled"
               label="Select Button Variant:"
-              onVariantChange={(variant) =>
-                console.log(`Button variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Button size="md">Button</Button>
             </VariantSelector>
@@ -187,9 +180,7 @@ export function ComponentsPage() {
               ]}
               defaultVariant="dot"
               label="Select Badge Variant:"
-              onVariantChange={(variant) =>
-                console.log(`Badge variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Badge variant="dot">Dot Badge</Badge>
             </VariantSelector>
@@ -200,9 +191,7 @@ export function ComponentsPage() {
               variants={["success", "info", "warning", "error"]}
               defaultVariant="success"
               label="Select Alert Variant:"
-              onVariantChange={(variant) =>
-                console.log(`Alert variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Alert variant="success">
                 <strong>Success!</strong> Your action was completed
@@ -214,7 +203,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Form Components */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -232,7 +221,7 @@ export function ComponentsPage() {
               label="Select Checkbox State:"
               onVariantChange={(variant) => {
                 setCheckboxState(variant);
-                console.log(`Checkbox state changed to: ${variant}`);
+                // console.log(`Checkbox state changed to: ${variant}`);
               }}
             >
               <Checkbox
@@ -244,7 +233,7 @@ export function ComponentsPage() {
                     ? "This is an error message"
                     : undefined
                 }
-                onChange={(checked) => console.log("Checkbox:", checked)}
+                onChange={() => {}}
               />
             </VariantSelector>
           </GridCol>
@@ -254,14 +243,12 @@ export function ComponentsPage() {
               variants={["default", "disabled", "small", "large"]}
               defaultVariant="default"
               label="Select Switch Variant:"
-              onVariantChange={(variant) =>
-                console.log(`Switch variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Switch
                 label="Switch"
                 defaultChecked={false}
-                onChange={(checked) => console.log("Switch:", checked)}
+                onChange={() => {}}
               />
             </VariantSelector>
           </GridCol>
@@ -271,9 +258,7 @@ export function ComponentsPage() {
               variants={["default", "disabled", "error", "success"]}
               defaultVariant="default"
               label="Select State:"
-              onVariantChange={(variant) =>
-                console.log(`Select state changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Select
                 label="Sample Select"
@@ -285,7 +270,7 @@ export function ComponentsPage() {
                   { value: "svelte", label: "Svelte" },
                   { value: "nextjs", label: "Next.js" },
                 ]}
-                onChange={(value) => console.log("Select:", value)}
+                onChange={() => {}}
               />
             </VariantSelector>
           </GridCol>
@@ -293,7 +278,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Additional Components */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -360,7 +345,7 @@ export function ComponentsPage() {
               <Pill
                 variant={pillState}
                 size="md"
-                onClose={() => console.log("Pill closed")}
+                onClose={() => {}}
               >
                 Sample Pill
               </Pill>
@@ -370,7 +355,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Display Components Section */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -394,6 +379,7 @@ export function ComponentsPage() {
                 description="This is a sample card component with some content."
                 buttonText="Learn More"
                 buttonVariant="filled"
+                variant={cardState}
               />
             </VariantSelector>
           </GridCol>
@@ -434,7 +420,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Interactive Components Section */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -454,13 +440,7 @@ export function ComponentsPage() {
               }
             >
               <div
-                style={{
-                  padding: "20px",
-                  border: "1px solid var(--color-border-secondary)",
-                  borderRadius: "var(--radius-md)",
-                  backgroundColor: "var(--color-surface)",
-                  textAlign: "center",
-                }}
+                className="p-5 border border-[var(--color-border-secondary)] rounded-md bg-[var(--color-surface)] text-center"
               >
                 <Text
                   variant="md"
@@ -498,7 +478,7 @@ export function ComponentsPage() {
               <Pagination
                 currentPage={1}
                 totalPages={5}
-                onPageChange={(page) => console.log("Page changed to:", page)}
+                onPageChange={() => {}}
                 size={paginationState}
               />
             </VariantSelector>
@@ -539,7 +519,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Advanced Components */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -567,7 +547,8 @@ export function ComponentsPage() {
                   name="radio-group"
                   value="option1"
                   checked={false}
-                  onChange={() => console.log("Option 1 selected")}
+                  onChange={() => {}}
+                  variant={radioState}
                 />
               </div>
             </VariantSelector>
@@ -612,7 +593,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Special Components */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -627,9 +608,7 @@ export function ComponentsPage() {
               title="PinInput Component"
               variants={["default", "error", "disabled"]}
               defaultVariant="default"
-              onVariantChange={(variant) =>
-                console.log(`PinInput variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <PinInput
                 label="Security PIN"
@@ -645,9 +624,7 @@ export function ComponentsPage() {
               title="Carousel Component"
               variants={["default", "compact", "imageOnly"]}
               defaultVariant="default"
-              onVariantChange={(variant) =>
-                console.log(`Carousel variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Carousel
                 ariaLabel="Sample carousel"
@@ -659,11 +636,7 @@ export function ComponentsPage() {
                 compact={false}
               >
                 <div
-                  style={{
-                    padding: "20px",
-                    backgroundColor: "var(--color-surface-secondary)",
-                    borderRadius: "var(--radius-md)",
-                  }}
+                  className="p-5 bg-[var(--color-surface-secondary)] rounded-md"
                 >
                   <Text variant="md" weight="semibold">
                     Slide 1
@@ -673,11 +646,7 @@ export function ComponentsPage() {
                   </Text>
                 </div>
                 <div
-                  style={{
-                    padding: "20px",
-                    backgroundColor: "var(--color-surface-secondary)",
-                    borderRadius: "var(--radius-md)",
-                  }}
+                  className="p-5 bg-[var(--color-surface-secondary)] rounded-md"
                 >
                   <Text variant="md" weight="semibold">
                     Slide 2
@@ -694,9 +663,7 @@ export function ComponentsPage() {
               title="Accordion Component"
               variants={["default", "bordered", "separated"]}
               defaultVariant="default"
-              onVariantChange={(variant) =>
-                console.log(`Accordion variant changed to: ${variant}`)
-              }
+              onVariantChange={() => {}}
             >
               <Accordion size="display" allowMultiple={false}>
                 <AccordionItem id="item-1">
@@ -728,7 +695,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Drawer Demo */}
-      <div style={{ marginTop: "48px" }}>
+      <div className="mt-12">
         <Text
           as="h2"
           variant="xl"
@@ -750,13 +717,7 @@ export function ComponentsPage() {
               }
             >
               <div
-                style={{
-                  padding: "20px",
-                  border: "1px solid var(--color-border-secondary)",
-                  borderRadius: "var(--radius-md)",
-                  backgroundColor: "var(--color-surface)",
-                  textAlign: "center",
-                }}
+                className="p-5 border border-[var(--color-border-secondary)] rounded-md bg-[var(--color-surface)] text-center"
               >
                 <Text
                   variant="md"
@@ -783,13 +744,13 @@ export function ComponentsPage() {
         show={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Sample Modal"
-        size={modalSize}
+        size={modalState === "default" ? "md" : modalState === "large" ? "lg" : "sm"}
         showFooter={true}
         footerVariant="primary"
         primaryText="Confirm"
         secondaryText="Cancel"
         onPrimaryClick={() => {
-          console.log("Primary button clicked");
+          // console.log("Primary button clicked");
           setIsModalOpen(false);
         }}
         onSecondaryClick={() => setIsModalOpen(false)}
@@ -797,7 +758,7 @@ export function ComponentsPage() {
         closeOnBackdropClick={true}
         closeOnEscape={true}
       >
-        <div style={{ padding: "16px 0" }}>
+        <div className="p-4">
           <Text variant="md" style={{ marginBottom: "16px" }}>
             Modal Content
           </Text>
@@ -819,7 +780,7 @@ export function ComponentsPage() {
         closeOnBackdropClick={true}
         closeOnEscape={true}
       >
-        <div style={{ padding: "16px" }}>
+        <div className="p-4">
           <Text variant="lg" weight="semibold" style={{ marginBottom: "16px" }}>
             Drawer Content
           </Text>
@@ -832,6 +793,6 @@ export function ComponentsPage() {
           </Text>
         </div>
       </Drawer>
-    </>
+    </div>
   );
 }

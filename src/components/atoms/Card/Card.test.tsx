@@ -121,21 +121,21 @@ describe("Card", () => {
   });
 
   it("renders without button when buttonText is not provided", () => {
-    const { buttonText, ...propsWithoutButton } = defaultProps;
+    const { ...propsWithoutButton } = defaultProps;
     render(<Card {...propsWithoutButton} />);
 
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
   it("renders without description when description is not provided", () => {
-    const { description, ...propsWithoutDescription } = defaultProps;
+    const { ...propsWithoutDescription } = defaultProps;
     render(<Card {...propsWithoutDescription} />);
 
     expect(screen.queryByText("Test description")).not.toBeInTheDocument();
   });
 
   it("renders without title when title is not provided", () => {
-    const { title, ...propsWithoutTitle } = defaultProps;
+    const { ...propsWithoutTitle } = defaultProps;
     render(<Card {...propsWithoutTitle} />);
 
     expect(screen.queryByText("Test Card")).not.toBeInTheDocument();

@@ -3,8 +3,8 @@ import { Badge } from "../atoms/Badge";
 import { Add, Close, Search, Settings } from "../atoms/Icon/IconSet";
 
 export const BadgeExample: React.FC = () => {
-  const handleBadgeClick = (message: string) => {
-    console.log(`Badge clicked: ${message}`);
+  const handleBadgeClick = () => {
+    // console.log(`Badge clicked: ${message}`);
   };
 
   return (

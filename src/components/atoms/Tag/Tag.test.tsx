@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Tag } from './Tag';
-import { LocalHospital, Favorite } from '@mui/icons-material';
+import { Favorite } from '@mui/icons-material';
 
 describe('Tag', () => {
   it('renders without crashing', () => {

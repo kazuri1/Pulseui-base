@@ -118,11 +118,11 @@ describe("Radio", () => {
   });
 
   it("renders with all size variants", () => {
-    const sizes = ["xs", "sm", "md", "lg", "xl"];
+    const sizes: Array<"sm" | "md" | "lg" | "xl"> = ["sm", "md", "lg", "xl"];
 
     sizes.forEach((size) => {
       const { unmount } = render(
-        <Radio {...defaultProps} size={size as any} />
+        <Radio {...defaultProps} size={size} />
       );
       const radio = screen.getByRole("radio").closest("label");
       expect(radio).toHaveClass(`size-${size}`);
@@ -131,11 +131,11 @@ describe("Radio", () => {
   });
 
   it("renders with all state variants", () => {
-    const states = ["default", "disabled", "error"];
+    const states: Array<"enabled" | "focus" | "typing" | "filled" | "disabled" | "error"> = ["enabled", "focus", "typing", "filled", "disabled", "error"];
 
     states.forEach((state) => {
       const { unmount } = render(
-        <Radio {...defaultProps} state={state as any} />
+        <Radio {...defaultProps} state={state} />
       );
       const radio = screen.getByRole("radio").closest("label");
       expect(radio).toHaveClass(`state-${state}`);

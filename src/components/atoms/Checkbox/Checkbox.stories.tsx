@@ -25,7 +25,7 @@ import { Checkbox } from '@pulseui/atoms';
 <Checkbox
   label="Accept terms and conditions"
   required
-  onChange={(checked) => console.log('Checked:', checked)}
+  onChange={(checked) => {}}
 />
 \`\`\`
         `,
@@ -139,21 +139,21 @@ export const MultipleCheckboxes: Story = {
       <Checkbox
         label="Option 1"
         defaultChecked={true}
-        onChange={(checked) => console.log("Option 1:", checked)}
+        onChange={() => {}}
       />
       <Checkbox
         label="Option 2"
-        onChange={(checked) => console.log("Option 2:", checked)}
+        onChange={() => {}}
       />
       <Checkbox
         label="Option 3 (Disabled)"
         disabled={true}
-        onChange={(checked) => console.log("Option 3:", checked)}
+        onChange={() => {}}
       />
       <Checkbox
         label="Option 4 (Required)"
         required={true}
-        onChange={(checked) => console.log("Option 4:", checked)}
+        onChange={() => {}}
       />
     </div>
   ),

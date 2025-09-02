@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { TableOfContents } from "./TableOfContents";
 import type { TableOfContentsItem } from "./TableOfContents";
 
@@ -255,8 +255,8 @@ export const Interactive: Story = {
     variant: "light",
     size: "md",
     enableScrollSpy: true,
-    onItemClick: (item) => {
-      console.log("Clicked item:", item);
+    onItemClick: () => {
+      // console.log("Clicked item:", item);
     },
   },
 };

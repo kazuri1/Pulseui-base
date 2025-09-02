@@ -165,32 +165,7 @@ The mobile navigation includes:
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const defaultItems = [
-  {
-    id: "work",
-    label: "WORK",
-    active: false,
-    icon: Store,
-  },
-  {
-    id: "fun",
-    label: "FUN",
-    active: false,
-    icon: Book,
-  },
-  {
-    id: "about",
-    label: "ABOUT",
-    active: true,
-    icon: Info,
-  },
-  {
-    id: "resume",
-    label: "RESUME",
-    active: false,
-    icon: Assignment,
-  },
-];
+
 
 const defaultItemsWithIcons = [
   {
@@ -280,28 +255,28 @@ export const WithClickHandlers: Story = {
         label: "WORK",
         active: false,
         icon: Store,
-        onClick: () => console.log("Work clicked"),
+        onClick: () => {},
       },
       {
         id: "fun",
         label: "FUN",
         active: false,
         icon: Book,
-        onClick: () => console.log("Fun clicked"),
+        onClick: () => {},
       },
       {
         id: "about",
         label: "ABOUT",
         active: true,
         icon: Info,
-        onClick: () => console.log("About clicked"),
+        onClick: () => {},
       },
       {
         id: "resume",
         label: "RESUME",
         active: false,
         icon: Assignment,
-        onClick: () => console.log("Resume clicked"),
+        onClick: () => {},
       },
     ],
   },
@@ -604,8 +579,7 @@ export const WithVersionSelector: Story = {
       show: true,
       version: "v8.2.4",
       versions: ["v8.2.4", "v8.2.3", "v8.2.2", "v8.1.0"],
-      onVersionChange: (version: string) =>
-        console.log(`Version changed to: ${version}`),
+            onVersionChange: () => {},
     },
     items: [
       { id: "home", label: "HOME", icon: Home, active: true },

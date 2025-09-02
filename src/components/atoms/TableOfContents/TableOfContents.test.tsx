@@ -115,7 +115,7 @@ describe("TableOfContents", () => {
       offsetTop: 100,
       offsetHeight: 50,
     };
-    jest.spyOn(document, "getElementById").mockReturnValue(mockElement as any);
+    jest.spyOn(document, "getElementById").mockReturnValue(mockElement as HTMLElement);
 
     render(<TableOfContents items={mockItems} scrollOffset={50} />);
 

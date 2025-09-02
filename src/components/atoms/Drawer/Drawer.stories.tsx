@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Drawer } from "./Drawer";
 import { Button } from "../Button";
 
@@ -55,7 +55,7 @@ export const BasicDrawer: Story = {
 };
 
 export const DrawerDirections: Story = {
-  render: () => {
+  render: function DrawerDirectionsStory() {
     const [currentDirection, setCurrentDirection] = useState<
       "right" | "left" | "bottom" | "top"
     >("right");

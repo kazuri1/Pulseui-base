@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -361,7 +361,7 @@ export const Interactive: Story = {
           <Button onClick={() => alert("Button clicked!")}>Click Me</Button>
           <Button
             variant="outline"
-            onClick={() => console.log("Action logged")}
+            onClick={() => {}}
           >
             Log Action
           </Button>

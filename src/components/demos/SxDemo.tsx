@@ -309,7 +309,7 @@ export const SxDemo: React.FC = () => {
             <Grid columns={2} gutter="lg">
               <Stack gap="md">
                 <Text as="h4" variant="md" sx={{ color: "text" }}>
-                  ✅ Best Practices
+                   Best Practices
                 </Text>
                 <ul
                   style={{

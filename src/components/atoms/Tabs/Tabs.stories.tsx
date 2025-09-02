@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Tabs, TabsList, TabsTab, TabsPanel } from "./index";
 
 const meta: Meta<typeof Tabs> = {
@@ -40,23 +40,7 @@ const meta: Meta<typeof Tabs> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const sampleTabs = [
-  {
-    value: "tab1",
-    label: "First Tab",
-    content: "This is the content of the first tab.",
-  },
-  {
-    value: "tab2",
-    label: "Second Tab",
-    content: "This is the content of the second tab.",
-  },
-  {
-    value: "tab3",
-    label: "Third Tab",
-    content: "This is the content of the third tab.",
-  },
-];
+
 
 export const Default: Story = {
   args: {
@@ -478,10 +462,11 @@ export const Controlled: Story = {
     borderPosition: "bottom",
   },
   render: (args) => {
-    const [value, setValue] = React.useState<string | null>("tab1");
+    const TabsExample = () => {
+      const [value, setValue] = React.useState<string | null>("tab1");
 
-    return (
-      <Tabs {...args} value={value} onChange={setValue}>
+      return (
+        <Tabs {...args} value={value} onChange={setValue}>
         <TabsList>
           <TabsTab value="tab1" placeholder="First Tab" />
           <TabsTab value="tab2" placeholder="Second Tab" />
@@ -501,6 +486,8 @@ export const Controlled: Story = {
         </TabsPanel>
       </Tabs>
     );
+    };
+    return <TabsExample />;
   },
 };
 

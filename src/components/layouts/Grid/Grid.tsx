@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Grid.module.scss";
 import { GridCol } from "./GridCol";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
@@ -65,7 +65,6 @@ export interface GridProps extends WithSxProps {
 export const Grid: React.FC<GridProps> & { Col: typeof GridCol } = ({
   children,
   align = "stretch",
-  breakpoints,
   columns = 12,
   grow = false,
   gutter = "md",
@@ -73,7 +72,6 @@ export const Grid: React.FC<GridProps> & { Col: typeof GridCol } = ({
   gutterY,
   justify = "flex-start",
   overflow = "visible",
-  type = "media",
   autoFit = false,
   minColumnWidth,
   negativeGutter = false,

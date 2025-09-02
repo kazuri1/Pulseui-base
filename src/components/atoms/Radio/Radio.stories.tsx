@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Radio } from "./Radio";
 import { useState } from "react";
 import React from "react";
@@ -89,10 +89,11 @@ export const WithoutLabel: Story = {
 
 export const Interactive: Story = {
   render: () => {
-    const [selectedValue, setSelectedValue] = useState<string>("option1");
+    const InteractiveRadioExample = () => {
+      const [selectedValue, setSelectedValue] = useState<string>("option1");
 
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+      return (
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <Radio
           label="Option 1"
           name="interactive-group"
@@ -116,6 +117,8 @@ export const Interactive: Story = {
         />
       </div>
     );
+    };
+    return <InteractiveRadioExample />;
   },
 };
 

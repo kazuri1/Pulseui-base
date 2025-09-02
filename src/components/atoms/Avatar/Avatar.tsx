@@ -3,7 +3,7 @@ import { Icon } from "../Icon";
 import { Person } from "../Icon/IconSet";
 import mypic from "../../../assets/mypic.jpg";
 import styles from "./Avatar.module.scss";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
@@ -15,7 +15,7 @@ export interface AvatarProps extends WithSxProps {
   /** Initials for initial type */
   initials?: string;
   /** Icon for icon type */
-  icon?: React.ComponentType<any>;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   /** Image source for image type */
   src?: string;
   /** Alt text for image */
@@ -67,7 +67,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       case "icon":
         return (
           <div className={styles.iconWrapper}>
-            <Icon icon={icon as any} size={getIconSize(size)} color="inherit" />
+            <Icon icon={icon} size={getIconSize(size)} color="inherit" />
           </div>
         );
       case "image":
@@ -120,6 +120,15 @@ export const Avatar: React.FC<AvatarProps> = ({
     <div
       className={avatarClasses}
       onClick={interactive ? onClick : undefined}
+      onKeyDown={
+        interactive
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                onClick?.();
+              }
+            }
+          : undefined
+      }
       role={interactive ? "button" : undefined}
       tabIndex={interactive ? 0 : undefined}
       style={sxStyle}

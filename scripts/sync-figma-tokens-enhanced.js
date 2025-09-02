@@ -136,7 +136,7 @@ function validateEnvironment() {
     process.exit(1);
   }
 
-  console.log("✅ Environment variables validated");
+  console.log(" Environment variables validated");
 }
 
 // Fetch Figma file data
@@ -220,7 +220,7 @@ function extractTokens(figmaData) {
       extractSpacingFromDocument(figmaData.document, tokens);
     }
 
-    console.log("✅ Tokens extracted from Figma");
+    console.log(" Tokens extracted from Figma");
     return tokens;
   } catch (error) {
     console.error("❌ Error extracting tokens:", error.message);
@@ -309,7 +309,7 @@ function validateTokens(tokens, brandName = "default") {
   }
 
   if (validation.isValid) {
-    console.log("✅ Token validation passed");
+    console.log(" Token validation passed");
   } else {
     console.error("❌ Token validation failed");
   }
@@ -535,7 +535,7 @@ async function syncBrandTokens(brandName, theme = "light") {
     // Fetch Figma data
     console.log(`📥 Fetching Figma file data...`);
     const figmaData = await fetchFigmaFile(CONFIG.FIGMA_FILE_KEY);
-    console.log(`✅ Figma file fetched successfully`);
+    console.log(` Figma file fetched successfully`);
 
     // Extract tokens
     console.log(`🔍 Extracting tokens from Figma...`);
@@ -608,7 +608,7 @@ function validateExistingBrand(brandName) {
     const overallValid = lightValidation.isValid && darkValidation.isValid;
 
     if (overallValid) {
-      console.log(`✅ Brand validation passed: ${brandName}`);
+      console.log(` Brand validation passed: ${brandName}`);
     } else {
       console.error(`❌ Brand validation failed: ${brandName}`);
     }
@@ -650,7 +650,7 @@ function generateBrandFiles(brandName) {
     // Generate brand configuration
     generateBrandConfig(brandName, tokens);
 
-    console.log(`✅ Brand files generated successfully for: ${brandName}`);
+    console.log(` Brand files generated successfully for: ${brandName}`);
     return true;
   } catch (error) {
     console.error(`❌ Error generating brand files: ${error.message}`);

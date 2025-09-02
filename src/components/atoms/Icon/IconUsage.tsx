@@ -53,7 +53,7 @@ export const IconUsageExamples = () => {
             icon={Icons.Refresh}
             clickable
             color="primary"
-            onClick={() => console.log("Refresh clicked!")}
+            onClick={() => {}}
           />
           <Icon
             icon={Icons.Favorite}
@@ -190,7 +190,7 @@ export const IconBestPractices = () => {
       <h3>Icon Usage Best Practices</h3>
 
       <div className="space-y-2">
-        <h4>✅ DO:</h4>
+        <h4> DO:</h4>
         <ul className="list-disc pl-5 space-y-1">
           <li>Use consistent sizing within the same context</li>
           <li>Use semantic colors (success, error, warning, etc.)</li>
@@ -256,7 +256,7 @@ export const TokenizedIcon = ({
   disabled = false,
   className = "",
 }: {
-  icon: any;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   size?: keyof typeof IconTokens.sizes;
   color?: keyof typeof IconTokens.colors;
   margin?: keyof typeof IconTokens.spacing;

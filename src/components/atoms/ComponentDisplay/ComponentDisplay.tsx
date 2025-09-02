@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
-import { Icon, NpmIcon } from "../Icon";
-import { GitHub, Edit } from "../Icon/IconSet";
+import React from "react";
+
+// import { NpmIcon } from "../Icon";
+// import { GitHub, Edit } from "../Icon/IconSet";
 import styles from "./ComponentDisplay.module.scss";
 import { useState } from "react";
 import { Button } from "../Button";
@@ -11,9 +12,9 @@ import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 export interface ComponentDisplayProps extends WithSxProps {
   title: string;
   description?: string;
-  component: React.ComponentType<any>;
-  props?: Record<string, any>;
-  stories?: React.ComponentType<any>;
+  component: React.ComponentType<Record<string, unknown>>; 
+  props?: Record<string, unknown>;
+  stories?: React.ComponentType<Record<string, unknown>>; 
   storybookUrl?: string;
   storyId?: string;
   storybookViewMode?: "docs" | "story" | "canvas";
@@ -85,9 +86,9 @@ export const ComponentDisplay: React.FC<ComponentDisplayProps> = ({
 
 // Component to auto-generate content from a component
 interface ComponentContentProps {
-  component: React.ComponentType<any>;
-  props: Record<string, any>;
-  stories?: React.ComponentType<any>;
+  component: React.ComponentType<Record<string, unknown>>; 
+  props: Record<string, unknown>;
+  stories?: React.ComponentType<Record<string, unknown>>; 
   showCode: boolean;
   showProps: boolean;
   showStories: boolean;
@@ -105,7 +106,6 @@ const ComponentContent: React.FC<ComponentContentProps> = ({
   showStories,
   storybookUrl,
   storyId,
-  storybookViewMode,
 }) => {
   const [activeTab, setActiveTab] = useState<
     "preview" | "code" | "props" | "stories" | "storybook"
@@ -119,8 +119,8 @@ const ComponentContent: React.FC<ComponentContentProps> = ({
 
   // Helper function to generate component code
   const generateComponentCode = (
-    component: React.ComponentType<any>,
-    componentProps: Record<string, any>
+    component: React.ComponentType<Record<string, unknown>>,
+    componentProps: Record<string, unknown>
   ) => {
     const componentName =
       component.displayName || component.name || "Component";
@@ -140,7 +140,7 @@ const ComponentContent: React.FC<ComponentContentProps> = ({
   };
 
   // Helper function to check if component is a large overlay component
-  const isLargeOverlayComponent = (component: React.ComponentType<any>) => {
+  const isLargeOverlayComponent = (component: React.ComponentType<Record<string, unknown>>) => {
     const componentName = component.displayName || component.name || "";
     return componentName === "Modal" || componentName === "Drawer";
   };

@@ -49,22 +49,22 @@ const defaultNavItems: SimpleTopNavItem[] = [
     id: "home",
     label: "Home",
     active: true,
-    onClick: () => console.log("Home clicked"),
+    onClick: () => {},
   },
   {
     id: "components",
     label: "Components",
-    onClick: () => console.log("Components clicked"),
+    onClick: () => {},
   },
   {
     id: "docs",
     label: "Documentation",
-    onClick: () => console.log("Docs clicked"),
+    onClick: () => {},
   },
   {
     id: "about",
     label: "About",
-    onClick: () => console.log("About clicked"),
+    onClick: () => {},
   },
 ];
 
@@ -143,8 +143,7 @@ export const Default: Story = {
       versionSelector: {
         version: "1.6.0",
         versions: ["1.5.0", "1.6.0", "1.7.0"],
-        onVersionChange: (version) =>
-          console.log("Version changed to:", version),
+        onVersionChange: () => {},
         show: true,
       },
       brandSwitcher: {
@@ -192,22 +191,22 @@ export const CustomNavigation: Story = {
         id: "dashboard",
         label: "Dashboard",
         active: true,
-        onClick: () => console.log("Dashboard clicked"),
+        onClick: () => {},
       },
       {
         id: "projects",
         label: "Projects",
-        onClick: () => console.log("Projects clicked"),
+        onClick: () => {},
       },
       {
         id: "team",
         label: "Team",
-        onClick: () => console.log("Team clicked"),
+        onClick: () => {},
       },
       {
         id: "settings",
         label: "Settings",
-        onClick: () => console.log("Settings clicked"),
+        onClick: () => {},
       },
     ],
     showTopNav: true,

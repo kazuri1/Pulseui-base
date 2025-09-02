@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ModalFooter.module.scss";
 
 import { Button } from "../Button";
-import type { SxProps } from "../../../styles/stylesApi";
+// import type { SxProps } from "../../../styles/stylesApi";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
 
@@ -42,8 +42,6 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
   onSecondaryClick,
   primaryDisabled = false,
   secondaryDisabled = false,
-  primaryLoading = false,
-  secondaryLoading = false,
   primaryButtonProps = {},
   secondaryButtonProps = {},
   children,

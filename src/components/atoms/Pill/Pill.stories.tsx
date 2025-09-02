@@ -1,6 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, expect } from "@storybook/test";
+// import { userEvent, within, expect } from "@storybook/test";
 import { Pill } from "./Pill";
 
 const meta: Meta<typeof Pill> = {
@@ -69,7 +69,7 @@ export const Closable: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Pill closable onClose={() => console.log("Pill closed!")}>Closable Pill</Pill>`,
+        code: `<Pill closable onClose={() => {}}>Closable Pill</Pill>`,
       },
     },
   },
@@ -144,7 +144,7 @@ export const LongText: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Pill size="md" closable onClose={() => console.log("Long pill closed!")}>This is a very long pill text that might overflow</Pill>`,
+        code: `<Pill size="md" closable onClose={() => {}}>This is a very long pill text that might overflow</Pill>`,
       },
     },
   },

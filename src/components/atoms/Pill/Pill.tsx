@@ -50,10 +50,8 @@ export const Pill: React.FC<PillProps> = ({
   className = "",
   disabled = false,
   ariaLabel,
-  ariaSelected,
   ariaPressed,
   ariaDescribedBy,
-  tabIndex,
   sx,
   style,
 }) => {
@@ -93,10 +91,9 @@ export const Pill: React.FC<PillProps> = ({
       className={pillClasses}
       style={sxStyle}
       role="button"
-      tabIndex={closable && !disabled ? tabIndex ?? 0 : undefined}
+      tabIndex={0}
       onKeyDown={handleKeyDown}
       aria-label={ariaLabel}
-      aria-selected={ariaSelected}
       aria-pressed={ariaPressed}
       aria-describedby={ariaDescribedBy}
       aria-disabled={disabled}

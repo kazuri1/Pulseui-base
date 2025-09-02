@@ -1,5 +1,5 @@
 import React from "react";
-import { useBreakpoint } from "../../../hooks/useBreakpoint";
+
 import styles from "./Layout.module.scss";
 import { SimpleTopNav } from "../../atoms/SimpleTopNav/SimpleTopNav";
 import type { SimpleTopNavItem } from "../../atoms/SimpleTopNav/SimpleTopNav";
@@ -112,17 +112,17 @@ export const Layout: React.FC<LayoutProps> = ({
       id: "home",
       label: "Home",
       active: true,
-      onClick: () => console.log("Home clicked"),
+      onClick: () => {},
     },
     {
       id: "components",
       label: "Components",
-      onClick: () => console.log("Components clicked"),
+      onClick: () => {},
     },
     {
       id: "contact",
       label: "Contact",
-      onClick: () => console.log("Contact clicked"),
+      onClick: () => {},
     },
   ];
 
@@ -138,8 +138,7 @@ export const Layout: React.FC<LayoutProps> = ({
     versionSelector: {
       version: "1.6.0",
       versions: ["1.5.0", "1.6.0", "1.7.0"],
-      onVersionChange: (version: string) =>
-        console.log("Version changed to:", version),
+      onVersionChange: () => {},
       show: true,
     },
     brandSwitcher: {

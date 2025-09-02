@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Stepper.module.scss";
 import type { WithSxProps } from "../../../utils/sxUtils";
 import { mergeSxWithStyles, combineClassNames } from "../../../utils/sxUtils";
-import { StepperItem, type StepperItemProps } from "./StepperItem";
+import { StepperItem } from "./StepperItem";
 
 
 export interface StepperStep {

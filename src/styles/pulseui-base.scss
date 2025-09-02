@@ -22,112 +22,112 @@
 // Each component's styles are included here to ensure complete styling.
 
 // Animation Component
-@import "../components/Animation/Animation.module.scss";
+@use "../components/Animation/Animation.module.scss";
 
 // ThemeProvider Component
 
 // Button Component
-@import "../components/atoms/Button/Button.module.scss";
+@use "../components/atoms/Button/Button.module.scss";
 
 // Input Component
-@import "../components/atoms/Input/Input.module.scss";
+@use "../components/atoms/Input/Input.module.scss";
 
 // Text Component
-@import "../components/atoms/Text/Text.module.scss";
+@use "../components/atoms/Text/Text.module.scss";
 
 // Card Component
-@import "../components/atoms/Card/Card.module.scss";
+@use "../components/atoms/Card/Card.module.scss";
 
 // Alert Component
-@import "../components/atoms/Alert/Alert.module.scss";
+@use "../components/atoms/Alert/Alert.module.scss";
 
 // Badge Component
-@import "../components/atoms/Badge/Badge.module.scss";
+@use "../components/atoms/Badge/Badge.module.scss";
 
 // Avatar Component
-@import "../components/atoms/Avatar/Avatar.module.scss";
+@use "../components/atoms/Avatar/Avatar.module.scss";
 
 // Icon Component
-@import "../components/atoms/Icon/Icon.module.scss";
+@use "../components/atoms/Icon/Icon.module.scss";
 
 // Switch Component
-@import "../components/atoms/Switch/Switch.module.scss";
+@use "../components/atoms/Switch/Switch.module.scss";
 
 // Radio Component
-@import "../components/atoms/Radio/Radio.module.scss";
+@use "../components/atoms/Radio/Radio.module.scss";
 
 // Textarea Component
-@import "../components/atoms/Textarea/Textarea.module.scss";
+@use "../components/atoms/Textarea/Textarea.module.scss";
 
 // Pill Component
-@import "../components/atoms/Pill/Pill.module.scss";
+@use "../components/atoms/Pill/Pill.module.scss";
 
 // PillInput Component
-@import "../components/atoms/PillInput/PillInput.module.scss";
+@use "../components/atoms/PillInput/PillInput.module.scss";
 
 // PasswordInput Component (PasswordStrengthMeter)
-@import "../components/atoms/PasswordInput/PasswordStrengthMeter.module.scss";
+@use "../components/atoms/PasswordInput/PasswordStrengthMeter.module.scss";
 
 // PinInput Component
-@import "../components/atoms/PinInput/PinInput.module.scss";
+@use "../components/atoms/PinInput/PinInput.module.scss";
 
 // Image Component
-@import "../components/atoms/Image/Image.module.scss";
+@use "../components/atoms/Image/Image.module.scss";
 
 // ActionButton Component
-@import "../components/atoms/ActionButton/ActionButton.module.scss";
+@use "../components/atoms/ActionButton/ActionButton.module.scss";
 
 // Autocomplete Component
-@import "../components/atoms/Autocomplete/Autocomplete.module.scss";
+@use "../components/atoms/Autocomplete/Autocomplete.module.scss";
 
 // SingleTab Component
-@import "../components/atoms/SingleTab/SingleTab.module.scss";
+@use "../components/atoms/SingleTab/SingleTab.module.scss";
 
 // Tabs Component
-@import "../components/atoms/Tabs/Tabs.module.scss";
+@use "../components/atoms/Tabs/Tabs.module.scss";
 
 // Stepper Component
-@import "../components/atoms/Stepper/Stepper.module.scss";
+@use "../components/atoms/Stepper/Stepper.module.scss";
 
 // StepperIcon Component
-@import "../components/atoms/Stepper/StepperIcon.module.scss";
+@use "../components/atoms/Stepper/StepperIcon.module.scss";
 
 // StepperItem Component
-@import "../components/atoms/Stepper/StepperItem.module.scss";
+@use "../components/atoms/Stepper/StepperItem.module.scss";
 
 // Pagination Component
-@import "../components/atoms/Pagination/Pagination.module.scss";
+@use "../components/atoms/Pagination/Pagination.module.scss";
 
 // Calendar Component
-@import "../components/atoms/Calendar/Calendar.module.scss";
+@use "../components/atoms/Calendar/Calendar.module.scss";
 
 // CalendarDecade Component
-@import "../components/atoms/Calendar/CalendarDecade/CalendarDecade.module.scss";
+@use "../components/atoms/Calendar/CalendarDecade/CalendarDecade.module.scss";
 
 // CalendarDate Component
-@import "../components/atoms/Calendar/CalendarParts/CalendarDate.module.scss";
+@use "../components/atoms/Calendar/CalendarParts/CalendarDate.module.scss";
 
 // CalendarTitle Component
-@import "../components/atoms/Calendar/CalendarParts/CalendarTitle.module.scss";
+@use "../components/atoms/Calendar/CalendarParts/CalendarTitle.module.scss";
 
 // CalendarYear Component
-@import "../components/atoms/Calendar/CalendarYear/CalendarYear.module.scss";
+@use "../components/atoms/Calendar/CalendarYear/CalendarYear.module.scss";
 
 // TableOfContents Component
-@import "../components/atoms/TableOfContents/TableOfContents.module.scss";
+@use "../components/atoms/TableOfContents/TableOfContents.module.scss";
 
 // SimpleTopNav Component
-@import "../components/atoms/SimpleTopNav/SimpleTopNav.module.scss";
+@use "../components/atoms/SimpleTopNav/SimpleTopNav.module.scss";
 
 // TextInput Component
-@import "../components/atoms/TextInput/TextInput.module.scss";
+@use "../components/atoms/TextInput/TextInput.module.scss";
 
 // Layout Components
-@import "../components/layouts/Container/Container.module.scss";
-@import "../components/layouts/Grid/Grid.module.scss";
-@import "../components/layouts/Grid/GridCol.module.scss";
-@import "../components/layouts/Group/Group.module.scss";
-@import "../components/layouts/Stack/Stack.module.scss";
+@use "../components/layouts/Container/Container.module.scss";
+@use "../components/layouts/Grid/Grid.module.scss";
+@use "../components/layouts/Grid/GridCol.module.scss";
+@use "../components/layouts/Group/Group.module.scss";
+@use "../components/layouts/Stack/Stack.module.scss";
 
 // =============================================================================
 // 4. Global Styles and Utilities
@@ -299,7 +299,7 @@
 // @use "pulseui-base/scss" as *;
 //
 // CSS:
-// @import "pulseui-base/styles";
+// @use "pulseui-base/styles";
 //
 // JavaScript/TypeScript:
 // import "pulseui-base/styles";
@@ -307,13 +307,13 @@
 // =============================================================================
 // What's Included:
 // =============================================================================
-// ✅ Design tokens (colors, spacing, typography, effects)
-// ✅ SCSS mixins (layout, interactive, focus, accessibility)
-// ✅ Utility functions (spacing, color, radius, font-size)
-// ✅ ALL Component styles (Button, Input, Text, Card, Alert, etc.)
-// ✅ Theme-aware CSS custom properties
-// ✅ Multi-brand support
-// ✅ Light/dark mode support
+//  Design tokens (colors, spacing, typography, effects)
+//  SCSS mixins (layout, interactive, focus, accessibility)
+//  Utility functions (spacing, color, radius, font-size)
+//  ALL Component styles (Button, Input, Text, Card, Alert, etc.)
+//  Theme-aware CSS custom properties
+//  Multi-brand support
+//  Light/dark mode support
 //
 // =============================================================================
 // Component Bundling:

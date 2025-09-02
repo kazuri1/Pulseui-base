@@ -42,8 +42,8 @@ const defaultRequirements: PasswordRequirement[] = [
     id: "special",
     label: "Includes special symbol",
     test: (password: string) =>
-      /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password),
-  },
+      /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password),
+  }
 ];
 
 export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
@@ -53,7 +53,7 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
   sx,
   style,
 }) => {
-  
+
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -61,7 +61,7 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
   );
 
   const metRequirements = requirements.filter((req) => req.test(password));
-  const allRequirementsMet = metRequirements.length === requirements.length;
+
   const strengthPercentage =
     (metRequirements.length / requirements.length) * 100;
 
@@ -93,8 +93,8 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
           {strengthLevel === "strong"
             ? "Strong"
             : strengthLevel === "medium"
-            ? "Medium"
-            : "Weak"}
+              ? "Medium"
+              : "Weak"}
         </span>
       </div>
 
@@ -104,9 +104,8 @@ export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
           return (
             <div
               key={requirement.id}
-              className={`${styles.requirement} ${
-                isMet ? styles.met : styles.unmet
-              }`}
+              className={`${styles.requirement} ${isMet ? styles.met : styles.unmet
+                }`}
             >
               <Icon
                 icon={isMet ? Check : Close}

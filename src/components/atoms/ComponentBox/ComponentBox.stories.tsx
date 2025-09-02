@@ -6,7 +6,7 @@ import { Badge } from "../Badge";
 import { Alert } from "../Alert";
 import { Modal } from "../Modal";
 import { Icon } from "../Icon";
-import { Home, Favorite, Info, Warning, Error } from "../Icon/IconSet";
+import { Home, Favorite, Info } from "../Icon/IconSet";
 
 const meta: Meta<typeof ComponentBox> = {
   title: "Atoms/ComponentBox",

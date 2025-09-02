@@ -508,7 +508,7 @@ export const CompleteShowcase: Story = {
 
 // Password Input with Toggle
 export const PasswordInput: Story = {
-  render: () => {
+  render: function PasswordInputStory() {
     const [passwordVisible, setPasswordVisible] = React.useState(false);
 
     return (

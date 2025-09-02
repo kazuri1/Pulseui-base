@@ -100,7 +100,7 @@ async function fetchFigmaTokens() {
     const variablesUrl = `${FIGMA_API_BASE}/files/${FIGMA_FILE_KEY}/variables/local`;
     const variablesData = await makeRequest(variablesUrl);
 
-    console.log("✅ Successfully fetched tokens from Figma");
+    console.log(" Successfully fetched tokens from Figma");
 
     return {
       file: fileData,
@@ -188,7 +188,7 @@ function extractCurrentTokens() {
   }
 
   console.log(
-    `✅ Extracted ${Object.values(tokens).reduce(
+    ` Extracted ${Object.values(tokens).reduce(
       (sum, cat) => sum + Object.keys(cat).length,
       0
     )} current tokens`
@@ -261,7 +261,7 @@ function processTokens(figmaData) {
     extractTokensFromText(figmaData.file, tokens);
   }
 
-  console.log("✅ Token processing complete");
+  console.log(" Token processing complete");
   return tokens;
 }
 
@@ -448,7 +448,7 @@ function compareAndMergeTokens(figmaTokens, currentTokens) {
   }
 
   if (Object.keys(changes.unchanged).length > 0) {
-    console.log(`✅ ${Object.keys(changes.unchanged).length} tokens unchanged`);
+    console.log(` ${Object.keys(changes.unchanged).length} tokens unchanged`);
   }
 
   console.log(`📊 Total changes: ${totalChanges}`);
@@ -501,7 +501,7 @@ function updateSCSSTokens(scssContent, changes) {
     }
   });
 
-  console.log(`✅ Updated ${updateCount} token values in SCSS file`);
+  console.log(` Updated ${updateCount} token values in SCSS file`);
   return updatedContent;
 }
 
@@ -513,11 +513,11 @@ function saveTokens(tokens, changes, currentSCSS) {
 
   // Save current tokens as JSON for future comparison
   fs.writeFileSync(TOKENS_JSON_PATH, JSON.stringify(tokens, null, 2));
-  console.log(`✅ Saved current tokens to ${TOKENS_JSON_PATH}`);
+  console.log(` Saved current tokens to ${TOKENS_JSON_PATH}`);
 
   // Save Figma tokens for reference
   fs.writeFileSync(FIGMA_TOKENS_JSON_PATH, JSON.stringify(tokens, null, 2));
-  console.log(`✅ Saved Figma tokens to ${FIGMA_TOKENS_JSON_PATH}`);
+  console.log(` Saved Figma tokens to ${FIGMA_TOKENS_JSON_PATH}`);
 
   // Create backup of existing SCSS file
   if (fs.existsSync(TOKENS_OUTPUT_PATH)) {
@@ -533,9 +533,9 @@ function saveTokens(tokens, changes, currentSCSS) {
   if (changes.totalChanges > 0) {
     const updatedSCSS = updateSCSSTokens(currentSCSS, changes);
     fs.writeFileSync(TOKENS_OUTPUT_PATH, updatedSCSS);
-    console.log(`✅ Updated SCSS tokens with ${changes.totalChanges} changes`);
+    console.log(` Updated SCSS tokens with ${changes.totalChanges} changes`);
   } else {
-    console.log("✅ No changes detected - SCSS file unchanged");
+    console.log(" No changes detected - SCSS file unchanged");
   }
 }
 

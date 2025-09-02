@@ -39,7 +39,7 @@ export const ResponsiveExample: React.FC = () => {
   );
 
   return (
-    <Container size={containerSize as any}>
+    <Container size={containerSize === "fluid" ? undefined : containerSize} fluid={containerSize === "fluid"}>
       <Stack gap="lg">
         <h2>Responsive Design Example</h2>
 
@@ -59,7 +59,7 @@ export const ResponsiveExample: React.FC = () => {
 
         {/* Responsive button sizing */}
         <Group>
-          <Button size={buttonSize as any}>
+          <Button size={buttonSize}>
             Responsive Button ({buttonSize})
           </Button>
           <Button size={isMobile ? "lg" : "md"}>Conditional Button</Button>

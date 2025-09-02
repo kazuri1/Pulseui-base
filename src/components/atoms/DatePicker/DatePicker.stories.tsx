@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { DatePicker } from "./DatePicker";
-import type { DatePickerProps } from "./types";
+
 
 const meta: Meta<typeof DatePicker> = {
   title: "Atoms/DatePicker",
@@ -220,7 +220,7 @@ export const NoTodayHighlight: Story = {
 
 // Controlled DatePicker
 export const Controlled: Story = {
-  render: () => {
+  render: function ControlledStory() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 

@@ -1,4 +1,4 @@
-@import "../../../styles/tokens";
+@use "../../../styles/tokens" as *;
 
 .versionSelector {
   position: relative;
