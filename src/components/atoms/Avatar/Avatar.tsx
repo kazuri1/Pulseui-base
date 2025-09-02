@@ -1,4 +1,5 @@
 import React from "react";
+import type { SvgIconComponent } from "@mui/icons-material";
 import { Icon } from "../Icon";
 import { Person } from "../Icon/IconSet";
 import mypic from "../../../assets/mypic.jpg";
@@ -15,7 +16,7 @@ export interface AvatarProps extends WithSxProps {
   /** Initials for initial type */
   initials?: string;
   /** Icon for icon type */
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: SvgIconComponent;
   /** Image source for image type */
   src?: string;
   /** Alt text for image */

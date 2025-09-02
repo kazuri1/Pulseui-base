@@ -89,7 +89,7 @@ export const generateResponsiveClasses = (
     if (breakpoint === "base") {
       // Base styles (mobile-first)
       classes.push(
-        `${baseClass} { ${Object.entries(styles)
+        `${baseClass} { ${Object.entries(styles as Record<string, unknown>)
           .map(([prop, value]) => `${prop}: ${value};`)
           .join(" ")} }`
       );
@@ -97,7 +97,9 @@ export const generateResponsiveClasses = (
       // Responsive styles
       const mediaQuery = responsiveStyles[breakpoint as Breakpoint];
       classes.push(
-        `${mediaQuery} { ${baseClass} { ${Object.entries(styles)
+        `${mediaQuery} { ${baseClass} { ${Object.entries(
+          styles as Record<string, unknown>
+        )
           .map(([prop, value]) => `${prop}: ${value};`)
           .join(" ")} } }`
       );

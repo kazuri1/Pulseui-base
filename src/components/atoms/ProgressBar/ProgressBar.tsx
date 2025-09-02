@@ -86,7 +86,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         <Text
           variant="sm"
           className={styles.progressLabel}
-          color={disabled ? "disabled" : "primary"}
+          color={disabled ? "muted" : "primary"}
         >
           {displayLabel}
         </Text>

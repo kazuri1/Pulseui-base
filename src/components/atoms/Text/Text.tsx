@@ -45,7 +45,7 @@ export const Text: React.FC<TextProps> = ({
     styles[`color-${color}`],
     styles[`weight-${weight}`],
     truncate && styles.truncate,
-    lines && styles[`lines-${lines}`],
+    lines !== undefined && styles[`lines-${lines}`],
     sxClassName
   );
 

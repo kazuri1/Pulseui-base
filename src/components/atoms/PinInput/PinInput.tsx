@@ -121,10 +121,7 @@ export const PinInput: React.FC<PinInputProps> = ({
     }
   };
 
-  const handleBlur = (
-    index: number,
-    event: React.FocusEvent<HTMLInputElement>
-  ) => {
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setFocusedIndex(-1);
     if (onBlur) {
       onBlur(event);
@@ -196,7 +193,7 @@ export const PinInput: React.FC<PinInputProps> = ({
             onChange={(e) => handleInputChange(index, e.target.value)}
             onKeyDown={(e) => handleKeyDown(index, e)}
             onFocus={(e) => handleFocus(index, e)}
-            onBlur={(e) => handleBlur(index, e)}
+            onBlur={(e) => handleBlur(e)}
             onPaste={handlePaste}
             disabled={disabled}
             readOnly={readonly}

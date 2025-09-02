@@ -12,7 +12,6 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { BrandLogo } from "../BrandLogo";
 import { BrandSwitcher } from "../BrandSwitcher";
 
-
 export interface SimpleTopNavItem {
   /** Unique identifier for the nav item */
   id: string;
@@ -244,7 +243,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
               //   onVersionChange={versionSelector.onVersionChange}
               //   className={styles.versionSelector}
               // />
-              <div className="version-display">v1.6</div>
+              <div className="version-display">v.2.0.0</div>
             )}
             {brandSwitcher.show && (
               <BrandSwitcher

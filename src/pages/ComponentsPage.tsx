@@ -68,18 +68,14 @@ export function ComponentsPage() {
   const [pillState, setPillState] = React.useState<
     "default" | "info" | "success" | "warning" | "error"
   >("default");
-  const [cardState, setCardState] = React.useState<"default" | "image-overlay">(
-    "default"
-  );
+  
   const [tagState, setTagState] = React.useState<
     "default" | "teal" | "selected" | "mint"
   >("default");
   const [avatarState, setAvatarState] = React.useState<
     "primary" | "secondary" | "success" | "warning"
   >("primary");
-  const [modalState, setModalState] = React.useState<
-    "default" | "large" | "small"
-  >("default");
+  
   const [paginationState, setPaginationState] = React.useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >("md");
@@ -87,19 +83,19 @@ export function ComponentsPage() {
     "default" | "filled" | "unstyled"
   >("default");
 
-  const [pillInputSize, setPillInputSize] = React.useState<
+  const [pillInputSize] = React.useState<
     "sm" | "md" | "lg" | "xl"
   >("md");
-  const [pillInputPillSize, setPillInputPillSize] = React.useState<
+  const [pillInputPillSize] = React.useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >("sm");
-  const [pillInputStateValue, setPillInputStateValue] = React.useState<
+  const [pillInputStateValue] = React.useState<
     "enabled" | "focus" | "typing" | "filled" | "disabled" | "error"
   >("enabled");
-  const [pillInputDisabled, setPillInputDisabled] = React.useState(false);
-  const [pillInputReadonly, setPillInputReadonly] = React.useState(false);
-  const [pillInputRequired, setPillInputRequired] = React.useState(false);
-  const [pillInputMaxPills, setPillInputMaxPills] = React.useState(5);
+  const [pillInputDisabled] = React.useState(false);
+  const [pillInputReadonly] = React.useState(false);
+  const [pillInputRequired] = React.useState(false);
+  const [pillInputMaxPills] = React.useState(5);
   const [pillInputPills, setPillInputPills] = React.useState<string[]>([
     "Sample",
     "Tag",
@@ -111,9 +107,7 @@ export function ComponentsPage() {
   if (isMobile) span = 12; // 1 col
   else if (isTablet) span = 6;
 
-  const [radioState, setRadioState] = React.useState<
-    "default" | "filled" | "outline" | "light"
-  >("default");
+  
   const [stepperState, setStepperState] = useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >(
@@ -131,7 +125,7 @@ export function ComponentsPage() {
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSize, setModalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
+  const [modalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
     "md"
   );
 
@@ -140,7 +134,7 @@ export function ComponentsPage() {
   const [drawerDirection, setDrawerDirection] = useState<
     "right" | "left" | "bottom" | "top"
   >("right");
-  const [drawerShowScroll, setDrawerShowScroll] = useState(true);
+  const [drawerShowScroll] = useState(true);
 
   // Calendar state
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
@@ -162,7 +156,7 @@ export function ComponentsPage() {
   const [progressVariant, setProgressVariant] = useState<
     "primary" | "success" | "warning" | "error" | "info"
   >("primary");
-  const [progressSize, setProgressSize] = useState<
+  const [progressSize] = useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >("md");
 
@@ -431,7 +425,7 @@ export function ComponentsPage() {
               variants={["default", "image-overlay"]}
               defaultVariant="default"
               onVariantChange={(variant) =>
-                setCardState(variant as "default" | "image-overlay")
+                console.log(`Card variant changed to: ${variant}`)
               }
             >
               <Card
@@ -495,7 +489,7 @@ export function ComponentsPage() {
               variants={["default", "large", "small"]}
               defaultVariant="default"
               onVariantChange={(variant) =>
-                setModalState(variant as "default" | "large" | "small")
+                console.log(`Modal variant changed to: ${variant}`)
               }
             >
               <div
@@ -569,7 +563,7 @@ export function ComponentsPage() {
                 required={pillInputRequired}
                 maxPills={pillInputMaxPills}
                 onPillsChange={(pills) => setPillInputPills(pills)}
-                onPillRemove={(pill, index) =>
+                onPillRemove={(_, index) =>
                   setPillInputPills(
                     pillInputPills.filter((_, i) => i !== index)
                   )
@@ -887,9 +881,7 @@ export function ComponentsPage() {
               variants={["default", "filled", "outline", "light"]}
               defaultVariant="default"
               onVariantChange={(variant) =>
-                setRadioState(
-                  variant as "default" | "filled" | "outline" | "light"
-                )
+                console.log(`Radio variant changed to: ${variant}`)
               }
             >
               <div>

@@ -43,6 +43,14 @@ export interface UploadFile {
   timeRemaining?: string;
 }
 
+const formatFileSize = (bytes: number): string => {
+  if (bytes === 0) return "0 Bytes";
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+};
+
 export const FileUpload: React.FC<FileUploadProps> = ({
   acceptedFileTypes = ["jpg", "png", "pdf", "mp4", "gif"],
   maxFileSize = 100 * 1024 * 1024, // 100MB
@@ -67,6 +75,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getFileIcon = (fileName: string) => {
@@ -86,13 +95,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     }
   };
 
-  const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return "0 Bytes";
-    const k = 1024;
-    const sizes = ["Bytes", "KB", "MB", "GB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + sizes[i];
-  };
+    
 
   const validateFile = useCallback((file: File): string | null => {
     const extension = file.name.split(".").pop()?.toLowerCase();
@@ -100,7 +103,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       return `File type ${extension} is not supported`;
     }
     if (file.size > maxFileSize) {
-      return `File size exceeds limit of ${formatBytes(maxFileSize)}`;
+      return `File size exceeds limit of ${formatFileSize(maxFileSize)}`;
     }
     return null;
   }, [acceptedFileTypes, maxFileSize]);
@@ -133,7 +136,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         }));
 
         setUploadFiles((prev) => [...prev, ...newUploadFiles]);
-        setIsUploading(true);
+        
 
         // Simulate upload progress
         newUploadFiles.forEach((uploadFile) => {

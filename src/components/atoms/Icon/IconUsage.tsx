@@ -1,3 +1,4 @@
+import type { SvgIconComponent } from "@mui/icons-material";
 import { Icon } from "./Icon";
 import * as Icons from "./IconSet";
 
@@ -256,7 +257,7 @@ export const TokenizedIcon = ({
   disabled = false,
   className = "",
 }: {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: SvgIconComponent;
   size?: keyof typeof IconTokens.sizes;
   color?: keyof typeof IconTokens.colors;
   margin?: keyof typeof IconTokens.spacing;
