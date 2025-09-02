@@ -44,6 +44,8 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run generate-themes && npm run build:lib && npm run build:styles && npm run build:types",
+    "build:vite": "vite build",
+    "build:prod": "npm run build:vite && npm run build-storybook",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:types": "tsc --project tsconfig.build.json",
     "build:styles": "sass src/styles/_tokens.scss:dist/tokens.css --style compressed && sass src/styles/pulseui-base.scss:dist/pulseui-base.scss.css --style compressed",
