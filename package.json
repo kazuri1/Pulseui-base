@@ -1,6 +1,6 @@
 {
   "name": "pulseui-base",
-  "version": "1.10.1",
+  "version": "2.0.0",
   "description": "Ultra-lightweight React component library with design tokens, multi-brand theming, and TypeScript support. Zero heavy dependencies - perfect for production apps.",
   "type": "module",
   "main": "dist/index.js",
