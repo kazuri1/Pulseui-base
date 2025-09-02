@@ -91,6 +91,9 @@ export type {
   LoginFormData,
 } from "./components/atoms/LoginForm";
 
+export { ProgressBar } from "./components/atoms/ProgressBar";
+export type { ProgressBarProps } from "./components/atoms/ProgressBar";
+
 // Stepper Components
 export { StepperIcon } from "./components/atoms/Stepper/StepperIcon";
 export type { StepperIconProps } from "./components/atoms/Stepper/StepperIcon";

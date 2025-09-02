@@ -54,8 +54,8 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
   min-height: calc(var(--line-height-md) * 2.5);
   padding: var(--spacing-sm);
   background-color: var(--color-surface);

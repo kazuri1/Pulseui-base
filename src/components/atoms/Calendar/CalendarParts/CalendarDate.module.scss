@@ -109,11 +109,11 @@
 
 // Variant styles
 .variant-default {
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
   background-color: transparent;
 
   &:hover:not(:disabled) {
-    background-color: var(--color-gray-1);
+    background-color: var(--color-surface-secondary);
   }
 }
 
@@ -122,24 +122,24 @@
   background-color: transparent;
 
   &:hover:not(:disabled) {
-    background-color: var(--color-blue-1);
+    background-color: var(--color-surface-secondary);
   }
 }
 
 .variant-disabled {
-  color: var(--color-gray-5);
+  color: var(--color-text-disabled);
   background-color: transparent;
   cursor: not-allowed;
 }
 
 .variant-text {
-  color: var(--color-gray-9);
+  color: var(--color-text-primary);
   background-color: transparent;
   border: none;
   padding: 0;
 
   &:hover:not(:disabled) {
-    background-color: var(--color-gray-1);
+    background-color: var(--color-surface-secondary);
   }
 }
 
@@ -175,8 +175,8 @@
 }
 
 .active-passive {
-  background-color: var(--color-blue-1);
-  color: var(--color-blue-9);
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-primary);
 
   .indicator {
     background-color: var(--color-blue-6);
@@ -184,7 +184,7 @@
   }
 
   &:hover:not(:disabled) {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-surface-tertiary);
   }
 }
 
@@ -208,7 +208,7 @@
 
 .state-hover {
   &:hover:not(:disabled) {
-    background-color: var(--color-gray-1);
+    background-color: var(--color-surface-secondary);
   }
 
   &.active-initial:hover:not(:disabled) {
@@ -221,7 +221,7 @@
   }
 
   &.active-passive:hover:not(:disabled) {
-    background-color: var(--color-blue-2);
+    background-color: var(--color-surface-tertiary);
   }
 }
 
@@ -256,7 +256,7 @@
   }
 
   &.active-passive {
-    color: var(--color-blue-9) !important;
+    color: var(--color-text-primary) !important;
   }
 
   &.active-selected {
@@ -269,7 +269,7 @@
   }
 
   &.variant-disabled {
-    color: var(--color-gray-5) !important;
+    color: var(--color-text-disabled) !important;
   }
 
   &.variant-text {

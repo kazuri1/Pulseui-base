@@ -13,6 +13,7 @@ import {
   Checkbox,
   Alert,
   Pagination,
+  ProgressBar,
   Carousel,
 
   // Display Components
@@ -43,6 +44,17 @@ import {
   // Modal and Drawer Components
   Modal,
   Drawer,
+
+  // Date and Input Components
+  Calendar,
+  PasswordInput,
+
+  // Interactive Components
+  Tabs,
+  TabsList,
+  TabsTab,
+  TabsPanel,
+  FileUpload,
 } from "../index";
 
 export function ComponentsPage() {
@@ -56,14 +68,18 @@ export function ComponentsPage() {
   const [pillState, setPillState] = React.useState<
     "default" | "info" | "success" | "warning" | "error"
   >("default");
-  
+  const [cardState, setCardState] = React.useState<"default" | "image-overlay">(
+    "default"
+  );
   const [tagState, setTagState] = React.useState<
     "default" | "teal" | "selected" | "mint"
   >("default");
   const [avatarState, setAvatarState] = React.useState<
     "primary" | "secondary" | "success" | "warning"
   >("primary");
-  
+  const [modalState, setModalState] = React.useState<
+    "default" | "large" | "small"
+  >("default");
   const [paginationState, setPaginationState] = React.useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >("md");
@@ -71,22 +87,19 @@ export function ComponentsPage() {
     "default" | "filled" | "unstyled"
   >("default");
 
-  // Missing state declarations - adding them
-  const [cardState, setCardState] = React.useState<"default" | "image-overlay">("default");
-  const [modalState, setModalState] = React.useState<"default" | "large" | "small">("default");
-  const [radioState, setRadioState] = React.useState<"default" | "filled" | "outline" | "light">("default");
-  
-  // Missing pill input related states
-  const [pillInputSize] = React.useState<"sm" | "md" | "lg" | "xl">("md");
-  const [pillInputPillSize] = React.useState<"xs" | "sm" | "md" | "lg" | "xl">("sm");
-  const [pillInputStateValue] = React.useState<"enabled" | "disabled" | "error" | "focus" | "typing">("enabled");
-  const [pillInputDisabled] = React.useState(false);
-  const [pillInputReadonly] = React.useState(false);
-  const [pillInputRequired] = React.useState(false);
-  const [pillInputMaxPills] = React.useState<number | undefined>(undefined);
-  const [drawerShowScroll] = React.useState(true);
-
-  
+  const [pillInputSize, setPillInputSize] = React.useState<
+    "sm" | "md" | "lg" | "xl"
+  >("md");
+  const [pillInputPillSize, setPillInputPillSize] = React.useState<
+    "xs" | "sm" | "md" | "lg" | "xl"
+  >("sm");
+  const [pillInputStateValue, setPillInputStateValue] = React.useState<
+    "enabled" | "focus" | "typing" | "filled" | "disabled" | "error"
+  >("enabled");
+  const [pillInputDisabled, setPillInputDisabled] = React.useState(false);
+  const [pillInputReadonly, setPillInputReadonly] = React.useState(false);
+  const [pillInputRequired, setPillInputRequired] = React.useState(false);
+  const [pillInputMaxPills, setPillInputMaxPills] = React.useState(5);
   const [pillInputPills, setPillInputPills] = React.useState<string[]>([
     "Sample",
     "Tag",
@@ -98,11 +111,13 @@ export function ComponentsPage() {
   if (isMobile) span = 12; // 1 col
   else if (isTablet) span = 6;
 
-  
+  const [radioState, setRadioState] = React.useState<
+    "default" | "filled" | "outline" | "light"
+  >("default");
   const [stepperState, setStepperState] = useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >(
-    isMobile ? "xs" : "md" //  default state respects mobile
+    isMobile ? "xs" : "md" // ✅ default state respects mobile
   );
   const [kbdState, setKbdState] = React.useState<"sm" | "md" | "lg" | "xl">(
     "md"
@@ -116,19 +131,54 @@ export function ComponentsPage() {
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const [modalSize, setModalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
+    "md"
+  );
 
   // Drawer state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [drawerDirection, setDrawerDirection] = useState<
     "right" | "left" | "bottom" | "top"
   >("right");
-  
+  const [drawerShowScroll, setDrawerShowScroll] = useState(true);
+
+  // Calendar state
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date()
+  );
+  const [calendarView, setCalendarView] = useState<"month" | "year" | "decade">(
+    "month"
+  );
+
+  // Password input state
+  const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordVariant, setPasswordVariant] = useState<
+    "default" | "with-toggle" | "with-strength"
+  >("default");
+
+  // Progress bar state
+  const [progressValue, setProgressValue] = useState(65);
+  const [progressVariant, setProgressVariant] = useState<
+    "primary" | "success" | "warning" | "error" | "info"
+  >("primary");
+  const [progressSize, setProgressSize] = useState<
+    "xs" | "sm" | "md" | "lg" | "xl"
+  >("md");
+
+  // Tabs state
+  const [activeTab, setActiveTab] = useState("tab1");
+  const [tabVariant, setTabVariant] = useState<
+    "horizontal" | "vertical" | "pills"
+  >("horizontal");
+
+  // FileUpload state
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   return (
-    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <>
       {/* Component Variants */}
-      <div className="mt-12">
+      <div style={{ marginTop: "150px", marginBottom: "100px" }}>
         <Text as="h1" variant="xxl" weight="bold" sx={{ marginBottom: "24px" }}>
           PulseUI Components
         </Text>
@@ -161,7 +211,9 @@ export function ComponentsPage() {
               ]}
               defaultVariant="filled"
               label="Select Button Variant:"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Button variant changed to: ${variant}`)
+              }
             >
               <Button size="md">Button</Button>
             </VariantSelector>
@@ -180,7 +232,9 @@ export function ComponentsPage() {
               ]}
               defaultVariant="dot"
               label="Select Badge Variant:"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Badge variant changed to: ${variant}`)
+              }
             >
               <Badge variant="dot">Dot Badge</Badge>
             </VariantSelector>
@@ -191,7 +245,9 @@ export function ComponentsPage() {
               variants={["success", "info", "warning", "error"]}
               defaultVariant="success"
               label="Select Alert Variant:"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Alert variant changed to: ${variant}`)
+              }
             >
               <Alert variant="success">
                 <strong>Success!</strong> Your action was completed
@@ -203,7 +259,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Form Components */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -221,7 +277,7 @@ export function ComponentsPage() {
               label="Select Checkbox State:"
               onVariantChange={(variant) => {
                 setCheckboxState(variant);
-                // console.log(`Checkbox state changed to: ${variant}`);
+                console.log(`Checkbox state changed to: ${variant}`);
               }}
             >
               <Checkbox
@@ -233,7 +289,7 @@ export function ComponentsPage() {
                     ? "This is an error message"
                     : undefined
                 }
-                onChange={() => {}}
+                onChange={(checked) => console.log("Checkbox:", checked)}
               />
             </VariantSelector>
           </GridCol>
@@ -243,12 +299,14 @@ export function ComponentsPage() {
               variants={["default", "disabled", "small", "large"]}
               defaultVariant="default"
               label="Select Switch Variant:"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Switch variant changed to: ${variant}`)
+              }
             >
               <Switch
                 label="Switch"
                 defaultChecked={false}
-                onChange={() => {}}
+                onChange={(checked) => console.log("Switch:", checked)}
               />
             </VariantSelector>
           </GridCol>
@@ -258,7 +316,9 @@ export function ComponentsPage() {
               variants={["default", "disabled", "error", "success"]}
               defaultVariant="default"
               label="Select State:"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Select state changed to: ${variant}`)
+              }
             >
               <Select
                 label="Sample Select"
@@ -270,7 +330,7 @@ export function ComponentsPage() {
                   { value: "svelte", label: "Svelte" },
                   { value: "nextjs", label: "Next.js" },
                 ]}
-                onChange={() => {}}
+                onChange={(value) => console.log("Select:", value)}
               />
             </VariantSelector>
           </GridCol>
@@ -278,7 +338,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Additional Components */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -345,7 +405,7 @@ export function ComponentsPage() {
               <Pill
                 variant={pillState}
                 size="md"
-                onClose={() => {}}
+                onClose={() => console.log("Pill closed")}
               >
                 Sample Pill
               </Pill>
@@ -355,7 +415,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Display Components Section */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -379,7 +439,6 @@ export function ComponentsPage() {
                 description="This is a sample card component with some content."
                 buttonText="Learn More"
                 buttonVariant="filled"
-                variant={cardState}
               />
             </VariantSelector>
           </GridCol>
@@ -420,7 +479,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Interactive Components Section */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -440,7 +499,13 @@ export function ComponentsPage() {
               }
             >
               <div
-                className="p-5 border border-[var(--color-border-secondary)] rounded-md bg-[var(--color-surface)] text-center"
+                style={{
+                  padding: "20px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                  textAlign: "center",
+                }}
               >
                 <Text
                   variant="md"
@@ -478,7 +543,7 @@ export function ComponentsPage() {
               <Pagination
                 currentPage={1}
                 totalPages={5}
-                onPageChange={() => {}}
+                onPageChange={(page) => console.log("Page changed to:", page)}
                 size={paginationState}
               />
             </VariantSelector>
@@ -515,11 +580,298 @@ export function ComponentsPage() {
               />
             </VariantSelector>
           </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Progress Bar Component"
+              variants={["primary", "success", "warning", "error", "info"]}
+              defaultVariant="primary"
+              label="Select Progress Variant:"
+              onVariantChange={(variant) => {
+                setProgressVariant(
+                  variant as
+                    | "primary"
+                    | "success"
+                    | "warning"
+                    | "error"
+                    | "info"
+                );
+                console.log(`Progress variant changed to: ${variant}`);
+                // Animate progress when variant changes
+                setProgressValue(Math.floor(Math.random() * 100) + 1);
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
+                }}
+              >
+                <ProgressBar
+                  value={progressValue}
+                  variant={progressVariant}
+                  size={progressSize}
+                  showLabel={true}
+                  striped={true}
+                  animated={true}
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "8px",
+                    alignItems: "center",
+                    marginTop: "8px",
+                  }}
+                >
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      setProgressValue(Math.max(0, progressValue - 10))
+                    }
+                  >
+                    -10%
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      setProgressValue(Math.min(100, progressValue + 10))
+                    }
+                  >
+                    +10%
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="filled"
+                    onClick={() =>
+                      setProgressValue(Math.floor(Math.random() * 100) + 1)
+                    }
+                  >
+                    Random
+                  </Button>
+                </div>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          {/* Tabs Component - Hidden on mobile */}
+          {!isMobile && (
+            <GridCol span={span}>
+              <VariantSelector
+                title="Tabs Component"
+                variants={["horizontal", "vertical", "pills"]}
+                defaultVariant="horizontal"
+                label="Select Tab Style:"
+                onVariantChange={(variant) => {
+                  setTabVariant(variant as "horizontal" | "vertical" | "pills");
+                  console.log(`Tab variant changed to: ${variant}`);
+                  setActiveTab("tab1"); // Reset to first tab when changing variants
+                }}
+              >
+                <Tabs
+                  value={activeTab}
+                  onChange={(value) => setActiveTab(value || "tab1")}
+                  orientation={
+                    tabVariant === "vertical" ? "vertical" : "horizontal"
+                  }
+                  sx={{
+                    "& .tabsList": {
+                      gap: "4px",
+                      ...(tabVariant === "vertical" && {
+                        flexDirection: "column",
+                        width: "120px",
+                      }),
+                    },
+                    "& .tab": {
+                      padding: "6px 12px",
+                      fontSize: "0.875rem",
+                      minHeight: "32px",
+                      minWidth: "auto",
+                      ...(tabVariant === "pills" && {
+                        borderRadius: "16px",
+                        backgroundColor: "var(--color-surface-secondary)",
+                        border: "none",
+                        "&.active": {
+                          backgroundColor: "var(--color-primary)",
+                          color: "white",
+                        },
+                      }),
+                      ...(tabVariant === "vertical" && {
+                        width: "100%",
+                        textAlign: "left",
+                      }),
+                    },
+                    "& .tabsPanel": {
+                      padding: "12px",
+                      minHeight: "80px",
+                      ...(tabVariant === "vertical" && {
+                        flex: 1,
+                      }),
+                    },
+                    ...(tabVariant === "vertical" && {
+                      display: "flex",
+                      gap: "16px",
+                    }),
+                  }}
+                >
+                  <TabsList>
+                    <TabsTab
+                      value="tab1"
+                      placeholder="Overview"
+                      variant={tabVariant === "pills" ? "pill" : "default"}
+                    />
+                    <TabsTab
+                      value="tab2"
+                      placeholder="Features"
+                      variant={tabVariant === "pills" ? "pill" : "default"}
+                    />
+                    <TabsTab
+                      value="tab3"
+                      placeholder="Settings"
+                      variant={tabVariant === "pills" ? "pill" : "default"}
+                    />
+                  </TabsList>
+                  <TabsPanel value="tab1">
+                    <div style={{ padding: "12px" }}>
+                      <Text
+                        variant="sm"
+                        weight="semibold"
+                        style={{ marginBottom: "6px" }}
+                      >
+                        Overview Tab
+                      </Text>
+                      <Text variant="xs" color="secondary">
+                        This is the overview content. Tabs provide a way to
+                        organize content into separate views.
+                      </Text>
+                    </div>
+                  </TabsPanel>
+                  <TabsPanel value="tab2">
+                    <div style={{ padding: "12px" }}>
+                      <Text
+                        variant="sm"
+                        weight="semibold"
+                        style={{ marginBottom: "6px" }}
+                      >
+                        Features Tab
+                      </Text>
+                      <Text variant="xs" color="secondary">
+                        Interactive tab switching, keyboard navigation, and
+                        accessibility support.
+                      </Text>
+                    </div>
+                  </TabsPanel>
+                  <TabsPanel value="tab3">
+                    <div style={{ padding: "12px" }}>
+                      <Text
+                        variant="sm"
+                        weight="semibold"
+                        style={{ marginBottom: "6px" }}
+                      >
+                        Settings Tab
+                      </Text>
+                      <Text variant="xs" color="secondary">
+                        Configure your preferences and options here.
+                      </Text>
+                    </div>
+                  </TabsPanel>
+                </Tabs>
+              </VariantSelector>
+            </GridCol>
+          )}
+          {/* FileUpload Component - Hidden on mobile */}
+          {!isMobile && (
+            <GridCol span={span}>
+              <VariantSelector
+                title="File Upload Component"
+                variants={["default", "drag-drop", "multiple"]}
+                defaultVariant="default"
+                label="Select Upload Type:"
+                onVariantChange={(variant) => {
+                  console.log(`FileUpload variant changed to: ${variant}`);
+                  setUploadedFiles([]); // Clear uploaded files when changing variants
+                }}
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    maxWidth: "100%",
+                    overflow: "hidden",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      maxWidth: "350px",
+                      margin: "0 auto",
+                    }}
+                  >
+                    <FileUpload
+                      acceptedFileTypes={["jpg", "png", "pdf", "txt"]}
+                      maxFileSize={5 * 1024 * 1024} // 5MB
+                      maxFiles={3}
+                      multiple={true}
+                      uploadText="Drop files here"
+                      browseText="Choose Files"
+                      showFileList={true}
+                      onUpload={(files) => {
+                        setUploadedFiles(files);
+                        console.log(
+                          "Files uploaded:",
+                          files.map((f) => f.name)
+                        );
+                      }}
+                      sx={{
+                        width: "100%",
+                        maxWidth: "100%",
+                        padding: "12px",
+                        "& .fileUpload": {
+                          maxWidth: "100%",
+                          width: "100%",
+                          padding: "16px",
+                        },
+                        "& .dropZone": {
+                          minHeight: "120px",
+                          padding: "16px",
+                        },
+                        "& .header": {
+                          gap: "4px",
+                          marginBottom: "8px",
+                        },
+                        "& .uploadIcon": {
+                          marginBottom: "4px",
+                        },
+                      }}
+                    />
+                  </div>
+                  {uploadedFiles.length > 0 && (
+                    <div
+                      style={{
+                        marginTop: "12px",
+                        padding: "8px",
+                        backgroundColor: "var(--color-surface-secondary)",
+                        borderRadius: "var(--radius-sm)",
+                        maxWidth: "350px",
+                        margin: "12px auto 0 auto",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      <Text variant="xs" color="secondary">
+                        Uploaded: {uploadedFiles.map((f) => f.name).join(", ")}
+                      </Text>
+                    </div>
+                  )}
+                </div>
+              </VariantSelector>
+            </GridCol>
+          )}
         </Grid>
       </div>
 
       {/* Advanced Components */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -547,8 +899,7 @@ export function ComponentsPage() {
                   name="radio-group"
                   value="option1"
                   checked={false}
-                  onChange={() => {}}
-                  variant={radioState}
+                  onChange={() => console.log("Option 1 selected")}
                 />
               </div>
             </VariantSelector>
@@ -593,7 +944,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Special Components */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -608,7 +959,9 @@ export function ComponentsPage() {
               title="PinInput Component"
               variants={["default", "error", "disabled"]}
               defaultVariant="default"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`PinInput variant changed to: ${variant}`)
+              }
             >
               <PinInput
                 label="Security PIN"
@@ -616,6 +969,7 @@ export function ComponentsPage() {
                 helperText="Enter your 4-digit PIN"
                 length={4}
                 required={true}
+                sx={{ alignItems: "center", justifyContent: "center" }}
               />
             </VariantSelector>
           </GridCol>
@@ -624,7 +978,9 @@ export function ComponentsPage() {
               title="Carousel Component"
               variants={["default", "compact", "imageOnly"]}
               defaultVariant="default"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Carousel variant changed to: ${variant}`)
+              }
             >
               <Carousel
                 ariaLabel="Sample carousel"
@@ -636,7 +992,11 @@ export function ComponentsPage() {
                 compact={false}
               >
                 <div
-                  className="p-5 bg-[var(--color-surface-secondary)] rounded-md"
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "var(--color-surface-secondary)",
+                    borderRadius: "var(--radius-md)",
+                  }}
                 >
                   <Text variant="md" weight="semibold">
                     Slide 1
@@ -646,7 +1006,11 @@ export function ComponentsPage() {
                   </Text>
                 </div>
                 <div
-                  className="p-5 bg-[var(--color-surface-secondary)] rounded-md"
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "var(--color-surface-secondary)",
+                    borderRadius: "var(--radius-md)",
+                  }}
                 >
                   <Text variant="md" weight="semibold">
                     Slide 2
@@ -663,7 +1027,9 @@ export function ComponentsPage() {
               title="Accordion Component"
               variants={["default", "bordered", "separated"]}
               defaultVariant="default"
-              onVariantChange={() => {}}
+              onVariantChange={(variant) =>
+                console.log(`Accordion variant changed to: ${variant}`)
+              }
             >
               <Accordion size="display" allowMultiple={false}>
                 <AccordionItem id="item-1">
@@ -695,7 +1061,7 @@ export function ComponentsPage() {
       </div>
 
       {/* Drawer Demo */}
-      <div className="mt-12">
+      <div style={{ marginTop: "48px" }}>
         <Text
           as="h2"
           variant="xl"
@@ -717,7 +1083,13 @@ export function ComponentsPage() {
               }
             >
               <div
-                className="p-5 border border-[var(--color-border-secondary)] rounded-md bg-[var(--color-surface)] text-center"
+                style={{
+                  padding: "20px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                  textAlign: "center",
+                }}
               >
                 <Text
                   variant="md"
@@ -739,18 +1111,125 @@ export function ComponentsPage() {
         </Grid>
       </div>
 
+      {/* Date and Input Components */}
+      <div style={{ marginTop: "48px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Date and Input Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={span}>
+            <VariantSelector
+              title="Calendar Component"
+              variants={["month", "year", "decade"]}
+              defaultVariant="month"
+              label="Select Calendar View:"
+              onVariantChange={(variant) => {
+                setCalendarView(variant as "month" | "year" | "decade");
+                console.log(`Calendar view changed to: ${variant}`);
+              }}
+            >
+              <div
+                style={{
+                  padding: "12px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  width: "100%",
+                  minHeight: "300px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    maxWidth: "280px",
+                    width: "100%",
+                  }}
+                >
+                  <Calendar
+                    view={calendarView}
+                    selectedDate={selectedDate}
+                    onDateSelect={(date) => {
+                      setSelectedDate(date);
+                      console.log("Date selected:", date);
+                    }}
+                    onViewChange={(view) => {
+                      setCalendarView(view);
+                      console.log("View changed:", view);
+                    }}
+                    size={isMobile ? "xs" : "sm"}
+                    showNavigation={true}
+                    showDayLabels={true}
+                    showOutsideDates={true}
+                    sx={{
+                      margin: "0 auto",
+                      maxWidth: "280px",
+                      width: "100%",
+                    }}
+                  />
+                </div>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Password Input Component"
+              variants={["default", "with-toggle", "with-strength"]}
+              defaultVariant="default"
+              label="Select Password Variant:"
+              onVariantChange={(variant) => {
+                setPasswordVariant(
+                  variant as "default" | "with-toggle" | "with-strength"
+                );
+                console.log(`Password variant changed to: ${variant}`);
+                // Reset password when switching variants to show strength meter working
+                if (variant === "with-strength") {
+                  setPassword("");
+                }
+              }}
+            >
+              <PasswordInput
+                label="Password"
+                placeholder={
+                  passwordVariant === "with-strength"
+                    ? "Enter password to see strength"
+                    : "Enter your password"
+                }
+                value={password}
+                onChange={setPassword}
+                passwordVisible={passwordVisible}
+                onPasswordVisibilityChange={setPasswordVisible}
+                showPasswordToggle={passwordVariant !== "default"}
+                showStrengthMeter={passwordVariant === "with-strength"}
+                required={true}
+              />
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
       {/* Modal Component */}
       <Modal
         show={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Sample Modal"
-        size={modalState === "default" ? "md" : modalState === "large" ? "lg" : "sm"}
+        size={modalSize}
         showFooter={true}
         footerVariant="primary"
         primaryText="Confirm"
         secondaryText="Cancel"
         onPrimaryClick={() => {
-          // console.log("Primary button clicked");
+          console.log("Primary button clicked");
           setIsModalOpen(false);
         }}
         onSecondaryClick={() => setIsModalOpen(false)}
@@ -758,7 +1237,7 @@ export function ComponentsPage() {
         closeOnBackdropClick={true}
         closeOnEscape={true}
       >
-        <div className="p-4">
+        <div style={{ padding: "16px 0" }}>
           <Text variant="md" style={{ marginBottom: "16px" }}>
             Modal Content
           </Text>
@@ -780,7 +1259,7 @@ export function ComponentsPage() {
         closeOnBackdropClick={true}
         closeOnEscape={true}
       >
-        <div className="p-4">
+        <div style={{ padding: "16px" }}>
           <Text variant="lg" weight="semibold" style={{ marginBottom: "16px" }}>
             Drawer Content
           </Text>
@@ -793,6 +1272,6 @@ export function ComponentsPage() {
           </Text>
         </div>
       </Drawer>
-    </div>
+    </>
   );
 }

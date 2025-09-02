@@ -1,0 +1,182 @@
+@import "../../../styles/_tokens.scss";
+
+.progressBar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family);
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    pointer-events: none;
+  }
+}
+
+.progressTrack {
+  flex: 1;
+  background-color: var(--color-surface-tertiary);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  transition: width var(--motion-duration-normal) var(--motion-easing-ease-out);
+  position: relative;
+  overflow: hidden;
+
+  // Striped pattern
+  &.striped {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+
+  // Animated stripes
+  &.animated {
+    animation: progressStripes 1s linear infinite;
+  }
+}
+
+.progressLabel {
+  flex-shrink: 0;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+// Size variants
+.size-xs {
+  .progressTrack {
+    height: 4px;
+  }
+
+  .progressLabel {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.size-sm {
+  .progressTrack {
+    height: 6px;
+  }
+
+  .progressLabel {
+    font-size: var(--font-size-sm);
+  }
+}
+
+.size-md {
+  .progressTrack {
+    height: 8px;
+  }
+
+  .progressLabel {
+    font-size: var(--font-size-sm);
+  }
+}
+
+.size-lg {
+  .progressTrack {
+    height: 12px;
+  }
+
+  .progressLabel {
+    font-size: var(--font-size-md);
+  }
+}
+
+.size-xl {
+  .progressTrack {
+    height: 16px;
+  }
+
+  .progressLabel {
+    font-size: var(--font-size-md);
+  }
+}
+
+// Radius variants
+.radius-none {
+  .progressTrack,
+  .progressFill {
+    border-radius: 0;
+  }
+}
+
+.radius-sm {
+  .progressTrack,
+  .progressFill {
+    border-radius: var(--radius-sm);
+  }
+}
+
+.radius-md {
+  .progressTrack,
+  .progressFill {
+    border-radius: var(--radius-md);
+  }
+}
+
+.radius-lg {
+  .progressTrack,
+  .progressFill {
+    border-radius: var(--radius-lg);
+  }
+}
+
+.radius-full {
+  .progressTrack,
+  .progressFill {
+    border-radius: var(--radius-full);
+  }
+}
+
+// Color variants
+.variant-primary {
+  background-color: var(--color-primary);
+}
+
+.variant-success {
+  background-color: var(--color-success);
+}
+
+.variant-warning {
+  background-color: var(--color-warning);
+}
+
+.variant-error {
+  background-color: var(--color-error);
+}
+
+.variant-info {
+  background-color: var(--color-info);
+}
+
+// Animation for striped progress bars
+@keyframes progressStripes {
+  0% {
+    background-position: 1rem 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .progressBar {
+    gap: var(--spacing-xs);
+  }
+
+  .progressLabel {
+    font-size: var(--font-size-xs);
+  }
+}
