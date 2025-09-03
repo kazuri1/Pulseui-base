@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "./index";
 import { HomePage, ComponentsPage } from "./pages";
 import type { SimpleTopNavItem } from "./components/atoms/SimpleTopNav/SimpleTopNav";
@@ -6,6 +6,21 @@ import type { SimpleTopNavItem } from "./components/atoms/SimpleTopNav/SimpleTop
 function AppContent() {
   // Simple routing state
   const [currentPage, setCurrentPage] = useState("home");
+
+  // Effect to reset theme to PulseUI Base when on home page
+  useEffect(() => {
+    if (currentPage === "home") {
+      // Reset to default brand (PulseUI Base)
+      const root = document.documentElement;
+      root.setAttribute("data-brand", "default");
+      localStorage.setItem("pulseui-brand", "default");
+
+      // Keep the current theme (light/dark) but ensure it's applied
+      const currentTheme = localStorage.getItem("pulseui-theme") || "light";
+      root.setAttribute("data-theme", currentTheme);
+      root.setAttribute("data-mode", currentTheme);
+    }
+  }, [currentPage]);
 
   // Navigation items with routing functionality
   const navItems: SimpleTopNavItem[] = [
