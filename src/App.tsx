@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout } from "./index";
 import { HomePage, ComponentsPage } from "./pages";
 import type { SimpleTopNavItem } from "./components/atoms/SimpleTopNav/SimpleTopNav";
