@@ -245,7 +245,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
               // />
               <div className="version-display">v.2.0.0</div>
             )}
-            {brandSwitcher.show && (
+            {brandSwitcher.show && showDesktopNav && (
               <BrandSwitcher
                 size={brandSwitcher.size || "sm"}
                 showDescription={brandSwitcher.showDescription || false}
@@ -355,6 +355,21 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
             <div className={styles.mobileNavItems}>
               {navItems.map((item) => renderNavItem(item, true))}
             </div>
+
+            {/* Brand Switcher in Mobile Navigation */}
+            {brandSwitcher.show && (
+              <div className={styles.mobileBrandSwitcher}>
+                <div className={styles.mobileBrandSwitcherLabel}>
+                  <span>Brand</span>
+                </div>
+                <BrandSwitcher
+                  size={brandSwitcher.size || "md"}
+                  showDescription={brandSwitcher.showDescription || false}
+                  label=""
+                />
+              </div>
+            )}
+
             {/* Custom mobile footer content */}
             {showMobileFooterContent && mobileFooterContent && (
               <div className={styles.mobileFooterContent}>

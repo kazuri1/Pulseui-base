@@ -1,6 +1,6 @@
 {
   "name": "pulseui-base",
-  "version": "2.0.0",
+  "version": "2.1.1",
   "description": "Ultra-lightweight React component library with design tokens, multi-brand theming, and TypeScript support. Zero heavy dependencies - perfect for production apps.",
   "type": "module",
   "main": "dist/index.js",
@@ -13,18 +13,22 @@
       "require": "./dist/index.js"
     },
     "./styles": {
+      "types": "./types/styles.d.ts",
       "import": "./dist/pulseui-base.css",
       "require": "./dist/pulseui-base.css"
     },
     "./tokens": {
+      "types": "./types/tokens.d.ts",
       "import": "./dist/tokens.css",
       "require": "./dist/tokens.css"
     },
     "./scss": {
+      "types": "./types/scss.d.ts",
       "import": "./src/styles/pulseui-base.scss",
       "require": "./src/styles/pulseui-base.scss"
     },
     "./scss-compiled": {
+      "types": "./types/scss-compiled.d.ts",
       "import": "./dist/pulseui-base.scss.css",
       "require": "./dist/pulseui-base.scss.css"
     },
@@ -63,7 +67,11 @@
     "sync-tokens": "node scripts/sync-figma-tokens.js",
     "test-figma": "node scripts/test-figma-sync.js",
     "debug-figma": "node scripts/debug-figma-access.js",
-    "explore-figma": "node scripts/explore-figma-file.js"
+    "explore-figma": "node scripts/explore-figma-file.js",
+    "brand-manager": "node scripts/brand-manager.js",
+    "create-brand": "node scripts/brand-manager.js --create",
+    "validate-brand": "node scripts/brand-manager.js --validate",
+    "list-brands": "node scripts/brand-manager.js --list"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",

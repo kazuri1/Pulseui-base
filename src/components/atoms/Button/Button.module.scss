@@ -4,7 +4,7 @@
   // Layout (was @include flex-center)
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   // Typography
   font-family: var(--font-family);
@@ -58,10 +58,14 @@
   }
 
   &.size-md {
-    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xxl);
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
     min-height: var(--size-md);
+    justify-self: flex-start;
   }
 
   &.size-lg {
@@ -214,12 +218,12 @@
   }
 
   .left {
-    margin-right: var(--spacing-icon);
+    margin-right: var(--spacing-md);
     margin-left: 0;
   }
 
   .right {
-    margin-left: var(--spacing-icon);
+    margin-left: var(--spacing-md);
     margin-right: 0;
   }
 
