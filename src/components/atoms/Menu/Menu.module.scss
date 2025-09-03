@@ -1,0 +1,224 @@
+@use "../../../styles/_tokens.scss" as *;
+
+.menu {
+  position: fixed; // Use fixed positioning to appear outside component boundaries
+  background: var(--color-surface-0);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px var(--color-shadow);
+  border: 1px solid var(--color-border-primary);
+  z-index: 1000;
+  overflow: visible; // Allow menu to extend beyond its container
+  min-width: 180px;
+  max-height: 70vh;
+  overflow-y: auto;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.2s ease-in-out;
+  font-family: var(--font-family);
+
+  &.open {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-backdrop);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+.section {
+  padding: var(--spacing-xs) 0;
+
+  &:first-child {
+    padding-top: var(--spacing-xs);
+  }
+
+  &:last-child {
+    padding-bottom: var(--spacing-xs);
+  }
+}
+
+.sectionTitle {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.sectionItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  user-select: none;
+  gap: var(--spacing-xs);
+  min-height: 36px;
+
+  &:hover {
+    background: var(--color-surface-hover);
+  }
+
+  &:focus {
+    outline: none;
+    background: var(--color-surface-hover);
+  }
+
+  &:active {
+    background: var(--color-surface-2);
+  }
+
+  &.active {
+    background-color: var(--color-surface-hover);
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: var(--opacity-50);
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &.danger {
+    .itemLabel {
+      color: var(--color-error);
+    }
+
+    &:hover {
+      background: var(--color-red-0);
+    }
+
+    &:focus {
+      background: var(--color-red-0);
+    }
+  }
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-sm);
+}
+
+.itemShortcut {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family);
+  color: var(--color-text-secondary);
+  margin-left: auto;
+  padding-left: var(--spacing-sm);
+}
+
+.submenuIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding-left: var(--spacing-sm);
+  color: var(--color-text-secondary);
+}
+
+.separator {
+  height: 1px;
+  background: var(--color-border-primary);
+  margin: var(--spacing-xs) var(--spacing-md);
+}
+.submenu {
+  position: absolute; // Use absolute positioning for submenus
+  z-index: 1001;
+}
+
+// Mobile styles
+.mobile {
+  width: calc(100vw - 64px) !important;
+  max-width: 240px !important;
+  margin: 0 var(--spacing-md);
+  min-height: auto !important;
+  max-height: 50vh !important;
+
+  .menuItem {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    min-height: 32px;
+  }
+
+  .sectionTitle {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .itemIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .itemLabel {
+    font-size: var(--font-size-xs);
+  }
+
+  .itemShortcut {
+    font-size: var(--font-size-xs);
+  }
+
+  .section {
+    padding: var(--spacing-xs) 0;
+
+    &:first-child {
+      padding-top: var(--spacing-xs);
+    }
+
+    &:last-child {
+      padding-bottom: var(--spacing-xs);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .menu {
+    width: calc(100vw - 32px) !important;
+    max-width: 320px;
+    margin: 0 var(--spacing-md);
+  }
+
+  .menuItem {
+    padding: var(--spacing-md);
+  }
+
+  .sectionTitle {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}

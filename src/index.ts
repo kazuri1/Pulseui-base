@@ -2,6 +2,12 @@
 export { Button } from "./components/atoms/Button";
 export type { ButtonProps } from "./components/atoms/Button";
 
+export { Breadcrumbs } from "./components/atoms/Breadcrumbs";
+export type { BreadcrumbsProps } from "./components/atoms/Breadcrumbs";
+
+export { Menu } from "./components/atoms/Menu";
+export type { MenuProps, MenuItem, MenuSection } from "./components/atoms/Menu";
+
 export { TextInput } from "./components/atoms/TextInput";
 export type { TextInputProps } from "./components/atoms/TextInput";
 

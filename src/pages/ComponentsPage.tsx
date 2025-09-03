@@ -1,5 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useBreakpoint } from "../hooks/useBreakpoint";
+import {
+  Settings,
+  Message,
+  Photo,
+  Search,
+  Sync,
+  Delete,
+} from "../components/atoms/Icon/IconSet";
 import {
   // Core Components
   Button,
@@ -55,6 +63,7 @@ import {
   TabsTab,
   TabsPanel,
   FileUpload,
+  Menu,
 } from "../index";
 
 export function ComponentsPage() {
@@ -68,14 +77,14 @@ export function ComponentsPage() {
   const [pillState, setPillState] = React.useState<
     "default" | "info" | "success" | "warning" | "error"
   >("default");
-  
+
   const [tagState, setTagState] = React.useState<
     "default" | "teal" | "selected" | "mint"
   >("default");
   const [avatarState, setAvatarState] = React.useState<
     "primary" | "secondary" | "success" | "warning"
   >("primary");
-  
+
   const [paginationState, setPaginationState] = React.useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >("md");
@@ -83,12 +92,10 @@ export function ComponentsPage() {
     "default" | "filled" | "unstyled"
   >("default");
 
-  const [pillInputSize] = React.useState<
-    "sm" | "md" | "lg" | "xl"
-  >("md");
-  const [pillInputPillSize] = React.useState<
-    "xs" | "sm" | "md" | "lg" | "xl"
-  >("sm");
+  const [pillInputSize] = React.useState<"sm" | "md" | "lg" | "xl">("md");
+  const [pillInputPillSize] = React.useState<"xs" | "sm" | "md" | "lg" | "xl">(
+    "sm"
+  );
   const [pillInputStateValue] = React.useState<
     "enabled" | "focus" | "typing" | "filled" | "disabled" | "error"
   >("enabled");
@@ -107,7 +114,6 @@ export function ComponentsPage() {
   if (isMobile) span = 12; // 1 col
   else if (isTablet) span = 6;
 
-  
   const [stepperState, setStepperState] = useState<
     "xs" | "sm" | "md" | "lg" | "xl"
   >(
@@ -125,9 +131,7 @@ export function ComponentsPage() {
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
-    "md"
-  );
+  const [modalSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">("md");
 
   // Drawer state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -156,9 +160,7 @@ export function ComponentsPage() {
   const [progressVariant, setProgressVariant] = useState<
     "primary" | "success" | "warning" | "error" | "info"
   >("primary");
-  const [progressSize] = useState<
-    "xs" | "sm" | "md" | "lg" | "xl"
-  >("md");
+  const [progressSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">("md");
 
   // Tabs state
   const [activeTab, setActiveTab] = useState("tab1");
@@ -168,6 +170,10 @@ export function ComponentsPage() {
 
   // FileUpload state
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+
+  // Menu state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -798,8 +804,6 @@ export function ComponentsPage() {
                   <div
                     style={{
                       width: "100%",
-                      maxWidth: "350px",
-                      margin: "0 auto",
                     }}
                   >
                     <FileUpload
@@ -818,17 +822,19 @@ export function ComponentsPage() {
                         );
                       }}
                       sx={{
+                        transform: "scale(0.8)",
+                        transformOrigin: "center",
                         width: "100%",
                         maxWidth: "100%",
-                        padding: "12px",
+                        padding: "8px",
                         "& .fileUpload": {
                           maxWidth: "100%",
                           width: "100%",
-                          padding: "16px",
+                          padding: "12px",
                         },
                         "& .dropZone": {
-                          minHeight: "120px",
-                          padding: "16px",
+                          minHeight: "80px",
+                          padding: "12px",
                         },
                         "& .header": {
                           gap: "4px",
@@ -847,7 +853,6 @@ export function ComponentsPage() {
                         padding: "8px",
                         backgroundColor: "var(--color-surface-secondary)",
                         borderRadius: "var(--radius-sm)",
-                        maxWidth: "350px",
                         margin: "12px auto 0 auto",
                         wordBreak: "break-word",
                       }}
@@ -1097,6 +1102,113 @@ export function ComponentsPage() {
                 >
                   Open Drawer
                 </Button>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Menu Component"
+              variants={["default", "without-titles", "without-backdrop"]}
+              defaultVariant="default"
+              label="Select Menu Variant:"
+              onVariantChange={(variant) => {
+                console.log(`Menu variant changed to: ${variant}`);
+              }}
+            >
+              <div
+                style={{
+                  padding: "12px",
+                  border: "1px solid var(--color-border-secondary)",
+                  borderRadius: "var(--radius-md)",
+                  backgroundColor: "var(--color-surface)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  width: "100%",
+                  minHeight: "200px",
+                  position: "relative",
+                }}
+              >
+                <div ref={menuButtonRef}>
+                  <Button
+                    onClick={() => setIsMenuOpen(true)}
+                    variant="outline"
+                    size="md"
+                  >
+                    Toggle Menu
+                  </Button>
+                </div>
+
+                <Menu
+                  sections={[
+                    {
+                      title: "Application",
+                      items: [
+                        {
+                          label: "Settings",
+                          icon: Settings,
+                          onClick: () => {
+                            console.log("Settings clicked");
+                            setIsMenuOpen(false);
+                          },
+                        },
+                        {
+                          label: "Messages",
+                          icon: Message,
+                          onClick: () => {
+                            console.log("Messages clicked");
+                            setIsMenuOpen(false);
+                          },
+                        },
+                        {
+                          label: "Gallery",
+                          icon: Photo,
+                          onClick: () => {
+                            console.log("Gallery clicked");
+                            setIsMenuOpen(false);
+                          },
+                        },
+                        {
+                          label: "Search",
+                          icon: Search,
+                          shortcut: "⌘K",
+                          onClick: () => {
+                            console.log("Search clicked");
+                            setIsMenuOpen(false);
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      title: "Danger zone",
+                      items: [
+                        {
+                          label: "Transfer my data",
+                          icon: Sync,
+                          onClick: () => {
+                            console.log("Transfer data clicked");
+                            setIsMenuOpen(false);
+                          },
+                        },
+                        {
+                          label: "Delete my account",
+                          icon: Delete,
+                          danger: true,
+                          onClick: () => {
+                            console.log("Delete account clicked");
+                            setIsMenuOpen(false);
+                          },
+                        },
+                      ],
+                    },
+                  ]}
+                  open={isMenuOpen}
+                  onBackdropClick={() => setIsMenuOpen(false)}
+                  showBackdrop={false}
+                  anchorEl={menuButtonRef.current}
+                  placement="bottom-start"
+                />
               </div>
             </VariantSelector>
           </GridCol>
