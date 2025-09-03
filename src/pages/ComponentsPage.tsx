@@ -23,6 +23,7 @@ import {
   Pagination,
   ProgressBar,
   Carousel,
+  Breadcrumbs,
 
   // Display Components
   Text,
@@ -1065,7 +1066,7 @@ export function ComponentsPage() {
           weight="semibold"
           sx={{ marginBottom: "24px" }}
         >
-          Overlay Components
+          Overlay Components & Breadcrumbs
         </Text>
         <Grid gutter="24px">
           <GridCol span={span}>
@@ -1210,6 +1211,21 @@ export function ComponentsPage() {
                   placement="bottom-start"
                 />
               </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Breadcrumbs"
+              variants={["default", "without-titles", "without-backdrop"]}
+              defaultVariant="default"
+            >
+              <Breadcrumbs
+                items={[
+                  { label: "Home", href: "#" },
+                  { label: "Products", href: "#" },
+                  { label: "Laptops", href: "#" },
+                ]}
+              />
             </VariantSelector>
           </GridCol>
         </Grid>
