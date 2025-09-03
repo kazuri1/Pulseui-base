@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Tag } from "./Tag";
 import { LocalHospital, Favorite, Star, Tag as TagIcon } from "@mui/icons-material";
