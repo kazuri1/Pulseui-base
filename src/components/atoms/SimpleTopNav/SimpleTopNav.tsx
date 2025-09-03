@@ -40,6 +40,8 @@ export interface SimpleTopNavProps extends WithSxProps {
   brandLogoSize?: "sm" | "md" | "lg" | "xl";
   /** Whether to show text with the brand logo */
   showBrandText?: boolean;
+  /** Click handler for the brand logo */
+  onLogoClick?: () => void;
   /** Navigation items */
   items?: SimpleTopNavItem[];
   /** Whether to show the brand section */
@@ -105,6 +107,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
   useDynamicBrandLogo = true,
   brandLogoSize = "md",
   showBrandText = true,
+  onLogoClick,
   items = [],
   showBrand = true,
   showNavigation = true,
@@ -228,6 +231,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
                 size={brandLogoSize}
                 showText={showBrandText}
                 className={styles.brandLogoComponent}
+                onClick={onLogoClick}
               />
             ) : (
               <>

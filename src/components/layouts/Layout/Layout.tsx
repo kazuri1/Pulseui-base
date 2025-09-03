@@ -32,6 +32,8 @@ export interface LayoutProps extends WithSxProps {
     brandLogoSize?: "sm" | "md" | "lg" | "xl";
     /** Whether to show text with the brand logo */
     showBrandText?: boolean;
+    /** Click handler for the brand logo */
+    onLogoClick?: () => void;
     /** Version selector configuration */
     versionSelector?: {
       /** Current version to display */

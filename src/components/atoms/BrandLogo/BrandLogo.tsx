@@ -22,6 +22,8 @@ export interface BrandLogoProps extends WithSxProps {
   brand?: "default" | "medash" | "fitcore" | "labsync";
   /** Custom theme override (useful for testing) */
   theme?: "light" | "dark";
+  /** Click handler for the logo */
+  onClick?: () => void;
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
@@ -32,6 +34,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   className = "",
   sx,
   style,
+  onClick,
 }) => {
   const [currentBrand, setCurrentBrand] = useState<string>(() => {
     if (brand) return brand;
@@ -146,10 +149,27 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 
   const brandConfig = getBrandConfig();
 
-
-
   return (
-    <div className={containerClasses} style={sxStyle}>
+    <div
+      className={containerClasses}
+      style={{
+        ...sxStyle,
+        ...(onClick && { cursor: "pointer" }),
+      }}
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
+    >
       <div className={styles.logoImage}>
         <img
           src={brandConfig.logo}

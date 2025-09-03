@@ -1,0 +1,42 @@
+# Development files
+node_modules
+.git
+.github
+.husky
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts (will be generated during build)
+dist
+storybook-static
+types
+
+# Documentation
+README.md
+LICENSE
+*.md
+
+# Configuration files not needed in deployment
+.eslintrc*
+.prettierrc*
+tailwind.config.js
+postcss.config.js
+vite.config.ts
+vite.lib.config.ts
+tsconfig*.json
+
+# Scripts
+scripts/
+
+# Test files
+*.test.*
+*.spec.*
+vitest.shims.d.ts
+setupTests.ts
+
+# Temporary files
+.DS_Store
+Thumbs.db

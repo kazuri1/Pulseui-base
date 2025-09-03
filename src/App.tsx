@@ -85,6 +85,7 @@ function AppContent() {
         showBrandText: false,
         brandName: "PulseUI",
         brandTitle: "Component Library",
+        onLogoClick: () => setCurrentPage("home"),
         versionSelector: {
           version: "1.6.0",
           versions: ["1.5.0", "1.6.0", "1.7.0"],
