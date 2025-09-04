@@ -12,6 +12,10 @@ import fitCoreLightLogo from "../../../assets/logos/fitcorelight.png";
 import fitCoreDarkLogo from "../../../assets/logos/fitcoredark.png";
 import labSyncLightLogo from "../../../assets/logos/labsynclight.png";
 import labSyncDarkLogo from "../../../assets/logos/labsyncdark.png";
+import githubLightLogo from "../../../assets/logos/githublight.svg";
+import githubDarkLogo from "../../../assets/logos/githubdark.svg";
+import uberLightLogo from "../../../assets/logos/uberlight.png";
+import uberDarkLogo from "../../../assets/logos/uber dark.jpg";
 
 export interface BrandLogoProps extends WithSxProps {
   /** Size of the logo */
@@ -19,7 +23,7 @@ export interface BrandLogoProps extends WithSxProps {
   /** Whether to show text alongside the logo */
   showText?: boolean;
   /** Custom brand override (useful for testing) */
-  brand?: "default" | "medash" | "fitcore" | "labsync";
+  brand?: "default" | "medash" | "fitcore" | "labsync" | "github" | "uber";
   /** Custom theme override (useful for testing) */
   theme?: "light" | "dark";
   /** Click handler for the logo */
@@ -136,6 +140,20 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
           name: "LabSync",
           tagline: "Laboratory Research",
           alt: `LabSync ${currentTheme} logo`,
+        };
+      case "github":
+        return {
+          logo: isLight ? githubLightLogo : githubDarkLogo,
+          name: "GitHub",
+          tagline: "Developer Platform",
+          alt: `GitHub ${currentTheme} logo`,
+        };
+      case "uber":
+        return {
+          logo: isLight ? uberLightLogo : uberDarkLogo,
+          name: "Uber",
+          tagline: "Transportation Platform",
+          alt: `Uber ${currentTheme} logo`,
         };
       default:
         return {

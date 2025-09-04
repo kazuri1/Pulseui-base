@@ -101,18 +101,18 @@
 
 // Variant styles
 .variant-dot {
-  background-color: var(--color-blue-8);
+  background-color: var(--color-badge-primary, var(--color-blue-8));
   color: var(--color-white);
-  border: var(--border-width-thin) solid var(--color-blue-8);
+  border: var(--border-width-thin) solid var(--color-badge-primary, var(--color-blue-8));
 
   &:hover:not(.disabled) {
-    background-color: var(--color-blue-9);
-    border-color: var(--color-blue-9);
+    background-color: var(--color-badge-primary-hover, var(--color-blue-9));
+    border-color: var(--color-badge-primary-hover, var(--color-blue-9));
   }
 
   &:active:not(.disabled) {
-    background-color: var(--color-blue-7);
-    border-color: var(--color-blue-7);
+    background-color: var(--color-badge-primary-active, var(--color-blue-7));
+    border-color: var(--color-badge-primary-active, var(--color-blue-7));
   }
 
   .dot {
@@ -123,18 +123,18 @@
 }
 
 .variant-filled {
-  background-color: var(--color-blue-8);
+  background-color: var(--color-badge-primary, var(--color-blue-8));
   color: var(--color-white);
-  border: var(--border-width-thin) solid var(--color-blue-8);
+  border: var(--border-width-thin) solid var(--color-badge-primary, var(--color-blue-8));
 
   &:hover:not(.disabled) {
-    background-color: var(--color-blue-9);
-    border-color: var(--color-blue-9);
+    background-color: var(--color-badge-primary-hover, var(--color-blue-9));
+    border-color: var(--color-badge-primary-hover, var(--color-blue-9));
   }
 
   &:active:not(.disabled) {
-    background-color: var(--color-blue-7);
-    border-color: var(--color-blue-7);
+    background-color: var(--color-badge-primary-active, var(--color-blue-7));
+    border-color: var(--color-badge-primary-active, var(--color-blue-7));
   }
 }
 

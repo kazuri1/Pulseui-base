@@ -1,7 +1,9 @@
 @use "../../../styles/_tokens.scss" as *;
 
 .checkboxContainer {
-  display: flex; align-items: center; justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
   align-items: flex-start;
   font-family: var(--font-family);
@@ -20,7 +22,9 @@
 }
 
 .checkboxLabelGroup {
-  display: flex; align-items: center; justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: var(--spacing-sm);
   align-items: center;
   flex-shrink: 0;

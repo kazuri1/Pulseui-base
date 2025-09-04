@@ -1,5 +1,3 @@
-
-import React from "react";
 import { Text, Button, Grid, GridCol, Card } from "../index";
 
 export function HomePage() {

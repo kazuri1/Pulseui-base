@@ -265,6 +265,31 @@
   animation: dropdownSlide 0.2s var(--motion-easing-ease-out);
 }
 
+// Scrollbar styling (uses design tokens; surface is white in light theme)
+.dropdown {
+  scrollbar-width: thin; // Firefox
+  scrollbar-color: var(--color-surface) transparent; // thumb track
+
+  &::-webkit-scrollbar {
+    width: var(--spacing-xs);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: var(--radius-sm);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-secondary);
+
+    &:hover {
+      background: var(--color-surface);
+    }
+  }
+}
+
 @keyframes dropdownSlide {
   from {
     opacity: 0;

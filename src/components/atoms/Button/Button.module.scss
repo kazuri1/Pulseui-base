@@ -84,35 +84,65 @@
 
   // Variant styles with enhanced hover states
   &.variant-filled {
-    background-color: var(--color-primary);
+    background-color: var(--color-button-primary, var(--color-primary));
     color: var(--color-surface);
-    border: var(--border-width-thin) solid var(--color-primary);
+    border: var(--border-width-thin) solid
+      var(--color-button-primary, var(--color-primary));
 
     &:hover:not(:disabled) {
-      background-color: var(--color-primary-hover, var(--color-primary-7));
-      border-color: var(--color-primary-hover, var(--color-primary-7));
+      background-color: var(
+        --color-button-primary-hover,
+        var(--color-primary-hover, var(--color-primary-7))
+      );
+      border-color: var(
+        --color-button-primary-hover,
+        var(--color-primary-hover, var(--color-primary-7))
+      );
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-primary-dark, var(--color-primary-6));
-      border-color: var(--color-primary-dark, var(--color-primary-6));
+      background-color: var(
+        --color-button-primary-active,
+        var(--color-primary-dark, var(--color-primary-6))
+      );
+      border-color: var(
+        --color-button-primary-active,
+        var(--color-primary-dark, var(--color-primary-6))
+      );
+      transform: translateY(1px);
     }
   }
 
   &.variant-subtle {
-    background-color: var(--color-surface-secondary);
-    color: var(--color-primary);
-    border: var(--border-width-thin) solid var(--color-surface-secondary);
+    background-color: var(
+      --color-button-secondary,
+      var(--color-surface-secondary)
+    );
+    color: var(--color-button-text, var(--color-primary));
+    border: var(--border-width-thin) solid
+      var(--color-button-secondary, var(--color-surface-secondary));
 
     &:hover:not(:disabled) {
-      background-color: var(--color-surface-tertiary);
-      border-color: var(--color-surface-tertiary);
+      background-color: var(
+        --color-button-secondary-hover,
+        var(--color-surface-tertiary)
+      );
+      border-color: var(
+        --color-button-secondary-hover,
+        var(--color-surface-tertiary)
+      );
     }
 
     &:active:not(:disabled) {
-      background-color: var(--color-surface-tertiary);
-      border-color: var(--color-surface-tertiary);
-      transform: translateY(0);
+      background-color: var(
+        --color-button-secondary-active,
+        var(--color-surface-tertiary)
+      );
+      border-color: var(
+        --color-button-secondary-active,
+        var(--color-surface-tertiary)
+      );
+      transform: translateY(1px);
     }
   }
 
@@ -129,24 +159,31 @@
     &:active:not(:disabled) {
       background-color: var(--color-surface-2);
       border-color: var(--color-border-primary);
-      transform: translateY(0);
+      transform: translateY(1px);
     }
   }
 
   &.variant-outline {
     background-color: transparent;
-    color: var(--color-primary);
-    border: var(--border-width-thin) solid var(--color-primary);
+    color: var(--color-button-outline, var(--color-primary));
+    border: var(--border-width-thin) solid
+      var(--color-button-outline, var(--color-primary));
 
     &:hover:not(:disabled) {
       background-color: var(--color-surface-secondary);
-      border-color: var(--color-primary-hover, var(--color-primary-7));
+      border-color: var(
+        --color-button-outline-hover,
+        var(--color-primary-hover, var(--color-primary-7))
+      );
     }
 
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
-      border-color: var(--color-primary-dark, var(--color-primary-6));
-      transform: translateY(0);
+      border-color: var(
+        --color-button-outline-active,
+        var(--color-primary-dark, var(--color-primary-6))
+      );
+      transform: translateY(1px);
     }
   }
 
@@ -163,7 +200,7 @@
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
       border-color: var(--color-border-primary);
-      transform: translateY(0);
+      transform: translateY(1px);
     }
   }
 
@@ -180,7 +217,7 @@
     &:active:not(:disabled) {
       background-color: var(--color-surface-tertiary);
       border-color: var(--color-border-primary);
-      transform: translateY(0);
+      transform: translateY(1px);
     }
   }
 

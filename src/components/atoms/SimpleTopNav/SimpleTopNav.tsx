@@ -253,6 +253,7 @@ export const SimpleTopNav: React.FC<SimpleTopNavProps> = ({
               <BrandSwitcher
                 size={brandSwitcher.size || "sm"}
                 showDescription={brandSwitcher.showDescription || false}
+                variant="tiles"
                 label=""
                 className={styles.brandSwitcher}
               />

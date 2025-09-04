@@ -966,3 +966,401 @@
   --color-border: var(--color-divider);
   --color-border-tertiary: var(--color-surface-4);
 }
+
+// =============================================================================
+// GITHUB BRAND - Developer & Open Source Theme (Light Mode)
+// =============================================================================
+[data-brand="github"][data-mode="light"] {
+  --font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Noto Sans", Helvetica, Arial, sans-serif;
+
+  // Primary brand colors (GitHub's signature dark gray and blue)
+  --color-blue-0: #f6f8fa;
+  --color-blue-1: #e1ecf4;
+  --color-blue-2: #c8e1ff;
+  --color-blue-3: #79c0ff;
+  --color-blue-4: #1f6feb;
+  --color-blue-5: #0969da;
+  --color-blue-6: #0858ba;
+  --color-blue-7: #0747a6;
+  --color-blue-8: #0c2d6b;
+  --color-blue-9: #051d4d;
+
+  // Surface colors with GitHub's clean white/gray system
+  --color-surface-0: #ffffff;
+  --color-surface-1: #f6f8fa;
+  --color-surface-2: #f1f3f4;
+  --color-surface-3: #e1e4e8;
+  --color-surface-4: #d0d7de;
+  --color-surface-5: #afb8c1;
+  --color-surface-variant: #f6f8fa;
+
+  // Text colors with GitHub's signature dark gray
+  --color-on-surface: #24292f;
+  --color-on-surface-variant: #57606a;
+  --color-text-primary: #24292f;
+  --color-text-secondary: #57606a;
+  --color-text-muted: #656d76;
+  --color-text-disabled: #8c959f;
+
+  // Border colors
+  --color-divider: #d0d7de;
+  --color-border-primary: #d0d7de;
+  --color-border-secondary: #afb8c1;
+  --color-border-focus: #0969da;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors (GitHub's signature blue)
+  --color-primary: #0969da;
+  --color-primary-hover: #0858ba;
+  --color-primary-light: #1f6feb;
+  --color-primary-dark: #0747a6;
+
+  // GitHub-specific button colors (overriding default button colors)
+  --color-button-primary: #1f883d;
+  --color-button-primary-hover: #1a7f37;
+  --color-button-primary-active: #1a7f37;
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
+  --color-button-secondary-active: var(--color-surface-3);
+  --color-button-outline: #0969da;
+  --color-button-outline-hover: #0858ba;
+  --color-button-outline-active: #0747a6;
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors
+  --color-input-background: var(--color-surface-0);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: #0969da;
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors (GitHub's semantic colors)
+  --color-success: #1a7f37;
+  --color-warning: #9a6700;
+  --color-error: #cf222e;
+  --color-info: #0969da;
+
+  // Shadow with GitHub's subtle approach
+  --color-shadow: rgba(1, 4, 9, 0.08);
+
+  // GITHUB-specific border radius overrides (clean, minimal)
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+}
+
+// =============================================================================
+// GITHUB BRAND - Developer & Open Source Theme (Dark Mode)
+// =============================================================================
+[data-brand="github"][data-mode="dark"] {
+  --font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Noto Sans", Helvetica, Arial, sans-serif;
+
+  // Primary brand colors for dark mode (GitHub Dark theme)
+  --color-blue-0: #0c2d6b;
+  --color-blue-1: #1a4d91;
+  --color-blue-2: #1f6feb;
+  --color-blue-3: #388bfd;
+  --color-blue-4: #58a6ff;
+  --color-blue-5: #79c0ff;
+  --color-blue-6: #a371f7;
+  --color-blue-7: #bc8cff;
+  --color-blue-8: #d2a8ff;
+  --color-blue-9: #e7c3ff;
+
+  // Surface colors for dark GitHub theme
+  --color-surface-0: #0d1117;
+  --color-surface-1: #161b22;
+  --color-surface-2: #21262d;
+  --color-surface-3: #30363d;
+  --color-surface-4: #484f58;
+  --color-surface-5: #6e7681;
+  --color-surface-variant: #161b22;
+
+  // Text colors for dark GitHub theme
+  --color-on-surface: #f0f6fc;
+  --color-on-surface-variant: #c9d1d9;
+  --color-text-primary: #f0f6fc;
+  --color-text-secondary: #c9d1d9;
+  --color-text-muted: #8b949e;
+  --color-text-disabled: #484f58;
+
+  // Border colors for dark mode
+  --color-divider: #30363d;
+  --color-border-primary: #30363d;
+  --color-border-secondary: #484f58;
+  --color-border-focus: #58a6ff;
+
+  // Component colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Primary colors
+  --color-primary: #58a6ff;
+  --color-primary-hover: #79c0ff;
+  --color-primary-light: #388bfd;
+  --color-primary-dark: #1f6feb;
+
+  // GitHub-specific button colors for dark mode (overriding default button colors)
+  --color-button-primary: #3fb950;
+  --color-button-primary-hover: #56d364;
+  --color-button-primary-active: #56d364;
+  --color-button-secondary: var(--color-surface-2);
+  --color-button-secondary-hover: var(--color-surface-3);
+  --color-button-secondary-active: var(--color-surface-4);
+  --color-button-outline: #58a6ff;
+  --color-button-outline-hover: #79c0ff;
+  --color-button-outline-active: #388bfd;
+  --color-button-text: var(--color-on-surface-variant);
+  --color-button-text-hover: var(--color-on-surface);
+
+  // Input colors for dark mode
+  --color-input-background: var(--color-surface-1);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: #58a6ff;
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icon colors for dark mode
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status colors for dark mode (GitHub Dark semantic colors)
+  --color-success: #3fb950;
+  --color-warning: #d29922;
+  --color-error: #f85149;
+  --color-info: #58a6ff;
+
+  // Shadow for dark mode
+  --color-shadow: rgba(1, 4, 9, 0.3);
+
+  // Additional dark mode specific colors
+  --color-text: var(--color-on-surface);
+  --color-text-tertiary: var(--color-text-muted);
+  --color-primary-active: var(--color-blue-6);
+  --color-border: var(--color-divider);
+  --color-border-tertiary: var(--color-surface-4);
+
+  // GITHUB-specific border radius overrides (clean, minimal)
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+}
+
+// =============================================================================
+// UBER BRAND - Transportation & Mobility Theme (Light Mode)
+// =============================================================================
+// =============================================================================
+// UBER BRAND - Transportation & Mobility Theme (Light Mode)
+// =============================================================================
+[data-brand="uber"][data-mode="light"] {
+  --font-family: "Uber Move", "UberMove", "UberMoveText", "Uber Move Text",
+   
+
+  // Primary brand colors (Uber Base = Safety Blue, not green)
+  --color-blue-0: #f5f9ff;
+  --color-blue-1: #e2ecfe;
+  --color-blue-2: #c7d8fc;
+  --color-blue-3: #a0bbf9;
+  --color-blue-4: #799ef6;
+  --color-blue-5: #276ef1; /* Safety Blue */
+  --color-blue-6: #1d5cd7;
+  --color-blue-7: #1447a3;
+  --color-blue-8: #0d2f70;
+  --color-blue-9: #081c42;
+
+  // Surface colors
+  --color-surface-0: #ffffff;
+  --color-surface-1: #f8f9fa;
+  --color-surface-2: #f1f3f4;
+  --color-surface-3: #e8eaed;
+  --color-surface-4: #dadce0;
+  --color-surface-5: #bdc1c6;
+  --color-surface-variant: #f8f9fa;
+
+  // Text colors
+  --color-on-surface: #202124;
+  --color-on-surface-variant: #5f6368;
+  --color-text-primary: #202124;
+  --color-text-secondary: #5f6368;
+  --color-text-muted: #80868b;
+  --color-text-disabled: #9aa0a6;
+
+  // Border colors
+  --color-divider: #dadce0;
+  --color-border-primary: #dadce0;
+  --color-border-secondary: #bdc1c6;
+  --color-border-focus: #276ef1;
+
+  // Primary colors (Uber = Safety Blue)
+  --color-primary: #276ef1;
+  --color-primary-hover: #1d5cd7;
+  --color-primary-light: #799ef6;
+  --color-primary-dark: #1447a3;
+
+  // Buttons
+  --color-button-primary: #000000;
+  --color-button-primary-hover: #202124;
+  --color-button-primary-active: #3c4043;
+  --color-button-secondary: var(--color-surface-1);
+  --color-button-secondary-hover: var(--color-surface-2);
+  --color-button-secondary-active: var(--color-surface-3);
+  --color-button-outline: #000000;
+  --color-button-outline-hover: #202124;
+  --color-button-outline-active: #3c4043;
+  --color-button-text: #ffffff;
+  --color-button-text-hover: #ffffff;
+
+  // Inputs
+  --color-input-background: var(--color-surface-0);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: #276ef1;
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icons
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status (Uber semantic colors)
+  --color-success: #47b275;
+  --color-warning: #ffc043;
+  --color-error: #f25138;
+  --color-info: #276ef1;
+
+  // Badge colors (Uber-specific)
+  --color-badge-primary: #426cee;
+  --color-badge-primary-hover: #3a5fd8;
+  --color-badge-primary-active: #2f4cc2;
+
+  // Shadow
+  --color-shadow: rgba(32, 33, 36, 0.08);
+
+  // Border radius
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 0px;
+}
+
+// =============================================================================
+// UBER BRAND - Transportation & Mobility Theme (Dark Mode)
+// =============================================================================
+[data-brand="uber"][data-mode="dark"] {
+  --font-family: "Uber Move", "UberMove", "UberMoveText", "Uber Move Text",
+  
+
+  // Primary brand colors for dark mode (Safety Blue tones)
+  --color-blue-0: #081c42;
+  --color-blue-1: #0d2f70;
+  --color-blue-2: #1447a3;
+  --color-blue-3: #1d5cd7;
+  --color-blue-4: #276ef1;
+  --color-blue-5: #5a8cf6;
+  --color-blue-6: #8ab4f8;
+  --color-blue-7: #c7d8fc;
+  --color-blue-8: #e2ecfe;
+  --color-blue-9: #f5f9ff;
+
+  // Surface colors
+  --color-surface-0: #121212;
+  --color-surface-1: #1e1e1e;
+  --color-surface-2: #2a2a2a;
+  --color-surface-3: #3c3c3c;
+  --color-surface-4: #5f6368;
+  --color-surface-5: #80868b;
+  --color-surface-variant: #1e1e1e;
+
+  // Text colors
+  --color-on-surface: #e8eaed;
+  --color-on-surface-variant: #bdc1c6;
+  --color-text-primary: #e8eaed;
+  --color-text-secondary: #bdc1c6;
+  --color-text-muted: #9aa0a6;
+  --color-text-disabled: #80868b;
+
+  // Borders
+  --color-divider: #3c4043;
+  --color-border-primary: #3c4043;
+  --color-border-secondary: #5f6368;
+  --color-border-focus: #5a8cf6;
+
+  // Primary colors (Safety Blue for dark mode)
+  --color-primary: #5a8cf6;
+  --color-primary-hover: #8ab4f8;
+  --color-primary-light: #c7d8fc;
+  --color-primary-dark: #276ef1;
+
+  // Buttons
+  --color-button-primary: #ffffff;
+  --color-button-primary-hover: #f8f9fa;
+  --color-button-primary-active: #e8eaed;
+  --color-button-secondary: var(--color-surface-2);
+  --color-button-secondary-hover: var(--color-surface-3);
+  --color-button-secondary-active: var(--color-surface-4);
+  --color-button-outline: #ffffff;
+  --color-button-outline-hover: #f8f9fa;
+  --color-button-outline-active: #e8eaed;
+  --color-button-text: #000000;
+  --color-button-text-hover: #202124;
+
+  // Inputs
+  --color-input-background: var(--color-surface-1);
+  --color-input-border: var(--color-divider);
+  --color-input-border-focus: #5a8cf6;
+  --color-input-text: var(--color-on-surface);
+  --color-input-placeholder: var(--color-on-surface-variant);
+
+  // Icons
+  --color-icon-primary: var(--color-on-surface);
+  --color-icon-secondary: var(--color-on-surface-variant);
+  --color-icon-muted: var(--color-on-surface-variant);
+
+  // Status (semantic dark)
+  --color-success: #81c995;
+  --color-warning: #fbbc04;
+  --color-error: #f28b82;
+  --color-info: #8ab4f8;
+
+  // Badge colors (Uber-specific dark)
+  --color-badge-primary: #5a8cf6;
+  --color-badge-primary-hover: #8ab4f8;
+  --color-badge-primary-active: #276ef1;
+
+  // Shadow
+  --color-shadow: rgba(0, 0, 0, 0.3);
+
+  // Border radius
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 0px;
+}
