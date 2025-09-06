@@ -69,6 +69,7 @@ import {
   DataTable,
   Skeleton,
   Snackbar,
+  Loader,
 } from "../index";
 
 export function ComponentsPage() {
@@ -980,6 +981,21 @@ export function ComponentsPage() {
                   <Skeleton variant="button" width={88} />
                   <Skeleton variant="button" width={88} />
                 </div>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Spinner (Loader)"
+              variants={["sizes"]}
+              defaultVariant="sizes"
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <Loader size="xs" />
+                <Loader size="sm" />
+                <Loader size="md" />
+                <Loader size="lg" />
+                <Loader size="xl" />
               </div>
             </VariantSelector>
           </GridCol>
