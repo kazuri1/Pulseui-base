@@ -15,6 +15,8 @@ export interface CheckboxProps extends WithSxProps {
   label?: string;
   error?: string;
   size?: "sm" | "md" | "lg";
+  indeterminate?: boolean;
+  ariaLabel?: string;
   onChange?: (checked: boolean) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -32,6 +34,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       label,
       error,
       size = "md",
+      indeterminate,
+      ariaLabel,
       onChange,
       onFocus,
       onBlur,
@@ -41,6 +45,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
     const [internalChecked, setInternalChecked] = React.useState(
       defaultChecked || false
     );
@@ -70,11 +76,17 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       sxClassName
     );
 
+    React.useEffect(() => {
+      if (inputRef.current) {
+        inputRef.current.indeterminate = !!indeterminate && !currentChecked;
+      }
+    }, [indeterminate, currentChecked]);
+
     return (
       <div className={containerClasses} style={sxStyle}>
         <div className={styles.checkboxLabelGroup}>
           <input
-            ref={ref}
+            ref={inputRef}
             id={checkboxId}
             name={name}
             type="checkbox"
@@ -87,6 +99,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className={styles.checkboxInput}
             aria-describedby={errorId}
             aria-invalid={!!error}
+            aria-label={ariaLabel}
           />
 
           <div

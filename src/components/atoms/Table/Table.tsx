@@ -38,7 +38,6 @@ export interface TableProps<T = Record<string, unknown>> extends WithSxProps {
 export function Table<T = Record<string, unknown>>({
   columns,
   data,
-  caption,
   variant = "basic",
   size = "md",
   compact = false,

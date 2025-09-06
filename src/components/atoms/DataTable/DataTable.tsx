@@ -94,39 +94,36 @@ export function DataTable<T>({
   };
 
   // prepend checkbox column if selectable
-  const effectiveColumns: TableColumn<T | { __id: string | number }>[] =
-    selectable
-      ? [
-          {
-            key: "__select__",
-            header: (
+  const effectiveColumns: TableColumn<T>[] = selectable
+    ? [
+        {
+          key: "__select__",
+          header: (
+            <Checkbox
+              checked={allChecked}
+              indeterminate={someChecked}
+              onChange={toggleAll}
+              ariaLabel="Select all rows"
+            />
+          ),
+          render: (_row: T, idx: number) => {
+            const row = pageRows[idx] as T;
+            const id = getRowId ? getRowId(row, start + idx) : start + idx;
+            const checked = internalSelection.includes(id);
+            return (
               <Checkbox
-                checked={allChecked}
-                indeterminate={someChecked}
-                onChange={toggleAll}
-                ariaLabel="Select all rows"
+                checked={checked}
+                onChange={() => toggleOne(id)}
+                ariaLabel={`Select row ${id}`}
               />
-            ),
-            render: (_, idx) => {
-              const row = pageRows[idx as number] as T;
-              const id = getRowId
-                ? getRowId(row, start + (idx as number))
-                : start + (idx as number);
-              const checked = internalSelection.includes(id);
-              return (
-                <Checkbox
-                  checked={checked}
-                  onChange={() => toggleOne(id)}
-                  ariaLabel={`Select row ${id}`}
-                />
-              );
-            },
-            width: 48,
-            align: "center",
+            );
           },
-          ...columns,
-        ]
-      : columns;
+          width: 48,
+          align: "center",
+        },
+        ...columns,
+      ]
+    : columns;
 
   const totalPages = Math.max(1, Math.ceil(data.length / internalPageSize));
 
@@ -154,7 +151,7 @@ export function DataTable<T>({
       style={sxStyle}
     >
       <Table
-        columns={effectiveColumns as unknown as TableColumn<T>[]}
+        columns={effectiveColumns}
         data={pageRows}
         caption={caption}
         variant="basic"
