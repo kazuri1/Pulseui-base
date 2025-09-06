@@ -1,0 +1,138 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--color-surface-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-primary);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  border-radius: var(--radius-md);
+}
+
+.caption {
+  caption-side: top;
+  text-align: left;
+  color: var(--color-text-secondary);
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-size-sm);
+}
+
+.thead {
+  position: relative;
+}
+
+/* tbody styles inherit defaults; keeping class for specificity hooks */
+
+.th,
+.td {
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.th {
+  background: var(--color-surface-tertiary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.td {
+  color: var(--color-text-secondary);
+  vertical-align: top;
+}
+
+.striped .tbody tr:nth-child(odd) {
+  background: var(--color-surface-secondary);
+}
+
+.compact .th,
+.compact .td {
+  padding: calc(var(--spacing-xs)) var(--spacing-sm);
+}
+
+.size-sm .th,
+.size-sm .td {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.size-lg .th,
+.size-lg .td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-md);
+}
+
+.stickyHeader .thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+/* Table-level default alignment */
+.tableAlign-left .th,
+.tableAlign-left .td {
+  text-align: left;
+}
+
+.tableAlign-center .th,
+.tableAlign-center .td {
+  text-align: center;
+}
+
+.tableAlign-right .th,
+.tableAlign-right .td {
+  text-align: right;
+}
+
+/* Responsive: card-like rows on small screens */
+@media (max-width: 768px) {
+  .responsiveStack .table,
+  .responsiveStack table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .responsiveStack .thead {
+    display: none;
+  }
+
+  .responsiveStack .tbody tr {
+    display: block;
+    margin: var(--spacing-sm) 0;
+    background: var(--color-surface-primary);
+    border: 1px solid var(--color-border-secondary);
+    margin: 0;
+  }
+
+  .responsiveStack .td {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--color-border-secondary);
+  }
+
+  .responsiveStack .td:last-child {
+    border-bottom: none;
+  }
+
+  .responsiveStack .cellLabel {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-semibold);
+  }
+}

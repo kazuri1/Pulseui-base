@@ -65,6 +65,10 @@ import {
   TabsPanel,
   FileUpload,
   Menu,
+  Table,
+  DataTable,
+  Skeleton,
+  Snackbar,
 } from "../index";
 
 export function ComponentsPage() {
@@ -175,6 +179,75 @@ export function ComponentsPage() {
   // Menu state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLDivElement>(null);
+  const snackbarContainerRef = useRef<HTMLDivElement>(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  // Sample rows for DataTable demo
+  const dataTableRows = [
+    {
+      id: 1,
+      firstName: "Jon",
+      lastName: "Snow",
+      age: 35,
+      fullName: "Jon Snow",
+    },
+    {
+      id: 2,
+      firstName: "Cersei",
+      lastName: "Lannister",
+      age: 42,
+      fullName: "Cersei Lannister",
+    },
+    {
+      id: 3,
+      firstName: "Jaime",
+      lastName: "Lannister",
+      age: 45,
+      fullName: "Jaime Lannister",
+    },
+    {
+      id: 4,
+      firstName: "Arya",
+      lastName: "Stark",
+      age: 16,
+      fullName: "Arya Stark",
+    },
+    {
+      id: 5,
+      firstName: "Daenerys",
+      lastName: "Targaryen",
+      age: 25,
+      fullName: "Daenerys Targaryen",
+    },
+    {
+      id: 6,
+      firstName: "John",
+      lastName: "Smith",
+      age: 28,
+      fullName: "John Smith",
+    },
+    {
+      id: 7,
+      firstName: "Sansa",
+      lastName: "Stark",
+      age: 18,
+      fullName: "Sansa Stark",
+    },
+    {
+      id: 8,
+      firstName: "Tyrion",
+      lastName: "Lannister",
+      age: 39,
+      fullName: "Tyrion Lannister",
+    },
+    {
+      id: 9,
+      firstName: "Bran",
+      lastName: "Stark",
+      age: 14,
+      fullName: "Bran Stark",
+    },
+  ];
 
   return (
     <>
@@ -870,6 +943,78 @@ export function ComponentsPage() {
         </Grid>
       </div>
 
+      {/* Feedback Components */}
+      <div style={{ marginTop: "48px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Feedback Components
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={span}>
+            <VariantSelector
+              title="Skeleton Component"
+              variants={["preview"]}
+              defaultVariant="preview"
+            >
+              <div style={{ width: "100%", maxWidth: 360 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    marginBottom: 12,
+                  }}
+                >
+                  <Skeleton variant="avatar" width={40} height={40} />
+                  <div style={{ flex: 1 }}>
+                    <Skeleton variant="text" width="60%" />
+                    <Skeleton variant="text" width="40%" />
+                  </div>
+                </div>
+                <Skeleton variant="rect" height={140} radius={8} />
+                <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                  <Skeleton variant="button" width={88} />
+                  <Skeleton variant="button" width={88} />
+                </div>
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Snackbar Component"
+              variants={["primary"]}
+              defaultVariant="primary"
+            >
+              <div
+                ref={snackbarContainerRef}
+                style={{ position: "relative", minHeight: 120 }}
+              >
+                <Button
+                  variant="filled"
+                  size="md"
+                  onClick={() => setSnackbarOpen(true)}
+                >
+                  Show Snackbar
+                </Button>
+                <Snackbar
+                  open={snackbarOpen}
+                  onClose={() => setSnackbarOpen(false)}
+                  message="Note archived"
+                  variant="primary"
+                  position="bottom-right"
+                  autoHideMs={3000}
+                  container={snackbarContainerRef.current}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
       {/* Advanced Components */}
       <div style={{ marginTop: "48px" }}>
         <Text
@@ -1392,6 +1537,113 @@ export function ComponentsPage() {
           </Text>
         </div>
       </Drawer>
+
+      {/* Data Display: Table */}
+      <div style={{ marginTop: "48px", marginBottom: "96px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Data Display: Table
+        </Text>
+        <Grid gutter="24px">
+          {!isMobile && (
+            <GridCol span={span}>
+              <VariantSelector
+                title="Table Component"
+                variants={["basic", "striped", "bordered"]}
+                defaultVariant="basic"
+                label="Select Table Variant:"
+                onVariantChange={(variant) =>
+                  console.log(`Table variant: ${variant}`)
+                }
+              >
+                <Table
+                  columns={[
+                    { key: "dessert", header: "Dessert (100g serving)" },
+                    { key: "calories", header: "Calories", align: "right" },
+                    { key: "fat", header: "Fat (g)", align: "right" },
+                    { key: "carbs", header: "Carbs (g)", align: "right" },
+                    { key: "protein", header: "Protein (g)", align: "right" },
+                  ]}
+                  data={[
+                    {
+                      dessert: "Frozen yoghurt",
+                      calories: 159,
+                      fat: 6,
+                      carbs: 24,
+                      protein: 4,
+                    },
+                    {
+                      dessert: "Ice cream sandwich",
+                      calories: 237,
+                      fat: 9,
+                      carbs: 37,
+                      protein: 4.3,
+                    },
+                    {
+                      dessert: "Eclair",
+                      calories: 262,
+                      fat: 16,
+                      carbs: 24,
+                      protein: 6,
+                    },
+                    {
+                      dessert: "Cupcake",
+                      calories: 305,
+                      fat: 3.7,
+                      carbs: 67,
+                      protein: 4.3,
+                    },
+                    {
+                      dessert: "Gingerbread",
+                      calories: 356,
+                      fat: 16,
+                      carbs: 49,
+                      protein: 3.9,
+                    },
+                  ]}
+                  caption="Nutritional values per 100g serving"
+                  variant="striped"
+                  cellAlign="right"
+                  stickyHeader={false}
+                />
+              </VariantSelector>
+            </GridCol>
+          )}
+          {!isMobile && (
+            <GridCol span={span}>
+              <VariantSelector
+                title="DataTable Component"
+                variants={["5 rows", "10 rows", "25 rows"]}
+                defaultVariant="5 rows"
+                label="Select Rows Per Page:"
+                onVariantChange={(variant) =>
+                  console.log(`DataTable: ${variant}`)
+                }
+              >
+                <DataTable
+                  caption="People"
+                  columns={[
+                    { key: "id", header: "ID", width: 60, align: "center" },
+                    { key: "firstName", header: "First name" },
+                    { key: "lastName", header: "Last name" },
+                    { key: "age", header: "Age", align: "right" },
+                    { key: "fullName", header: "Full name" },
+                  ]}
+                  data={dataTableRows}
+                  getRowId={(row) => (row as any).id}
+                  size="sm"
+                  compact
+                  sx={{ transform: "scale(0.95)", transformOrigin: "top left" }}
+                />
+              </VariantSelector>
+            </GridCol>
+          )}
+        </Grid>
+      </div>
     </>
   );
 }

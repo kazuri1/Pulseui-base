@@ -1,0 +1,60 @@
+.skeleton {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-secondary) 25%,
+    var(--color-surface-tertiary) 37%,
+    var(--color-surface-secondary) 63%
+  );
+  background-size: 400% 100%;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes pulseShift {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.animated {
+  animation: pulseShift 1.2s ease-in-out infinite;
+}
+
+/* Variants */
+.variant-text {
+  height: 1em;
+  width: 100%;
+  border-radius: var(--radius-xs);
+}
+.variant-rect {
+}
+.variant-circle {
+  border-radius: 9999px;
+}
+.variant-avatar {
+  border-radius: 9999px;
+}
+.variant-button {
+  height: 36px;
+  border-radius: var(--radius-md);
+}
+
+/* Sizes */
+.size-xs {
+  height: 12px;
+}
+.size-sm {
+  height: 16px;
+}
+.size-md {
+  height: 20px;
+}
+.size-lg {
+  height: 28px;
+}
+.size-xl {
+  height: 36px;
+}

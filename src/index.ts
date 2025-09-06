@@ -147,6 +147,34 @@ export type { ProfileCardProps } from "./components/atoms/ProfileCard";
 export { UpdateNotification } from "./components/atoms/UpdateNotification";
 export type { UpdateNotificationProps } from "./components/atoms/UpdateNotification";
 
+// Table
+export { Table } from "./components/atoms/Table";
+export type { TableProps, TableColumn } from "./components/atoms/Table";
+
+// DataTable
+export { DataTable } from "./components/atoms/DataTable";
+export type { DataTableProps } from "./components/atoms/DataTable";
+
+// Loader
+export { Loader } from "./components/atoms/Loader";
+export type { LoaderProps, LoaderSize } from "./components/atoms/Loader";
+
+// Skeleton
+export { Skeleton } from "./components/atoms/Skeleton";
+export type {
+  SkeletonProps,
+  SkeletonVariant,
+  SkeletonSize,
+} from "./components/atoms/Skeleton";
+
+// Snackbar
+export { Snackbar } from "./components/atoms/Snackbar";
+export type {
+  SnackbarProps,
+  SnackbarVariant,
+  SnackbarPosition,
+} from "./components/atoms/Snackbar";
+
 export { Kbd } from "./components/atoms/Kbd";
 export type { KbdProps } from "./components/atoms/Kbd";
 

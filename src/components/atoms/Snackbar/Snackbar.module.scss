@@ -1,0 +1,146 @@
+.host {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.snackbar {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) var(--spacing-lg);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-family);
+  animation: fadeInUp 200ms ease-out;
+  min-width: 420px;
+  max-width: 640px;
+  position: relative; /* for border progress placement */
+  overflow: hidden; /* clip the progress bar to rounded corners */
+}
+
+.contentRow {
+  display: flex;
+  align-items: center;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message {
+  font-size: var(--font-size-sm);
+  flex: 1;
+}
+.action {
+  margin-left: var(--spacing-xs);
+}
+.icon {
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  margin-right: var(--spacing-sm);
+}
+
+.close {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  margin-left: auto; /* ensure it sticks to the far right */
+  margin-right: var(--spacing-lg);
+}
+
+/* Variants */
+
+/* Positions */
+.top-left {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--spacing-md);
+}
+.top-right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--spacing-md);
+}
+.bottom-left {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--spacing-md);
+}
+.bottom-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: var(--spacing-md);
+}
+.top-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+.bottom-center {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+@media (max-width: 520px) {
+  .snackbar {
+    width: calc(100% - 2 * var(--spacing-md));
+    min-width: auto;
+    max-width: none;
+  }
+}
+
+/* Progress bar under snackbar */
+.progressTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0; /* sit on the bottom border */
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.progress {
+  height: 100%;
+  background: var(--color-white);
+  transform-origin: left center;
+  animation-name: shrinkBar;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrinkBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
