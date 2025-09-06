@@ -250,6 +250,30 @@ export function ComponentsPage() {
     },
   ];
 
+  // Local adapter to preview Breadcrumbs variants via different separators
+  const BreadcrumbsPreview: React.FC<{ variant?: string }> = ({
+    variant = "slash",
+  }) => {
+    const separatorMap: Record<string, React.ReactNode> = {
+      slash: "/",
+      chevron: "›",
+      dot: "•",
+      pipe: "|",
+      arrow: "→",
+    };
+    const separator = separatorMap[variant] ?? "/";
+    return (
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "#" },
+          { label: "Products", href: "#" },
+          { label: "Laptops", href: "#" },
+        ]}
+        separator={separator}
+      />
+    );
+  };
+
   return (
     <>
       {/* Component Variants */}
@@ -1377,16 +1401,11 @@ export function ComponentsPage() {
           <GridCol span={span}>
             <VariantSelector
               title="Breadcrumbs"
-              variants={["default", "without-titles", "without-backdrop"]}
-              defaultVariant="default"
+              variants={["slash", "chevron", "dot", "pipe", "arrow"]}
+              defaultVariant="slash"
+              label="Select Separator:"
             >
-              <Breadcrumbs
-                items={[
-                  { label: "Home", href: "#" },
-                  { label: "Products", href: "#" },
-                  { label: "Laptops", href: "#" },
-                ]}
-              />
+              <BreadcrumbsPreview />
             </VariantSelector>
           </GridCol>
         </Grid>
