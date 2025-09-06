@@ -1,147 +1,125 @@
-# Figma Design Tokens Guide for PulseUI
+# Figma Tokens: Architecture, Pipeline, and Schema (PulseUI)
 
-This document outlines the core design tokens used in the PulseUI library and establishes the official naming convention for Figma variables. Adhering to this guide is crucial for ensuring a seamless, 1-to-1 synchronization between Figma and the codebase.
+This document describes the end‑to‑end token pipeline from Figma to code, the naming rules used by the sync, and the canonical token schema enforced in the repo. Treat this file as the source of truth for token integration.
 
-## Core Principle: Naming Convention
+## Pipeline overview
 
-The synchronization script (`sync-figma-tokens.js`) works by mapping Figma variable names to CSS custom properties. The convention is simple:
+1. Figma variables → fetch
 
-**Figma Variable Grouping and Naming:**
-`Group / Sub-Group / Name` -> `--group-sub-group-name`
+- The script `scripts/sync-figma-tokens.js` reads Figma variables via `FIGMA_API_TOKEN` and `FIGMA_FILE_KEY`.
 
-**Examples:**
-- A Figma variable named `xs` inside the `Spacing` group becomes `--spacing-xs`.
-- A Figma variable named `Primary` inside the `Color / Text` groups becomes `--color-text-primary`.
-- A Figma variable named `H1` inside a `Typography` group with a `Size` property becomes `--typography-size-h1`.
+2. Normalize → categorize
 
----
+- Variable names are normalized to lowercase, non‑alphanumerics become hyphens, and grouped into categories based on Figma collection/type.
 
-## I. Color Tokens (`color`)
+3. Persist → compare
 
-Color tokens are the most extensive set. They are organized by their functional purpose (surface, text, border) and then by primitive color scales (blue, red, etc.).
+- Current tokens are extracted from `src/styles/_tokens.scss`.
+- Figma tokens are processed and compared; changes are merged.
 
-### 1.1. Semantic Colors
+4. Write outputs
 
-These are the most important colors to define. They are theme-aware and are used to style all components.
+- `tokens/tokens.json`: current tokens snapshot for the repo.
+- `tokens/figma-tokens.json`: Figma‑sourced snapshot for reference.
+- `src/styles/_tokens.scss`: CSS variables are updated in place.
 
-| Figma Variable Name (`Color / ...`) | SCSS Token                       | Description                                     |
-| ----------------------------------- | -------------------------------- | ----------------------------------------------- |
-| `Background`                        | `--color-background`             | The main background color of the application.   |
-| `Surface`                           | `--color-surface`                | The primary surface color for components.       |
-| `Surface / Hover`                   | `--color-surface-hover`          | Hover state for surfaces.                       |
-| `Text / Primary`                    | `--color-text-primary`           | For primary text content.                       |
-| `Text / Secondary`                  | `--color-text-secondary`         | For secondary, less important text.             |
-| `Border / Primary`                  | `--color-border-primary`         | Primary border color for components.            |
-| `Border / Focus`                    | `--color-border-focus`           | Border color for focused elements (e.g., inputs). |
-| `Primary`                           | `--color-primary`                | The main brand accent color.                    |
-| `Primary / Hover`                   | `--color-primary-hover`          | Hover state for the primary brand color.        |
+5. Generate themes for runtime
 
-### 1.2. Status Colors
+- `scripts/generate-themes.js` reads `_tokens.scss` and writes `src/styles/themes.ts` with `defaultLightTheme`, `defaultDarkTheme`, and `themes` map.
 
-Used for alerts, notifications, and validation states.
+Commands
 
-| Figma Variable Name (`Color / Status / ...`) | SCSS Token          |
-| -------------------------------------------- | ------------------- |
-| `Success`                                    | `--color-success`   |
-| `Warning`                                    | `--color-warning`   |
-| `Error`                                      | `--color-error`     |
-| `Info`                                       | `--color-info`      |
+- Sync from Figma: `npm run sync-tokens`
+- Generate themes: `npm run generate-themes`
 
-### 1.3. Primitive Color Scales
+Important
 
-These are the base colors from which semantic colors are derived. Use a numerical scale from `0` (lightest) to `9` (darkest).
+- Do not manually override design tokens. All changes must flow from Figma through the sync to keep design system compliance.
+- Consume tokens through the theme context or the generated CSS variables; prefer theme context from tokens CSS when available.
 
-| Figma Variable Name (`Color / Blue / ...`) | SCSS Token           |
-| ------------------------------------------ | -------------------- |
-| `0`                                        | `--color-blue-0`     |
-| `1`                                        | `--color-blue-1`     |
-| `...`                                      | `...`                |
-| `9`                                        | `--color-blue-9`     |
+## Naming rules (Figma → CSS variables)
 
----
+Convention
 
-## II. Spacing Tokens (`spacing`)
+- Figma path `Group / Sub-Group / Name` becomes `--group-sub-group-name`.
+- Names are lowercased; spaces and symbols become `-`.
 
-Used for margins, paddings, and gaps.
+Examples
 
-| Figma Variable Name (`Spacing / ...`) | SCSS Token         | Recommended Value |
-| ------------------------------------- | ------------------ | ----------------- |
-| `xs`                                  | `--spacing-xs`     | `4px`             |
-| `sm`                                  | `--spacing-sm`     | `8px`             |
-| `md`                                  | `--spacing-md`     | `16px`            |
-| `lg`                                  | `--spacing-lg`     | `24px`            |
-| `xl`                                  | `--spacing-xl`     | `32px`            |
-| `xxl`                                 | `--spacing-xxl`    | `48px`            |
+- `Spacing / xs` → `--spacing-xs`
+- `Color / Text / Primary` → `--color-text-primary`
+- `Typography / Size / H1` → `--typography-size-h1`
 
----
+Additional handling by sync
 
-## III. Sizing Tokens (`size`)
+- Color variables are converted to `#rrggbb` or `rgba(r,g,b,a)` depending on opacity.
+- FLOAT values become pixel strings (e.g., `8px`).
+- STRING values (e.g., font families) are kept as‑is.
 
-Used for component dimensions (width, height).
+## Token categories (canonical)
 
-| Figma Variable Name (`Size / ...`) | SCSS Token      | Recommended Value |
-| ---------------------------------- | --------------- | ----------------- |
-| `xs`                               | `--size-xs`     | `24px`            |
-| `sm`                               | `--size-sm`     | `32px`            |
-| `md`                               | `--size-md`     | `40px`            |
-| `lg`                               | `--size-lg`     | `48px`            |
-| `xl`                               | `--size-xl`     | `56px`            |
+The repo defines the canonical JSON schema at `src/styles/token-schema.json`. Key categories align with how the sync and theme generator work:
 
----
+- Colors: semantic and scales
 
-## IV. Typography Tokens
+  - Semantic: `primary`, `secondary`, `success`, `warning`, `error`, `info`, `surface`, `text`, `border`, `background`, `white`, `black`, `gray`
+  - Scales: numeric `0`…`9` for each color family (e.g., `blue-0 … blue-9`).
 
-### 4.1. Font Sizes (`font-size`)
+- Spacing: `xs, sm, md, lg, xl, xxl, 2xl` → pixel/rem/em strings
 
-| Figma Variable Name (`Font / Size / ...`) | SCSS Token           |
-| ----------------------------------------- | -------------------- |
-| `xs`                                      | `--font-size-xs`     |
-| `sm`                                      | `--font-size-sm`     |
-| `md`                                      | `--font-size-md`     |
-| `lg`                                      | `--font-size-lg`     |
-| `xl`                                      | `--font-size-xl`     |
+- Typography
 
-### 4.2. Font Weights (`font-weight`)
+  - Sizes: `font-size-xs … font-size-xxl`
+  - Line heights: `line-height-xs … line-height-xxl`
+  - Weights: `font-weight-normal|medium|semibold|bold`
+  - Family: `font-family`
 
-| Figma Variable Name (`Font / Weight / ...`) | SCSS Token             |
-| ------------------------------------------- | ---------------------- |
-| `Normal`                                    | `--font-weight-normal` |
-| `Medium`                                    | `--font-weight-medium` |
-| `Bold`                                      | `--font-weight-bold`   |
+- Effects
 
-### 4.3. Line Heights (`line-height`)
+  - Shadows: `shadow-sm|md|lg|xl`
+  - Radii: `radius-sm|md|lg|xl`
 
-| Figma Variable Name (`Font / Line-Height / ...`) | SCSS Token             |
-| ------------------------------------------------ | ---------------------- |
-| `xs`                                             | `--line-height-xs`     |
-| `sm`                                             | `--line-height-sm`     |
-| `md`                                             | `--line-height-md`     |
+- Sizes: `xs, sm, md, lg, xl, xxl`
 
----
+- Breakpoints: `mobile, tablet, desktop, wide` (px strings)
 
-## V. Border Radius Tokens (`radius`)
+Required in schema
 
-| Figma Variable Name (`Radius / ...`) | SCSS Token       | Recommended Value |
-| ------------------------------------ | ---------------- | ----------------- |
-| `xs`                                 | `--radius-xs`    | `2px`             |
-| `sm`                                 | `--radius-sm`    | `4px`             |
-| `md`                                 | `--radius-md`    | `8px`             |
-| `lg`                                 | `--radius-lg`    | `12px`            |
-| `xl`                                 | `--radius-xl`    | `16px`            |
-| `full`                               | `--radius-full`  | `9999px`          |
+- At top level: `brand` metadata and `tokens` with at least a `light` theme.
+- Within a theme: `colors`, `spacing`, `typography`, `effects` are required; others are optional but recommended.
 
----
+## Generated theme artifacts
 
-## VI. Shadow Tokens (`shadow`)
+- `src/styles/themes.ts` exports:
+  - `defaultLightTheme`, `defaultDarkTheme` (dark generated by scale inversion + overrides for background/surface/text/border)
+  - `themes` map: `{ "default-light": ..., "default-dark": ... }`
 
-It's recommended to define shadows as a set of properties in Figma. The script will translate them.
+## Practical guidance for Figma setup
 
-| Figma Variable Name (`Effect / Shadow / ...`) | SCSS Token        |
-| --------------------------------------------- | ----------------- |
-| `Normal`                                      | `--shadow-normal` |
-| `Md`                                          | `--shadow-md`     |
-| `Lg`                                          | `--shadow-lg`     |
+- Organize variables into clear collections: Color, Spacing, Typography, Size, Effects.
+- Use numeric scales `0 … 9` for color families; keep semantic colors separate.
+- Prefer opacity in color variables only when truly needed; otherwise use solid hex.
+- Keep typography consistent: sizes as numbers (FLOAT), family as STRING.
 
----
+## Examples (Figma → CSS)
 
-By following these naming conventions in your Figma file, you will enable a reliable, automated, and error-free synchronization process, keeping your design system's source of truth perfectly aligned with the code.
+- `Color / Primary / 6` → `--color-primary-6: #228be6;`
+- `Color / Text / Primary` → `--color-text-primary: #212529;`
+- `Spacing / md` → `--spacing-md: 16px;`
+- `Typography / Font Family` → `--typography-font-family: Inter, sans-serif;`
+
+## File map (what changes where)
+
+- Inputs from Figma: variables API
+- Repo outputs:
+  - `tokens/figma-tokens.json` and `tokens/tokens.json`
+  - `src/styles/_tokens.scss` (authoritative CSS variables consumed by the lib)
+  - `src/styles/themes.ts` (runtime theme objects)
+
+## Compliance
+
+- No manual overrides of design tokens in the codebase.
+- Prefer theme context from tokens CSS for runtime consumption.
+- Run `npm run sync-tokens` after design changes in Figma, then `npm run generate-themes`.
+
+For detailed validation rules, see `src/styles/token-schema.json`.
