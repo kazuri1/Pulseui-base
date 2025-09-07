@@ -71,6 +71,10 @@ import {
   Snackbar,
   Loader,
   LineChart,
+  BarChart,
+  Sparkline,
+  PieChart,
+  HeatMap,
 } from "../index";
 
 export function ComponentsPage() {
@@ -280,6 +284,15 @@ export function ComponentsPage() {
     },
   ];
   const [chartVariant, setChartVariant] = useState<"line" | "filled">("filled");
+  const [barVariant, setBarVariant] = useState<"basic" | "stacked">("basic");
+  const [sparkVariant, setSparkVariant] = useState<"line" | "area">("line");
+  const [pieVariant, setPieVariant] = useState<"pie" | "donut">("pie");
+  const barLabels = ["group A", "group B", "group C"];
+  const barSeries = [
+    { label: "v6", data: [4, 3, 5], colorVar: "--color-blue-6" },
+    { label: "v7", data: [1, 6, 3], colorVar: "--color-yellow-6" },
+    { label: "v8", data: [2, 5, 6], colorVar: "--color-red-6" },
+  ];
 
   // Local adapter to preview Breadcrumbs variants via different separators
   const BreadcrumbsPreview: React.FC<{ variant?: string }> = ({
@@ -1057,15 +1070,122 @@ export function ComponentsPage() {
               <div
                 style={{
                   width: "100%",
-                  maxWidth: "100%",
+                  maxWidth: 520,
+                  margin: "0 auto",
                 }}
               >
                 <LineChart
                   title="Inflation rates"
                   xData={chartYears}
                   series={chartSeries}
-                  height={300}
+                  height={220}
                   filledArea={chartVariant === "filled"}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Bar Chart"
+              variants={["basic", "stacked"]}
+              defaultVariant="basic"
+              onVariantChange={(variant) =>
+                setBarVariant(variant === "stacked" ? "stacked" : "basic")
+              }
+            >
+              <div style={{ width: "100%", maxWidth: 520, margin: "0 auto" }}>
+                <BarChart
+                  title="Groups"
+                  xLabels={barLabels}
+                  series={barSeries}
+                  height={220}
+                  variant={barVariant}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Sparkline"
+              variants={["line", "area"]}
+              defaultVariant="line"
+              onVariantChange={(variant) =>
+                setSparkVariant(variant === "area" ? "area" : "line")
+              }
+            >
+              <div style={{ width: "100%", maxWidth: 240 }}>
+                <Sparkline
+                  title="Daily users"
+                  data={[12, 14, 11, 16, 18, 21, 20, 23, 25, 24, 28, 30]}
+                  width={240}
+                  height={64}
+                  colorVar="--chart-series-1"
+                  showArea={sparkVariant === "area"}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Pie Chart"
+              variants={["pie", "donut"]}
+              defaultVariant="pie"
+              onVariantChange={(variant) =>
+                setPieVariant(variant === "donut" ? "donut" : "pie")
+              }
+            >
+              <div style={{ width: "100%", maxWidth: 320 }}>
+                <PieChart
+                  title="Traffic Sources"
+                  data={[
+                    {
+                      label: "Direct",
+                      value: 44,
+                      colorVar: "--chart-series-1",
+                    },
+                    {
+                      label: "Organic",
+                      value: 31,
+                      colorVar: "--chart-series-2",
+                    },
+                    {
+                      label: "Referral",
+                      value: 16,
+                      colorVar: "--chart-series-3",
+                    },
+                    { label: "Social", value: 9, colorVar: "--chart-series-4" },
+                  ]}
+                  width={320}
+                  height={240}
+                  variant={pieVariant}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+          <GridCol span={span}>
+            <VariantSelector
+              title="Heat Map"
+              variants={["default"]}
+              defaultVariant="default"
+            >
+              <div style={{ width: "100%", maxWidth: 360 }}>
+                <HeatMap
+                  title="Issues opening time"
+                  yLabels={["6am", "10am", "12am", "5pm", "8pm"]}
+                  xLabels={["M", "T", "W", "T", "F", "S", "S"]}
+                  values={[
+                    [1, 0, 0, 0, 0, 0, 0],
+                    [1, 1, 1, 1, 0, 0, 0],
+                    [0, 0, 1, 0, 1, 0, 0],
+                    [2, 2, 2, 2, 3, 0, 0],
+                    [0, 0, 0, 0, 0, 2, 0],
+                  ]}
+                  colorVar="--chart-series-1"
+                  cellSize={28}
+                  gap={8}
+                  minOpacity={0.16}
+                  maxOpacity={1}
+                  round={8}
                 />
               </div>
             </VariantSelector>

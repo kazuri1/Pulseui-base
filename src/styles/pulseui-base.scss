@@ -38,6 +38,10 @@
 // Card Component
 @use "../components/atoms/Card/Card.module.scss";
 @use "../components/atoms/LineChart/LineChart.module.scss";
+@use "../components/atoms/BarChart/BarChart.module.scss";
+@use "../components/atoms/Sparkline/Sparkline.module.scss";
+@use "../components/atoms/PieChart/PieChart.module.scss";
+@use "../components/atoms/HeatMap/HeatMap.module.scss";
 
 // Alert Component
 @use "../components/atoms/Alert/Alert.module.scss";

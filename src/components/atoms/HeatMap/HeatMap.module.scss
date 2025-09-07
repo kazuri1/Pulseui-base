@@ -1,0 +1,61 @@
+.wrapper {
+  width: 100%;
+  color: var(--color-text-primary);
+}
+
+.title {
+  margin: 0 0 8px 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.gridBlock {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.yLabel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--color-text-secondary);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  border: 1px solid var(--color-surface-200);
+  box-sizing: border-box;
+}
+
+.xLabels {
+  display: flex;
+  margin-top: 6px;
+}
+
+.xLabel {
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+:where([data-theme="dark"], [data-mode="dark"]) .wrapper {
+  color: var(--color-on-surface);
+}
+
+:where([data-theme="dark"], [data-mode="dark"]) .cell {
+  border-color: var(--color-divider);
+}

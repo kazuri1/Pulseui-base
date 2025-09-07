@@ -1,0 +1,15 @@
+.chartContainer {
+  width: 100%;
+  color: var(--color-text-primary);
+}
+
+.chartTitle {
+  margin: 0 0 8px 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+:where([data-theme="dark"], [data-mode="dark"]) .chartContainer {
+  color: var(--color-on-surface);
+}

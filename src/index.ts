@@ -301,3 +301,12 @@ export type {
 
 export { BarChart } from "./components/atoms/BarChart";
 export type { BarChartProps, BarSeries } from "./components/atoms/BarChart";
+
+export { Sparkline } from "./components/atoms/Sparkline";
+export type { SparklineProps } from "./components/atoms/Sparkline";
+
+export { PieChart } from "./components/atoms/PieChart";
+export type { PieChartProps, PieSlice } from "./components/atoms/PieChart";
+
+export { HeatMap } from "./components/atoms/HeatMap";
+export type { HeatMapProps } from "./components/atoms/HeatMap";
