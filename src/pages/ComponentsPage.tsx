@@ -70,6 +70,7 @@ import {
   Skeleton,
   Snackbar,
   Loader,
+  LineChart,
 } from "../index";
 
 export function ComponentsPage() {
@@ -250,6 +251,36 @@ export function ComponentsPage() {
     },
   ];
 
+  // Demo data for LineChart
+  const chartYears = [
+    1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015,
+    2020, 2023,
+  ];
+  const chartSeries = [
+    {
+      label: "Germany",
+      data: [
+        2.1, 3, 1.8, 6.2, 4.9, 2.3, 3.4, 2.5, 1.6, 1.2, 1.1, 0.9, 2.5, 5.6,
+      ],
+      colorVar: "--color-blue-6",
+    },
+    {
+      label: "United Kingdom",
+      data: [
+        3.2, 4.0, 6.5, 24.2, 15.0, 5.1, 3.4, 2.0, 1.6, 2.8, 3.5, 0.5, 1.2, 7.9,
+      ],
+      colorVar: "--color-yellow-6",
+    },
+    {
+      label: "France",
+      data: [
+        3.5, 2.8, 4.1, 13.2, 12.8, 3.1, 3.4, 2.1, 1.5, 1.9, 1.7, 0.3, 1.1, 5.1,
+      ],
+      colorVar: "--color-red-6",
+    },
+  ];
+  const [chartVariant, setChartVariant] = useState<"line" | "filled">("filled");
+
   // Local adapter to preview Breadcrumbs variants via different separators
   const BreadcrumbsPreview: React.FC<{ variant?: string }> = ({
     variant = "slash",
@@ -271,6 +302,41 @@ export function ComponentsPage() {
         ]}
         separator={separator}
       />
+    );
+  };
+
+  // Local adapter to preview Radio variants with a controlled group
+  const RadioGroupPreview: React.FC<{ variant?: string }> = ({
+    variant = "default",
+  }) => {
+    const [selectedValue, setSelectedValue] = useState<string>("option1");
+    return (
+      <>
+        <Radio
+          label="Option 1"
+          name="demo-radio-group"
+          value="option1"
+          checked={selectedValue === "option1"}
+          onChange={() => setSelectedValue("option1")}
+          variant={variant as "default" | "filled" | "outline" | "light"}
+        />
+        <Radio
+          label="Option 2"
+          name="demo-radio-group"
+          value="option2"
+          checked={selectedValue === "option2"}
+          onChange={() => setSelectedValue("option2")}
+          variant={variant as "default" | "filled" | "outline" | "light"}
+        />
+        <Radio
+          label="Option 3"
+          name="demo-radio-group"
+          value="option3"
+          checked={selectedValue === "option3"}
+          onChange={() => setSelectedValue("option3")}
+          variant={variant as "default" | "filled" | "outline" | "light"}
+        />
+      </>
     );
   };
 
@@ -968,6 +1034,45 @@ export function ComponentsPage() {
         </Grid>
       </div>
 
+      {/* Data Visualization */}
+      <div style={{ marginTop: "48px" }}>
+        <Text
+          as="h2"
+          variant="xl"
+          weight="semibold"
+          sx={{ marginBottom: "24px" }}
+        >
+          Data Visualization
+        </Text>
+        <Grid gutter="24px">
+          <GridCol span={span}>
+            <VariantSelector
+              title="Line Chart"
+              variants={["line", "filled"]}
+              defaultVariant="filled"
+              onVariantChange={(variant) =>
+                setChartVariant(variant === "filled" ? "filled" : "line")
+              }
+            >
+              <div
+                style={{
+                  width: "100%",
+                  maxWidth: "100%",
+                }}
+              >
+                <LineChart
+                  title="Inflation rates"
+                  xData={chartYears}
+                  series={chartSeries}
+                  height={300}
+                  filledArea={chartVariant === "filled"}
+                />
+              </div>
+            </VariantSelector>
+          </GridCol>
+        </Grid>
+      </div>
+
       {/* Feedback Components */}
       <div style={{ marginTop: "48px" }}>
         <Text
@@ -1071,20 +1176,12 @@ export function ComponentsPage() {
               title="Radio Component"
               variants={["default", "filled", "outline", "light"]}
               defaultVariant="default"
+              label="Select Radio Variant:"
               onVariantChange={(variant) =>
                 console.log(`Radio variant changed to: ${variant}`)
               }
             >
-              <div>
-                <Radio
-                  size="md"
-                  label="Option 1"
-                  name="radio-group"
-                  value="option1"
-                  checked={false}
-                  onChange={() => console.log("Option 1 selected")}
-                />
-              </div>
+              <RadioGroupPreview />
             </VariantSelector>
           </GridCol>
           <GridCol span={span}>

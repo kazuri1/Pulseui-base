@@ -1,0 +1,25 @@
+@use "../../../styles/_tokens.scss" as *;
+
+.chartContainer {
+  background-color: var(--color-surface);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+
+  // Bind chart CSS vars to tokens
+  --ChartsAxis-labelColor: var(--chart-axis-label-color);
+  --ChartsAxis-tickLabelColor: var(--chart-axis-label-color);
+  --ChartsAxis-lineColor: var(--chart-grid-color);
+  --ChartsGrid-lineColor: var(--chart-grid-color);
+  --ChartsLegend-labelColor: var(--chart-legend-label-color);
+  --ChartsTooltip-background: var(--chart-tooltip-background);
+  --ChartsTooltip-textColor: var(--chart-tooltip-text);
+  --ChartsTooltip-border: var(--chart-tooltip-border);
+}
+
+.chartTitle {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+}

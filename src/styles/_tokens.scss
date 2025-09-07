@@ -124,6 +124,22 @@
   --color-error: var(--color-red-6);
   --color-info: var(--color-blue-6);
 
+  // Charts (Design System tokens)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
+  --chart-legend-border: 1px solid var(--color-border-secondary);
+  --chart-crosshair-color: var(--chart-grid-color);
+  --chart-legend-border: 1px solid var(--color-border-secondary);
+
   // Primary colors
   --color-primary: var(--color-blue-8);
   --color-primary-hover: var(--color-blue-7);
@@ -399,6 +415,74 @@
   --color-warning: var(--color-yellow-6);
   --color-error: var(--color-red-6);
   --color-info: var(--color-blue-6);
+
+  // Charts (Dark theme overrides)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
+  --chart-legend-border: 1px solid var(--color-border-secondary);
+  --chart-crosshair-color: var(--color-text-primary);
+}
+
+// Dark mode alias for environments using data-mode instead of data-theme
+[data-mode="dark"] {
+  // Surface Color System (same as data-theme="dark")
+  --color-surface-0: #121212;
+  --color-surface-1: #1e1e1e;
+  --color-surface-2: #232323;
+  --color-surface-3: #2a2a2a;
+  --color-surface-4: #2f2f2f;
+  --color-surface-5: #353535;
+  --color-surface-variant: #2c2c2c;
+
+  // Text and dividers
+  --color-on-surface: #e0e0e0;
+  --color-on-surface-variant: #a8a8a8;
+  --color-divider: #3a3a3a;
+
+  // Theme-aware colors
+  --color-background: var(--color-surface-0);
+  --color-surface: var(--color-surface-0);
+  --color-surface-hover: var(--color-surface-1);
+  --color-surface-secondary: var(--color-surface-1);
+  --color-surface-tertiary: var(--color-surface-2);
+
+  // Text tokens
+  --color-text-primary: var(--color-on-surface);
+  --color-text-primary-hover: var(--color-primary);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-text-muted: var(--color-on-surface-variant);
+
+  // Border tokens
+  --color-border-primary: var(--color-divider);
+  --color-border-secondary: var(--color-surface-4);
+  --color-border-focus: var(--color-blue-6);
+
+  // Primary hues
+  --color-primary: var(--color-blue-6);
+
+  // Charts (align with dark theme)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
+  --chart-legend-border: 1px solid var(--color-border-secondary);
+  --chart-crosshair-color: var(--color-text-primary);
 }
 
 // =============================================================================
@@ -491,6 +575,19 @@
   // Shadow with medical tint
   --color-shadow: rgba(26, 77, 102, 0.12);
 
+  // Charts (Medash Light)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
+
   // MEDASH-specific border radius overrides (medical precision)
   --radius-xs: 1px;
   --radius-sm: 2px;
@@ -498,6 +595,19 @@
   --radius-lg: 6px;
   --radius-xl: 8px;
   --radius-full: 9999px;
+
+  // Charts (Medash Dark)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -692,6 +802,19 @@
   --radius-lg: 16px;
   --radius-xl: 20px;
   --radius-full: 9999px;
+
+  // Charts (Fitcore Light)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -785,6 +908,19 @@
   --color-primary-active: var(--color-blue-8);
   --color-border: var(--color-divider);
   --color-border-tertiary: var(--color-surface-4);
+
+  // Charts (Fitcore Dark)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -872,6 +1008,19 @@
 
   // Shadow with lab tint
   --color-shadow: rgba(74, 20, 140, 0.12);
+
+  // Charts (LabSync Light)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -965,6 +1114,19 @@
   --color-primary-active: var(--color-blue-8);
   --color-border: var(--color-divider);
   --color-border-tertiary: var(--color-surface-4);
+
+  // Charts (LabSync Dark)
+  --chart-series-1: var(--color-blue-6);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -1063,6 +1225,19 @@
   --radius-lg: 8px;
   --radius-xl: 12px;
   --radius-full: 9999px;
+
+  // Charts (GitHub Light)
+  --chart-series-1: var(--color-blue-4);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-red-6);
+  --chart-series-4: var(--color-green-6);
+  --chart-series-5: var(--color-primary);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -1168,6 +1343,19 @@
   --radius-lg: 8px;
   --radius-xl: 12px;
   --radius-full: 9999px;
+
+  // Charts (GitHub Dark)
+  --chart-series-1: var(--color-primary);
+  --chart-series-2: var(--color-yellow-4);
+  --chart-series-3: var(--color-error);
+  --chart-series-4: var(--color-success);
+  --chart-series-5: var(--color-blue-3);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -1267,6 +1455,19 @@
   --radius-lg: 0px;
   --radius-xl: 0px;
   --radius-full: 0px;
+
+  // Charts (Uber Light)
+  --chart-series-1: var(--color-primary);
+  --chart-series-2: var(--color-yellow-6);
+  --chart-series-3: var(--color-error);
+  --chart-series-4: var(--color-success);
+  --chart-series-5: var(--color-blue-4);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }
 
 // =============================================================================
@@ -1363,4 +1564,17 @@
   --radius-lg: 0px;
   --radius-xl: 0px;
   --radius-full: 0px;
+
+  // Charts (Uber Dark)
+  --chart-series-1: var(--color-primary);
+  --chart-series-2: var(--color-yellow-4);
+  --chart-series-3: var(--color-error);
+  --chart-series-4: var(--color-success);
+  --chart-series-5: var(--color-blue-3);
+  --chart-grid-color: var(--color-border-secondary);
+  --chart-axis-label-color: var(--color-text-primary);
+  --chart-legend-label-color: var(--color-text-primary);
+  --chart-tooltip-background: var(--color-surface);
+  --chart-tooltip-text: var(--color-text-primary);
+  --chart-tooltip-border: 1px solid var(--color-border-primary);
 }

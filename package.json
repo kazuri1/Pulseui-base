@@ -139,6 +139,11 @@
   },
   "homepage": "https://github.com/kazuri1/Pulseui#readme",
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "2.1.1",
+    "@chatscope/chat-ui-kit-styles": "1.4.0",
+    "@mui/x-charts": "8.11.1",
+    "d3-array": "3.2.4",
+    "d3-scale": "4.0.2",
     "typescript-eslint": "^8.42.0"
   }
 }

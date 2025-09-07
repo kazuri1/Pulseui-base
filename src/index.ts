@@ -291,3 +291,13 @@ export {
   MoreHoriz,
   // Add more icons as needed
 } from "./components/atoms/Icon/IconSet";
+
+// Charts
+export { LineChart } from "./components/atoms/LineChart";
+export type {
+  LineChartProps,
+  LineChartSeries,
+} from "./components/atoms/LineChart";
+
+export { BarChart } from "./components/atoms/BarChart";
+export type { BarChartProps, BarSeries } from "./components/atoms/BarChart";
