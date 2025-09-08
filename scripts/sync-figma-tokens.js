@@ -384,10 +384,10 @@ function extractFromNode(node, tokens) {
           tokens.colors[colorName] = `#${Math.round(r * 255)
             .toString(16)
             .padStart(2, "0")}${Math.round(g * 255)
-            .toString(16)
-            .padStart(2, "0")}${Math.round(b * 255)
-            .toString(16)
-            .padStart(2, "0")}`;
+              .toString(16)
+              .padStart(2, "0")}${Math.round(b * 255)
+                .toString(16)
+                .padStart(2, "0")}`;
         }
       }
     });
@@ -482,8 +482,7 @@ function updateSCSSTokens(scssContent, changes) {
 
     // Find the appropriate section and add the new token
     const sectionPattern = new RegExp(
-      `(// ${
-        category.charAt(0).toUpperCase() + category.slice(1)
+      `(// ${category.charAt(0).toUpperCase() + category.slice(1)
       }[\\s\\S]*?)(\\n\\s*\\n)`,
       "g"
     );

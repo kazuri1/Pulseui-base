@@ -86,8 +86,7 @@ async function testFigmaConnection() {
       console.log(" File metadata fetched successfully");
       console.log(`📄 File name: ${fileResponse.data.name}`);
       console.log(
-        `👤 Last modified by: ${
-          fileResponse.data.lastModifiedBy?.name || "Unknown"
+        `👤 Last modified by: ${fileResponse.data.lastModifiedBy?.name || "Unknown"
         }`
       );
       console.log(
