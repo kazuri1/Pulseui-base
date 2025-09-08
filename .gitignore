@@ -32,3 +32,5 @@ tokens/
 token-report.md
 .env
 .vercel
+*.tgz
+test-pulseui-app

@@ -144,8 +144,8 @@ class AccessibilityTester {
               rule.severity === "error"
                 ? "errors"
                 : rule.severity === "warning"
-                ? "warnings"
-                : "info"
+                  ? "warnings"
+                  : "info"
             ]++;
           });
         }

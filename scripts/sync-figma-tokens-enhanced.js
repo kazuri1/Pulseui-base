@@ -490,9 +490,8 @@ function generateBrandConfig(brandName, tokens) {
   const configContent = `// ${brandName.toUpperCase()} Brand Configuration
 // Auto-generated from Figma tokens
 
-export interface ${
-    brandName.charAt(0).toUpperCase() + brandName.slice(1)
-  }BrandConfig {
+export interface ${brandName.charAt(0).toUpperCase() + brandName.slice(1)
+    }BrandConfig {
   id: string;
   name: string;
   version: string;
@@ -504,9 +503,8 @@ export interface ${
   };
 }
 
-export const ${brandName}Brand: ${
-    brandName.charAt(0).toUpperCase() + brandName.slice(1)
-  }BrandConfig = {
+export const ${brandName}Brand: ${brandName.charAt(0).toUpperCase() + brandName.slice(1)
+    }BrandConfig = {
   id: '${brandName}',
   name: '${brandName.charAt(0).toUpperCase() + brandName.slice(1)}',
   version: '1.0.0',

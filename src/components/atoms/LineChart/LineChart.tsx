@@ -1,5 +1,5 @@
 import React from "react";
-import { LineChart as MuiLineChart } from "@mui/x-charts/LineChart";
+import { LineChart as MuiLineChart, LineSeries as MuiLineChartSeries, LineChartAxis as MuiLineChartAxis, LineChartSlotsAndParams } from "@mui/x-charts/LineChart";
 import type { SxProps } from "../../../styles/stylesApi";
 import styles from "./LineChart.module.scss";
 
@@ -67,11 +67,13 @@ export const LineChart: React.FC<LineChartProps> = ({
     });
   }, [xData, series, animate, animationDurationMs]);
 
-  const strokeColors = series.map((s, index) =>
-    s.colorVar
-      ? `var(${s.colorVar})`
-      : DEFAULT_SERIES_COLORS[index % DEFAULT_SERIES_COLORS.length]
-  );
+  const strokeColors = React.useMemo(() => {
+    return series.map((s, index) =>
+      s.colorVar
+        ? `var(${s.colorVar})`
+        : DEFAULT_SERIES_COLORS[index % DEFAULT_SERIES_COLORS.length]
+    );
+  }, [series]);
 
   // Inject subtle vertical gradients for filled areas using SVG defs (pre-paint)
   React.useLayoutEffect(() => {
@@ -130,6 +132,7 @@ export const LineChart: React.FC<LineChartProps> = ({
           // Apply subtle vertical fade with CSS mask
           const mask =
             "linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 100%)";
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (el.style as any).webkitMaskImage = mask;
           el.style.maskImage = mask;
           el.style.maskMode = "alpha";
@@ -140,7 +143,7 @@ export const LineChart: React.FC<LineChartProps> = ({
     // Run after paint as backup
     requestAnimationFrame(applyMaskFallback);
     return;
-  }, [filledArea, strokeColors.join(","), xData.length]);
+  }, [filledArea, strokeColors, xData.length, chartUid]);
 
   // Reorder series so requested index is rendered last (on top)
   const ordered = React.useMemo(() => {
@@ -179,9 +182,10 @@ export const LineChart: React.FC<LineChartProps> = ({
         ? ({
             fill: `url(#${chartUid}-gradient-${index})`,
             fillOpacity: 1,
-          } as any)
+          } as Partial<MuiLineChartSeries['areaStyle']>
+        )
         : undefined,
-    } as any;
+    } as MuiLineChartSeries;
   });
 
   // Force z-order by re-appending selected series SVG nodes
@@ -214,7 +218,7 @@ export const LineChart: React.FC<LineChartProps> = ({
             labelStyle: { fill: "var(--chart-axis-label-color)" },
             lineStyle: { stroke: "var(--chart-grid-color)" },
             tickLineStyle: { stroke: "var(--chart-grid-color)" },
-          } as any,
+          } as MuiLineChartAxis,
         ]}
         yAxis={[
           {
@@ -222,11 +226,11 @@ export const LineChart: React.FC<LineChartProps> = ({
             labelStyle: { fill: "var(--chart-axis-label-color)" },
             lineStyle: { stroke: "var(--chart-grid-color)" },
             tickLineStyle: { stroke: "var(--chart-grid-color)" },
-          } as any,
+          } as MuiLineChartAxis,
         ]}
         series={muiSeries}
         height={height}
-        axisHighlight={{ x: "line" } as any}
+        axisHighlight={{ x: "line" } as Partial<LineChartSlotsAndParams['axisHighlight']>}
         slotProps={
           {
             legend: {
@@ -241,7 +245,7 @@ export const LineChart: React.FC<LineChartProps> = ({
               markerStyle: { stroke: "var(--chart-legend-label-color)" },
               itemGap: 12,
             },
-          } as any
+          } as Partial<LineChartSlotsAndParams>
         }
         sx={
           {
@@ -296,7 +300,7 @@ export const LineChart: React.FC<LineChartProps> = ({
 
             // Merge external sx
             ...(sx as object),
-          } as any
+          } as SxProps
         }
       />
     </div>

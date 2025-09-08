@@ -21,21 +21,23 @@ const meta: Meta<typeof Snackbar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const SnackbarStory = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Show Snackbar</Button>
+      <Snackbar
+        open={open}
+        onClose={() => setOpen(false)}
+        message="Saved successfully"
+        variant="success"
+        position="bottom-center"
+        autoHideMs={2500}
+      />
+    </div>
+  );
+};
+
 export const Playground: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-    return (
-      <div>
-        <Button onClick={() => setOpen(true)}>Show Snackbar</Button>
-        <Snackbar
-          open={open}
-          onClose={() => setOpen(false)}
-          message="Saved successfully"
-          variant="success"
-          position="bottom-center"
-          autoHideMs={2500}
-        />
-      </div>
-    );
-  },
+  render: () => <SnackbarStory />,
 };

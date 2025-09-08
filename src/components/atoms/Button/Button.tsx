@@ -68,35 +68,36 @@ export interface ButtonProps extends WithSxProps {
   tabIndex?: number;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  leftIcon,
-  rightIcon,
-  variant = "default",
-  size = "md",
-  state = "default",
-  justify = "center",
-  compact = false,
-  onClick,
-  className = "",
-  disabled = false,
-  type = "button",
-  ariaLabel,
-  ariaPressed,
-  ariaExpanded,
-  ariaControls,
-  ariaDescribedBy,
-  ariaHasPopup,
-  form,
-  formAction,
-  formEncType,
-  formMethod,
-  formTarget,
-  formNoValidate,
-  tabIndex,
-  sx,
-  style,
-}) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({
+    children,
+    leftIcon,
+    rightIcon,
+    variant = "default",
+    size = "md",
+    state = "default",
+    justify = "center",
+    compact = false,
+    onClick,
+    className = "",
+    disabled = false,
+    type = "button",
+    ariaLabel,
+    ariaPressed,
+    ariaExpanded,
+    ariaControls,
+    ariaDescribedBy,
+    ariaHasPopup,
+    form,
+    formAction,
+    formEncType,
+    formMethod,
+    formTarget,
+    formNoValidate,
+    tabIndex,
+    sx,
+    style,
+  }, ref) => {
   const { style: sxStyle, className: sxClassName } = mergeSxWithStyles(
     sx,
     style,
@@ -183,6 +184,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       type={type}
       className={buttonClasses}
       onClick={onClick}
@@ -226,4 +228,4 @@ export const Button: React.FC<ButtonProps> = ({
       )}
     </button>
   );
-};
+});

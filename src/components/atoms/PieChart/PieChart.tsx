@@ -63,10 +63,10 @@ export const PieChart: React.FC<PieChartProps> = ({
         slotProps={
           {
             legend: {
-              direction: "row",
-              position: { vertical: "bottom", horizontal: "middle" },
+              direction: "horizontal",
+              position: { vertical: "bottom", horizontal: "center" },
             },
-          } as any
+          }
         }
         sx={
           {
@@ -82,7 +82,7 @@ export const PieChart: React.FC<PieChartProps> = ({
               fill: "var(--chart-axis-label-color) !important",
             },
             ...(sx as object),
-          } as any
+          } as SxProps
         }
       />
     </div>

@@ -11,7 +11,7 @@ export interface SparklineProps {
   colorVar?: string; // CSS var like "--chart-series-1" or "--color-blue-6"
   showArea?: boolean;
   areaOpacity?: number; // 0..1, default 0.18
-  curve?: "linear" | "monotone" | "step";
+  curve?: "linear" | "monotoneX" | "step";
   sx?: SxProps;
 }
 
@@ -23,7 +23,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
   colorVar,
   showArea = false,
   areaOpacity = 0.18,
-  curve = "monotone",
+  curve = "monotoneX",
   sx,
 }) => {
   const strokeColor = colorVar ? `var(${colorVar})` : "var(--chart-series-1)";
@@ -36,7 +36,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
         width={width}
         height={height}
         curve={curve}
-        colors={[strokeColor]}
+        color={strokeColor}
         area={showArea}
         sx={
           {
@@ -48,12 +48,12 @@ export const Sparkline: React.FC<SparklineProps> = ({
             },
             "& path[fill]": showArea
               ? {
-                  fill: `${strokeColor}`,
-                  fillOpacity: `${areaOpacity} !important`,
-                }
+                fill: `${strokeColor}`,
+                fillOpacity: `${areaOpacity} !important`,
+              }
               : {},
             ...(sx as object),
-          } as any
+          } as SxProps
         }
       />
     </div>

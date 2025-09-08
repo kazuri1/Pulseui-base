@@ -110,7 +110,7 @@ export function Table<T = Record<string, unknown>>({
                   <span>
                     {col.render
                       ? col.render(row, rowIndex)
-                      : (row as any)[col.key as any]}
+                      : row[col.key as keyof T] as React.ReactNode}
                   </span>
                 </td>
               ))}

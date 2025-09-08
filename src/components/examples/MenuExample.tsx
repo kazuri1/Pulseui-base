@@ -8,15 +8,11 @@ import {
   Search,
   Sync,
   Delete,
-  MoreVert,
-  Share,
-  Twitter,
-  Facebook,
-  Email,
+    MoreVert,
   Edit,
-  Copy,
-  Cut,
-  Paste,
+    ContentCopy as Copy,
+  ContentCut as Cut,
+  ContentPaste as Paste,
 } from "../atoms/Icon/IconSet";
 
 export const MenuExample: React.FC = () => {
@@ -31,7 +27,6 @@ export const MenuExample: React.FC = () => {
           label: "Settings",
           icon: Settings,
           onClick: () => {
-            console.log("Settings clicked");
             setIsMenuOpen(false);
           },
         },
@@ -39,7 +34,6 @@ export const MenuExample: React.FC = () => {
           label: "Messages",
           icon: Message,
           onClick: () => {
-            console.log("Messages clicked");
             setIsMenuOpen(false);
           },
         },
@@ -47,7 +41,6 @@ export const MenuExample: React.FC = () => {
           label: "Gallery",
           icon: Photo,
           onClick: () => {
-            console.log("Gallery clicked");
             setIsMenuOpen(false);
           },
         },
@@ -56,7 +49,6 @@ export const MenuExample: React.FC = () => {
           icon: Search,
           shortcut: "⌘K",
           onClick: () => {
-            console.log("Search clicked");
             setIsMenuOpen(false);
           },
         },
@@ -71,8 +63,7 @@ export const MenuExample: React.FC = () => {
                   label: "Copy",
                   icon: Copy,
                   shortcut: "⌘C",
-                  onClick: () => {
-                    console.log("Copy clicked");
+                                    onClick: () => {
                     setIsMenuOpen(false);
                   },
                 },
@@ -81,7 +72,6 @@ export const MenuExample: React.FC = () => {
                   icon: Cut,
                   shortcut: "⌘X",
                   onClick: () => {
-                    console.log("Cut clicked");
                     setIsMenuOpen(false);
                   },
                 },
@@ -90,7 +80,6 @@ export const MenuExample: React.FC = () => {
                   icon: Paste,
                   shortcut: "⌘V",
                   onClick: () => {
-                    console.log("Paste clicked");
                     setIsMenuOpen(false);
                   },
                 },
@@ -107,7 +96,6 @@ export const MenuExample: React.FC = () => {
           label: "Transfer my data",
           icon: Sync,
           onClick: () => {
-            console.log("Transfer data clicked");
             setIsMenuOpen(false);
           },
         },
@@ -116,7 +104,6 @@ export const MenuExample: React.FC = () => {
           icon: Delete,
           danger: true,
           onClick: () => {
-            console.log("Delete account clicked");
             setIsMenuOpen(false);
           },
         },
