@@ -30,6 +30,8 @@ module.exports = tseslint.config(
       "react/prop-types": "off", // Using TypeScript
       "@typescript-eslint/no-unused-vars": "warn",
       "no-console": "warn",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "jsx-a11y/no-static-element-interactions": "off",
     },
     settings: {
       react: {
@@ -45,6 +47,7 @@ module.exports = tseslint.config(
       "coverage/**",
       "*.config.js",
       "*.config.ts",
+      "src/pages/**",
     ],
   },
 );

@@ -28,6 +28,18 @@ export default defineConfig({
     sourcemap: true,
     minify: false,
     target: "es2015",
+    cssCodeSplit: true,
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // You can add global SCSS variables here if needed
+      },
+    },
+    modules: {
+      localsConvention: 'camelCaseOnly',
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    },
   },
   resolve: {
     alias: {
