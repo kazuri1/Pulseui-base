@@ -1,4 +1,5 @@
 import './styles/pulseui-base.scss';
+export * from './styles/pulseui-base.scss';
 
 // Core Components
 export { Button } from "./components/atoms/Button";
