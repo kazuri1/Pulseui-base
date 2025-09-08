@@ -49,12 +49,12 @@ export const Menu: React.FC<MenuProps> = ({
     position: { x: number; y: number };
   } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const itemsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   const allItems = sections.flatMap((section) => section.items);
 
   // Calculate menu position based on anchor element
-  const getMenuPosition = (): React.CSSProperties => {
+  const getMenuPosition = React.useCallback((): React.CSSProperties => {
     if (!anchorEl || isSubmenu) {
       return {};
     }
@@ -109,7 +109,7 @@ export const Menu: React.FC<MenuProps> = ({
       transform: "none",
       zIndex: 1000,
     };
-  };
+  }, [anchorEl, isSubmenu, mobileWidth, isMobile, placement]);
 
   // Update position when menu opens or window resizes
   useEffect(() => {
@@ -125,7 +125,7 @@ export const Menu: React.FC<MenuProps> = ({
       window.addEventListener("resize", updatePosition);
       return () => window.removeEventListener("resize", updatePosition);
     }
-  }, [open, anchorEl, placement, width]);
+  }, [open, anchorEl, placement, width, getMenuPosition]);
 
   useEffect(() => {
     if (open) {
@@ -304,7 +304,7 @@ export const Menu: React.FC<MenuProps> = ({
                     .reduce((acc, s) => acc + s.items.length, 0) + itemIndex;
 
                 return (
-                  <div
+                  <button
                     key={itemIndex}
                     ref={(el) => {
                       itemsRef.current[globalIndex] = el;
@@ -315,11 +315,9 @@ export const Menu: React.FC<MenuProps> = ({
                       item.disabled && styles.disabled,
                       activeIndex === globalIndex && styles.active
                     )}
-                    role="menuitem"
-                    tabIndex={-1}
                     onClick={() => handleItemClick(item)}
                     onMouseEnter={() => handleMouseEnter(globalIndex)}
-                    aria-disabled={item.disabled}
+                    disabled={item.disabled}
                     aria-haspopup={item.submenu ? "menu" : undefined}
                     aria-expanded={submenuState?.index === globalIndex}
                   >
@@ -343,7 +341,7 @@ export const Menu: React.FC<MenuProps> = ({
                         <Icon icon={ArrowForwardIos} size="xs" />
                       </div>
                     )}
-                  </div>
+                  </button>
                 );
               })}
             </div>

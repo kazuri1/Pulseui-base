@@ -53,10 +53,10 @@ export const BarChart: React.FC<BarChartProps> = ({
         slotProps={
           {
             legend: {
-              direction: "row",
+              direction: "horizontal",
               position: { vertical: "top", horizontal: "center" },
             },
-          } as any
+          }
         }
         sx={
           {
@@ -83,7 +83,7 @@ export const BarChart: React.FC<BarChartProps> = ({
                 fill: "var(--chart-legend-label-color) !important",
               },
             ...(sx as object),
-          } as any
+          } as SxProps
         }
       />
     </div>
